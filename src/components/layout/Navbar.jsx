@@ -89,15 +89,15 @@ export default function Navbar() {
             </li>
           ))}
 
-          <li className="cursor-pointer hover:text-blue-600 transition-colors">
+          {/* <li className="cursor-pointer hover:text-blue-600 transition-colors">
             Contact Us
-          </li>
+          </li> */}
 
         </ul>
 
-        <button className="hidden md:block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow-md shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
+        <Link href="https://yo-dalo.in/admission-Form" className="hidden md:block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow-md shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">
           Student Login
-        </button>
+        </Link>
 
         {/* Mobile Hamburger */}
         <button
@@ -129,12 +129,12 @@ export default function Navbar() {
                 )}
               </li>
             ))}
-            <li>Contact Us</li>
+            {/* <li>Contact Us</li> */}
           </ul>
 
-          <button className="mt-5 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2.5 rounded-lg text-sm font-bold shadow-md">
+          <Link href="https://yo-dalo.in/admission-Form" className="mt-5 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2.5 rounded-lg text-sm font-bold shadow-md">
             Student Login
-          </button>
+          </Link>
         </div>
       )}
     </nav>

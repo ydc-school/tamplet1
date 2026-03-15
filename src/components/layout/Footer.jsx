@@ -22,6 +22,10 @@ export default function Footer() {
   const instagramUrl = schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
   const twitterUrl = schoolInfo?.Twitter_Url ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
 
+  const schoolMotto = schoolInfo?.Motto ?? " Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
+
+
+
   return (
     <footer className="w-full bg-[#0a1930] text-gray-300 mt-0 border-t border-white/10 relative overflow-hidden">
       {/* Decorative background subtle glows */}
@@ -53,7 +57,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-            Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.
+            {schoolMotto}
           </p>
 
           {/* Social icons */}
