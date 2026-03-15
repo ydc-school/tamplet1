@@ -2,8 +2,26 @@
 import Image from "next/image";
 import { useSchool } from "@/context/SchoolContext";
 
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+
 export default function Footer() {
   const { schoolInfo, loading } = useSchool();
+  const [quickLinks, setQuickLinks] = useState([]);
+  const [useFullLinks, setUseFullLinks] = useState([]);
+  useEffect(() => {
+    axios.get("/api/client/quick-link")
+      .then((res) => setQuickLinks(res.data.data.data))
+      .catch(() => { });
+  }, []);
+
+  useEffect(() => {
+    axios.get("/api/client/usefull-link")
+      .then((res) => setUseFullLinks(res.data.data.data))
+      .catch(() => { });
+  }, []);
+
 
   // ── Safe values with fallbacks ────────────────────────────────────────────
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
@@ -97,13 +115,14 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-bold text-lg mb-6 flex items-center group">
             <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 group-hover:w-4 transition-all"></span>
-            Quick Links
+            UseFull Links
           </h3>
           <ul className="space-y-3 text-sm font-medium">
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">Home</li>
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">Profile</li>
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">Gallery</li>
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">Founder's Message</li>
+            {useFullLinks.map((link) => (
+              <li key={link.Id} className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">
+                <Link href={link.Url}>{link.Name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -111,13 +130,14 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-bold text-lg mb-6 flex items-center group">
             <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 group-hover:w-4 transition-all"></span>
-            Academics
+            Quick Links
           </h3>
           <ul className="space-y-3 text-sm font-medium">
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">B.A. (Bachelor of Arts)</li>
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">B.Sc. (Bachelor of Science)</li>
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">B.Com (Bachelor of Commerce)</li>
-            <li className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">M.Sc. (Master of Science)</li>
+            {quickLinks.map((link) => (
+              <li key={link.Id} className="hover:text-blue-400 hover:translate-x-1 cursor-pointer transition-all">
+                <Link href={link.Url}>{link.Name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 

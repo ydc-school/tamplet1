@@ -6,6 +6,7 @@ const SchoolContext = createContext(null);
 
 export function SchoolProvider({ children }) {
     const [schoolInfo, setSchoolInfo] = useState(null);
+    const [quickLink, setQuickLink] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -28,6 +29,8 @@ export function SchoolProvider({ children }) {
 
     }, [schoolInfo]);
 
+    
+
     useEffect(() => {
         const fetchSchoolInfo = async () => {
             try {
@@ -46,6 +49,10 @@ export function SchoolProvider({ children }) {
 
         fetchSchoolInfo();
     }, []);
+
+
+
+
 
     return (
         <SchoolContext.Provider value={{ schoolInfo, loading, error }}>

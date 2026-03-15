@@ -6,6 +6,10 @@ import { useSchool } from "@/context/SchoolContext";
 export const Hero = () => {
   const { schoolInfo, loading } = useSchool();
 
+
+
+
+  
   return (
     <section className="relative overflow-hidden bg-white min-h-[600px] flex items-center pt-16 pb-16 lg:pt-24 lg:pb-24">
       <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-blue-50 via-white to-white">
