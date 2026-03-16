@@ -32,7 +32,7 @@ export default function Footer() {
   const website = schoolInfo?.Website ?? "www.ydu.com";
   const logoUrl = schoolInfo?.Logo_Url
     ? `/uploads/${schoolInfo.Logo_Url}`
-    : "/logo/6.png";
+    : "/logo/logo.png";
 
   // Social links
   const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
