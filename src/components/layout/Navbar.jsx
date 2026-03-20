@@ -59,14 +59,14 @@ export default function Navbar() {
 
         {/* Logo + Name */}
         <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
-          <div className="w-36 sm:w-44 md:w-56 h-10 relative flex-shrink-0">
+          <div className="w-36   sm:w-44 md:w-56 h-full relative flex-shrink-0">
             <Image
               src={logoUrl}
               alt={`${schoolName} Logo`}
               width={502}
               height={82}
-              className="object-contain w-full h-full"
-              onError={(e) => { e.currentTarget.src = "/logo/6.png"; }}
+              className="object-contain  h-full"
+              onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
             />
           </div>
           <div className="hidden sm:block min-w-0">
