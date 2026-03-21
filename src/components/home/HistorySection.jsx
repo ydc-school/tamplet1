@@ -2,7 +2,6 @@ export default function HistorySection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Source+Sans+3:wght@400;500;600&display=swap');
 
         .hs-root {
           width: 100%;

@@ -37,7 +37,6 @@ export default function StudentToppers() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap');
 
         .tp-root {
           width: 100%;
