@@ -39,7 +39,6 @@ export default function Footer() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
 
         .ft-root {
           background: #071020;
@@ -110,14 +109,14 @@ export default function Footer() {
           text-decoration: none;
         }
         .ft-logo-ring {
-          width: 58px;
-          height: 58px;
-          border-radius: 50%;
+          width: 120px;
+          height: 52px;
+           border-radius: 0%;
           background: white;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 5px;
+         
           flex-shrink: 0;
           box-shadow: 0 0 0 2px #c4a048, 0 0 0 4px rgba(196,160,72,0.15);
         }
@@ -294,9 +293,9 @@ export default function Footer() {
                 <Image
                   src={logoUrl}
                   alt={`${schoolName} Logo`}
-                  width={50}
+                  width={500}
                   height={50}
-                  style={{ objectFit: "contain", borderRadius: "50%" }}
+                  style={{ objectFit: "contain",  }}
                   onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
                 />
               </div>

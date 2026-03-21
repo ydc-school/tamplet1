@@ -78,7 +78,6 @@ export default function AchievementsSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@400;500;600&display=swap');
 
         .ach-root {
           width: 100%;

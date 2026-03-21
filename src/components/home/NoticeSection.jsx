@@ -23,7 +23,6 @@ export default function NoticeSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
 
         .nt-root {
           width: 100%;
