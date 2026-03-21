@@ -120,9 +120,9 @@ export default function Navbar() {
           height: 48px;
         }
         .nb-logo-img-wrap {
-          width: 52px;
+          width: 120px;
           height: 52px;
-          border-radius: 50%;
+           border-radius: 0%;
           background: white;
           display: flex;
           align-items: center;
@@ -135,7 +135,7 @@ export default function Navbar() {
           width: 100%;
           height: 100%;
           object-fit: contain;
-          border-radius: 50%;
+         
         }
         .nb-logo-text { display: none; }
         @media (min-width: 600px) { .nb-logo-text { display: block; } }
@@ -311,7 +311,7 @@ export default function Navbar() {
           background: var(--nb-text);
           transition: all 0.3s ease;
           transform-origin: center;
-        }
+        }nb
         .b1.open { transform: rotate(45deg) translate(4.5px, 4.5px); }
         .b2.open { opacity: 0; transform: scaleX(0); }
         .b3.open { transform: rotate(-45deg) translate(4.5px, -4.5px); }
@@ -421,11 +421,11 @@ export default function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="nb-logo">
-              <div className="nb-logo-img-wrap">
+              <div className="nb-logo-img-wrap  bg-amber-800">
                 <Image
                   src={logoUrl}
                   alt={`${schoolName} logo`}
-                  width={52}
+                  width={502}
                   height={52}
                   className="nb-logo-img"
                   onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
