@@ -35,7 +35,6 @@ export default function StudentProfile() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Source+Sans+3:wght@400;500;600&display=swap');
 
         .sp-root {
           min-height: 100vh;

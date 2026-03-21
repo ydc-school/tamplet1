@@ -334,8 +334,9 @@ export default function StudentToppers() {
                     return (
                       <div key={topper.Id} className="tp-podium-item">
                         <div className="tp-photo-wrap">
-                          <Link href={"./student/"+topper?.Id} className={`tp-photo-ring rank-${rank}`}>
+                          <div  className={`tp-photo-ring rank-${rank}`}>
                             {topper.Image ? (
+                              <Link href={"./student/"+topper?.Id}>
                               <Image
                                 src={`/uploads/${topper.Image}`}
                                 alt={topper.Student_Name || "Topper"}
@@ -343,10 +344,11 @@ export default function StudentToppers() {
                                 sizes="110px"
                                 className="object-contain object-top"
                               />
+                              </Link>
                             ) : (
                               <div className="tp-avatar-placeholder">{initials}</div>
                             )}
-                          </Link>
+                          </div>
                           <div
                             className="tp-rank-badge"
                             style={{ background: medal.bg, color: medal.text }}
