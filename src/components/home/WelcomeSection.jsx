@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 import axios from "axios";
 
 export default function WelcomeSection() {
@@ -9,124 +9,397 @@ export default function WelcomeSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchWelcomeMessage = async () => {
-      try {
-        const response = await axios.get("/api/client/school-welcome-message");
-        if (response.data.status === "success") {
-          setWelcomeData(response.data.data[0]);
+    axios
+      .get("/api/client/school-welcome-message")
+      .then((res) => {
+        if (res.data.status === "success") {
+          const d = res.data.data;
+          setWelcomeData(Array.isArray(d) ? d[0] : d?.data?.[0] ?? null);
         }
-      } catch (error) {
-        console.error("Error fetching welcome message:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchWelcomeMessage();
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
+
+  const stripHtml = (html) =>
+    html ? html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim() : "";
 
   if (loading) {
     return (
-      <section className="relative w-full bg-linear-to-br from-white via-blue-50/30 to-indigo-50/20 py-24 flex items-center justify-center">
-        <div className="animate-pulse text-indigo-400 font-medium text-xl">Loading Welcome Message...</div>
+      <section className="wc-root">
+        <div className="wc-skel" />
       </section>
     );
   }
 
   if (!welcomeData) return null;
 
+  const hasImage = welcomeData.Image && welcomeData.Image.trim() !== "";
+
   return (
-    <section className="relative w-full bg-linear-to-br from-white via-blue-50/30 to-indigo-50/20 py-20 md:py-28 lg:py-32 overflow-hidden">
-      {/* Decorative blurred blobs - more dynamic */}
-      <div className="absolute -top-24 -right-24 w-[500px] h-[500px] md:w-[700px] md:h-[700px] bg-blue-100/40 rounded-full blur-3xl opacity-60 animate-pulse-slow pointer-events-none"></div>
-      <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-indigo-100/50 rounded-full blur-3xl opacity-50 animate-pulse-slow pointer-events-none"></div>
+    <>
+      <style>{`
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        .wc-root {
+          width: 100%;
+          background: #0a1628;
+          padding: 80px 24px;
+          font-family: 'Source Sans 3', sans-serif;
+          position: relative;
+          overflow: hidden;
+        }
+        .wc-root::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 55% 60% at 100% 50%, rgba(196,160,72,0.05) 0%, transparent 65%),
+            radial-gradient(ellipse 40% 40% at 0% 0%, rgba(15,32,68,0.7) 0%, transparent 55%);
+          pointer-events: none;
+        }
+        .wc-root::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(196,160,72,0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(196,160,72,0.025) 1px, transparent 1px);
+          background-size: 56px 56px;
+          pointer-events: none;
+        }
 
-          {/* Left: Text + CTA */}
-          <div className="space-y-8 lg:space-y-10 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 text-indigo-800 text-sm font-semibold tracking-wide border border-indigo-200/70 shadow-sm">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-              </span>
-              DISCOVER YADUVANSHI
+        .wc-inner {
+          max-width: 1140px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 48px;
+          align-items: center;
+        }
+        @media (min-width: 900px) {
+          .wc-inner {
+            flex-direction: row;
+            align-items: stretch;
+            gap: 64px;
+          }
+        }
+
+        /* ── Text side ── */
+        .wc-text {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .wc-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 18px;
+        }
+        .wc-ey-dot { width: 6px; height: 6px; border-radius: 50%; background: #c4a048; }
+        .wc-ey-text {
+          font-size: 10px; font-weight: 700;
+          letter-spacing: 0.26em; text-transform: uppercase; color: #c4a048;
+        }
+
+        .wc-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(26px, 3.5vw, 40px);
+          font-weight: 700;
+          color: #f0e6c8;
+          line-height: 1.25;
+          margin-bottom: 24px;
+        }
+        .wc-title em { font-style: italic; color: #c4a048; }
+
+        .wc-divider {
+          width: 48px; height: 2px;
+          background: linear-gradient(90deg, #c4a048, transparent);
+          border-radius: 2px;
+          margin-bottom: 24px;
+        }
+
+        .wc-message {
+          font-size: 15.5px;
+          line-height: 1.85;
+          color: #6a8aaa;
+          margin-bottom: 32px;
+        }
+        .wc-message p { margin-bottom: 10px; }
+        .wc-message strong { color: #c5d8e8; font-weight: 600; }
+
+        /* Feature pills */
+        .wc-pills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 32px;
+        }
+        .wc-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 7px 14px;
+          background: rgba(196,160,72,0.07);
+          border: 1px solid rgba(196,160,72,0.18);
+          border-radius: 2px;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          color: #a8b8c8;
+        }
+        .wc-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: #c4a048; flex-shrink: 0; }
+
+        .wc-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #c4a048;
+          color: #071020;
+          font-size: 12.5px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          padding: 12px 28px;
+          text-decoration: none;
+          border-radius: 2px;
+          width: fit-content;
+          transition: all 0.25s ease;
+        }
+        .wc-cta:hover {
+          background: #e0c060;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(196,160,72,0.3);
+        }
+        .wc-cta-arrow { transition: transform 0.2s; }
+        .wc-cta:hover .wc-cta-arrow { transform: translateX(4px); }
+
+        /* ── Image side ── */
+        .wc-img-wrap {
+          flex-shrink: 0;
+          width: 100%;
+          max-width: 460px;
+          position: relative;
+        }
+        @media (min-width: 900px) { .wc-img-wrap { width: 420px; } }
+        @media (min-width: 1100px) { .wc-img-wrap { width: 460px; } }
+
+        .wc-img-card {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 5;
+          border-radius: 4px;
+          overflow: hidden;
+          border: 1px solid rgba(196,160,72,0.18);
+          box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+        }
+        /* Gold corner accents */
+        .wc-img-card::before,
+        .wc-img-card::after {
+          content: '';
+          position: absolute;
+          width: 28px; height: 28px;
+          z-index: 2; pointer-events: none;
+        }
+        .wc-img-card::before {
+          top: -1px; left: -1px;
+          border-top: 2px solid #c4a048;
+          border-left: 2px solid #c4a048;
+        }
+        .wc-img-card::after {
+          bottom: -1px; right: -1px;
+          border-bottom: 2px solid #c4a048;
+          border-right: 2px solid #c4a048;
+        }
+
+        /* No-image decorative block */
+        .wc-no-img {
+          width: 100%;
+          aspect-ratio: 4 / 5;
+          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          border: 1px solid rgba(196,160,72,0.15);
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+          position: relative;
+          overflow: hidden;
+        }
+        .wc-no-img::before,
+        .wc-no-img::after {
+          content: '';
+          position: absolute;
+          width: 28px; height: 28px;
+          z-index: 2; pointer-events: none;
+        }
+        .wc-no-img::before {
+          top: -1px; left: -1px;
+          border-top: 2px solid #c4a048;
+          border-left: 2px solid #c4a048;
+        }
+        .wc-no-img::after {
+          bottom: -1px; right: -1px;
+          border-bottom: 2px solid #c4a048;
+          border-right: 2px solid #c4a048;
+        }
+        .wc-no-img-icon { color: rgba(196,160,72,0.15); }
+        .wc-no-img-quote {
+          font-family: 'Playfair Display', serif;
+          font-style: italic;
+          font-size: clamp(16px, 2.5vw, 22px);
+          color: rgba(240,230,200,0.15);
+          text-align: center;
+          padding: 0 32px;
+          line-height: 1.6;
+        }
+        /* Decorative background circles */
+        .wc-no-img-circle {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+        .wc-no-img-circle.c1 {
+          width: 200px; height: 200px;
+          top: -60px; right: -60px;
+          border: 1px solid rgba(196,160,72,0.07);
+        }
+        .wc-no-img-circle.c2 {
+          width: 300px; height: 300px;
+          bottom: -80px; left: -80px;
+          border: 1px solid rgba(196,160,72,0.05);
+        }
+
+        /* Stat badge overlay */
+        .wc-stat-badge {
+          position: absolute;
+          bottom: -16px;
+          left: -16px;
+          background: linear-gradient(135deg, #c4a048, #e0c060);
+          color: #071020;
+          padding: 16px 20px;
+          border-radius: 3px;
+          box-shadow: 0 8px 24px rgba(196,160,72,0.35);
+          z-index: 3;
+        }
+        @media (max-width: 899px) {
+          .wc-stat-badge { bottom: 12px; left: 12px; }
+        }
+        .wc-stat-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 28px; font-weight: 800;
+          line-height: 1; color: #071020;
+        }
+        .wc-stat-label {
+          font-size: 10px; font-weight: 700;
+          letter-spacing: 0.14em; text-transform: uppercase;
+          color: rgba(7,16,32,0.7); margin-top: 2px;
+        }
+
+        /* Skeleton */
+        .wc-skel {
+          max-width: 1140px; margin: 0 auto;
+          height: 420px; border-radius: 4px;
+          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background-size: 200% 100%;
+          animation: wc-shimmer 1.5s infinite;
+        }
+        @keyframes wc-shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
+
+      <section className="wc-root">
+        <div className="wc-inner">
+
+          {/* Text */}
+          <div className="wc-text">
+            <div className="wc-eyebrow">
+              <span className="wc-ey-dot" />
+              <span className="wc-ey-text">Welcome</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight">
-              {welcomeData.Title.split('to').map((part, index) => (
-                index === 1 ? (
-                  <React.Fragment key={index}>
-                    to <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-indigo-700 bg-clip-text text-transparent">
-                      {part.trim()}
-                    </span>
-                  </React.Fragment>
-                ) : part
+            <h2 className="wc-title">
+              {welcomeData.Title
+                ? welcomeData.Title.split(" ").map((word, i) =>
+                    i === 0 ? <em key={i}>{word} </em> : word + " "
+                  )
+                : "Welcome to Our Institution"}
+            </h2>
+
+            <div className="wc-divider" />
+
+            {welcomeData.Message && (
+              <div
+                className="wc-message"
+                dangerouslySetInnerHTML={{ __html: welcomeData.Message }}
+              />
+            )}
+
+            <div className="wc-pills">
+              {["Quality Education", "Experienced Faculty", "Holistic Development", "Modern Campus"].map((p) => (
+                <span key={p} className="wc-pill">
+                  <span className="wc-pill-dot" />
+                  {p}
+                </span>
               ))}
-            </h1>
-
-            <div className="space-y-5 text-lg md:text-xl text-gray-700 leading-relaxed font-medium notice-content">
-              <div dangerouslySetInnerHTML={{ __html: welcomeData.Message }} />
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Link
-                href={welcomeData.Read_More_Url?.startsWith('http') ? welcomeData.Read_More_Url : `/about`}
-                className="group relative inline-flex items-center gap-2 px-8 py-4 font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                <span className="relative z-10">Explore Our Legacy</span>
-                <svg className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            {welcomeData.Read_More_Url && (
+              <Link href={welcomeData.Read_More_Url} className="wc-cta">
+                Learn More
+                <svg className="wc-cta-arrow" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-
-              <button className="px-8 py-4 font-semibold text-indigo-700 bg-white border-2 border-indigo-200 rounded-xl hover:bg-indigo-50 transition-colors duration-300">
-                Watch Campus Tour
-              </button>
-            </div>
+            )}
           </div>
 
-          {/* Right: Visual Showcase */}
-          <div className="relative animate-fade-in-up animation-delay-300">
-            {/* Main Image Card */}
-            <div className="relative rounded-3xl overflow-hidden border-[12px] border-white/90 shadow-2xl shadow-indigo-500/20 transform hover:scale-[1.02] transition-all duration-500 group">
-              <Image
-                src="/poster/1.jpeg"
-                alt="Yaduvanshi Degree College scenic campus view"
-                width={1200}
-                height={800}
-                className="w-full h-[480px] md:h-[560px] lg:h-[620px] object-cover transition-transform duration-1000 group-hover:scale-110"
-                priority
-                quality={75}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/30 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700"></div>
-            </div>
-
-            {/* Floating Stats Badges */}
-            <div className="absolute -bottom-8 -left-6 md:-left-10 bg-white/95 backdrop-blur-sm p-5 md:p-6 rounded-2xl shadow-2xl border border-indigo-100 flex items-center gap-4 transform hover:-translate-y-2 transition-all duration-300">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl md:text-4xl font-black shadow-lg">
-                20+
+          {/* Image / Decorative */}
+          <div className="wc-img-wrap">
+            {hasImage ? (
+              <div className="wc-img-card">
+                <Image
+                  src={`/uploads/${welcomeData.Image}`}
+                  alt={welcomeData.Title || "Welcome"}
+                  fill
+                  sizes="(max-width: 899px) 100vw, 460px"
+                  className="object-cover"
+                  priority
+                />
+                <div className="wc-stat-badge">
+                  <div className="wc-stat-num">26+</div>
+                  <div className="wc-stat-label">Years of Excellence</div>
+                </div>
               </div>
-              <div>
-                <p className="text-gray-900 font-extrabold text-lg md:text-xl">Years of</p>
-                <p className="text-indigo-600 font-bold text-base md:text-lg">Educational Excellence</p>
+            ) : (
+              <div className="wc-no-img">
+                <div className="wc-no-img-circle c1" />
+                <div className="wc-no-img-circle c2" />
+                <svg className="wc-no-img-icon" width="56" height="56" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+                <p className="wc-no-img-quote">
+                  "{welcomeData.Title || "Empowering Young Minds for a Better Tomorrow"}"
+                </p>
+                <div className="wc-stat-badge" style={{ position: "relative", bottom: "unset", left: "unset", alignSelf: "flex-start", margin: "0 0 0 32px" }}>
+                  <div className="wc-stat-num">26+</div>
+                  <div className="wc-stat-label">Years of Excellence</div>
+                </div>
               </div>
-            </div>
-
-            <div className="absolute -top-6 -right-6 md:-right-10 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-2xl border border-blue-100 flex items-center gap-4 transform hover:-translate-y-2 transition-all duration-300 animation-delay-500">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-black shadow-lg">
-                100%
-              </div>
-              <div>
-                <p className="text-gray-900 font-bold text-base md:text-lg">Holistic</p>
-                <p className="text-gray-600 font-medium text-sm md:text-base">Student Development</p>
-              </div>
-            </div>
+            )}
           </div>
+
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

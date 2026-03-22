@@ -8,15 +8,19 @@ import NoticeSection from "@/components/home/NoticeSection";
 import StudentToppers from "@/components/home/StudentToppers";
 import WelcomeSection from "@/components/home/WelcomeSection";
 import FounderMessage from "@/components/home/FounderMessage";
+import BlogSection from "@/components/home/BlogSection";
+import AchievementGallery from "@/components/home/Achievementgallery";
 
 export default function Home() {
   return (
     <div className="w-full bg-white flex flex-col">
       <TopSlider />
-      <Hero />
+      {/* <Hero /> */}
       <WelcomeSection />
+      <BlogSection />
       <FounderMessage />
-      <CourseSection />
+      <AchievementGallery />
+      {/* <CourseSection /> */}
       <AdmissionSection />
       <HistorySection />
       <AchievementsSection />
