@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 export default function MainLayout({ children }) {
   return (
     <>
-      <main className=" ">
+      <main className="overflow-hidden">
         <Navbar />
         <div className="w-full ">
           {children}
