@@ -415,7 +415,8 @@ export default function Navbar() {
       `}</style>
 
       <div ref={menuRef}>
-        <div className="nb-topbar" />
+        <div className="bg-p">h</div>
+        <div className="nb-topbar " />
         <nav className={`nb-wrap${scrolled ? " scrolled" : ""}`}>
           <div className="nb-inner">
 

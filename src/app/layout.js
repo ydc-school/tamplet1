@@ -5,7 +5,7 @@ import { Playfair_Display, Source_Sans_3 } from 'next/font/google'
 import "./globals.css";
 import { SchoolProvider } from "@/context/SchoolContext";
 
-
+import { getTheme } from "@/utils/applyTheme";
 
 
 
@@ -68,10 +68,57 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+
+  const toRgb = (hex) => {
+    if (!hex) return "0 0 0";
+
+    const c = hex.replace("#", "");
+    const n = parseInt(c, 16);
+
+    return `${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255}`;
+  };
+
+  let theme;
+
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/client/theme/1`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    if (!res.ok) throw new Error("Fetch failed");
+
+    theme = await res.json();
+
+    
+
+  } catch (err) {
+    console.error("Theme fetch failed:", err);
+
+    theme = {
+      primaryColor: "#000000",
+      secondaryColor: "#666666",
+      accentColor: "#999999",
+      backgroundColor: "#ffffff",
+      textColor: "#000000",
+    };
+  }
+
+  const style = {
+    "--primary": theme.data.primaryColor,
+    "--secondary": toRgb(theme.data.secondaryColor),
+    "--accent": toRgb(theme.data.accentColor),
+    "--bg": toRgb(theme.data.backgroundColor),
+    "--text": toRgb(theme.data.textColor),
+  };
+
   return (
     <html lang="en">
       <body
+        style={style}  // ✅ IMPORTANT (tum bhool gaye the)
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${sourceSans.variable} antialiased`}
       >
         <SchoolProvider>

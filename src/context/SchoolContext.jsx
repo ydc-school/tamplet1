@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+
 const SchoolContext = createContext(null);
 
 export function SchoolProvider({ children }) {
@@ -51,7 +52,7 @@ export function SchoolProvider({ children }) {
     }, []);
 
 
-
+ 
 
 
     return (
