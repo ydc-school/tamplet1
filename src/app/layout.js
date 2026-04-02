@@ -74,7 +74,7 @@ const geistMono = Geist_Mono({
 
 
 export async function generateMetadata() {
-  const seo = await getSeoData(1); // apna Branch_Id dalo
+  const seo = await getSeoData(2); // apna Branch_Id dalo
 
   if (!seo) return {}; // fallback — koi metadata nahi
  
@@ -86,6 +86,9 @@ export async function generateMetadata() {
     robots: seo.Robots,
     alternates: {
       canonical: seo.Canonical_Url,
+    },
+     icons: {
+      icon: seo.Favicon_Url, 
     },
     openGraph: {
       title: seo.OG_Title,
@@ -115,7 +118,7 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
 
-//  const seo = await getSeoData(2);
+ const seo = await getSeoData(2);
 
 
 
@@ -168,7 +171,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
         <head>
         {/* Schema JSON-LD */}
-        {/* <SchemaScript schemaJson={seo?.Schema_Json} /> */}
+        <SchemaScript schemaJson={seo?.Schema_Json} />
       </head>
       <body
         // style={style}  // ✅ IMPORTANT (tum bhool gaye the)
