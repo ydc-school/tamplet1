@@ -233,7 +233,7 @@ export default function HistorySection() {
               dangerouslySetInnerHTML={{ __html: history.page_Data }}
             />
              
-              <button onClick={()=> } className="hs-cta">
+              <button onClick={()=>{} } className="hs-cta">
                 Founder's Message
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
