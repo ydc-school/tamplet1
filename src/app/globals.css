@@ -3,7 +3,26 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary:#41b620;
+  --secondary:#ffffff
 }
+
+
+
+
+@layer utilities {
+
+
+.bg-p{
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+}
+
+
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -71,6 +90,7 @@ body {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
+
 }
 
 .notice-content ol {
