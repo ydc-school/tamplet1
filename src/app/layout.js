@@ -8,6 +8,7 @@ import { SchoolProvider } from "@/context/SchoolContext";
 import { getTheme } from "@/utils/applyTheme";
 import { getSeoData } from "@/utils/getSeoData";
 import SchemaScript from "@/components/SchemaScript";
+import { headers } from "next/headers";
 
 
 
@@ -73,38 +74,72 @@ const geistMono = Geist_Mono({
 
 
 
-export async function generateMetadata() {
-  const seo = await getSeoData(2); // apna Branch_Id dalo
 
-  if (!seo) return {}; // fallback — koi metadata nahi
- 
+
+
+
+
+
+
+
+
+// Default metadata — jab SEO data na mile
+const DEFAULT_METADATA = {
+  title: "Yaduvanshi Group of Institutions",
+  description: "Yaduvanshi Group of Institutions — Quality Education Since 1995.",
+  keywords: "yaduvanshi, college, haryana, education",
+  robots: "index, follow",
+  canonical: "https://yaduvanshigroup.edu.in",
+  favicon: "/assets/img/favicon/favicon-32x32.png",
+  og: {
+    title: "Yaduvanshi Group of Institutions",
+    description: "Quality Education Since 1995.",
+    image: null,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yaduvanshi Group of Institutions",
+    description: "Quality Education Since 1995.",
+    image: null,
+  },
+};
+
+export async function generateMetadata() {
+  const headerList = await headers();
+  const seo = await getSeoData(2, headerList);
+
+  const d = DEFAULT_METADATA; // shorthand
 
   return {
-    title: seo.Meta_Title,
-    description: seo.Meta_Description,
-    keywords: seo.Meta_Keywords,
-    robots: seo.Robots,
+    title:       seo?.Meta_Title       || d.title,
+    description: seo?.Meta_Description || d.description,
+    keywords:    seo?.Meta_Keywords    || d.keywords,
+    robots:      seo?.Robots           || d.robots,
+
     alternates: {
-      canonical: seo.Canonical_Url,
+      canonical: seo?.Canonical_Url || d.canonical,
     },
-     icons: {
-      icon: seo.Favicon_Url, 
+
+    icons: {
+      icon: seo?.Favicon_Url || d.favicon,
     },
+
     openGraph: {
-      title: seo.OG_Title,
-      description: seo.OG_Description,
-      images: seo.OG_Image ? [{ url: seo.OG_Image }] : [],
-      type: seo.OG_Type,
+      title:       seo?.OG_Title       || d.og.title,
+      description: seo?.OG_Description || d.og.description,
+      images:      seo?.OG_Image       ? [{ url: seo.OG_Image }] : d.og.image ? [{ url: d.og.image }] : [],
+      type:        seo?.OG_Type        || d.og.type,
     },
+
     twitter: {
-      card: seo.Twitter_Card,
-      title: seo.Twitter_Title,
-      description: seo.Twitter_Description,
-      images: seo.Twitter_Image ? [seo.Twitter_Image] : [],
+      card:        seo?.Twitter_Card        || d.twitter.card,
+      title:       seo?.Twitter_Title       || d.twitter.title,
+      description: seo?.Twitter_Description || d.twitter.description,
+      images:      seo?.Twitter_Image       ? [seo.Twitter_Image] : d.twitter.image ? [d.twitter.image] : [],
     },
   };
-} 
-
+}
 
 
 
@@ -118,8 +153,8 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
 
- const seo = await getSeoData(2);
-
+   const headerList = await headers(); // ✅ async ke andar
+  const seo = await getSeoData(2, headerList); // ✅ headers pass
 
 
   // const toRgb = (hex) => {
