@@ -1,6 +1,6 @@
 import { getSubdomain } from "./getSubdomain";
 
-export async function getSeoData(branchId, headers) {
+export async function getSeoData(headers) {
   try {
     const  subdomain  = getSubdomain(headers);
 
@@ -15,7 +15,7 @@ export async function getSeoData(branchId, headers) {
     );
 
     const json = await res.json();
-    console.log(json)
+    // console.log(json)
 
 
     if (json.status === "success") {
@@ -23,7 +23,7 @@ export async function getSeoData(branchId, headers) {
     }
     return null;
   } catch (err) {
-    console.error("SEO fetch error:", err);
+    // console.error("SEO fetch error:", err);
     return null;
   }
 }

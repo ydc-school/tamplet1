@@ -54,26 +54,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata = {
-//   title: "Yaduvanshi Degree College, Mahendergarh",
-//   description:
-//     "Yaduvanshi Degree College, Mahendergarh is among the top residential colleges in India.",
-//   metadataBase: new URL("https://ydcmgh.yaduvanshigroup.edu.in"),
-
-//   icons: {
-//     icon: "/assets/img/favicon/favicon-32x32.png",
-//     apple: "/assets/img/favicon/apple-touch-icon.png",
-//   },
-
-//   themeColor: "#ff3300",
-
-//   alternates: {
-//     canonical: "/",
-//   },
-// };
-
-
-
 
 
 
@@ -107,7 +87,7 @@ const DEFAULT_METADATA = {
 
 export async function generateMetadata() {
   const headerList = await headers();
-  const seo = await getSeoData(2, headerList);
+  const seo = await getSeoData(headerList);
 
   const d = DEFAULT_METADATA; // shorthand
 
@@ -154,7 +134,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
 
    const headerList = await headers(); // ✅ async ke andar
-  const seo = await getSeoData(2, headerList); // ✅ headers pass
+  const seo = await getSeoData(headerList); // ✅ headers pass
 
 
   // const toRgb = (hex) => {
