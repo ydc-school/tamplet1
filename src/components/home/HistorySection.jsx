@@ -1,4 +1,37 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import axios from "axios";
+
+
+
 export default function HistorySection() {
+
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  
+
+
+  useEffect(() => {
+    axios
+      .get("/api/client/pages/history")
+      .then((res) => {
+       
+        if (res.data.status === "success") setHistory(res.data.data);
+      })
+      .catch(() => { })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (!loading && history?.length === 0) return null;
+
+
+
+
+
+
   return (
     <>
       <style>{`
@@ -195,14 +228,12 @@ export default function HistorySection() {
           {/* Right */}
           <div className="hs-right">
             <div className="hs-card">
-              <p className="hs-para">
-                Education forms the basic fabric of one's personality that shapes one into a complete human being with a purpose. Our vision of true education is to ensure <strong>holistic development</strong> of students' mental, physical, emotional and spiritual well-being.
-              </p>
-              <div className="hs-divider" />
-              <p className="hs-para">
-                <strong>Yaduvanshi Group of Institutions</strong> has established new dimensions in the area of Education by creating a chain of premium Educational Institutions. With decades of excellence, the group has become a beacon of quality education, shaping the lives of thousands of students and preparing them for a bright global future.
-              </p>
-              <button className="hs-cta">
+            <div
+              className="nt-modal-body"
+              dangerouslySetInnerHTML={{ __html: history.page_Data }}
+            />
+             
+              <button onClick={()=>{} } className="hs-cta">
                 Founder's Message
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
