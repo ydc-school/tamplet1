@@ -5,7 +5,7 @@ export async function getSeoData(headers) {
     const  subdomain  = getSubdomain(headers);
 
     const res = await fetch(
-      `http://localhost:3000/api/client/seo`,
+      `${process.env.BACKEND_URL}/api/client/seo`,
       {
         next: { revalidate: 3600 }, // 1 hour cache
         headers: {
@@ -15,7 +15,7 @@ export async function getSeoData(headers) {
     );
 
     const json = await res.json();
-    // console.log(json)
+  
 
 
     if (json.status === "success") {
