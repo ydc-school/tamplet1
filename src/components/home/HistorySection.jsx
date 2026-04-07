@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
+import Link from "next/link";
 
 
 
@@ -11,14 +12,14 @@ export default function HistorySection() {
   const [loading, setLoading] = useState(true);
 
 
-  
+
 
 
   useEffect(() => {
     axios
       .get("/api/client/pages/history")
       .then((res) => {
-       console.log("jjjjjjjjjjjj",res.data.data)
+        
         if (res.data.status === "success") setHistory(res.data.data);
       })
       .catch(() => { })
@@ -228,18 +229,18 @@ export default function HistorySection() {
           {/* Right */}
           <div className="hs-right">
             <div className="hs-card">
-            <div
-              className="nt-modal-body"
-              dangerouslySetInnerHTML={{ __html: history.Page_Data }}
-            />
-           
-             
-              <button onClick={()=>{} } className="hs-cta">
-                Founder's Message
+              <div
+                className="nt-modal-body"
+                dangerouslySetInnerHTML={{ __html: history.Page_Data }}
+              />
+
+
+            <Link href={`/pages/${history?.Id}`}  className="hs-cta">
+                Read More
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </Link>
             </div>
           </div>
 
