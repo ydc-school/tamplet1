@@ -18,7 +18,7 @@ export default function HistorySection() {
     axios
       .get("/api/client/pages/history")
       .then((res) => {
-       
+       console.log("jjjjjjjjjjjj",res.data.data)
         if (res.data.status === "success") setHistory(res.data.data);
       })
       .catch(() => { })
@@ -230,8 +230,9 @@ export default function HistorySection() {
             <div className="hs-card">
             <div
               className="nt-modal-body"
-              dangerouslySetInnerHTML={{ __html: history.page_Data }}
+              dangerouslySetInnerHTML={{ __html: history.Page_Data }}
             />
+           
              
               <button onClick={()=>{} } className="hs-cta">
                 Founder's Message
