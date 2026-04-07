@@ -165,6 +165,22 @@ export default function FounderMessage() {
             min-height: unset;
           }
         }
+
+  @media (max-width: 768px) {
+          .fm-img-col {
+          position: relative;
+            height: fit-content;
+            min-height:70vw;
+            object-fit: contain;
+          }
+
+         .fm-img-col img {
+            object-fit: contain;
+          }
+
+        }
+
+
         @media (min-width: 1024px) {
           .fm-img-col { width: 340px; }
         }
