@@ -395,7 +395,7 @@ export default function AchievementGallery() {
                   alt={selected.Title || selected.Name}
                   fill
                   sizes="680px"
-                  className="object-cover"
+                  className="object-contain"
                 />
                 <button className="ag-modal-close" onClick={() => setSelected(null)}>
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
