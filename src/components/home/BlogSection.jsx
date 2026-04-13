@@ -435,7 +435,7 @@ export default function BlogSection() {
           <h2 className="bl-heading">Latest from Campus</h2>
 
           {/* Featured (first blog) */}
-          <Link href={`/blog/${featured.Id}`} className="bl-featured">
+          <Link href={`/blogs/${featured.Id}`} className="bl-featured">
             {featured.Image ? (
               <div className="bl-feat-img">
                 <Image
@@ -476,7 +476,7 @@ export default function BlogSection() {
           {rest.length > 0 && (
             <div className="bl-grid">
               {rest.map((blog) => (
-                <Link key={blog.Id} href={`/blog/${blog.Id}`} className="bl-card">
+                <Link key={blog.Id} href={`/blogs/${blog.Id}`} className="bl-card">
                   <div className="bl-card-strip" />
                   {blog.Image ? (
                     <div className="bl-card-img">
@@ -523,7 +523,7 @@ export default function BlogSection() {
 
           {/* View all */}
           <div className="bl-view-all">
-            <Link href="/blog" className="bl-view-btn">
+            <Link href="/blogs" className="bl-view-btn">
               View All Posts
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />

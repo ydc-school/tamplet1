@@ -10,6 +10,7 @@ import WelcomeSection from "@/components/home/WelcomeSection";
 import FounderMessage from "@/components/home/FounderMessage";
 import BlogSection from "@/components/home/BlogSection";
 import AchievementGallery from "@/components/home/Achievementgallery";
+import FacilitySection from "@/components/home/FacilitySection";
 
 export default function Home() {
   return (
@@ -17,15 +18,16 @@ export default function Home() {
       <TopSlider />
       {/* <Hero /> */}
       <WelcomeSection />
-      <BlogSection />
-      <FounderMessage />
-      <AchievementGallery />
-      {/* <CourseSection /> */}
-      <AdmissionSection />
       <HistorySection />
       <AchievementsSection />
-      <StudentToppers />
       <NoticeSection />
+      <FounderMessage />
+      <StudentToppers />
+      <AchievementGallery />
+      {/* <CourseSection /> */}
+      <FacilitySection />
+      <AdmissionSection />
+      <BlogSection />
 
     </div>
   );
