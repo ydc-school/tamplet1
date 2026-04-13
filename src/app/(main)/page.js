@@ -18,16 +18,16 @@ export default function Home() {
       <TopSlider />
       {/* <Hero /> */}
       <WelcomeSection />
-      <BlogSection />
+      <HistorySection />
+      <AchievementsSection />
+      <NoticeSection />
       <FounderMessage />
+      <StudentToppers />
       <AchievementGallery />
       {/* <CourseSection /> */}
       <FacilitySection />
       <AdmissionSection />
-      <HistorySection />
-      <AchievementsSection />
-      <StudentToppers />
-      <NoticeSection />
+      <BlogSection />
 
     </div>
   );
