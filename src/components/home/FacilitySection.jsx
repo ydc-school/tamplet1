@@ -19,6 +19,25 @@ export default function FacilitySection() {
       .finally(() => setLoading(false));
   }, []);
 
+
+
+
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [selected]);
+
+
+
+
+
+
+
+
   if (!loading && facilities.length === 0) return null;
 
   return (
@@ -239,18 +258,18 @@ export default function FacilitySection() {
         }
         @keyframes fc-fadein { from { opacity: 0; } to { opacity: 1; } }
 
-        .fc-modal {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
-          border: 1px solid rgba(196,160,72,0.2);
-          border-top: 3px solid #c4a048;
-          border-radius: 4px;
-          width: 100%; max-width: 680px;
-          max-height: 90vh;
-          display: flex; flex-direction: column;
-          box-shadow: 0 32px 80px rgba(0,0,0,0.65);
-          animation: fc-slidein 0.25s ease;
-          overflow: hidden;
-        }
+       .fc-modal {
+  background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+  border: 1px solid rgba(196,160,72,0.2);
+  border-top: 3px solid #c4a048;
+  border-radius: 4px;
+  width: 100%; max-width: 680px;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.65);
+  animation: fc-slidein 0.25s ease;
+  overflow: hidden;  /* modal khud overflow hide kare */
+}
         @keyframes fc-slidein {
           from { opacity: 0; transform: translateY(16px) scale(0.98); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
