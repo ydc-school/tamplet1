@@ -407,6 +407,7 @@ export default function AchievementGallery() {
                   height={900}
                   style={{ width: "100%", height: "auto", display: "block" }}
                   sizes="680px"
+                  className="object-contain"
                 />
                 <button className="ag-modal-close" onClick={() => setSelected(null)}>
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
