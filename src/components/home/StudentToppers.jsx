@@ -14,7 +14,7 @@ export default function StudentToppers() {
       .then((res) => {
         if (res.data.status === "success") setToppers(res.data.data.data);
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
@@ -31,7 +31,7 @@ export default function StudentToppers() {
   const medalColors = {
     1: { bg: "#c4a048", text: "#071020", label: "Gold" },
     2: { bg: "#94a3b8", text: "#071020", label: "Silver" },
-    3: { bg: "#b87333", text: "#fff",    label: "Bronze" },
+    3: { bg: "#b87333", text: "#fff", label: "Bronze" },
   };
 
   return (
@@ -319,7 +319,7 @@ export default function StudentToppers() {
 
           {loading ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
-              {[1,2,3].map(i => <div key={i} className="tp-skel" />)}
+              {[1, 2, 3].map(i => <div key={i} className="tp-skel" />)}
             </div>
           ) : (
             <>
@@ -334,16 +334,16 @@ export default function StudentToppers() {
                     return (
                       <div key={topper.Id} className="tp-podium-item">
                         <div className="tp-photo-wrap">
-                          <div  className={`tp-photo-ring rank-${rank}`}>
+                          <div className={`tp-photo-ring rank-${rank}`}>
                             {topper.Image ? (
-                              <Link href={"./student/"+topper?.Id}>
-                              <Image
-                                src={`/uploads/${topper.Image}`}
-                                alt={topper.Student_Name || "Topper"}
-                                fill
-                                sizes="110px"
-                                className="object-contain object-top"
-                              />
+                              <Link href={"./student/" + topper?.Id}>
+                                <Image
+                                  src={`/uploads/${topper.Image}`}
+                                  alt={topper.Student_Name || "Topper"}
+                                  fill
+                                  sizes="110px"
+                                  className="object-contain object-top"
+                                />
                               </Link>
                             ) : (
                               <div className="tp-avatar-placeholder">{initials}</div>
@@ -386,13 +386,15 @@ export default function StudentToppers() {
                       <div key={topper.Id} className="tp-mini-card">
                         <div className="tp-mini-img">
                           {topper.Image ? (
-                            <Image
-                              src={`/uploads/${topper.Image}`}
-                              alt={topper.Student_Name || "Topper"}
-                              fill
-                              sizes="44px"
-                              className="object-cover object-top"
-                            />
+                            <Link href={"./student/" + topper?.Id}>
+                              <Image
+                                src={`/uploads/${topper.Image}`}
+                                alt={topper.Student_Name || "Topper"}
+                                fill
+                                sizes="44px"
+                                className="object-cover object-top"
+                              />
+                            </Link>
                           ) : (
                             <div className="tp-mini-placeholder">{initials}</div>
                           )}
