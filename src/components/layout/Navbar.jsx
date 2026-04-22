@@ -443,9 +443,9 @@ export default function Navbar() {
               <li className="nb-item">
                 <Link href="/" className="nb-btn active">Home</Link>
               </li>
-              <li className="nb-item">
+              {/* <li className="nb-item">
                 <Link href="/blogs" className="nb-btn active">Blogs</Link>
-              </li>
+              </li> */}
 
               {categories.map((cat) => (
                 <li key={cat.Id} className="nb-item">
