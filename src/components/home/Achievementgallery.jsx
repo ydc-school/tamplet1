@@ -135,11 +135,15 @@ export default function AchievementGallery() {
         .ag-img-wrap {
           position: relative;
           width: 100%;
-          aspect-ratio: 4 / 3;
           background: #071020;
           overflow: hidden;
         }
         .ag-img-wrap img {
+          width: 100% !important;
+          height: auto !important;
+          object-fit: contain !important;
+          position: static !important;
+          display: block;
           transition: transform 0.4s ease !important;
         }
         .ag-card:hover .ag-img-wrap img {
@@ -276,9 +280,14 @@ export default function AchievementGallery() {
         .ag-modal-img {
           position: relative;
           width: 100%;
-          aspect-ratio: 16 / 9;
           background: #071020;
           overflow: hidden;
+        }
+        .ag-modal-img img {
+          width: 100% !important;
+          height: auto !important;
+          display: block;
+          position: static !important;
         }
         .ag-modal-close {
           position: absolute;
@@ -345,9 +354,10 @@ export default function AchievementGallery() {
                       <Image
                         src={`/uploads/${item.Image}`}
                         alt={item.Title || item.Name || "Achievement"}
-                        fill
+                        width={800}
+                        height={600}
+                        style={{ width: "100%", height: "auto" }}
                         sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                        className="object-cover"
                       />
                       {item.Year && (
                         <span className="ag-year-badge">{formatYear(item.Year)}</span>
@@ -392,8 +402,10 @@ export default function AchievementGallery() {
               <div className="ag-modal-img">
                 <Image
                   src={`/uploads/${selected.Image}`}
-                  alt={selected.Title || selected.Name}
-                  fill
+                  alt={selected.Title || selected.Name || "Achievement"}
+                  width={1200}
+                  height={900}
+                  style={{ width: "100%", height: "auto", display: "block" }}
                   sizes="680px"
                   className="object-contain"
                 />

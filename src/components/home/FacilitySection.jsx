@@ -15,7 +15,7 @@ export default function FacilitySection() {
       .then((res) => {
         if (res.data.status === "success") setFacilities(res.data.data.data);
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
@@ -258,9 +258,9 @@ export default function FacilitySection() {
 
         /* Modal image */
         .fc-modal-img {
-          width: 100%; height: 220px;
-          object-fit: cover;
-          filter: brightness(0.7) saturate(0.6);
+          width: 100%; height: auto;
+          object-fit: contain;
+         
           flex-shrink: 0;
         }
         .fc-modal-img-placeholder {
@@ -350,16 +350,16 @@ export default function FacilitySection() {
           <div className="fc-grid">
             {loading
               ? Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="fc-skel" />
-                ))
+                <div key={i} className="fc-skel" />
+              ))
               : facilities.map((f, idx) => (
-                  <FacilityCard
-                    key={f.Id}
-                    facility={f}
-                    idx={idx}
-                    onClick={() => setSelected(f)}
-                  />
-                ))}
+                <FacilityCard
+                  key={f.Id}
+                  facility={f}
+                  idx={idx}
+                  onClick={() => setSelected(f)}
+                />
+              ))}
           </div>
 
         </div>
