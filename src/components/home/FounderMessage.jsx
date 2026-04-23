@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import axios from "axios";
+import Link from "next/link";
 
 export default function FounderMessage() {
   const [founders, setFounders] = useState([]);
@@ -14,118 +15,376 @@ export default function FounderMessage() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("./api/client/messages");
+        const response = await axios.get("/api/client/messages");
         if (response.data.status === "success") {
           setFounders(response.data.data.data);
         }
       } catch (error) {
-        // console.error("Error fetching founder messages:", error);
+        console.error("Error fetching founder messages:", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchMessages();
   }, []);
 
   if (loading) {
     return (
-      <section className="py-16 md:py-20 lg:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-5 text-center">
-          <div className="animate-pulse text-gray-400 font-medium text-xl">Loading Messages...</div>
-        </div>
+      <section className="fm-root">
+        <div className="fm-skeleton" />
       </section>
     );
   }
 
-  if (founders.length === 0) {
-    return null;
-  }
+  if (founders.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 bg-linear-to-b from-gray-50 to-white dark:from-blue-900 dark:to-gray-950">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <>
+      <style>{`
 
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
-            Founder's Message
-          </h2>
-          <div className="mt-4 h-1 w-20 bg-indigo-600 mx-auto rounded-full"></div>
-          <p className="mt-5 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            A heartfelt note from our leadership on the philosophy and purpose that drives our educational journey.
-          </p>
+        .fm-root {
+          width: 100%;
+          background: #f8fbff;
+          padding: 80px 24px;
+          font-family: 'Source Sans 3', sans-serif;
+          position: relative;
+          overflow: hidden;
+        }
+        .fm-root::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 70% 50% at 50% 100%, rgba(196,160,72,0.05) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 60% at 0% 50%, rgba(15,32,68,0.6) 0%, transparent 60%);
+          pointer-events: none;
+        }
+        .fm-root::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(196,160,72,0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(196,160,72,0.025) 1px, transparent 1px);
+          background-size: 56px 56px;
+          pointer-events: none;
+        }
+
+        .fm-inner {
+          max-width: 1160px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Eyebrow */
+        .fm-eyebrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin-bottom: 48px;
+        }
+        .fm-ey-line {
+          width: 56px;
+          height: 1px;
+          background: linear-gradient(to right, transparent, rgba(196,160,72,0.5));
+        }
+        .fm-ey-line.rev {
+          background: linear-gradient(to left, transparent, rgba(196,160,72,0.5));
+        }
+        .fm-ey-text {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: #c4a048;
+        }
+
+        /* Swiper overrides */
+        .fm-swiper {
+          padding-bottom: 48px !important;
+        }
+        .fm-swiper .swiper-pagination-bullet {
+          background: rgba(196,160,72,0.3) !important;
+          width: 6px !important;
+          height: 6px !important;
+          opacity: 1 !important;
+          transition: all 0.2s !important;
+        }
+        .fm-swiper .swiper-pagination-bullet-active {
+          background: #c4a048 !important;
+          width: 22px !important;
+          border-radius: 3px !important;
+        }
+
+        /* Card */
+        .fm-card {
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
+          border: 1px solid rgba(196,160,72,0.15);
+          border-radius: 4px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 20px 56px rgba(0,0,0,0.45);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .fm-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 28px 72px rgba(0,0,0,0.5);
+        }
+        @media (min-width: 768px) {
+          .fm-card { flex-direction: row; min-height: 380px; }
+        }
+
+        /* Gold strip */
+        .fm-strip {
+          height: 3px;
+          background: linear-gradient(90deg, #c4a048, #e0c060, #c4a048);
+          flex-shrink: 0;
+        }
+        @media (min-width: 768px) {
+          .fm-strip {
+            height: auto;
+            width: 3px;
+            background: linear-gradient(180deg, #c4a048, #e0c060, #c4a048);
+          }
+        }
+
+        /* Image column */
+        .fm-img-col {
+          flex-shrink: 0;
+          width: 100%;
+          position: relative;
+          background: #f6f8fc;
+          min-height: 260px;
+        }
+        @media (min-width: 768px) {
+          .fm-img-col {
+            width: 300px;
+            min-height: unset;
+          }
+        }
+
+  @media (max-width: 768px) {
+          .fm-img-col {
+          position: relative;
+            height: fit-content;
+            min-height:70vw;
+            object-fit: contain;
+          }
+
+         .fm-img-col img {
+            object-fit: contain;
+          }
+
+        }
+
+
+        @media (min-width: 1024px) {
+          .fm-img-col { width: 340px; }
+        }
+
+        /* Dark gradient overlay on image */
+        .fm-img-col::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to right, transparent 60%, #ffffff);
+          z-index: 1;
+        }
+        @media (max-width: 767px) {
+          .fm-img-col::after {
+            background: linear-gradient(to top, #ffffff 0%, transparent 60%);
+          }
+        }
+
+        /* Role badge */
+        .fm-role-badge {
+          position: absolute;
+          bottom: 16px;
+          left: 16px;
+          z-index: 2;
+          background: #c4a048;
+          color: #f6f8fc;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          padding: 5px 12px;
+          border-radius: 2px;
+        }
+        @media (min-width: 768px) {
+          .fm-role-badge {
+            bottom: 20px;
+            left: 20px;
+          }
+        }
+
+        /* Content column */
+        .fm-content {
+          flex: 1;
+          padding: 32px 36px 36px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+        }
+        @media (max-width: 600px) {
+          .fm-content { padding: 28px 24px 32px; }
+        }
+
+        /* Open quote */
+        .fm-quote-mark {
+          font-family: 'Playfair Display', serif;
+          font-size: 96px;
+          line-height: 0.6;
+          color: rgba(196,160,72,0.12);
+          position: absolute;
+          top: 24px;
+          right: 28px;
+          user-select: none;
+          pointer-events: none;
+        }
+
+        .fm-name {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(20px, 3vw, 26px);
+          font-weight: 700;
+          color: #10213a;
+          margin-bottom: 4px;
+        }
+        .fm-role {
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #c4a048;
+          margin-bottom: 20px;
+        }
+
+        .fm-divider {
+          width: 40px;
+          height: 2px;
+          background: linear-gradient(90deg, #c4a048, transparent);
+          border-radius: 2px;
+          margin-bottom: 20px;
+        }
+
+        .fm-description {
+          font-size: 14.5px;
+          line-height: 1.85;
+          color: #5f7288;
+          margin-bottom: 28px;
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .fm-read-more {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          font-size: 12.5px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #c4a048;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(196,160,72,0.25);
+          padding-bottom: 3px;
+          width: fit-content;
+          transition: all 0.2s ease;
+        }
+        .fm-read-more:hover {
+          color: #e0c060;
+          border-color: #c4a048;
+          gap: 11px;
+        }
+
+        /* Skeleton */
+        .fm-skeleton {
+          max-width: 1160px;
+          margin: 0 auto;
+          height: 380px;
+          border-radius: 4px;
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
+          background-size: 200% 100%;
+          animation: fm-shimmer 1.5s infinite;
+        }
+        @keyframes fm-shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
+
+      <section className="fm-root">
+        <div className="fm-inner">
+
+          <div className="fm-eyebrow">
+            <div className="fm-ey-line" />
+            <span className="fm-ey-text">Message from Leadership</span>
+            <div className="fm-ey-line rev" />
+          </div>
+
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            pagination={{ clickable: true }}
+            autoplay={founders.length > 1 ? { delay: 6000, disableOnInteraction: false } : false}
+            loop={founders.length > 1}
+            className="fm-swiper"
+          >
+            {founders.map((founder) => (
+              <SwiperSlide key={founder.Id}>
+                <div className="fm-card">
+                  <div className="fm-strip" />
+
+                  {/* Image */}
+                  {founder.Image && (
+                    <div className="fm-img-col">
+                      <Image
+                        src={`/uploads/${founder.Image}`}
+                        alt={founder.Name || "Leadership"}
+                        fill
+                        sizes="(max-width: 767px) 100vw, 340px"
+                        className="object-cover object-top"
+                      />
+                      {founder.Roll && (
+                        <span className="fm-role-badge">{founder.Roll}</span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Content */}
+                  <div className="fm-content">
+                    <span className="fm-quote-mark">"</span>
+
+                    {founder.Name && <h3 className="fm-name">{founder.Name}</h3>}
+                    {founder.Roll && <p className="fm-role">{founder.Roll}</p>}
+
+                    <div className="fm-divider" />
+
+                    {founder.Description && (
+                      <p className="fm-description">{founder.Description}</p>
+                    )}
+
+                    {founder.Read_More_Url && (
+                      <Link href={founder.Read_More_Url} className="fm-read-more">
+                        Read Full Message
+                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
         </div>
-
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
-          loop={founders.length > 1}
-          className="w-full"
-        >
-          {founders.map((founder) => (
-            <SwiperSlide key={founder.Id}>
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16">
-
-                <div className="flex-shrink-0 relative group">
-                  <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
-
-                    <Image
-                      src={`/uploads/${founder.Image}`}
-                      alt={founder.Name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex-1 space-y-8 lg:space-y-10">
-                  <blockquote className="text-xl md:text-2xl font-medium text-gray-800 dark:text-gray-100 leading-relaxed italic tracking-wide relative pl-6 md:pl-8 border-l-4 border-indigo-500/70">
-                    {founder.Description}
-                  </blockquote>
-
-                  <div className="pt-4">
-                    <p className="font-serif text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white">
-                      {founder.Name}
-                    </p>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mt-1 capitalize">
-                      {founder.Roll}
-                    </p>
-                  </div>
-
-                  <div className="pt-4">
-                    <a
-                      href={founder.Read_More_Url?.startsWith('http') ? founder.Read_More_Url : `https://${founder.Read_More_Url}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-7 py-3.5 text-base font-medium rounded-lg text-white bg-linear-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
-                    >
-                      Read Full Message
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -14,80 +14,242 @@ export default function TopSlider() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPosters = async () => {
-      try {
-        const response = await axios.get("/api/client/poster");
-        if (response.data.status === "success") {
-          setSlides(response.data.data.data);
-
+    axios
+      .get("/api/client/poster")
+      .then((res) => {
+        if (res.data.status === "success") {
+          const valid = res.data.data.data.filter(
+            (s) => s.Image && s.Image.trim() !== ""
+          );
+          setSlides(valid);
         }
-      } catch (error) {
-        console.error("Error fetching posters:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosters();
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
     return (
-      <div className="w-full h-[35vw] flex items-center justify-center bg-gray-50">
-        <div className="animate-pulse text-gray-400 font-medium">Loading Posters...</div>
+      <div className="ts-skeleton">
+        <div className="ts-skel-inner" />
       </div>
     );
   }
 
-  if (slides.length === 0) {
-    return null; // Or show fallback
-  }
+  if (slides.length === 0) return null;
 
   return (
-    <div className="w-full relative group">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        effect="fade"
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        loop={slides.length > 1}
-        className="w-full h-[35vw] sm:h-[40vw] md:h-[38vw] lg:h-[36vw] xl:h-[38vw] min-h-[100px]"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={slide.Id || index}>
-            <div className="relative w-full h-full bg-gray-100">
-              <Image
-                src={`/uploads/${slide.Image}`}
-                alt={slide.Name || "Poster"}
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority={index === 0}
-              />
-              <div className="absolute inset-0 bg-black/20" />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      <div className="swiper-button-prev text-white! opacity-0! group-hover:opacity-100! transition-opacity duration-300 drop-shadow-md after:text-xl! md:after:text-2xl! lg:after:text-3xl! left-2! sm:left-4! lg:left-8!"></div>
-
-      <div className="swiper-button-next text-white! opacity-0! group-hover:opacity-100! transition-opacity duration-300 drop-shadow-md after:text-xl! md:after:text-2xl! lg:after:text-3xl! right-2! sm:right-4! lg:right-8!"></div>
-
-      <style jsx global>{`
-        .swiper-pagination-bullet {
-          background-color: white !important;
-          opacity: 0.6;
+    <>
+      <style>{`
+        /* ── Skeleton ── */
+        .ts-skeleton {
+          width: 100%;
+          position: relative;
+          background: #f6f8fc;
+          border-bottom: 3px solid #c4a048;
         }
-        .swiper-pagination-bullet-active {
-          background-color: white !important;
-          opacity: 1;
+        .ts-skel-inner {
+          width: 100%;
+          height: clamp(200px, 42vw, 620px);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
+          background-size: 200% 100%;
+          animation: ts-shimmer 1.5s infinite;
+        }
+        @keyframes ts-shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
+        /* ── Wrapper ── */
+        .ts-wrap {
+          width: 100%;
+          position: relative;
+          background: #f6f8fc;
+          border-bottom: 3px solid #c4a048;
+        }
+        /* Gold top accent */
+        .ts-wrap::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #c4a048, #e0c060, #c4a048, transparent);
+          z-index: 10;
+          pointer-events: none;
+        }
+
+        /* ── Swiper ── */
+        .ts-swiper {
+          width: 100%;
+          height: clamp(200px, 42vw, 620px) !important;
+          display: block;
+           background: #f6f8fc;
+        }
+
+        /* Slide image */
+        .ts-slide-img {
+          position: absolute;
+          inset: 0;
+          transition: transform 8s ease !important;
+        }
+        .swiper-slide-active .ts-slide-img {
+          transform: scale(1.04) !important;
+        }
+
+        /* Bottom gradient overlay */
+        .ts-slide-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(7,16,32,0.7) 0%,
+            rgba(7,16,32,0.15) 40%,
+            transparent 70%
+          );
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        /* Slide name label */
+        .ts-slide-label {
+          position: absolute;
+          bottom: 20px;
+          left: 24px;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .ts-label-bar {
+          width: 3px;
+          height: 28px;
+          background: #c4a048;
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+        .ts-label-text {
+          font-family: 'Source Sans 3', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          color: rgba(240,230,200,0.85);
+          text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+        }
+
+        /* Slide counter */
+        .ts-counter {
+          position: absolute;
+          bottom: 20px;
+          right: 24px;
+          z-index: 2;
+          font-family: 'Source Sans 3', sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          color: rgba(196,160,72,0.7);
+        }
+        .ts-counter-cur { color: #c4a048; font-size: 16px; }
+
+        /* ── Nav arrows ── */
+        .ts-prev, .ts-next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          width: 42px;
+          height: 42px;
+          background: rgba(7,16,32,0.6);
+          border: 1px solid rgba(196,160,72,0.25);
+          border-radius: 2px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: #c4a048;
+          opacity: 0;
+          transition: all 0.25s ease;
+          backdrop-filter: blur(4px);
+        }
+        .ts-prev { left: 16px; }
+        .ts-next { right: 16px; }
+        .ts-wrap:hover .ts-prev,
+        .ts-wrap:hover .ts-next { opacity: 1; }
+        .ts-prev:hover, .ts-next:hover {
+          background: rgba(196,160,72,0.15);
+          border-color: #c4a048;
+        }
+
+        /* ── Pagination ── */
+        .ts-swiper .swiper-pagination {
+          bottom: 16px !important;
+        }
+        .ts-swiper .swiper-pagination-bullet {
+          width: 6px !important;
+          height: 6px !important;
+          background: rgba(255,255,255,0.35) !important;
+          opacity: 1 !important;
+          transition: all 0.25s !important;
+          border-radius: 3px !important;
+        }
+        .ts-swiper .swiper-pagination-bullet-active {
+          background: #c4a048 !important;
+          width: 20px !important;
         }
       `}</style>
-    </div>
+
+      <div className="ts-wrap">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay, EffectFade]}
+          effect="fade"
+          navigation={{ nextEl: ".ts-next", prevEl: ".ts-prev" }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4500, disableOnInteraction: false }}
+          loop={slides.length > 1}
+          className="ts-swiper"
+        >
+          {slides.map((slide, index) => (
+            <SwiperSlide key={slide.Id || index}>
+              <div style={{ position: "relative", background: "#f6f8fc", width: "100%", height: "100%" }}>
+                <Image
+                  src={`/uploads/${slide.Image}`}
+                  alt={slide.Name || "Poster"}
+                  fill
+                  sizes="100vw"
+                  className="ts-slide-img object-contain"
+                  priority={index === 0}
+                />
+                <div className="ts-slide-overlay" />
+                {slide.Name && (
+                  <div className="ts-slide-label">
+                    <div className="ts-label-bar" />
+                    <span className="ts-label-text">{slide.Name}</span>
+                  </div>
+                )}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Slide counter */}
+        {slides.length > 1 && (
+          <div className="ts-counter">
+            <span className="ts-counter-cur">01</span>
+            <span> / {String(slides.length).padStart(2, "0")}</span>
+          </div>
+        )}
+
+        {/* Custom nav */}
+        <button className="ts-prev" aria-label="Previous">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button className="ts-next" aria-label="Next">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </>
   );
 }

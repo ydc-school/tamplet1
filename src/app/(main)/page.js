@@ -8,20 +8,26 @@ import NoticeSection from "@/components/home/NoticeSection";
 import StudentToppers from "@/components/home/StudentToppers";
 import WelcomeSection from "@/components/home/WelcomeSection";
 import FounderMessage from "@/components/home/FounderMessage";
+import BlogSection from "@/components/home/BlogSection";
+import AchievementGallery from "@/components/home/Achievementgallery";
+import FacilitySection from "@/components/home/FacilitySection";
 
 export default function Home() {
   return (
     <div className="w-full bg-white flex flex-col">
       <TopSlider />
-      <Hero />
+      {/* <Hero /> */}
       <WelcomeSection />
-      <FounderMessage />
-      <CourseSection />
-      <AdmissionSection />
       <HistorySection />
       <AchievementsSection />
-      <StudentToppers />
       <NoticeSection />
+      <FounderMessage />
+      <StudentToppers />
+      <AchievementGallery />
+      {/* <CourseSection /> */}
+      <FacilitySection />
+      <AdmissionSection />
+      <BlogSection />
 
     </div>
   );

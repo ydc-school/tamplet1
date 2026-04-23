@@ -3,7 +3,26 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary:#41b620;
+  --secondary:#ffffff
 }
+
+
+
+
+@layer utilities {
+
+
+.bg-p{
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+}
+
+
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -12,16 +31,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
 }
 
 body {
-  /* background: var(--background);
-  color: var(--foreground); */
+  background: var(--background);
+  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -71,6 +87,7 @@ body {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
+
 }
 
 .notice-content ol {

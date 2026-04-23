@@ -1,70 +1,92 @@
-"use client";
-import { useEffect, useState, use } from "react";
-import axios from "axios";
 
-export default function DynamicPage({ params: paramsPromise }) {
-    const params = use(paramsPromise);
-    const { id } = params;
-    const [pageData, setPageData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchPageContent = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`/api/client/pages/${id}`);
-                if (response.data.status === "success") {
-                    setPageData(response.data.data);
-                } else {
-                    setError(response.data.message || "Failed to fetch page data");
-                }
-            } catch (err) {
-                console.error("Error fetching page:", err);
-                setError("Error loading page content. Please try again later.");
-            } finally {
-                setLoading(false);
-            }
-        };
+import DynamicPage from "./Dynamicpage";
 
-        if (id) {
-            fetchPageContent();
-        }
-    }, [id]);
+// ─── SEO: dynamic metadata per page ────────────────────────────────────────
+export async function generateMetadata({ params }) {
+  const { id } = await params;
 
-    if (loading) {
-        return (
-            <div className="min-h-[60vh] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            </div>
-        );
-    }
+  try {
+    // Fetch from your internal API (server-side, so absolute URL needed)
+    const baseUrl =
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      process.env.NEXT_PUBLIC_API_BASE_URL ||
+      "http://localhost:3000";
 
-    if (error) {
-        return (
-            <div className="min-h-[60vh] flex items-center justify-center px-6">
-                <div className="text-center">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Oops!</h2>
-                    <p className="text-gray-600">{error}</p>
-                </div>
-            </div>
-        );
-    }
+    const res = await fetch(`${baseUrl}/api/client/pages/${id}`, {
+      // Revalidate every 1 hour; adjust as needed
+      next: { revalidate: 3600 },
+    });
 
-    if (!pageData) return null;
+    if (!res.ok) throw new Error("Page not found");
 
-    return (
-        <main className="min-h-[60vh] py-12 px-6">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-8 capitalize">
-                    {pageData.Name.replace(/-/g, " ")}
-                </h1>
+    const json = await res.json();
 
-                <div
-                    className="prose prose-blue max-w-none text-gray-700 leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: pageData.Page_Data }}
-                />
-            </div>
-        </main>
-    );
+    if (json.status !== "success" || !json.data) throw new Error("No data");
+
+    const page = json.data;
+
+    // Human-readable title: replace hyphens, capitalize
+    const readableName = page.Name
+      ? page.Name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+      : "Page";
+
+    // Strip HTML tags from Page_Data for a clean description
+    const rawText = page.Page_Data
+      ? page.Page_Data.replace(/<[^>]*>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+      : "";
+    const description = rawText.slice(0, 160) || `${readableName} — Yaduvanshi Group`;
+
+    const siteName = "Yaduvanshi Group";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yaduvanshigroup.edu.in";
+    const pageUrl = `${siteUrl}/pages/${id}`;
+
+    return {
+      title: `${readableName} | ${siteName}`,
+      description,
+
+      // ── Open Graph ──────────────────────────────────────────────────────
+      openGraph: {
+        title: `${readableName} | ${siteName}`,
+        description,
+        url: pageUrl,
+        siteName,
+        type: "article",
+        // Add og:image if your page data ever includes a cover image
+        // images: page.Cover_Image ? [{ url: page.Cover_Image }] : [],
+      },
+
+      // ── Twitter Card ────────────────────────────────────────────────────
+      twitter: {
+        card: "summary",
+        title: `${readableName} | ${siteName}`,
+        description,
+      },
+
+      // ── Canonical URL ───────────────────────────────────────────────────
+      alternates: {
+        canonical: pageUrl,
+      },
+
+      // ── Robots ──────────────────────────────────────────────────────────
+      robots: {
+        index: true,
+        follow: true,
+      },
+    };
+  } catch {
+    // Fallback metadata on fetch failure
+    return {
+      title: "Page | Yaduvanshi Group",
+      description: "Explore pages from Yaduvanshi Group — leading educational institutions across Haryana and Rajasthan.",
+      robots: { index: false, follow: false }, // don't index error states
+    };
+  }
+}
+
+// ─── Page component ─────────────────────────────────────────────────────────
+export default function Page({ params }) {
+  return <DynamicPage params={params} />;
 }

@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+
 const SchoolContext = createContext(null);
 
 export function SchoolProvider({ children }) {
@@ -10,25 +11,7 @@ export function SchoolProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // favicon change
-    useEffect(() => {
-        if (!schoolInfo?.Favicon_Url) return;
-
-        let link = document.querySelector("link[rel='icon']");
-
-        if (!link) {
-            link = document.createElement("link");
-            link.rel = "icon";
-            document.head.appendChild(link);
-        }
-
-        const logoUrl = schoolInfo?.Favicon_Url
-            ? `/uploads/${schoolInfo.Favicon_Url}`
-            : "/logo/6.png";
-        link.href = logoUrl;
-
-    }, [schoolInfo]);
-
+   
     
 
     useEffect(() => {
@@ -51,7 +34,7 @@ export function SchoolProvider({ children }) {
     }, []);
 
 
-
+ 
 
 
     return (
