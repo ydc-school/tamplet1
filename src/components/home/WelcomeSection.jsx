@@ -42,7 +42,7 @@ export default function WelcomeSection() {
 
         .wc-root {
           width: 100%;
-          background: #0a1628;
+          background: #f8fbff;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -110,7 +110,7 @@ export default function WelcomeSection() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(26px, 3.5vw, 40px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.25;
           margin-bottom: 24px;
         }
@@ -126,11 +126,11 @@ export default function WelcomeSection() {
         .wc-message {
           font-size: 15.5px;
           line-height: 1.85;
-          color: #6a8aaa;
+          color: #5f7288;
           margin-bottom: 32px;
         }
         .wc-message p { margin-bottom: 10px; }
-        .wc-message strong { color: #c5d8e8; font-weight: 600; }
+        .wc-message strong { color: #1d3557; font-weight: 600; }
 
         /* Feature pills */
         .wc-pills {
@@ -150,7 +150,7 @@ export default function WelcomeSection() {
           font-size: 12px;
           font-weight: 600;
           letter-spacing: 0.06em;
-          color: #a8b8c8;
+          color: #57697d;
         }
         .wc-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: #c4a048; flex-shrink: 0; }
 
@@ -159,7 +159,7 @@ export default function WelcomeSection() {
           align-items: center;
           gap: 8px;
           background: #c4a048;
-          color: #071020;
+          color: #f6f8fc;
           font-size: 12.5px;
           font-weight: 700;
           letter-spacing: 0.08em;
@@ -220,7 +220,7 @@ export default function WelcomeSection() {
         .wc-no-img {
           width: 100%;
           aspect-ratio: 4 / 5;
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.15);
           border-radius: 4px;
           display: flex;
@@ -282,7 +282,7 @@ export default function WelcomeSection() {
           bottom: -16px;
           left: -16px;
           background: linear-gradient(135deg, #c4a048, #e0c060);
-          color: #071020;
+          color: #f6f8fc;
           padding: 16px 20px;
           border-radius: 3px;
           box-shadow: 0 8px 24px rgba(196,160,72,0.35);
@@ -294,7 +294,7 @@ export default function WelcomeSection() {
         .wc-stat-num {
           font-family: 'Playfair Display', serif;
           font-size: 28px; font-weight: 800;
-          line-height: 1; color: #071020;
+          line-height: 1; color: #f6f8fc;
         }
         .wc-stat-label {
           font-size: 10px; font-weight: 700;
@@ -306,7 +306,7 @@ export default function WelcomeSection() {
         .wc-skel {
           max-width: 1140px; margin: 0 auto;
           height: 420px; border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: wc-shimmer 1.5s infinite;
         }

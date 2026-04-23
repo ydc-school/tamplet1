@@ -45,7 +45,7 @@ export default function FacilitySection() {
       <style>{`
         .fc-root {
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -93,7 +93,7 @@ export default function FacilitySection() {
         .fc-heading {
           font-family: 'Playfair Display', serif;
           font-size: clamp(24px, 3.5vw, 34px);
-          font-weight: 700; color: #f0e6c8;
+          font-weight: 700; color: #10213a;
           text-align: center; margin-bottom: 8px;
         }
         .fc-subheading {
@@ -112,7 +112,7 @@ export default function FacilitySection() {
 
         /* Card */
         .fc-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           overflow: hidden;
@@ -143,7 +143,7 @@ export default function FacilitySection() {
           width: 100%;
           height: 180px;
           overflow: hidden;
-          background: linear-gradient(135deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(135deg, #f3f7fc 0%, #f6f8fc 100%);
           position: relative;
           flex-shrink: 0;
         }
@@ -203,7 +203,7 @@ export default function FacilitySection() {
         .fc-card-title {
           font-family: 'Playfair Display', serif;
           font-size: 17px; font-weight: 700;
-          color: #f0e6c8; line-height: 1.35;
+          color: #10213a; line-height: 1.35;
           transition: color 0.2s;
         }
         .fc-card:hover .fc-card-title { color: #e0c870; }
@@ -238,7 +238,7 @@ export default function FacilitySection() {
         /* Skeleton */
         .fc-skel {
           height: 280px; border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: fc-shimmer 1.5s infinite;
         }
@@ -259,7 +259,7 @@ export default function FacilitySection() {
         @keyframes fc-fadein { from { opacity: 0; } to { opacity: 1; } }
 
        .fc-modal {
-  background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+  background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
   border: 1px solid rgba(196,160,72,0.2);
   border-top: 3px solid #c4a048;
   border-radius: 4px;
@@ -284,7 +284,7 @@ export default function FacilitySection() {
         }
         .fc-modal-img-placeholder {
           width: 100%; height: 160px;
-          background: linear-gradient(135deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(135deg, #f3f7fc 0%, #f6f8fc 100%);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
           border-bottom: 1px solid rgba(196,160,72,0.1);
@@ -303,7 +303,7 @@ export default function FacilitySection() {
         .fc-modal-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(17px, 3vw, 22px);
-          font-weight: 700; color: #f0e6c8; line-height: 1.3;
+          font-weight: 700; color: #10213a; line-height: 1.3;
         }
         .fc-close-btn {
           width: 34px; height: 34px; border-radius: 3px;
@@ -323,7 +323,7 @@ export default function FacilitySection() {
           padding: 22px 28px;
           scrollbar-width: thin;
           scrollbar-color: rgba(196,160,72,0.2) transparent;
-          font-size: 14.5px; line-height: 1.85; color: #7a90a8;
+          font-size: 14.5px; line-height: 1.85; color: #5f7288;
         }
         .fc-modal-body::-webkit-scrollbar { width: 4px; }
         .fc-modal-body::-webkit-scrollbar-thumb {

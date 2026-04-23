@@ -40,7 +40,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
       <style>{`
         .bd-root {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
           overflow: hidden;
@@ -66,7 +66,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         /* ── Hero ── */
         .bd-hero {
           width: 100%;
-          background: linear-gradient(160deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-bottom: 1px solid rgba(196,160,72,0.12);
           position: relative;
           z-index: 1;
@@ -91,7 +91,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         .bd-cover-placeholder {
           width: 100%;
           height: clamp(220px, 38vw, 420px);
-          background: linear-gradient(135deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(135deg, #f3f7fc 0%, #f6f8fc 100%);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -134,7 +134,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         .bd-blog-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(24px, 4vw, 42px);
-          font-weight: 800; color: #f0e6c8;
+          font-weight: 800; color: #10213a;
           line-height: 1.2; margin: 0 0 20px;
         }
 
@@ -150,7 +150,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
           display: flex; align-items: center; justify-content: center;
           font-size: 11px; font-weight: 700; color: #c4a048; flex-shrink: 0;
         }
-        .bd-author-name { font-size: 13px; font-weight: 600; color: #c5d8e8; }
+        .bd-author-name { font-size: 13px; font-weight: 600; color: #1d3557; }
         .bd-meta-sep { width: 3px; height: 3px; border-radius: 50%; background: #3a5a7a; }
         .bd-pub-date { font-size: 12px; color: #3a5a7a; }
         .bd-read-time { font-size: 12px; color: #3a5a7a; }
@@ -168,7 +168,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         }
 
         .bd-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           padding: 40px 48px;
@@ -190,12 +190,12 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         .bd-prose {
           font-size: 15.5px;
           line-height: 1.85;
-          color: #6a8aaa;
+          color: #5f7288;
         }
         .bd-prose h1, .bd-prose h2, .bd-prose h3,
         .bd-prose h4, .bd-prose h5, .bd-prose h6 {
           font-family: 'Playfair Display', serif;
-          color: #f0e6c8; line-height: 1.3;
+          color: #10213a; line-height: 1.3;
           margin: 28px 0 12px; font-weight: 700;
         }
         .bd-prose h1 { font-size: clamp(22px, 3vw, 30px); }
@@ -203,7 +203,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         .bd-prose h3 { font-size: 20px; }
         .bd-prose h4 { font-size: 17px; }
         .bd-prose p { margin-bottom: 16px; }
-        .bd-prose strong { color: #c5d8e8; font-weight: 600; }
+        .bd-prose strong { color: #1d3557; font-weight: 600; }
         .bd-prose em { color: #c4a048; font-style: italic; }
         .bd-prose a { color: #c4a048; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
         .bd-prose a:hover { color: #e0c060; }
@@ -232,7 +232,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         }
         .bd-prose td {
           padding: 11px 16px; border: 1px solid rgba(196,160,72,0.08);
-          color: #6a8aaa; font-size: 14px;
+          color: #5f7288; font-size: 14px;
         }
         .bd-prose tr:hover td { background: rgba(196,160,72,0.03); }
         .bd-prose img {
@@ -260,7 +260,7 @@ export default function BlogDetailPage({ params: paramsPromise }) {
           background: transparent;
           border: 1px solid rgba(196,160,72,0.18);
           border-radius: 2px; padding: 7px 14px;
-          font-size: 12px; font-weight: 600; color: #6a8aaa;
+          font-size: 12px; font-weight: 600; color: #5f7288;
           cursor: pointer; font-family: inherit;
           transition: all 0.18s;
         }
@@ -302,12 +302,12 @@ export default function BlogDetailPage({ params: paramsPromise }) {
         .bd-state-label { font-size: 14px; color: #3a5a7a; }
         .bd-err-title {
           font-family: 'Playfair Display', serif;
-          font-size: 24px; font-weight: 700; color: #f0e6c8; margin-bottom: 10px;
+          font-size: 24px; font-weight: 700; color: #10213a; margin-bottom: 10px;
         }
         .bd-err-msg { font-size: 14px; color: #3a5a7a; margin-bottom: 24px; }
         .bd-retry-btn {
           display: inline-flex; align-items: center; gap: 7px;
-          background: #c4a048; color: #071020;
+          background: #c4a048; color: #f6f8fc;
           font-size: 12px; font-weight: 700;
           letter-spacing: 0.08em; text-transform: uppercase;
           padding: 11px 24px; border: none; border-radius: 2px;

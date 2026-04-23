@@ -54,7 +54,7 @@ export default function GalleryDetailPage() {
 
         .gd-root {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           font-family: 'Source Sans 3', sans-serif;
           position: relative; overflow: hidden;
         }
@@ -76,7 +76,7 @@ export default function GalleryDetailPage() {
 
         /* Hero */
         .gd-hero {
-          background: linear-gradient(160deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-bottom: 1px solid rgba(196,160,72,0.12);
           padding: 110px 24px 48px;
           position: relative; z-index: 1;
@@ -111,7 +111,7 @@ export default function GalleryDetailPage() {
         .gd-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(26px, 4vw, 42px);
-          font-weight: 800; color: #f0e6c8; line-height: 1.15;
+          font-weight: 800; color: #10213a; line-height: 1.15;
         }
         .gd-desc { font-size: 14px; color: #3a5a7a; margin-top: 8px; max-width: 560px; }
         .gd-count {
@@ -144,7 +144,7 @@ export default function GalleryDetailPage() {
         .gd-tile {
           position: relative;
           aspect-ratio: 1/1;
-          background: #0f2044;
+          background: #ffffff;
           border: 1px solid rgba(196,160,72,0.1);
           border-radius: 3px;
           overflow: hidden;
@@ -195,11 +195,11 @@ export default function GalleryDetailPage() {
         .gd-empty { text-align: center; padding: 80px 24px; color: #3a5a7a; }
         .gd-empty-title {
           font-family: 'Playfair Display', serif;
-          font-size: 22px; color: #c5d8e8; margin: 16px 0 8px;
+          font-size: 22px; color: #1d3557; margin: 16px 0 8px;
         }
         .gd-skel {
           aspect-ratio: 1/1; border-radius: 3px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: gd-shimmer 1.5s infinite;
         }

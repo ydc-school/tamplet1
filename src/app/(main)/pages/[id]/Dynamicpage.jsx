@@ -62,7 +62,7 @@ export default function DynamicPage({ params: paramsPromise }) {
       <style>{`
         .dp-root {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
           overflow: hidden;
@@ -88,7 +88,7 @@ export default function DynamicPage({ params: paramsPromise }) {
         /* ── Hero banner ── */
         .dp-hero {
           width: 100%;
-          background: linear-gradient(160deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-bottom: 1px solid rgba(196,160,72,0.12);
           padding: 110px 24px 48px;
           position: relative;
@@ -134,7 +134,7 @@ export default function DynamicPage({ params: paramsPromise }) {
         .dp-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(26px, 4vw, 44px);
-          font-weight: 800; color: #f0e6c8;
+          font-weight: 800; color: #10213a;
           line-height: 1.2; text-transform: capitalize;
           margin-bottom: 0;
         }
@@ -149,7 +149,7 @@ export default function DynamicPage({ params: paramsPromise }) {
         }
 
         .dp-content-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           padding: 40px 48px;
@@ -173,12 +173,12 @@ export default function DynamicPage({ params: paramsPromise }) {
         .dp-prose {
           font-size: 15.5px;
           line-height: 1.85;
-          color: #6a8aaa;
+          color: #5f7288;
         }
         .dp-prose h1, .dp-prose h2, .dp-prose h3,
         .dp-prose h4, .dp-prose h5, .dp-prose h6 {
           font-family: 'Playfair Display', serif;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.3;
           margin: 28px 0 12px;
           font-weight: 700;
@@ -188,7 +188,7 @@ export default function DynamicPage({ params: paramsPromise }) {
         .dp-prose h3 { font-size: 20px; }
         .dp-prose h4 { font-size: 17px; }
         .dp-prose p { margin-bottom: 16px; }
-        .dp-prose strong { color: #c5d8e8; font-weight: 600; }
+        .dp-prose strong { color: #1d3557; font-weight: 600; }
         .dp-prose em { color: #c4a048; font-style: italic; }
         .dp-prose a { color: #c4a048; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
         .dp-prose a:hover { color: #e0c060; }
@@ -226,7 +226,7 @@ export default function DynamicPage({ params: paramsPromise }) {
         .dp-prose td {
           padding: 11px 16px;
           border: 1px solid rgba(196,160,72,0.08);
-          color: #6a8aaa; font-size: 14px;
+          color: #5f7288; font-size: 14px;
         }
         .dp-prose tr:hover td { background: rgba(196,160,72,0.03); }
         .dp-prose img {
@@ -256,12 +256,12 @@ export default function DynamicPage({ params: paramsPromise }) {
         .dp-err-title {
           font-family: 'Playfair Display', serif;
           font-size: 24px; font-weight: 700;
-          color: #f0e6c8; margin-bottom: 10px;
+          color: #10213a; margin-bottom: 10px;
         }
         .dp-err-msg { font-size: 14px; color: #3a5a7a; margin-bottom: 24px; }
         .dp-retry-btn {
           display: inline-flex; align-items: center; gap: 7px;
-          background: #c4a048; color: #071020;
+          background: #c4a048; color: #f6f8fc;
           font-size: 12px; font-weight: 700;
           letter-spacing: 0.08em; text-transform: uppercase;
           padding: 11px 24px; border: none; border-radius: 2px;

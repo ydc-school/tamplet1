@@ -81,7 +81,7 @@ export default function AchievementsSection() {
 
         .ach-root {
           width: 100%;
-          background: #0c1e3a;
+          background: #f3f7fc;
           padding: 72px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -146,7 +146,7 @@ export default function AchievementsSection() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(24px, 3.5vw, 34px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           text-align: center;
           margin-bottom: 52px;
         }
@@ -167,7 +167,7 @@ export default function AchievementsSection() {
 
         /* Each stat */
         .ach-item {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           padding: 40px 24px;
           display: flex;
           flex-direction: column;
@@ -178,7 +178,7 @@ export default function AchievementsSection() {
           position: relative;
         }
         .ach-item:hover {
-          background: linear-gradient(145deg, #132650 0%, #0c2040 100%);
+          background: linear-gradient(145deg, #f8fbff 0%, #edf4ff 100%);
         }
         @keyframes ach-fadein {
           from { opacity: 0; transform: translateY(18px); }
@@ -215,13 +215,13 @@ export default function AchievementsSection() {
           font-weight: 600;
           letter-spacing: 0.06em;
           text-transform: uppercase;
-          color: #7a90a8;
+          color: #5f7288;
           line-height: 1.4;
         }
 
         /* Loading skeleton */
         .ach-skel-item {
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: ach-shimmer 1.5s infinite;
           height: 140px;

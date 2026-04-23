@@ -39,7 +39,7 @@ export default function HistorySection() {
 
         .hs-root {
           width: 100%;
-          background: #0a1628;
+          background: #f8fbff;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -107,7 +107,7 @@ export default function HistorySection() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(28px, 4vw, 42px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.2;
           margin-bottom: 24px;
         }
@@ -144,7 +144,7 @@ export default function HistorySection() {
         .hs-right { flex: 1; }
 
         .hs-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.14);
           border-left: 3px solid #c4a048;
           border-radius: 0 4px 4px 0;
@@ -170,12 +170,12 @@ export default function HistorySection() {
         .hs-para {
           font-size: 15px;
           line-height: 1.9;
-          color: #6a8aaa;
+          color: #5f7288;
           margin-bottom: 20px;
           text-align: justify;
         }
         .hs-para:last-of-type { margin-bottom: 0; }
-        .hs-para strong { color: #c5d8e8; font-weight: 600; }
+        .hs-para strong { color: #1d3557; font-weight: 600; }
 
         .hs-divider {
           width: 40px; height: 1px;

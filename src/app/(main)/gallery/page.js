@@ -34,7 +34,7 @@ export default function GalleryPage() {
 
         .gl-root {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
           overflow: hidden;
@@ -60,7 +60,7 @@ export default function GalleryPage() {
         /* Hero */
         .gl-hero {
           width: 100%;
-          background: linear-gradient(160deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-bottom: 1px solid rgba(196,160,72,0.12);
           padding: 110px 24px 52px;
           position: relative;
@@ -84,7 +84,7 @@ export default function GalleryPage() {
         .gl-hero-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(28px, 4vw, 46px);
-          font-weight: 800; color: #f0e6c8; line-height: 1.15; margin-bottom: 10px;
+          font-weight: 800; color: #10213a; line-height: 1.15; margin-bottom: 10px;
         }
         .gl-hero-sub {
           font-size: 15px; color: #3a5a7a; margin-top: 8px;
@@ -112,7 +112,7 @@ export default function GalleryPage() {
         .gl-cat-card {
           display: block;
           text-decoration: none;
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           overflow: hidden;
@@ -148,7 +148,7 @@ export default function GalleryPage() {
           position: relative;
           width: 100%;
           aspect-ratio: 4 / 3;
-          background: #071020;
+          background: #f6f8fc;
           overflow: hidden;
         }
         .gl-thumb img { transition: transform 0.4s ease !important; }
@@ -163,7 +163,7 @@ export default function GalleryPage() {
         /* No image */
         .gl-no-thumb {
           width: 100%; aspect-ratio: 4 / 3;
-          background: linear-gradient(135deg, #0f2044, #152a55);
+          background: linear-gradient(135deg, #ffffff, #eef4ff);
           display: flex; align-items: center; justify-content: center;
         }
 
@@ -174,7 +174,7 @@ export default function GalleryPage() {
           width: 32px; height: 32px;
           background: #c4a048; border-radius: 2px;
           display: flex; align-items: center; justify-content: center;
-          color: #071020;
+          color: #f6f8fc;
           opacity: 0; transform: scale(0.8);
           transition: all 0.25s;
         }
@@ -189,7 +189,7 @@ export default function GalleryPage() {
           transition: color 0.2s;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .gl-cat-card:hover .gl-cat-name { color: #f0e6c8; }
+        .gl-cat-card:hover .gl-cat-name { color: #10213a; }
         .gl-cat-desc {
           font-size: 12.5px; line-height: 1.65; color: #3a5a7a;
           display: -webkit-box;
@@ -215,13 +215,13 @@ export default function GalleryPage() {
         .gl-empty-icon { margin: 0 auto 16px; color: rgba(196,160,72,0.15); }
         .gl-empty-title {
           font-family: 'Playfair Display', serif;
-          font-size: 22px; color: #c5d8e8; margin-bottom: 8px;
+          font-size: 22px; color: #1d3557; margin-bottom: 8px;
         }
 
         /* Skeleton */
         .gl-skel {
           height: 260px; border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: gl-shimmer 1.5s infinite;
         }

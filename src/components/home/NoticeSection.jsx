@@ -26,7 +26,7 @@ export default function NoticeSection() {
 
         .nt-root {
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -75,13 +75,13 @@ export default function NoticeSection() {
         .nt-heading {
           font-family: 'Playfair Display', serif;
           font-size: clamp(24px, 3.5vw, 34px);
-          font-weight: 700; color: #f0e6c8;
+          font-weight: 700; color: #10213a;
           text-align: center; margin-bottom: 40px;
         }
 
         /* Panel */
         .nt-panel {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.15);
           border-top: 3px solid #c4a048;
           border-radius: 4px;
@@ -172,11 +172,11 @@ export default function NoticeSection() {
         .nt-row-body { flex: 1; min-width: 0; }
         .nt-row-title {
           font-size: 14px; font-weight: 600;
-          color: #c5d8e8; line-height: 1.4;
+          color: #1d3557; line-height: 1.4;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
           transition: color 0.2s;
         }
-        .nt-row:hover .nt-row-title { color: #f0e6c8; }
+        .nt-row:hover .nt-row-title { color: #10213a; }
         .nt-row-date {
           font-size: 11.5px; color: #3a5a7a;
           margin-top: 3px; display: flex; align-items: center; gap: 5px;
@@ -204,7 +204,7 @@ export default function NoticeSection() {
         /* Skeleton */
         .nt-skel-row {
           height: 64px; border-radius: 3px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: nt-shimmer 1.5s infinite;
         }
@@ -225,7 +225,7 @@ export default function NoticeSection() {
         @keyframes nt-fadein { from { opacity: 0; } to { opacity: 1; } }
 
         .nt-modal {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.2);
           border-top: 3px solid #c4a048;
           border-radius: 4px;
@@ -253,7 +253,7 @@ export default function NoticeSection() {
         .nt-modal-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(17px, 3vw, 22px);
-          font-weight: 700; color: #f0e6c8; line-height: 1.3;
+          font-weight: 700; color: #10213a; line-height: 1.3;
         }
         .nt-modal-date {
           font-size: 12px; color: #3a5a7a;
@@ -274,12 +274,12 @@ export default function NoticeSection() {
           padding: 24px 28px;
           scrollbar-width: thin;
           scrollbar-color: rgba(196,160,72,0.2) transparent;
-          font-size: 14.5px; line-height: 1.85; color: #7a90a8;
+          font-size: 14.5px; line-height: 1.85; color: #5f7288;
         }
         .nt-modal-body::-webkit-scrollbar { width: 4px; }
         .nt-modal-body::-webkit-scrollbar-thumb { background: rgba(196,160,72,0.2); border-radius: 2px; }
         .nt-modal-body h1, .nt-modal-body h2, .nt-modal-body h3 {
-          font-family: 'Playfair Display', serif; color: #c5d8e8; margin-bottom: 10px;
+          font-family: 'Playfair Display', serif; color: #1d3557; margin-bottom: 10px;
         }
         .nt-modal-body p { margin-bottom: 10px; }
         .nt-modal-body strong { color: #d4c090; }

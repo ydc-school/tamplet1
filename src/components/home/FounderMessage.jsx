@@ -44,7 +44,7 @@ export default function FounderMessage() {
 
         .fm-root {
           width: 100%;
-          background: #0a1628;
+          background: #f8fbff;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -120,7 +120,7 @@ export default function FounderMessage() {
 
         /* Card */
         .fm-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.15);
           border-radius: 4px;
           overflow: hidden;
@@ -156,7 +156,7 @@ export default function FounderMessage() {
           flex-shrink: 0;
           width: 100%;
           position: relative;
-          background: #071020;
+          background: #f6f8fc;
           min-height: 260px;
         }
         @media (min-width: 768px) {
@@ -190,12 +190,12 @@ export default function FounderMessage() {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(to right, transparent 60%, #0f2044);
+          background: linear-gradient(to right, transparent 60%, #ffffff);
           z-index: 1;
         }
         @media (max-width: 767px) {
           .fm-img-col::after {
-            background: linear-gradient(to top, #0f2044 0%, transparent 60%);
+            background: linear-gradient(to top, #ffffff 0%, transparent 60%);
           }
         }
 
@@ -206,7 +206,7 @@ export default function FounderMessage() {
           left: 16px;
           z-index: 2;
           background: #c4a048;
-          color: #071020;
+          color: #f6f8fc;
           font-size: 10px;
           font-weight: 700;
           letter-spacing: 0.16em;
@@ -251,7 +251,7 @@ export default function FounderMessage() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(20px, 3vw, 26px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           margin-bottom: 4px;
         }
         .fm-role {
@@ -274,7 +274,7 @@ export default function FounderMessage() {
         .fm-description {
           font-size: 14.5px;
           line-height: 1.85;
-          color: #7a90a8;
+          color: #5f7288;
           margin-bottom: 28px;
           display: -webkit-box;
           -webkit-line-clamp: 6;
@@ -309,7 +309,7 @@ export default function FounderMessage() {
           margin: 0 auto;
           height: 380px;
           border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: fm-shimmer 1.5s infinite;
         }

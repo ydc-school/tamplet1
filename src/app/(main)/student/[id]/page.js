@@ -26,8 +26,8 @@ export default function StudentProfile() {
 
   const medalColor = (rank) => {
     const r = parseInt(rank);
-    if (r === 1) return { bg: "#c4a048", text: "#071020", label: "Gold" };
-    if (r === 2) return { bg: "#94a3b8", text: "#071020", label: "Silver" };
+    if (r === 1) return { bg: "#c4a048", text: "#f6f8fc", label: "Gold" };
+    if (r === 2) return { bg: "#94a3b8", text: "#f6f8fc", label: "Silver" };
     if (r === 3) return { bg: "#b87333", text: "#fff",    label: "Bronze" };
     return       { bg: "#1e3a5a",  text: "#c4a048", label: `#${rank}` };
   };
@@ -38,7 +38,7 @@ export default function StudentProfile() {
 
         .sp-root {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           padding: 120px 24px 80px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -91,7 +91,7 @@ export default function StudentProfile() {
 
         /* Card */
         .sp-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.15);
           border-top: 3px solid #c4a048;
           border-radius: 4px;
@@ -106,7 +106,7 @@ export default function StudentProfile() {
         .sp-left {
           flex-shrink: 0;
           width: 100%;
-          background: linear-gradient(160deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-right: 1px solid rgba(196,160,72,0.1);
           padding: 40px 32px;
           display: flex;
@@ -131,12 +131,12 @@ export default function StudentProfile() {
           border: 3px solid rgba(196,160,72,0.3);
           box-shadow: 0 0 0 6px rgba(196,160,72,0.08), 0 12px 36px rgba(0,0,0,0.5);
           position: relative;
-          background: #071020;
+          background: #f6f8fc;
         }
         .sp-photo-placeholder {
           width: 100%; height: 100%;
           display: flex; align-items: center; justify-content: center;
-          background: linear-gradient(135deg, #0f2044, #152a55);
+          background: linear-gradient(135deg, #ffffff, #eef4ff);
           font-family: 'Playfair Display', serif;
           font-size: 64px; font-weight: 700; color: rgba(196,160,72,0.25);
         }
@@ -149,7 +149,7 @@ export default function StudentProfile() {
           border-radius: 50%;
           display: flex; flex-direction: column;
           align-items: center; justify-content: center;
-          border: 2px solid #071020;
+          border: 2px solid #f6f8fc;
           box-shadow: 0 4px 12px rgba(0,0,0,0.5);
           line-height: 1;
         }
@@ -182,7 +182,7 @@ export default function StudentProfile() {
         }
         .sp-stat-val {
           font-family: 'Playfair Display', serif;
-          font-size: 20px; font-weight: 700; color: #f0e6c8; line-height: 1;
+          font-size: 20px; font-weight: 700; color: #10213a; line-height: 1;
         }
         .sp-stat-pct { font-size: 13px; color: #8a9aaa; }
 
@@ -205,7 +205,7 @@ export default function StudentProfile() {
         .sp-name {
           font-family: 'Playfair Display', serif;
           font-size: clamp(28px, 4vw, 40px);
-          font-weight: 800; color: #f0e6c8;
+          font-weight: 800; color: #10213a;
           line-height: 1.1; margin-bottom: 8px;
         }
         .sp-sub {
@@ -251,14 +251,14 @@ export default function StudentProfile() {
         }
         .sp-info-val {
           font-size: 14px; font-weight: 600;
-          color: #c5d8e8; text-transform: capitalize;
+          color: #1d3557; text-transform: capitalize;
         }
 
         /* About */
         .sp-about-title {
           font-family: 'Playfair Display', serif;
           font-size: 18px; font-weight: 700;
-          color: #f0e6c8; margin-bottom: 14px;
+          color: #10213a; margin-bottom: 14px;
           display: flex; align-items: center; gap: 10px;
         }
         .sp-about-bar {
@@ -266,7 +266,7 @@ export default function StudentProfile() {
           background: #c4a048; border-radius: 2px;
         }
         .sp-about-text {
-          font-size: 14.5px; line-height: 1.85; color: #6a8aaa; margin-bottom: 20px;
+          font-size: 14.5px; line-height: 1.85; color: #5f7288; margin-bottom: 20px;
         }
 
         /* Quote block */
@@ -290,14 +290,14 @@ export default function StudentProfile() {
         /* States */
         .sp-state {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           display: flex; align-items: center; justify-content: center;
           font-family: 'Source Sans 3', sans-serif;
         }
         .sp-state-box { text-align: center; padding: 40px 24px; }
         .sp-state-title {
           font-family: 'Playfair Display', serif;
-          font-size: 28px; font-weight: 700; color: #f0e6c8; margin-bottom: 12px;
+          font-size: 28px; font-weight: 700; color: #10213a; margin-bottom: 12px;
         }
         .sp-state-msg { font-size: 15px; color: #3a5a7a; margin-bottom: 28px; }
 
@@ -313,7 +313,7 @@ export default function StudentProfile() {
 
         .sp-btn {
           display: inline-flex; align-items: center; gap: 8px;
-          background: #c4a048; color: #071020;
+          background: #c4a048; color: #f6f8fc;
           font-size: 12.5px; font-weight: 700;
           letter-spacing: 0.08em; text-transform: uppercase;
           padding: 12px 28px; border: none;

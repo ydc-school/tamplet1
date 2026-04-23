@@ -33,7 +33,7 @@ export default function GalleryCategoryPage() {
 
         .gcat-root {
           min-height: 100vh;
-          background: #071020;
+          background: #f6f8fc;
           font-family: 'Source Sans 3', sans-serif;
           position: relative; overflow: hidden;
         }
@@ -54,7 +54,7 @@ export default function GalleryCategoryPage() {
         }
 
         .gcat-hero {
-          background: linear-gradient(160deg, #0c1e3a 0%, #071020 100%);
+          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-bottom: 1px solid rgba(196,160,72,0.12);
           padding: 110px 24px 52px;
           position: relative; z-index: 1;
@@ -89,7 +89,7 @@ export default function GalleryCategoryPage() {
         .gcat-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(26px, 4vw, 42px);
-          font-weight: 800; color: #f0e6c8; line-height: 1.15; margin-bottom: 8px;
+          font-weight: 800; color: #10213a; line-height: 1.15; margin-bottom: 8px;
         }
         .gcat-count {
           display: inline-flex; align-items: center; gap: 6px;
@@ -118,7 +118,7 @@ export default function GalleryCategoryPage() {
         /* Gallery card */
         .gcat-card {
           display: block; text-decoration: none;
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px; overflow: hidden;
           transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -148,7 +148,7 @@ export default function GalleryCategoryPage() {
 
         .gcat-thumb {
           width: 100%; aspect-ratio: 16/9;
-          background: linear-gradient(135deg, #0f2044 0%, #152a55 100%);
+          background: linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
           display: flex; align-items: center; justify-content: center;
           position: relative; overflow: hidden;
         }
@@ -167,7 +167,7 @@ export default function GalleryCategoryPage() {
           width: 30px; height: 30px;
           background: #c4a048; border-radius: 2px;
           display: flex; align-items: center; justify-content: center;
-          color: #071020;
+          color: #f6f8fc;
           opacity: 0; transform: scale(0.8);
           transition: all 0.25s;
         }
@@ -180,7 +180,7 @@ export default function GalleryCategoryPage() {
           color: #d8c8a0; line-height: 1.3; margin-bottom: 8px;
           transition: color 0.2s;
         }
-        .gcat-card:hover .gcat-card-name { color: #f0e6c8; }
+        .gcat-card:hover .gcat-card-name { color: #10213a; }
         .gcat-card-desc {
           font-size: 13px; line-height: 1.65; color: #3a5a7a;
           display: -webkit-box;
@@ -200,13 +200,13 @@ export default function GalleryCategoryPage() {
         .gcat-empty { text-align: center; padding: 80px 24px; color: #3a5a7a; }
         .gcat-empty-title {
           font-family: 'Playfair Display', serif;
-          font-size: 22px; color: #c5d8e8; margin: 16px 0 8px;
+          font-size: 22px; color: #1d3557; margin: 16px 0 8px;
         }
 
         /* Skeleton */
         .gcat-skel {
           height: 240px; border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: gcat-shimmer 1.5s infinite;
         }
