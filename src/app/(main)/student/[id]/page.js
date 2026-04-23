@@ -401,10 +401,10 @@ export default function StudentProfile() {
                         </div>
                         <div>
                           <div className="sp-stat-label">Score</div>
-                          <div className="sp-stat-val">
+                          {/* <div className="sp-stat-val">
                             {student.Marks_Percentage}
                             <span className="sp-stat-pct">%</span>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     )}

@@ -406,9 +406,9 @@ export default function StudentToppers() {
                             {topper.Year && <><span>·</span><span>{topper.Year}</span></>}
                           </div>
                         </div>
-                        {topper.Marks_Percentage && (
+                        {/* {topper.Marks_Percentage && (
                           <div className="tp-mini-score">{topper.Marks_Percentage}%</div>
-                        )}
+                        )} */}
                       </div>
                     );
                   })}
