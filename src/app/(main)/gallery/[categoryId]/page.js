@@ -13,23 +13,17 @@ export default function GalleryCategoryPage() {
 
   useEffect(() => {
     if (!categoryId) return;
-    Promise.all([
-      axios.get("/api/client/gallery-category"),
-      axios.get(`/api/client/gallery?Gallery_Category_Id=${categoryId}`)
-    ])
-      .then(([catRes, galRes]) => {
-        if (catRes.data.status === "success") {
-          const cats = catRes.data.data?.data ?? [];
-          setCategory(cats.find((c) => c.Id.toString() === categoryId) ?? null);
-        }
-        if (galRes.data.status === "success") {
-          setGalleries(galRes.data.data?.data ?? []);
+
+    axios.get(`/api/client/gallery?Gallery_Category_Id=${categoryId}`)
+      .then((res) => {
+        if (res.data.status === "success") {
+          setGalleries(res.data.data?.data ?? []);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
-  }, [categoryId]);
 
+  }, [categoryId]);
   const stripHtml = (html) => html?.replace(/<[^>]+>/g, " ").trim() ?? "";
 
   return (
@@ -249,15 +243,15 @@ export default function GalleryCategoryPage() {
         <div className="gcat-body">
           {loading ? (
             <div className="gcat-grid">
-              {[1,2,3,4,5,6].map(i => <div key={i} className="gcat-skel" />)}
+              {[1, 2, 3, 4, 5, 6].map(i => <div key={i} className="gcat-skel" />)}
             </div>
           ) : galleries.length === 0 ? (
             <div className="gcat-empty">
-              <svg style={{ margin:"0 auto", display:"block", color:"rgba(196,160,72,0.12)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+              <svg style={{ margin: "0 auto", display: "block", color: "rgba(196,160,72,0.12)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <div className="gcat-empty-title">No albums in this category</div>
-              <p style={{ fontSize:14 }}>Check back soon.</p>
+              <p style={{ fontSize: 14 }}>Check back soon.</p>
             </div>
           ) : (
             <div className="gcat-grid">
