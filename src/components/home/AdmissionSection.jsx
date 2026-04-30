@@ -327,14 +327,14 @@ export default function AdmissionSection() {
 
               <div className="adm-cta-row">
                 {admissionData.Read_More_Url && (
-                  <Link href={admissionData.Read_More_Url} className="adm-cta-primary">
+                  <Link href="https://yaduvanshigroup.edu.in/admission-Form" className="adm-cta-primary">
                     Apply Now
                     <svg className="adm-cta-arrow" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
                 )}
-                <Link href="/pages/admission" className="adm-cta-secondary">
+                <Link href={admissionData.Read_More_Url} className="adm-cta-secondary">
                   Learn More
                 </Link>
               </div>
