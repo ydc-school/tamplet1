@@ -7,6 +7,7 @@ import Script from "next/script";
 export default function DynamicPage({ params: paramsPromise }) {
   const params = use(paramsPromise);
   const { id } = params;
+  const {name} = params;
   const router = useRouter();
   const [pageData, setPageData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -16,14 +17,14 @@ export default function DynamicPage({ params: paramsPromise }) {
     if (!id) return;
     setLoading(true);
     axios
-      .get(`/api/client/pages/${id}`)
+      .get(`/api/client/pages/${name || id}`)
       .then((res) => {
         if (res.data.status === "success") setPageData(res.data.data);
         else setError(res.data.message || "Failed to fetch page data");
       })
       .catch(() => setError("Error loading page content. Please try again later."))
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, name]);
 
   // ── JSON-LD structured data (renders only when page loaded) ──────────────
   const jsonLd =

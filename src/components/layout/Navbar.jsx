@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 import { useSchool } from "@/context/SchoolContext";
+import slugify from "@/utils/slugify";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -459,7 +460,7 @@ export default function Navbar() {
                       </button>
                       <div className="nb-dropdown">
                         {cat.pages.map((page) => (
-                          <Link key={page.Id} href={`/pages/${page.Id}`} className="nb-drop-item">
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}`} className="nb-drop-item">
                             {page.Name.replace(/-/g, " ")}
                           </Link>
                         ))}
@@ -512,7 +513,7 @@ export default function Navbar() {
                       </button>
                       <div className={`nb-m-sub${openCategory === cat.Id ? " open" : ""}`}>
                         {cat.pages.map((page) => (
-                          <Link key={page.Id} href={`/pages/${page.Id}`} onClick={handleMobileLink} className="nb-m-sub-item">
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}`} onClick={handleMobileLink} className="nb-m-sub-item">
                             {page.Name.replace(/-/g, " ")}
                           </Link>
                         ))}
