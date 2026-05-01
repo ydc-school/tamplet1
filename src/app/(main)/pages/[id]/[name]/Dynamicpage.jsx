@@ -17,7 +17,7 @@ export default function DynamicPage({ params: paramsPromise }) {
     if (!id) return;
     setLoading(true);
     axios
-      .get(`/api/client/pages/${name || id}`)
+      .get(`/api/client/pages/${id}/${name}`)
       .then((res) => {
         if (res.data.status === "success") setPageData(res.data.data);
         else setError(res.data.message || "Failed to fetch page data");
