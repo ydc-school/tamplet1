@@ -156,7 +156,7 @@ export default function DynamicPage({ params: paramsPromise }) {
           padding: 40px 48px;
           box-shadow: 0 16px 48px rgba(0,0,0,0.4);
           position: relative;
-          overflow: hidden;
+          overflow: auto;
         }
         @media (max-width: 600px) { .dp-content-card { padding: 28px 24px; } }
 
