@@ -358,7 +358,7 @@ export default function FounderMessage() {
 
                   {/* Content */}
                   <div className="fm-content">
-                    <span className="fm-quote-mark">"</span>
+                    <span className="fm-quote-mark">&quot;</span>
 
                     {founder.Name && <h3 className="fm-name">{founder.Name}</h3>}
                     {founder.Roll && <p className="fm-role">{founder.Roll}</p>}

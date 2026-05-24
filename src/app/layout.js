@@ -1,200 +1,123 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import { Playfair_Display, Source_Sans_3 } from 'next/font/google'
-
-
-import "./globals.css";
-import { SchoolProvider } from "@/context/SchoolContext";
-
-import { getTheme } from "@/utils/applyTheme";
-import { getSeoData } from "@/utils/getSeoData";
-import SchemaScript from "@/components/SchemaScript";
+import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import { headers } from "next/headers";
 
+import SchemaScript from "@/components/SchemaScript";
+import { SchoolProvider } from "@/context/SchoolContext";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_KEYWORDS,
+  SITE_NAME,
+  buildMetadata,
+  fetchClientData,
+  getSiteUrl,
+  organizationSchema,
+  schemaGraph,
+  websiteSchema,
+} from "@/lib/seo";
+import { getSeoData } from "@/utils/getSeoData";
 
-
+import "./globals.css";
 
 const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['600', '700'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 const sourceSans = Source_Sans_3({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-source',
-  display: 'swap',
-})
-
-
-
-
-
-
-
-
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-source",
+  display: "swap",
 });
 
-
-
-
-
-
-
-
-
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-
-
-
-
-
-
-
-
-
-// Default metadata — jab SEO data na mile
 const DEFAULT_METADATA = {
-  title: "Yaduvanshi Group of Institutions",
-  description: "Yaduvanshi Group of Institutions — Quality Education Since 1995.",
-  keywords: "yaduvanshi, college, haryana, education",
-  robots: "index, follow",
-  canonical: "https://yaduvanshigroup.edu.in",
-  favicon: "/assets/img/favicon/favicon-32x32.png",
+  title: SITE_NAME,
+  description: DEFAULT_DESCRIPTION,
+  keywords: DEFAULT_KEYWORDS,
+  robots: "index,follow",
+  canonical: "/",
+  favicon: "/logo/logo.png",
   og: {
-    title: "Yaduvanshi Group of Institutions",
-    description: "Quality Education Since 1995.",
-    image: null,
+    image: "/poster/34.png",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yaduvanshi Group of Institutions",
-    description: "Quality Education Since 1995.",
-    image: null,
   },
 };
 
 export async function generateMetadata() {
   const headerList = await headers();
   const seo = await getSeoData(headerList);
+  const d = DEFAULT_METADATA;
 
-  const d = DEFAULT_METADATA; // shorthand
+  const metadata = buildMetadata({
+    title: seo?.Meta_Title || d.title,
+    description: seo?.Meta_Description || d.description,
+    keywords: seo?.Meta_Keywords
+      ? seo.Meta_Keywords.split(",").map((item) => item.trim()).filter(Boolean)
+      : d.keywords,
+    robots: seo?.Robots || d.robots,
+    path: seo?.Canonical_Url || d.canonical,
+    image: seo?.OG_Image || seo?.Twitter_Image || d.og.image,
+    type: seo?.OG_Type || d.og.type,
+    headerList,
+  });
 
   return {
-    title:       seo?.Meta_Title       || d.title,
-    description: seo?.Meta_Description || d.description,
-    keywords:    seo?.Meta_Keywords    || d.keywords,
-    robots:      seo?.Robots           || d.robots,
-
-    alternates: {
-      canonical: seo?.Canonical_Url || d.canonical,
-    },
-
+    ...metadata,
     icons: {
       icon: seo?.Favicon_Url || d.favicon,
+      apple: seo?.Favicon_Url || d.favicon,
     },
-
     openGraph: {
-      title:       seo?.OG_Title       || d.og.title,
-      description: seo?.OG_Description || d.og.description,
-      images:      seo?.OG_Image       ? [{ url: seo.OG_Image }] : d.og.image ? [{ url: d.og.image }] : [],
-      type:        seo?.OG_Type        || d.og.type,
+      ...metadata.openGraph,
+      title: seo?.OG_Title || metadata.openGraph.title,
+      description: seo?.OG_Description || metadata.openGraph.description,
+      type: seo?.OG_Type || metadata.openGraph.type,
     },
-
     twitter: {
-      card:        seo?.Twitter_Card        || d.twitter.card,
-      title:       seo?.Twitter_Title       || d.twitter.title,
-      description: seo?.Twitter_Description || d.twitter.description,
-      images:      seo?.Twitter_Image       ? [seo.Twitter_Image] : d.twitter.image ? [d.twitter.image] : [],
+      ...metadata.twitter,
+      card: seo?.Twitter_Card || d.twitter.card,
+      title: seo?.Twitter_Title || metadata.twitter.title,
+      description: seo?.Twitter_Description || metadata.twitter.description,
+      images: seo?.Twitter_Image ? [seo.Twitter_Image] : metadata.twitter.images,
+    },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
     },
   };
 }
 
-
-
-
-
-
-
-
-
-
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+};
 
 export default async function RootLayout({ children }) {
-
-   const headerList = await headers(); // ✅ async ke andar
-  const seo = await getSeoData(headerList); // ✅ headers pass
-
-
-  // const toRgb = (hex) => {
-  //   if (!hex) return "0 0 0";
-
-  //   const c = hex.replace("#", "");
-  //   const n = parseInt(c, 16);
-
-  //   return `${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255}`;
-  // };
-
-  // let theme;
-
-  // try {
-  //   const res = await fetch(
-  //     `http://localhost:3000/api/client/theme/1`,
-  //     {
-  //       cache: "no-store",
-  //     }
-  //   );
-
-  //   if (!res.ok) throw new Error("Fetch failed");
-
-  //   theme = await res.json();
-
-    
-
-  // } catch (err) {
-  //   console.error("Theme fetch failed:", err);
-
-  //   theme = {
-  //     primaryColor: "#000000",
-  //     secondaryColor: "#666666",
-  //     accentColor: "#999999",
-  //     backgroundColor: "#ffffff",
-  //     textColor: "#000000",
-  //   };
-  // }
-
-  // const style = {
-  //   "--primary": theme.data.primaryColor,
-  //   "--secondary": toRgb(theme.data.secondaryColor),
-  //   "--accent": toRgb(theme.data.accentColor),
-  //   "--bg": toRgb(theme.data.backgroundColor),
-  //   "--text": toRgb(theme.data.textColor),
-  // };
+  const headerList = await headers();
+  const [seo, schoolInfoResponse] = await Promise.all([
+    getSeoData(headerList),
+    fetchClientData("/api/client/school-info", headerList),
+  ]);
+  const siteUrl = getSiteUrl(headerList);
+  const schoolInfo = Array.isArray(schoolInfoResponse)
+    ? schoolInfoResponse[0]
+    : schoolInfoResponse;
+  const globalSchema = schemaGraph(
+    organizationSchema(schoolInfo, siteUrl),
+    websiteSchema(siteUrl)
+  );
 
   return (
-    <html lang="en">
-        <head>
-        {/* Schema JSON-LD */}
+    <html lang="en-IN">
+      <body className={`${playfair.variable} ${sourceSans.variable} antialiased`}>
+        <SchemaScript schemaJson={globalSchema} />
         <SchemaScript schemaJson={seo?.Schema_Json} />
-      </head>
-      <body
-        // style={style}  // ✅ IMPORTANT (tum bhool gaye the)
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${sourceSans.variable} antialiased`}
-      >
-        <SchoolProvider>
-          {children}
-        </SchoolProvider>
+        <SchoolProvider>{children}</SchoolProvider>
       </body>
     </html>
   );
