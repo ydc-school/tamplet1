@@ -1,65 +1,38 @@
 "use client";
-import { useEffect, useState, use } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Script from "next/script";
 
-export default function DynamicPage({ params: paramsPromise }) {
-  const params = use(paramsPromise);
-  const { id } = params;
-  const {name} = params;
+export default function DynamicPage({
+  id,
+  name,
+  initialPageData = null,
+  initialLoaded = false,
+}) {
   const router = useRouter();
-  const [pageData, setPageData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [pageData, setPageData] = useState(initialPageData);
+  const [loading, setLoading] = useState(!initialLoaded);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (initialLoaded && initialPageData?.Id?.toString() === id?.toString()) return;
     if (!id) return;
-    setLoading(true);
-    axios
-      .get(`/api/client/pages/${id}/${name}`)
-      .then((res) => {
-        if (res.data.status === "success") setPageData(res.data.data);
-        else setError(res.data.message || "Failed to fetch page data");
-      })
-      .catch(() => setError("Error loading page content. Please try again later."))
-      .finally(() => setLoading(false));
-  }, [id, name]);
-
-  // ── JSON-LD structured data (renders only when page loaded) ──────────────
-  const jsonLd =
-    !loading && !error && pageData
-      ? {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: pageData.Name?.replace(/-/g, " ") || "Page",
-          description: pageData.Page_Data
-            ? pageData.Page_Data.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
-            : "",
-          url:
-            typeof window !== "undefined"
-              ? window.location.href
-              : `https://yaduvanshigroup.edu.in/pages/${id}`,
-          publisher: {
-            "@type": "Organization",
-            name: "Yaduvanshi Group",
-            url: "https://yaduvanshigroup.edu.in",
-          },
-        }
-      : null;
+    const timer = window.setTimeout(() => {
+      setLoading(true);
+      axios
+        .get(`/api/client/pages/${id}/${name}`)
+        .then((res) => {
+          if (res.data.status === "success") setPageData(res.data.data);
+          else setError(res.data.message || "Failed to fetch page data");
+        })
+        .catch(() => setError("Error loading page content. Please try again later."))
+        .finally(() => setLoading(false));
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [id, name, initialLoaded, initialPageData]);
 
   return (
     <>
-      {/* JSON-LD structured data */}
-      {jsonLd && (
-        <Script
-          id="page-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          strategy="afterInteractive"
-        />
-      )}
-
       <style>{`
         .dp-root {
           min-height: 100vh;

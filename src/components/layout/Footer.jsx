@@ -17,7 +17,7 @@ export default function Footer() {
   }, []);
 
   useEffect(() => {
-    axios.get("/api/client/usefull-link")
+    axios.get("/api/client/useful-link")
       .then((res) => setUseFullLinks(res.data.data.data))
       .catch(() => {});
   }, []);

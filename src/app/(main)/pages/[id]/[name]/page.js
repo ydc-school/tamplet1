@@ -1,92 +1,72 @@
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 
+import SchemaScript from "@/components/SchemaScript";
+import {
+  breadcrumbSchema,
+  buildMetadata,
+  cleanText,
+  fetchClientData,
+  getSiteUrl,
+  readableName,
+  schemaGraph,
+  webPageSchema,
+} from "@/lib/seo";
 
 import DynamicPage from "./Dynamicpage";
 
-// ─── SEO: dynamic metadata per page ────────────────────────────────────────
-export async function generateMetadata({ params }) {
-  const { id } = await params;
+export const revalidate = 3600;
 
-  try {
-    // Fetch from your internal API (server-side, so absolute URL needed)
-    const baseUrl =
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      process.env.NEXT_PUBLIC_API_BASE_URL ||
-      "http://localhost:3000";
-
-    const res = await fetch(`${baseUrl}/api/client/pages/${id}`, {
-      // Revalidate every 1 hour; adjust as needed
-      next: { revalidate: 3600 },
-    });
-
-    if (!res.ok) throw new Error("Page not found");
-
-    const json = await res.json();
-
-    if (json.status !== "success" || !json.data) throw new Error("No data");
-
-    const page = json.data;
-
-    // Human-readable title: replace hyphens, capitalize
-    const readableName = page.Name
-      ? page.Name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-      : "Page";
-
-    // Strip HTML tags from Page_Data for a clean description
-    const rawText = page.Page_Data
-      ? page.Page_Data.replace(/<[^>]*>/g, " ")
-          .replace(/\s+/g, " ")
-          .trim()
-      : "";
-    const description = rawText.slice(0, 160) || `${readableName} — Yaduvanshi Group`;
-
-    const siteName = "Yaduvanshi Group";
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yaduvanshigroup.edu.in";
-    const pageUrl = `${siteUrl}/pages/${id}`;
-
-    return {
-      title: `${readableName} | ${siteName}`,
-      description,
-
-      // ── Open Graph ──────────────────────────────────────────────────────
-      openGraph: {
-        title: `${readableName} | ${siteName}`,
-        description,
-        url: pageUrl,
-        siteName,
-        type: "article",
-        // Add og:image if your page data ever includes a cover image
-        // images: page.Cover_Image ? [{ url: page.Cover_Image }] : [],
-      },
-
-      // ── Twitter Card ────────────────────────────────────────────────────
-      twitter: {
-        card: "summary",
-        title: `${readableName} | ${siteName}`,
-        description,
-      },
-
-      // ── Canonical URL ───────────────────────────────────────────────────
-      alternates: {
-        canonical: pageUrl,
-      },
-
-      // ── Robots ──────────────────────────────────────────────────────────
-      robots: {
-        index: true,
-        follow: true,
-      },
-    };
-  } catch {
-    // Fallback metadata on fetch failure
-    return {
-      title: "Page | Yaduvanshi Group",
-      description: "Explore pages from Yaduvanshi Group — leading educational institutions across Haryana and Rajasthan.",
-      robots: { index: false, follow: false }, // don't index error states
-    };
-  }
+async function getPageData(id, headerList) {
+  return fetchClientData(`/api/client/pages/${id}`, headerList);
 }
 
-// ─── Page component ─────────────────────────────────────────────────────────
-export default function Page({ params }) {
-  return <DynamicPage params={params} />;
+export async function generateMetadata({ params }) {
+  const { id, name } = await params;
+  const headerList = await headers();
+  const page = await getPageData(id, headerList);
+  const readableTitle = readableName(page?.Name || name || "Page");
+  const description = cleanText(
+    page?.Page_Data || `${readableTitle} from Yaduvanshi Group of Institutions.`,
+    160
+  );
+
+  return buildMetadata({
+    title: `${readableTitle} | Yaduvanshi Group`,
+    description,
+    path: `/pages/${id}/${name}`,
+    type: "article",
+    robots: page ? "index,follow" : "noindex,follow",
+    headerList,
+  });
+}
+
+export default async function Page({ params }) {
+  const { id, name } = await params;
+  const headerList = await headers();
+  const page = await getPageData(id, headerList);
+  if (!page) notFound();
+
+  const siteUrl = getSiteUrl(headerList);
+  const readableTitle = readableName(page.Name || name);
+  const schema = schemaGraph(
+    webPageSchema({
+      siteUrl,
+      path: `/pages/${id}/${name}`,
+      name: readableTitle,
+      description: cleanText(page.Page_Data, 180),
+      type: "Article",
+    }),
+    breadcrumbSchema(siteUrl, [
+      { name: "Home", path: "/" },
+      { name: readableTitle, path: `/pages/${id}/${name}` },
+    ])
+  );
+
+  return (
+    <>
+      <SchemaScript schemaJson={schema} />
+      <DynamicPage id={id} name={name} initialPageData={page} initialLoaded />
+    </>
+  );
 }

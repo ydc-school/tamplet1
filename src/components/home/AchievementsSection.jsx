@@ -7,7 +7,7 @@ function useCountUp(target, duration = 2000, start = false) {
   useEffect(() => {
     if (!start) return;
     const num = parseInt(String(target).replace(/\D/g, "")) || 0;
-    if (num === 0) { setCount(0); return; }
+    if (num === 0) return;
     let startTime = null;
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;

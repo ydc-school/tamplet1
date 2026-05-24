@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-const IMG_BASE = process.env.NEXT_PUBLIC_BACKEND_URL + "/uploads/";
+import Image from "next/image";
 
 export default function FacilitySection() {
   const [facilities, setFacilities] = useState([]);
@@ -391,10 +390,13 @@ export default function FacilitySection() {
 
             {/* Modal image */}
             {selected.Image ? (
-              <img
+              <Image
                 className="fc-modal-img"
                 src={`/uploads/${selected.Image}`}
                 alt={selected.Title}
+                width={900}
+                height={520}
+                sizes="(max-width: 720px) 100vw, 680px"
               />
             ) : (
               <div className="fc-modal-img-placeholder">
@@ -456,10 +458,13 @@ function FacilityCard({ facility, idx, onClick }) {
       {/* Image / placeholder */}
       <div className="fc-img-wrap">
         {hasImg ? (
-          <img
+          <Image
             className="fc-img"
             src={`/uploads/${facility.Image}`}
             alt={facility.Title}
+            width={520}
+            height={320}
+            sizes="(max-width: 640px) 100vw, 33vw"
             onError={() => setImgErr(true)}
           />
         ) : (
