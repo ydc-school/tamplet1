@@ -3,10 +3,13 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+import { useSchool } from "@/context/SchoolContext";
 
 export default function WelcomeSection() {
   const [welcomeData, setWelcomeData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+   const { schoolInfo } = useSchool(); 
 
   useEffect(() => {
     axios
@@ -375,7 +378,7 @@ export default function WelcomeSection() {
                   priority
                 />
                 <div className="wc-stat-badge">
-                  <div className="wc-stat-num">26+</div>
+                  <div className="wc-stat-num">{schoolInfo?.Experience}+</div>
                   <div className="wc-stat-label">Years of Excellence</div>
                 </div>
               </div>

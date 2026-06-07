@@ -13,28 +13,29 @@ export default function Footer() {
   useEffect(() => {
     axios.get("/api/client/quick-link")
       .then((res) => setQuickLinks(res.data.data.data))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   useEffect(() => {
     axios.get("/api/client/useful-link")
       .then((res) => setUseFullLinks(res.data.data.data))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
-  const schoolName  = schoolInfo?.School_Name    ?? "Yaduvanshi";
-  const shortName   = schoolInfo?.Short_Name     ?? "Degree College";
-  const address     = schoolInfo?.Address        ?? "Bucholi Road, Mahendergarh, Haryana, PIN-123029";
-  const email       = schoolInfo?.Email          ?? "ydcmgh@gmail.com";
-  const phone       = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
-  const website     = schoolInfo?.Website        ?? "www.ydu.com";
-  const schoolMotto = schoolInfo?.Motto          ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
-  const logoUrl     = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo.Logo_Url}` : "/logo/logo.png";
+  const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
+  const shortName = schoolInfo?.Short_Name ?? "Degree College";
+  const address = schoolInfo?.Address ?? "Bucholi Road, Mahendergarh, Haryana, PIN-123029";
+  const email = schoolInfo?.Email ?? "ydcmgh@gmail.com";
+  const phone = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
+  const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
+  const website = schoolInfo?.Website ?? "www.ydu.com";
+  const schoolMotto = schoolInfo?.Motto ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
+  const logoUrl = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo.Logo_Url}` : "/logo/logo.png";
 
-  const youtubeUrl  = schoolInfo?.Youtube_Url   ? `https://${schoolInfo.Youtube_Url}` : "#";
-  const linkedinUrl = schoolInfo?.Linkedin_Url  ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
-  const instagramUrl= schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
-  const twitterUrl  = schoolInfo?.Twitter_Url   ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
+  const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
+  const linkedinUrl = schoolInfo?.Linkedin_Url ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
+  const instagramUrl = schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
+  const twitterUrl = schoolInfo?.Twitter_Url ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
 
   return (
     <>
@@ -279,7 +280,7 @@ export default function Footer() {
         <div className="ft-divider-top">
           <div className="ft-divider-line" />
           <svg className="ft-crest-icon" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
           <div className="ft-divider-line rev" />
         </div>
@@ -295,7 +296,7 @@ export default function Footer() {
                   alt={`${schoolName} Logo`}
                   width={500}
                   height={50}
-                  style={{ objectFit: "contain",  }}
+                  style={{ objectFit: "contain", }}
                   onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
                 />
               </div>
@@ -394,15 +395,28 @@ export default function Footer() {
                 {email}
               </a>
 
-              {/* Phone */}
-              <a href={`tel:${phone}`} className="ft-contact-item">
-                <div className="ft-contact-icon">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                {phone}
-              </a>
+              <div className="flex flex-row gap-3 " >
+
+
+                {/* Phone */}
+                <a href={`tel:${phone}`} className="ft-contact-item">
+                  <div className="ft-contact-icon">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  {phone}
+                </a>
+
+
+                <a href={`tel:${phone2}`} className="ft-contact-item">
+                  {phone2}
+                </a>
+              </div>
+
+
+
+
 
               {/* Website */}
               <a href={`http://${website}`} target="_blank" rel="noreferrer" className="ft-contact-item">
