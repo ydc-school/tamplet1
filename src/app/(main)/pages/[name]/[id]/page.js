@@ -1,10 +1,11 @@
 
 
 import DynamicPage from "./Dynamicpage";
+import slugify from "@/utils/slugify";
 
 // ─── SEO: dynamic metadata per page ────────────────────────────────────────
 export async function generateMetadata({ params }) {
-  const { id } = await params;
+  const { id, name } = await params;
 
   try {
     // Fetch from your internal API (server-side, so absolute URL needed)
@@ -41,7 +42,8 @@ export async function generateMetadata({ params }) {
 
     const siteName = "Yaduvanshi Group";
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yaduvanshigroup.edu.in";
-    const pageUrl = `${siteUrl}/pages/${id}`;
+    const pageSlug = slugify(page.Name || name || "page");
+    const pageUrl = `${siteUrl}/pages/${pageSlug}/${id}`;
 
     return {
       title: `${readableName} | ${siteName}`,

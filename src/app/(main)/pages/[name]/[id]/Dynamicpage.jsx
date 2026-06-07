@@ -7,24 +7,44 @@ import Script from "next/script";
 export default function DynamicPage({ params: paramsPromise }) {
   const params = use(paramsPromise);
   const { id } = params;
-  const {name} = params;
+  const { name } = params;
   const router = useRouter();
+  const requestKey = `${id || ""}:${name || ""}`;
   const [pageData, setPageData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loadedKey, setLoadedKey] = useState("");
   const [error, setError] = useState(null);
+  const loading = loadedKey !== requestKey;
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
+    let isCurrent = true;
+
     axios
       .get(`/api/client/pages/${id}/${name}`)
       .then((res) => {
-        if (res.data.status === "success") setPageData(res.data.data);
-        else setError(res.data.message || "Failed to fetch page data");
+        if (!isCurrent) return;
+
+        if (res.data.status === "success") {
+          setPageData(res.data.data);
+          setError(null);
+        } else {
+          setPageData(null);
+          setError(res.data.message || "Failed to fetch page data");
+        }
       })
-      .catch(() => setError("Error loading page content. Please try again later."))
-      .finally(() => setLoading(false));
-  }, [id, name]);
+      .catch(() => {
+        if (!isCurrent) return;
+        setPageData(null);
+        setError("Error loading page content. Please try again later.");
+      })
+      .finally(() => {
+        if (isCurrent) setLoadedKey(requestKey);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [id, name, requestKey]);
 
   // ── JSON-LD structured data (renders only when page loaded) ──────────────
   const jsonLd =
@@ -39,7 +59,7 @@ export default function DynamicPage({ params: paramsPromise }) {
           url:
             typeof window !== "undefined"
               ? window.location.href
-              : `https://yaduvanshigroup.edu.in/pages/${id}`,
+              : `https://yaduvanshigroup.edu.in/pages/${name}/${id}`,
           publisher: {
             "@type": "Organization",
             name: "Yaduvanshi Group",

@@ -460,7 +460,7 @@ export default function Navbar() {
                       </button>
                       <div className="nb-dropdown">
                         {cat.pages.map((page) => (
-                          <Link key={page.Id} href={`/pages/${page.Id}/${slugify(page.Name)}`} className="nb-drop-item">
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}/${page.Id}`} className="nb-drop-item">
                             {page.Name.replace(/-/g, " ")}
                           </Link>
                         ))}
@@ -513,7 +513,7 @@ export default function Navbar() {
                       </button>
                       <div className={`nb-m-sub${openCategory === cat.Id ? " open" : ""}`}>
                         {cat.pages.map((page) => (
-                          <Link key={page.Id} href={`/pages/${page.Id}/${slugify(page.Name)}`} onClick={handleMobileLink} className="nb-m-sub-item">
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}/${page.Id}`} onClick={handleMobileLink} className="nb-m-sub-item">
                             {page.Name.replace(/-/g, " ")}
                           </Link>
                         ))}
