@@ -17,7 +17,7 @@ export default function Footer() {
   }, []);
 
   useEffect(() => {
-    axios.get("/api/client/usefull-link")
+    axios.get("/api/client/useful-link")
       .then((res) => setUseFullLinks(res.data.data.data))
       .catch(() => {});
   }, []);
@@ -41,8 +41,8 @@ export default function Footer() {
       <style>{`
 
         .ft-root {
-          background: #071020;
-          color: #a8b8cc;
+          background: #f6f8fc;
+          color: #5f7288;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
           overflow: hidden;
@@ -124,7 +124,7 @@ export default function Footer() {
           font-family: 'Playfair Display', serif;
           font-size: 18px;
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.2;
         }
         .ft-brand-sub {
@@ -138,7 +138,7 @@ export default function Footer() {
         .ft-motto {
           font-size: 13.5px;
           line-height: 1.75;
-          color: #7a90a8;
+          color: #5f7288;
           margin-bottom: 22px;
           max-width: 300px;
         }
@@ -157,7 +157,7 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #7a90a8;
+          color: #5f7288;
           transition: all 0.2s ease;
           text-decoration: none;
         }
@@ -173,7 +173,7 @@ export default function Footer() {
           font-family: 'Playfair Display', serif;
           font-size: 15px;
           font-weight: 600;
-          color: #f0e6c8;
+          color: #10213a;
           margin-bottom: 20px;
           padding-bottom: 10px;
           border-bottom: 1px solid rgba(196,160,72,0.2);
@@ -199,7 +199,7 @@ export default function Footer() {
         }
         .ft-link {
           font-size: 13.5px;
-          color: #7a90a8;
+          color: #5f7288;
           text-decoration: none;
           display: flex;
           align-items: center;
@@ -224,7 +224,7 @@ export default function Footer() {
           gap: 12px;
           margin-bottom: 14px;
           font-size: 13.5px;
-          color: #7a90a8;
+          color: #5f7288;
           text-decoration: none;
           transition: color 0.2s;
         }
@@ -244,8 +244,8 @@ export default function Footer() {
 
         /* Bottom bar */
         .ft-bottom {
-          border-top: 1px solid rgba(255,255,255,0.06);
-          background: #04080f;
+          border-top: 1px solid rgba(15, 23, 42, 0.06);
+          background: #eef2f7;
         }
         .ft-bottom-inner {
           max-width: 1280px;

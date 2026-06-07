@@ -45,13 +45,13 @@ export default function TopSlider() {
         .ts-skeleton {
           width: 100%;
           position: relative;
-          background: #071020;
+          background: #f6f8fc;
           border-bottom: 3px solid #c4a048;
         }
         .ts-skel-inner {
           width: 100%;
           height: clamp(200px, 42vw, 620px);
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: ts-shimmer 1.5s infinite;
         }
@@ -64,7 +64,7 @@ export default function TopSlider() {
         .ts-wrap {
           width: 100%;
           position: relative;
-          background: #071020;
+          background: #f6f8fc;
           border-bottom: 3px solid #c4a048;
         }
         /* Gold top accent */
@@ -83,7 +83,7 @@ export default function TopSlider() {
           width: 100%;
           height: clamp(200px, 42vw, 620px) !important;
           display: block;
-           background: #071020;
+           background: #f6f8fc;
         }
 
         /* Slide image */
@@ -209,7 +209,7 @@ export default function TopSlider() {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={slide.Id || index}>
-              <div style={{ position: "relative", background: "#071020", width: "100%", height: "100%" }}>
+              <div style={{ position: "relative", background: "#f6f8fc", width: "100%", height: "100%" }}>
                 <Image
                   src={`/uploads/${slide.Image}`}
                   alt={slide.Name || "Poster"}

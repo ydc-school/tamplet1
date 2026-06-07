@@ -29,8 +29,8 @@ export default function StudentToppers() {
   const podiumOrder = [top3[1], top3[0], top3[2]].filter(Boolean);
 
   const medalColors = {
-    1: { bg: "#c4a048", text: "#071020", label: "Gold" },
-    2: { bg: "#94a3b8", text: "#071020", label: "Silver" },
+    1: { bg: "#c4a048", text: "#f6f8fc", label: "Gold" },
+    2: { bg: "#94a3b8", text: "#f6f8fc", label: "Silver" },
     3: { bg: "#b87333", text: "#fff", label: "Bronze" },
   };
 
@@ -40,7 +40,7 @@ export default function StudentToppers() {
 
         .tp-root {
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -89,7 +89,7 @@ export default function StudentToppers() {
         .tp-heading {
           font-family: 'Playfair Display', serif;
           font-size: clamp(24px, 3.5vw, 36px);
-          font-weight: 700; color: #f0e6c8;
+          font-weight: 700; color: #10213a;
           text-align: center; margin-bottom: 56px;
         }
 
@@ -155,14 +155,14 @@ export default function StudentToppers() {
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
           font-size: 11px; font-weight: 800;
-          border: 2px solid #071020;
+          border: 2px solid #f6f8fc;
           z-index: 2;
         }
 
         /* Placeholder avatar */
         .tp-avatar-placeholder {
           width: 100%; height: 100%;
-          background: linear-gradient(135deg, #0f2044, #152a55);
+          background: linear-gradient(135deg, #ffffff, #eef4ff);
           display: flex; align-items: center; justify-content: center;
           color: rgba(196,160,72,0.3);
           font-family: 'Playfair Display', serif;
@@ -171,7 +171,7 @@ export default function StudentToppers() {
         .tp-photo-ring.rank-1 .tp-avatar-placeholder { font-size: 34px; }
 
         .tp-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           padding: 18px 20px 20px;
@@ -202,7 +202,7 @@ export default function StudentToppers() {
         .tp-name {
           font-family: 'Playfair Display', serif;
           font-size: 16px; font-weight: 700;
-          color: #f0e6c8; margin-bottom: 3px;
+          color: #10213a; margin-bottom: 3px;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .tp-card.rank-1 .tp-name { font-size: 18px; }
@@ -249,7 +249,7 @@ export default function StudentToppers() {
         @media (min-width: 900px) { .tp-grid { grid-template-columns: repeat(4, 1fr); } }
 
         .tp-mini-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.1);
           border-radius: 4px;
           padding: 14px 16px;
@@ -267,13 +267,13 @@ export default function StudentToppers() {
           width: 44px; height: 44px;
           border-radius: 50%; overflow: hidden; flex-shrink: 0;
           border: 2px solid rgba(196,160,72,0.2);
-          background: #071020;
+          background: #f6f8fc;
           position: relative;
         }
         .tp-mini-placeholder {
           width: 100%; height: 100%;
           display: flex; align-items: center; justify-content: center;
-          background: linear-gradient(135deg, #0f2044, #152a55);
+          background: linear-gradient(135deg, #ffffff, #eef4ff);
           color: rgba(196,160,72,0.3);
           font-size: 16px; font-weight: 700;
           font-family: 'Playfair Display', serif;
@@ -282,7 +282,7 @@ export default function StudentToppers() {
         .tp-mini-body { flex: 1; min-width: 0; }
         .tp-mini-name {
           font-size: 13px; font-weight: 600;
-          color: #c5d8e8;
+          color: #1d3557;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .tp-mini-meta {
@@ -297,7 +297,7 @@ export default function StudentToppers() {
         /* Skeleton */
         .tp-skel {
           height: 280px; border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: tp-shimmer 1.5s infinite;
         }

@@ -51,7 +51,7 @@ export default function AdmissionSection() {
 
         .adm-root {
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           padding: 72px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -113,7 +113,7 @@ export default function AdmissionSection() {
 
         /* Card */
         .adm-card {
-          background: linear-gradient(160deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(160deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.18);
           border-radius: 4px;
           overflow: hidden;
@@ -137,7 +137,7 @@ export default function AdmissionSection() {
           width: 100%;
           aspect-ratio: 16 / 7;
           overflow: hidden;
-          background: #0a1530;
+          background: #16324f;
         }
         .adm-img-wrap::after {
           content: '';
@@ -146,7 +146,7 @@ export default function AdmissionSection() {
           left: 0;
           right: 0;
           height: 50%;
-          background: linear-gradient(to top, #0f2044, transparent);
+          background: linear-gradient(to top, #ffffff, transparent);
           z-index: 1;
         }
 
@@ -157,7 +157,7 @@ export default function AdmissionSection() {
           right: 16px;
           z-index: 2;
           background: #c4a048;
-          color: #071020;
+          color: #f6f8fc;
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.12em;
@@ -178,7 +178,7 @@ export default function AdmissionSection() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(22px, 4vw, 34px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.25;
           margin-bottom: 6px;
           text-align: center;
@@ -198,7 +198,7 @@ export default function AdmissionSection() {
         .adm-message {
           font-size: 15px;
           line-height: 1.8;
-          color: #7a90a8;
+          color: #5f7288;
           text-align: center;
           margin-bottom: 28px;
         }
@@ -206,7 +206,7 @@ export default function AdmissionSection() {
         /* Strip the rich-text wrapper but keep content readable */
         .adm-message h1, .adm-message h2, .adm-message h3 {
           font-family: 'Playfair Display', serif;
-          color: #c5d8e8;
+          color: #1d3557;
           font-size: 17px;
           margin-bottom: 8px;
         }
@@ -225,7 +225,7 @@ export default function AdmissionSection() {
           align-items: center;
           gap: 8px;
           background: #c4a048;
-          color: #071020;
+          color: #f6f8fc;
           font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.06em;
@@ -270,7 +270,7 @@ export default function AdmissionSection() {
           margin: 0 auto;
           height: 420px;
           border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: adm-shimmer 1.5s infinite;
         }

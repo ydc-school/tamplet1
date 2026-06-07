@@ -63,7 +63,7 @@ export default function BlogSection() {
 
         .bl-root {
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -123,7 +123,7 @@ export default function BlogSection() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(26px, 4vw, 38px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           text-align: center;
           margin-bottom: 52px;
         }
@@ -132,7 +132,7 @@ export default function BlogSection() {
         .bl-featured {
           display: flex;
           flex-direction: column;
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.15);
           border-radius: 4px;
           overflow: hidden;
@@ -154,7 +154,7 @@ export default function BlogSection() {
           width: 100%;
           min-height: 220px;
           flex-shrink: 0;
-          background: #071020;
+          background: #f6f8fc;
           overflow: hidden;
         }
         @media (min-width: 768px) {
@@ -164,11 +164,11 @@ export default function BlogSection() {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(to right, transparent 55%, #0f2044);
+          background: linear-gradient(to right, transparent 55%, #ffffff);
         }
         @media (max-width: 767px) {
           .bl-feat-img::after {
-            background: linear-gradient(to top, #0f2044 0%, transparent 55%);
+            background: linear-gradient(to top, #ffffff 0%, transparent 55%);
           }
         }
 
@@ -178,7 +178,7 @@ export default function BlogSection() {
           left: 14px;
           z-index: 2;
           background: #c4a048;
-          color: #071020;
+          color: #f6f8fc;
           font-size: 9px;
           font-weight: 700;
           letter-spacing: 0.18em;
@@ -232,14 +232,14 @@ export default function BlogSection() {
           font-family: 'Playfair Display', serif;
           font-size: clamp(18px, 2.5vw, 24px);
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.3;
           margin-bottom: 14px;
         }
         .bl-feat-desc {
           font-size: 14px;
           line-height: 1.8;
-          color: #6a8aaa;
+          color: #5f7288;
           margin-bottom: 24px;
           display: -webkit-box;
           -webkit-line-clamp: 3;
@@ -280,7 +280,7 @@ export default function BlogSection() {
         }
 
         .bl-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           overflow: hidden;
@@ -305,7 +305,7 @@ export default function BlogSection() {
           position: relative;
           width: 100%;
           aspect-ratio: 16 / 9;
-          background: #071020;
+          background: #f6f8fc;
           overflow: hidden;
         }
         .bl-card-img img {
@@ -317,7 +317,7 @@ export default function BlogSection() {
         .bl-card-img-placeholder {
           width: 100%;
           aspect-ratio: 16/9;
-          background: linear-gradient(135deg, #0f2044 0%, #152a55 100%);
+          background: linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -351,7 +351,7 @@ export default function BlogSection() {
           overflow: hidden;
           transition: color 0.2s;
         }
-        .bl-card:hover .bl-card-title { color: #f0e6c8; }
+        .bl-card:hover .bl-card-title { color: #10213a; }
 
         .bl-card-desc {
           font-size: 13px;
@@ -413,7 +413,7 @@ export default function BlogSection() {
         .bl-skeleton {
           height: 280px;
           border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: bl-shimmer 1.5s infinite;
         }
