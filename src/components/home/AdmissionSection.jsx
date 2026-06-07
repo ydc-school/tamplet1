@@ -17,8 +17,8 @@ export default function AdmissionSection() {
           const finalData = Array.isArray(data)
             ? data[0]
             : data.data
-            ? data.data[0]
-            : null;
+              ? data.data[0]
+              : null;
           setAdmissionData(finalData);
         }
       } catch (error) {
@@ -135,10 +135,13 @@ export default function AdmissionSection() {
         .adm-img-wrap {
           position: relative;
           width: 100%;
-          aspect-ratio: 16 / 7;
           overflow: hidden;
           background: #16324f;
+          min-height: 51vw;
+          height: auto;
         }
+
+        */
         .adm-img-wrap::after {
           content: '';
           position: absolute;
@@ -149,6 +152,7 @@ export default function AdmissionSection() {
           background: linear-gradient(to top, #ffffff, transparent);
           z-index: 1;
         }
+       */
 
         /* Badge overlay on image */
         .adm-badge {
