@@ -18,7 +18,7 @@ export default function Navbar() {
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
   const shortName = schoolInfo?.Short_Name ?? "Degree College";
   const logoUrl = schoolInfo?.Logo_Url
-    ? `/uploads/${schoolInfo.Logo_Url}`
+    ? `/uploads/${schoolInfo?.Logo_Url}`
     : "/logo/logo.png";
 
   useEffect(() => {
@@ -424,7 +424,7 @@ export default function Navbar() {
             <Link href="/" className="nb-logo">
               <div className="nb-logo-img-wrap  bg-amber-800">
                 <Image
-                  src={logoUrl}
+                  src={logoUrl || "/logo/logo.png"}
                   alt={`${schoolName} logo`}
                   width={502}
                   height={52}
@@ -475,7 +475,7 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="nb-cta-wrap">
-              <Link href="https://yaduvanshigroup.edu.in/admission-Form" className="nb-cta">
+              <Link href="/admission-form" className="nb-cta">
                 Student Admission
                 <svg className="nb-cta-arrow" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
