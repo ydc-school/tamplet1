@@ -1,19 +1,24 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { useSchool } from "@/context/SchoolContext";
+
 
 export default function AdmissionForm() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null); // Added missing error state
+  const [error, setError] = useState(null);
+  const { schoolInfo} = useSchool();
+
+  // 1. Unified state keys to perfectly match the JSX input 'name' attributes
   const [formData, setFormData] = useState({
     fullName: "",
     fathersName: "",
     mothersName: "",
     email: "",
     phone: "",
-    branch: "",
+    Branch_Id: schoolInfo?.Branch_Id, // Enabled and matched here
     classGrade: "",
     dob: "",
     gender: "",
@@ -31,13 +36,12 @@ export default function AdmissionForm() {
   const nextStep = () => setStep((s) => Math.min(s + 1, 3));
   const prevStep = () => {
     setStep((s) => Math.max(s - 1, 1));
-    setError(null); // Clear errors when going back
+    setError(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // If not on the final step, just advance the UI wizard
     if (step < 3) {
       nextStep();
       return;
@@ -46,8 +50,26 @@ export default function AdmissionForm() {
     setLoading(true);
     setError(null);
 
+    // 2. Map the camelCase state back to the Pascal/Snake case format your API expects
+    const apiPayload = {
+      Name: formData.fullName,
+      Father_Name: formData.fathersName,
+      Mother_Name: formData.mothersName,
+      Email: formData.email,
+      Phone: formData.phone,
+      Branch_Id: formData.Branch_Id,
+      Class: formData.classGrade,
+      DOB: formData.dob,
+      Gender: formData.gender,
+      Admission_Date: formData.admissionDate,
+      City: formData.city,
+      State: formData.state,
+      More_Info: formData.additionalInfo,
+    };
+
     try {
-      const response = await axios.post("/api/client/admission", formData, {
+      const response = await axios.post("/api/client/admission", apiPayload, {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
@@ -82,7 +104,6 @@ export default function AdmissionForm() {
         .af-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800; color: #10213a; margin: 0 0 8px; }
         .af-subtitle { font-size: 13px; color: #3a5a7a; margin: 0; }
         
-        /* Progress Indicator */
         .af-steps { display: flex; justify-content: space-between; padding: 20px 32px; background: #fcfdfe; border-bottom: 1px solid rgba(196,160,72,0.06); }
         .af-step { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: #3a5a7a; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.5; }
         .af-step.active { opacity: 1; color: #c4a048; }
@@ -99,7 +120,6 @@ export default function AdmissionForm() {
         .af-input:focus, .af-select:focus, .af-textarea:focus { border-color: #c4a048; box-shadow: 0 0 0 3px rgba(196,160,72,0.08); }
         .af-textarea { resize: vertical; min-height: 90px; }
         
-        /* Radio Group Custom Styles */
         .af-radio-group { display: flex; gap: 20px; padding: 10px 0; }
         .af-radio-label { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #1d3557; cursor: pointer; }
         .af-radio-label input { accent-color: #c4a048; width: 16px; height: 16px; }
@@ -172,10 +192,11 @@ export default function AdmissionForm() {
                 {step === 2 && (
                   <div>
                     <div className="af-group-row">
-                      <div className="af-field">
+                      {/* <div className="af-field">
                         <label className="af-label">Branch *</label>
-                        <input type="text" name="branch" required className="af-input" placeholder="e.g. Main Campus, Science" value={formData.branch} onChange={handleChange} />
-                      </div>
+                        
+                        <input type="text" name="Branch_Id" required className="af-input" placeholder="e.g. Main Campus, Science" value={formData.Branch_Id} onChange={handleChange} />
+                      </div> */}
                       <div className="af-field">
                         <label className="af-label">Class / Grade *</label>
                         <input type="text" name="classGrade" required className="af-input" placeholder="e.g. Grade 10, Freshman" value={formData.classGrade} onChange={handleChange} />
