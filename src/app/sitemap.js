@@ -38,7 +38,7 @@ export default async function sitemap() {
     .flatMap((category) => category.pages || [])
     .filter((page) => page?.Id && page?.Name)
     .map((page) =>
-      sitemapEntry(siteUrl, `/pages/${page.Id}/${slugify(page.Name)}`, {
+      sitemapEntry(siteUrl, `/pages/${slugify(page.Name)}/${page.Id}`, {
         priority: 0.74,
         changeFrequency: "monthly",
         lastModified: page.updatedAt,

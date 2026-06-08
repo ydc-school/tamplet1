@@ -96,20 +96,6 @@ export default function TopSlider() {
           transform: scale(1.04) !important;
         }
 
-        /* Bottom gradient overlay */
-        .ts-slide-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to top,
-            rgba(7,16,32,0.7) 0%,
-            rgba(7,16,32,0.15) 40%,
-            transparent 70%
-          );
-          z-index: 1;
-          pointer-events: none;
-        }
-
         /* Slide name label */
         .ts-slide-label {
           position: absolute;
@@ -218,7 +204,6 @@ export default function TopSlider() {
                   className="ts-slide-img object-contain"
                   priority={index === 0}
                 />
-                <div className="ts-slide-overlay" />
                 {slide.Name && (
                   <div className="ts-slide-label">
                     <div className="ts-label-bar" />
