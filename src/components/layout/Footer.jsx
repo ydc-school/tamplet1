@@ -10,16 +10,27 @@ export default function Footer() {
   const [quickLinks, setQuickLinks] = useState([]);
   const [useFullLinks, setUseFullLinks] = useState([]);
 
+  // Fetch Quick Links
   useEffect(() => {
     axios.get("/api/client/quick-link")
-      .then((res) => setQuickLinks(res.data.data.data))
-      .catch(() => { });
+      .then((res) => {
+        // Safely access deeply nested data with optional chaining and a fallback array
+        setQuickLinks(res?.data?.data?.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch quick links:", err);
+      });
   }, []);
 
+  // Fetch Useful Links
   useEffect(() => {
     axios.get("/api/client/useful-link")
-      .then((res) => setUseFullLinks(res.data.data.data))
-      .catch(() => { });
+      .then((res) => {
+        setUseFullLinks(res?.data?.data?.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch useful links:", err);
+      });
   }, []);
 
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
@@ -30,7 +41,7 @@ export default function Footer() {
   const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
   const website = schoolInfo?.Website ?? "www.ydu.com";
   const schoolMotto = schoolInfo?.Motto ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
-  const logoUrl = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo.Logo_Url}` : "/logo/logo.png";
+  const logoUrl = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo?.Logo_Url}` : "/logo/logo.png";
 
   const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
   const linkedinUrl = schoolInfo?.Linkedin_Url ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
@@ -40,7 +51,6 @@ export default function Footer() {
   return (
     <>
       <style>{`
-
         .ft-root {
           background: #f6f8fc;
           color: #5f7288;
@@ -112,12 +122,11 @@ export default function Footer() {
         .ft-logo-ring {
           width: 120px;
           height: 52px;
-           border-radius: 0%;
+          border-radius: 0%;
           background: white;
           display: flex;
           align-items: center;
           justify-content: center;
-         
           flex-shrink: 0;
           box-shadow: 0 0 0 2px #c4a048, 0 0 0 4px rgba(196,160,72,0.15);
         }
@@ -229,6 +238,10 @@ export default function Footer() {
           text-decoration: none;
           transition: color 0.2s;
         }
+        .ft-contact-item.inline-link {
+          margin-bottom: 0;
+          align-items: center;
+        }
         .ft-contact-item:hover { color: #c4a048; }
         .ft-contact-icon {
           width: 32px;
@@ -241,6 +254,12 @@ export default function Footer() {
           justify-content: center;
           flex-shrink: 0;
           color: #c4a048;
+        }
+        .ft-phone-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 14px;
         }
 
         /* Bottom bar */
@@ -292,11 +311,11 @@ export default function Footer() {
             <Link href="/" className="ft-brand-logo">
               <div className="ft-logo-ring">
                 <Image
-                  src={logoUrl}
+                  src={logoUrl || "/logo/logo.png"}
                   alt={`${schoolName} Logo`}
                   width={500}
                   height={50}
-                  style={{ objectFit: "contain", }}
+                  style={{ objectFit: "contain" }}
                   onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
                 />
               </div>
@@ -321,13 +340,12 @@ export default function Footer() {
                   <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5 1.2-.1 1.6-.1 4.7-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z" />
                 </svg>
               </a>
-              <a href={twitterUrl} target="_blank" rel="noreferrer" className="ft-social" title="Facebook">
+              {/* Twitter/X */}
+              <a href={twitterUrl} target="_blank" rel="noreferrer" className="ft-social" title="Twitter">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.25.2 2.25.2v2.47H15.2c-1.25 0-1.64.78-1.64 1.58v1.88h2.8l-.45 2.9h-2.35V22c4.78-.75 8.44-4.91 8.44-9.93z" />
                 </svg>
               </a>
-
-             
               {/* LinkedIn */}
               <a href={linkedinUrl} target="_blank" rel="noreferrer" className="ft-social" title="LinkedIn">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
@@ -346,7 +364,7 @@ export default function Footer() {
             <ul className="ft-links-list">
               {useFullLinks.map((link) => (
                 <li key={link.Id}>
-                  <Link href={link.Url} className="ft-link">{link.Name}</Link>
+                  <Link href={link.Url || "#"} className="ft-link">{link.Name}</Link>
                 </li>
               ))}
             </ul>
@@ -361,7 +379,7 @@ export default function Footer() {
             <ul className="ft-links-list">
               {quickLinks.map((link) => (
                 <li key={link.Id}>
-                  <Link href={link.Url} className="ft-link">{link.Name}</Link>
+                  <Link href={link.Url || "#"} className="ft-link">{link.Name}</Link>
                 </li>
               ))}
             </ul>
@@ -396,11 +414,9 @@ export default function Footer() {
                 {email}
               </a>
 
-              <div className="flex flex-row gap-3 " >
-
-
-                {/* Phone */}
-                <a href={`tel:${phone}`} className="ft-contact-item">
+              {/* Phone Grouping */}
+              <div className="ft-phone-group">
+                <a href={`tel:${phone}`} className="ft-contact-item inline-link">
                   <div className="ft-contact-icon">
                     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -409,15 +425,13 @@ export default function Footer() {
                   {phone}
                 </a>
 
-
-                <a href={`tel:${phone2}`} className="ft-contact-item">
-                  {phone2}
-                </a>
+                {/* Second Phone Number Layout Fixed */}
+                {phone2 && (
+                  <a href={`tel:${phone2}`} className="ft-contact-item inline-link">
+                    | &nbsp; {phone2}
+                  </a>
+                )}
               </div>
-
-
-
-
 
               {/* Website */}
               <a href={`http://${website}`} target="_blank" rel="noreferrer" className="ft-contact-item">
