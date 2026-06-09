@@ -33,7 +33,7 @@ export default function AchievementGallery() {
 
         .ag-root {
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           padding: 80px 24px;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
@@ -81,7 +81,7 @@ export default function AchievementGallery() {
         .ag-heading {
           font-family: 'Playfair Display', serif;
           font-size: clamp(24px, 3.5vw, 36px);
-          font-weight: 700; color: #f0e6c8;
+          font-weight: 700; color: #10213a;
           text-align: center; margin-bottom: 52px;
         }
 
@@ -97,7 +97,7 @@ export default function AchievementGallery() {
 
         /* Card */
         .ag-card {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.12);
           border-radius: 4px;
           overflow: hidden;
@@ -135,7 +135,7 @@ export default function AchievementGallery() {
         .ag-img-wrap {
           position: relative;
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           overflow: hidden;
         }
         .ag-img-wrap img {
@@ -181,7 +181,7 @@ export default function AchievementGallery() {
         .ag-no-img {
           width: 100%;
           aspect-ratio: 4 / 3;
-          background: linear-gradient(135deg, #0f2044, #152a55);
+          background: linear-gradient(135deg, #ffffff, #eef4ff);
           display: flex; align-items: center; justify-content: center;
           color: rgba(196,160,72,0.15);
         }
@@ -192,7 +192,7 @@ export default function AchievementGallery() {
           top: 10px; right: 10px;
           z-index: 3;
           background: #c4a048;
-          color: #071020;
+          color: #f6f8fc;
           font-size: 10px; font-weight: 700;
           letter-spacing: 0.12em;
           padding: 3px 10px;
@@ -217,7 +217,7 @@ export default function AchievementGallery() {
           overflow: hidden;
           transition: color 0.2s;
         }
-        .ag-card:hover .ag-title { color: #f0e6c8; }
+        .ag-card:hover .ag-title { color: #10213a; }
         .ag-desc {
           font-size: 13px; line-height: 1.7;
           color: #4a6a8a; flex: 1;
@@ -239,7 +239,7 @@ export default function AchievementGallery() {
         /* Skeleton */
         .ag-skel {
           height: 280px; border-radius: 4px;
-          background: linear-gradient(90deg, #0f2044 25%, #152a52 50%, #0f2044 75%);
+          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: ag-shimmer 1.5s infinite;
         }
@@ -260,7 +260,7 @@ export default function AchievementGallery() {
         @keyframes ag-fadein-ov { from { opacity: 0; } to { opacity: 1; } }
 
         .ag-modal {
-          background: linear-gradient(145deg, #0f2044 0%, #091830 100%);
+          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
           border: 1px solid rgba(196,160,72,0.2);
           border-top: 3px solid #c4a048;
           border-radius: 4px;
@@ -280,7 +280,7 @@ export default function AchievementGallery() {
         .ag-modal-img {
           position: relative;
           width: 100%;
-          background: #071020;
+          background: #f6f8fc;
           overflow: hidden;
         }
         .ag-modal-img img {
@@ -313,7 +313,7 @@ export default function AchievementGallery() {
         .ag-modal-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(20px, 3vw, 26px);
-          font-weight: 700; color: #f0e6c8;
+          font-weight: 700; color: #10213a;
           line-height: 1.3; margin-bottom: 16px;
         }
         .ag-modal-divider {
@@ -322,7 +322,7 @@ export default function AchievementGallery() {
           border-radius: 2px; margin-bottom: 18px;
         }
         .ag-modal-desc {
-          font-size: 15px; line-height: 1.85; color: #6a8aaa;
+          font-size: 15px; line-height: 1.85; color: #5f7288;
         }
         .ag-modal-year {
           display: inline-flex; align-items: center; gap: 6px;

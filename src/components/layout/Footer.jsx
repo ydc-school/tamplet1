@@ -10,39 +10,50 @@ export default function Footer() {
   const [quickLinks, setQuickLinks] = useState([]);
   const [useFullLinks, setUseFullLinks] = useState([]);
 
+  // Fetch Quick Links
   useEffect(() => {
     axios.get("/api/client/quick-link")
-      .then((res) => setQuickLinks(res.data.data.data))
-      .catch(() => {});
+      .then((res) => {
+        // Safely access deeply nested data with optional chaining and a fallback array
+        setQuickLinks(res?.data?.data?.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch quick links:", err);
+      });
   }, []);
 
+  // Fetch Useful Links
   useEffect(() => {
-    axios.get("/api/client/usefull-link")
-      .then((res) => setUseFullLinks(res.data.data.data))
-      .catch(() => {});
+    axios.get("/api/client/useful-link")
+      .then((res) => {
+        setUseFullLinks(res?.data?.data?.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch useful links:", err);
+      });
   }, []);
 
-  const schoolName  = schoolInfo?.School_Name    ?? "Yaduvanshi";
-  const shortName   = schoolInfo?.Short_Name     ?? "Degree College";
-  const address     = schoolInfo?.Address        ?? "Bucholi Road, Mahendergarh, Haryana, PIN-123029";
-  const email       = schoolInfo?.Email          ?? "ydcmgh@gmail.com";
-  const phone       = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
-  const website     = schoolInfo?.Website        ?? "www.ydu.com";
-  const schoolMotto = schoolInfo?.Motto          ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
-  const logoUrl     = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo.Logo_Url}` : "/logo/logo.png";
+  const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
+  const shortName = schoolInfo?.Short_Name ?? "Degree College";
+  const address = schoolInfo?.Address ?? "Bucholi Road, Mahendergarh, Haryana, PIN-123029";
+  const email = schoolInfo?.Email ?? "ydcmgh@gmail.com";
+  const phone = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
+  const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
+  const website = schoolInfo?.Website ?? "www.ydu.com";
+  const schoolMotto = schoolInfo?.Motto ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
+  const logoUrl = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo?.Logo_Url}` : "/logo/logo.png";
 
-  const youtubeUrl  = schoolInfo?.Youtube_Url   ? `https://${schoolInfo.Youtube_Url}` : "#";
-  const linkedinUrl = schoolInfo?.Linkedin_Url  ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
-  const instagramUrl= schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
-  const twitterUrl  = schoolInfo?.Twitter_Url   ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
+  const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
+  const linkedinUrl = schoolInfo?.Linkedin_Url ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
+  const instagramUrl = schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
+  const twitterUrl = schoolInfo?.Twitter_Url ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
 
   return (
     <>
       <style>{`
-
         .ft-root {
-          background: #071020;
-          color: #a8b8cc;
+          background: #f6f8fc;
+          color: #5f7288;
           font-family: 'Source Sans 3', sans-serif;
           position: relative;
           overflow: hidden;
@@ -111,12 +122,11 @@ export default function Footer() {
         .ft-logo-ring {
           width: 120px;
           height: 52px;
-           border-radius: 0%;
+          border-radius: 0%;
           background: white;
           display: flex;
           align-items: center;
           justify-content: center;
-         
           flex-shrink: 0;
           box-shadow: 0 0 0 2px #c4a048, 0 0 0 4px rgba(196,160,72,0.15);
         }
@@ -124,7 +134,7 @@ export default function Footer() {
           font-family: 'Playfair Display', serif;
           font-size: 18px;
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.2;
         }
         .ft-brand-sub {
@@ -138,7 +148,7 @@ export default function Footer() {
         .ft-motto {
           font-size: 13.5px;
           line-height: 1.75;
-          color: #7a90a8;
+          color: #5f7288;
           margin-bottom: 22px;
           max-width: 300px;
         }
@@ -157,7 +167,7 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #7a90a8;
+          color: #5f7288;
           transition: all 0.2s ease;
           text-decoration: none;
         }
@@ -173,7 +183,7 @@ export default function Footer() {
           font-family: 'Playfair Display', serif;
           font-size: 15px;
           font-weight: 600;
-          color: #f0e6c8;
+          color: #10213a;
           margin-bottom: 20px;
           padding-bottom: 10px;
           border-bottom: 1px solid rgba(196,160,72,0.2);
@@ -199,7 +209,7 @@ export default function Footer() {
         }
         .ft-link {
           font-size: 13.5px;
-          color: #7a90a8;
+          color: #5f7288;
           text-decoration: none;
           display: flex;
           align-items: center;
@@ -224,9 +234,13 @@ export default function Footer() {
           gap: 12px;
           margin-bottom: 14px;
           font-size: 13.5px;
-          color: #7a90a8;
+          color: #5f7288;
           text-decoration: none;
           transition: color 0.2s;
+        }
+        .ft-contact-item.inline-link {
+          margin-bottom: 0;
+          align-items: center;
         }
         .ft-contact-item:hover { color: #c4a048; }
         .ft-contact-icon {
@@ -241,11 +255,17 @@ export default function Footer() {
           flex-shrink: 0;
           color: #c4a048;
         }
+        .ft-phone-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 14px;
+        }
 
         /* Bottom bar */
         .ft-bottom {
-          border-top: 1px solid rgba(255,255,255,0.06);
-          background: #04080f;
+          border-top: 1px solid rgba(15, 23, 42, 0.06);
+          background: #eef2f7;
         }
         .ft-bottom-inner {
           max-width: 1280px;
@@ -279,7 +299,7 @@ export default function Footer() {
         <div className="ft-divider-top">
           <div className="ft-divider-line" />
           <svg className="ft-crest-icon" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
           <div className="ft-divider-line rev" />
         </div>
@@ -291,11 +311,11 @@ export default function Footer() {
             <Link href="/" className="ft-brand-logo">
               <div className="ft-logo-ring">
                 <Image
-                  src={logoUrl}
+                  src={logoUrl || "/logo/logo.png"}
                   alt={`${schoolName} Logo`}
                   width={500}
                   height={50}
-                  style={{ objectFit: "contain",  }}
+                  style={{ objectFit: "contain" }}
                   onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
                 />
               </div>
@@ -323,7 +343,7 @@ export default function Footer() {
               {/* Twitter/X */}
               <a href={twitterUrl} target="_blank" rel="noreferrer" className="ft-social" title="Twitter">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.25.2 2.25.2v2.47H15.2c-1.25 0-1.64.78-1.64 1.58v1.88h2.8l-.45 2.9h-2.35V22c4.78-.75 8.44-4.91 8.44-9.93z" />
                 </svg>
               </a>
               {/* LinkedIn */}
@@ -344,7 +364,7 @@ export default function Footer() {
             <ul className="ft-links-list">
               {useFullLinks.map((link) => (
                 <li key={link.Id}>
-                  <Link href={link.Url} className="ft-link">{link.Name}</Link>
+                  <Link href={link.Url || "#"} className="ft-link">{link.Name}</Link>
                 </li>
               ))}
             </ul>
@@ -359,7 +379,7 @@ export default function Footer() {
             <ul className="ft-links-list">
               {quickLinks.map((link) => (
                 <li key={link.Id}>
-                  <Link href={link.Url} className="ft-link">{link.Name}</Link>
+                  <Link href={link.Url || "#"} className="ft-link">{link.Name}</Link>
                 </li>
               ))}
             </ul>
@@ -394,15 +414,24 @@ export default function Footer() {
                 {email}
               </a>
 
-              {/* Phone */}
-              <a href={`tel:${phone}`} className="ft-contact-item">
-                <div className="ft-contact-icon">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                {phone}
-              </a>
+              {/* Phone Grouping */}
+              <div className="ft-phone-group">
+                <a href={`tel:${phone}`} className="ft-contact-item inline-link">
+                  <div className="ft-contact-icon">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  {phone}
+                </a>
+
+                {/* Second Phone Number Layout Fixed */}
+                {phone2 && (
+                  <a href={`tel:${phone2}`} className="ft-contact-item inline-link">
+                    | &nbsp; {phone2}
+                  </a>
+                )}
+              </div>
 
               {/* Website */}
               <a href={`http://${website}`} target="_blank" rel="noreferrer" className="ft-contact-item">

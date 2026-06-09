@@ -18,7 +18,7 @@ export default function Navbar() {
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
   const shortName = schoolInfo?.Short_Name ?? "Degree College";
   const logoUrl = schoolInfo?.Logo_Url
-    ? `/uploads/${schoolInfo.Logo_Url}`
+    ? `/uploads/${schoolInfo?.Logo_Url}`
     : "/logo/logo.png";
 
   useEffect(() => {
@@ -64,14 +64,14 @@ export default function Navbar() {
       <style>{`
 
         :root {
-          --nb-bg: #0f2044;
-          --nb-bg-scroll: rgba(10, 25, 58, 0.97);
-          --nb-border: rgba(196, 160, 72, 0.2);
+          --nb-bg: #ffffff;
+          --nb-bg-scroll: rgba(255, 255, 255, 0.96);
+          --nb-border: rgba(196, 160, 72, 0.28);
           --nb-gold: #c4a048;
           --nb-gold-light: #e0c060;
-          --nb-text: #cbd5e1;
-          --nb-text-muted: rgba(203, 213, 225, 0.55);
-          --nb-dropdown-bg: #0a1836;
+          --nb-text: #314155;
+          --nb-text-muted: rgba(49, 65, 85, 0.7);
+          --nb-dropdown-bg: #ffffff;
           --nb-hover-bg: rgba(196, 160, 72, 0.08);
           --nb-height: 72px;
         }
@@ -89,7 +89,7 @@ export default function Navbar() {
         .nb-wrap.scrolled {
           background: var(--nb-bg-scroll);
           backdrop-filter: blur(14px);
-          box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+          box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
         }
 
         /* Top accent bar */
@@ -144,7 +144,7 @@ export default function Navbar() {
           font-family: 'Playfair Display', serif;
           font-size: 17px;
           font-weight: 700;
-          color: #f0e6c8;
+          color: #10213a;
           line-height: 1.15;
         }
         .nb-school-sub {
@@ -205,7 +205,7 @@ export default function Navbar() {
           transition: transform 0.25s ease;
           transform-origin: center;
         }
-        .nb-btn:hover, .nb-btn.active { color: #f0e6c8; }
+        .nb-btn:hover, .nb-btn.active { color: #10213a; }
         .nb-btn:hover::after, .nb-btn.active::after { transform: scaleX(1); }
 
         .nb-chevron {
@@ -242,7 +242,7 @@ export default function Navbar() {
           font-size: 13px;
           color: var(--nb-text);
           text-decoration: none;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
+          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
           transition: all 0.15s;
           text-transform: capitalize;
         }
@@ -269,7 +269,7 @@ export default function Navbar() {
           align-items: center;
           gap: 8px;
           background: var(--nb-gold);
-          color: #0a1530;
+          color: #16324f;
           padding: 10px 22px;
           font-family: 'Source Sans 3', sans-serif;
           font-size: 13px;
@@ -312,7 +312,7 @@ export default function Navbar() {
           background: var(--nb-text);
           transition: all 0.3s ease;
           transform-origin: center;
-        }nb
+        }
         .b1.open { transform: rotate(45deg) translate(4.5px, 4.5px); }
         .b2.open { opacity: 0; transform: scaleX(0); }
         .b3.open { transform: rotate(-45deg) translate(4.5px, -4.5px); }
@@ -325,7 +325,7 @@ export default function Navbar() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: #081428;
+          background: #ffffff;
           border-top: 1px solid var(--nb-border);
           overflow-y: auto;
           z-index: 998;
@@ -357,7 +357,7 @@ export default function Navbar() {
           font-weight: 500;
           color: var(--nb-text);
           text-decoration: none;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
+          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
           background: none;
           border-top: none;
           border-left: none;
@@ -367,7 +367,7 @@ export default function Navbar() {
           cursor: pointer;
           transition: color 0.2s;
         }
-        .nb-m-link:hover, .nb-m-link.active { color: var(--nb-gold-light); }
+        .nb-m-link:hover, .nb-m-link.active { color: var(--nb-gold); }
 
         .nb-m-chevron {
           width: 14px;
@@ -390,11 +390,11 @@ export default function Navbar() {
           font-size: 13px;
           color: var(--nb-text-muted);
           text-decoration: none;
-          border-bottom: 1px solid rgba(255,255,255,0.04);
+          border-bottom: 1px solid rgba(15, 23, 42, 0.05);
           text-transform: capitalize;
           transition: all 0.15s;
         }
-        .nb-m-sub-item:hover { color: var(--nb-gold-light); padding-left: 22px; }
+        .nb-m-sub-item:hover { color: var(--nb-gold); padding-left: 22px; }
 
         .nb-m-cta {
           display: flex;
@@ -404,7 +404,7 @@ export default function Navbar() {
           margin-top: 24px;
           padding: 15px;
           background: var(--nb-gold);
-          color: #0a1530;
+          color: #16324f;
           font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.04em;
@@ -424,7 +424,7 @@ export default function Navbar() {
             <Link href="/" className="nb-logo">
               <div className="nb-logo-img-wrap  bg-amber-800">
                 <Image
-                  src={logoUrl}
+                  src={logoUrl || "/logo/logo.png"}
                   alt={`${schoolName} logo`}
                   width={502}
                   height={52}
@@ -460,7 +460,7 @@ export default function Navbar() {
                       </button>
                       <div className="nb-dropdown">
                         {cat.pages.map((page) => (
-                          <Link key={page.Id} href={`/pages/${page.Id}/${slugify(page.Name)}`} className="nb-drop-item">
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}/${page.Id}`} className="nb-drop-item">
                             {page.Name.replace(/-/g, " ")}
                           </Link>
                         ))}
@@ -475,7 +475,7 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="nb-cta-wrap">
-              <Link href="https://yaduvanshigroup.edu.in/admission-Form" className="nb-cta">
+              <Link href="/admission-form" className="nb-cta">
                 Student Admission
                 <svg className="nb-cta-arrow" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -513,7 +513,7 @@ export default function Navbar() {
                       </button>
                       <div className={`nb-m-sub${openCategory === cat.Id ? " open" : ""}`}>
                         {cat.pages.map((page) => (
-                          <Link key={page.Id} href={`/pages/${page.Id}/${slugify(page.Name)}`} onClick={handleMobileLink} className="nb-m-sub-item">
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}/${page.Id}`} onClick={handleMobileLink} className="nb-m-sub-item">
                             {page.Name.replace(/-/g, " ")}
                           </Link>
                         ))}
