@@ -374,7 +374,7 @@ export default function WelcomeSection() {
                   alt={welcomeData.Title || "Welcome"}
                   fill
                   sizes="(max-width: 899px) 100vw, 460px"
-                  className="object-cover"
+                  className="object-contain"
                   priority
                 />
                 <div className="wc-stat-badge">
