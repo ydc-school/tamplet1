@@ -126,13 +126,13 @@ export default function Footer() {
         .ft-logo-ring {
           width: 120px;
           height: 52px;
-          border-radius: 0%;
+         
           background: white;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          box-shadow: 0 0 0 2px #c4a048, 0 0 0 4px rgba(196,160,72,0.15);
+        
         }
         .ft-brand-name {
           font-family: 'Playfair Display', serif;
