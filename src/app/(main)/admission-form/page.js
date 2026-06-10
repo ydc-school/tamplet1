@@ -57,7 +57,7 @@ export default function AdmissionForm() {
       Mother_Name: formData.mothersName,
       Email: formData.email,
       Phone: formData.phone,
-      Branch_Id: formData.Branch_Id,
+      Branch_Id: schoolInfo?.Branch_Id,
       Class: formData.classGrade,
       DOB: formData.dob,
       Gender: formData.gender,
