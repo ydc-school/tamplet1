@@ -447,6 +447,9 @@ export default function Navbar() {
               <li className="nb-item">
                 <Link href="/" className="nb-btn active">Home</Link>
               </li>
+              <li className="nb-item">
+                <Link href="/achievements" className="nb-btn">Achievements</Link>
+              </li>
               {/* <li className="nb-item">
                 <Link href="/blogs" className="nb-btn active">Blogs</Link>
               </li> */}
@@ -500,6 +503,7 @@ export default function Navbar() {
               <div className="nb-panel-label">Navigation</div>
 
               <Link href="/" onClick={handleMobileLink} className="nb-m-link active">Home</Link>
+              <Link href="/achievements" onClick={handleMobileLink} className="nb-m-link">Achievements</Link>
 
               {categories.map((cat) => (
                 <div key={cat.Id}>

@@ -29,6 +29,7 @@ export default async function sitemap() {
 
   const staticRoutes = [
     sitemapEntry(siteUrl, "/", { priority: 1, changeFrequency: "daily" }),
+    sitemapEntry(siteUrl, "/achievements", { priority: 0.84, changeFrequency: "daily" }),
     sitemapEntry(siteUrl, "/blogs", { priority: 0.86, changeFrequency: "daily" }),
     sitemapEntry(siteUrl, "/gallery", { priority: 0.82 }),
     sitemapEntry(siteUrl, "/topper-category", { priority: 0.78 }),
