@@ -64,7 +64,6 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-
         :root {
           --nb-bg: #ffffff;
           --nb-bg-scroll: rgba(255, 255, 255, 0.96);
@@ -75,7 +74,32 @@ export default function Navbar() {
           --nb-text-muted: rgba(49, 65, 85, 0.7);
           --nb-dropdown-bg: #ffffff;
           --nb-hover-bg: rgba(196, 160, 72, 0.08);
-          --nb-height: 72px;
+          --nb-height: 60px;
+        }
+
+        .nb-top-branding {
+          background: #ffffff;
+          border-bottom: 1px solid rgba(196, 160, 72, 0.15);
+        }
+        .nb-branding-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 10px 28px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .nb-admission-banner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .nb-admission-img {
+          object-fit: contain;
+          height: auto;
+          max-height: 55px; 
+          width: auto;
         }
 
         .nb-wrap {
@@ -94,7 +118,6 @@ export default function Navbar() {
           box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
         }
 
-        /* Top accent bar */
         .nb-topbar {
           background: var(--nb-gold);
           height: 3px;
@@ -111,34 +134,29 @@ export default function Navbar() {
           gap: 0;
         }
 
-        /* ── Logo ── */
         .nb-logo {
           display: flex;
           align-items: center;
           gap: 12px;
           text-decoration: none;
           flex-shrink: 0;
-          padding-right: 28px;
-          border-right: 1px solid var(--nb-border);
-          height: 48px;
+          height: 52px;
         }
         .nb-logo-img-wrap {
-          width: 120px;
-          height: 52px;
-           border-radius: 0%;
+          width: 194px;
+          height: 54px;
+          border-radius: 0%;
           background: white;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 4px;
           flex-shrink: 0;
-          box-shadow: 0 0 0 2px var(--nb-gold);
         }
         .nb-logo-img {
           width: 100%;
           height: 100%;
           object-fit: contain;
-         
         }
         .nb-logo-text { display: none; }
         @media (min-width: 600px) { .nb-logo-text { display: block; } }
@@ -158,14 +176,13 @@ export default function Navbar() {
           margin-top: 2px;
         }
 
-        /* ── Desktop links ── */
         .nb-links {
           display: none;
           flex: 1;
           height: 100%;
-          padding-left: 12px;
           list-style: none;
           margin: 0;
+          padding: 0;
           align-items: center;
         }
         @media (min-width: 960px) { .nb-links { display: flex; } }
@@ -218,7 +235,6 @@ export default function Navbar() {
         }
         .nb-item:hover .nb-chevron { transform: rotate(180deg); }
 
-        /* Dropdown */
         .nb-dropdown {
           position: absolute;
           top: 100%;
@@ -255,12 +271,11 @@ export default function Navbar() {
           padding-left: 24px;
         }
 
-        /* CTA */
         .nb-cta-wrap {
           margin-left: auto;
           padding-left: 24px;
           border-left: 1px solid var(--nb-border);
-          height: 48px;
+          height: 40px;
           display: none;
           align-items: center;
         }
@@ -272,7 +287,7 @@ export default function Navbar() {
           gap: 8px;
           background: var(--nb-gold);
           color: #16324f;
-          padding: 10px 22px;
+          padding: 8px 18px;
           font-family: 'Source Sans 3', sans-serif;
           font-size: 13px;
           font-weight: 700;
@@ -290,7 +305,6 @@ export default function Navbar() {
         .nb-cta-arrow { transition: transform 0.2s; }
         .nb-cta:hover .nb-cta-arrow { transform: translateX(3px); }
 
-        /* Hamburger */
         .nb-ham {
           display: flex;
           flex-direction: column;
@@ -319,11 +333,10 @@ export default function Navbar() {
         .b2.open { opacity: 0; transform: scaleX(0); }
         .b3.open { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
-        /* Mobile Panel */
         .nb-panel {
           display: none;
           position: fixed;
-          top: calc(var(--nb-height) + 3px);
+          top: calc(var(--nb-height) + 4px);
           left: 0;
           right: 0;
           bottom: 0;
@@ -418,17 +431,17 @@ export default function Navbar() {
       `}</style>
 
       <div ref={menuRef}>
-        <div className="nb-topbar " />
-        <nav className={`nb-wrap${scrolled ? " scrolled" : ""}`}>
-          <div className="nb-inner">
+        <div className="nb-topbar" />
 
-            {/* Logo */}
+        {/* Branding Section (Logo + Admission Open Image) */}
+        <div className="nb-top-branding">
+          <div className="nb-branding-inner">
             <Link href="/" className="nb-logo">
-              <div className="nb-logo-img-wrap  bg-amber-800">
+              <div className="nb-logo-img-wrap bg-amber-800">
                 <Image
                   src={logoSrc}
                   alt={`${schoolName} logo`}
-                  width={502}
+                  width={120}
                   height={52}
                   className="nb-logo-img"
                   onError={handleLogoError}
@@ -442,7 +455,23 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Nav */}
+            {/* Note: Change the src string below to your real image path when ready */}
+            <div className="nb-admission-banner">
+              <Image
+                src="/poster/31y.png"
+                alt="Admission Open"
+                width={180}
+                height={55}
+                className="nb-admission-img"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Bar */}
+        <nav className={`nb-wrap${scrolled ? " scrolled" : ""}`}>
+          <div className="nb-inner">
             <ul className="nb-links">
               <li className="nb-item">
                 <Link href="/" className="nb-btn active">Home</Link>
@@ -450,9 +479,6 @@ export default function Navbar() {
               <li className="nb-item">
                 <Link href="/achievements" className="nb-btn">Achievements</Link>
               </li>
-              {/* <li className="nb-item">
-                <Link href="/blogs" className="nb-btn active">Blogs</Link>
-              </li> */}
 
               {categories.map((cat) => (
                 <li key={cat.Id} className="nb-item">
@@ -479,7 +505,6 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* Desktop CTA */}
             <div className="nb-cta-wrap">
               <Link href="/admission-form" className="nb-cta">
                 Student Admission
@@ -489,7 +514,6 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Hamburger */}
             <button className="nb-ham" onClick={() => setOpen(!open)} aria-label="Toggle menu">
               <span className={`nb-bar b1${open ? " open" : ""}`} />
               <span className={`nb-bar b2${open ? " open" : ""}`} />
@@ -497,8 +521,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Panel */}
-          <div className={`nb-panel  ${open ? " open" : ""}`}>
+          <div className={`nb-panel ${open ? " open" : ""}`}>
             <div className="nb-panel-inner">
               <div className="nb-panel-label">Navigation</div>
 
