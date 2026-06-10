@@ -4,11 +4,16 @@ import { useSchool } from "@/context/SchoolContext";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useFallbackImage } from "@/hooks/useFallbackImage";
 
 export default function Footer() {
   const { schoolInfo, loading } = useSchool();
   const [quickLinks, setQuickLinks] = useState([]);
   const [useFullLinks, setUseFullLinks] = useState([]);
+  const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
+    schoolInfo?.Logo_Url,
+    "/logo/logo.png"
+  );
 
   // Fetch Quick Links
   useEffect(() => {
@@ -41,7 +46,6 @@ export default function Footer() {
   const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
   const website = schoolInfo?.Website ?? "www.ydu.com";
   const schoolMotto = schoolInfo?.Motto ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
-  const logoUrl = schoolInfo?.Logo_Url ? `/uploads/${schoolInfo?.Logo_Url}` : "/logo/logo.png";
 
   const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
   const linkedinUrl = schoolInfo?.Linkedin_Url ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
@@ -311,12 +315,13 @@ export default function Footer() {
             <Link href="/" className="ft-brand-logo">
               <div className="ft-logo-ring">
                 <Image
-                  src={logoUrl || "/logo/logo.png"}
+                  src={logoSrc}
                   alt={`${schoolName} Logo`}
                   width={500}
                   height={50}
                   style={{ objectFit: "contain" }}
-                  onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
+                  onError={handleLogoError}
+                  unoptimized
                 />
               </div>
               <div>

@@ -1,3 +1,5 @@
+import { resolveAssetSrc } from "@/utils/media";
+
 export const SITE_NAME = "Yaduvanshi Group of Institutions";
 export const DEFAULT_SITE_URL = "https://yaduvanshigroup.edu.in";
 export const DEFAULT_DESCRIPTION =
@@ -226,7 +228,7 @@ export function organizationSchema(schoolInfo, siteUrl = DEFAULT_SITE_URL) {
     name,
     alternateName: schoolInfo?.Short_Name || undefined,
     url: siteUrl,
-    logo: absoluteUrl(schoolInfo?.Logo_Url ? `/uploads/${schoolInfo.Logo_Url}` : "/logo/logo.png", siteUrl),
+    logo: absoluteUrl(resolveAssetSrc(schoolInfo?.Logo_Url, "/logo/logo.png"), siteUrl),
     description: cleanText(schoolInfo?.Motto || DEFAULT_DESCRIPTION, 220),
     foundingDate: schoolInfo?.Established_Year || undefined,
     email: schoolInfo?.Email || undefined,

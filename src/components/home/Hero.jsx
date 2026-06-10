@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 import { useSchool } from "@/context/SchoolContext";
+import { useFallbackImage } from "@/hooks/useFallbackImage";
 
 export const Hero = () => {
-  const { schoolInfo, loading } = useSchool();
-
-
-
+  const { schoolInfo } = useSchool();
+  const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
+    schoolInfo?.Logo_Url,
+    "/logo/logo.png"
+  );
 
   
   return (
@@ -25,11 +26,13 @@ export const Hero = () => {
             <div className="inline-flex items-center gap-4 bg-white/70 backdrop-blur-md p-2 pr-6 rounded-full border border-gray-100 shadow-sm mb-6 max-w-full">
               <div className="h-14 w-14 relative shrink-0 bg-white rounded-full p-2 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.1)] border border-gray-50 flex items-center justify-center">
                 <Image
-                  src={schoolInfo?.Logo_Url ? `/uploads/${schoolInfo.Logo_Url}` : "/logo/6.png"}
+                  src={logoSrc}
                   alt={`${schoolInfo?.School_Name ?? "School"} Logo`}
                   width={40}
                   height={40}
                   className="rounded-full object-contain"
+                  onError={handleLogoError}
+                  unoptimized
                 />
               </div>
               <div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 import { useSchool } from "@/context/SchoolContext";
+import { useFallbackImage } from "@/hooks/useFallbackImage";
 import slugify from "@/utils/slugify";
 
 export default function Navbar() {
@@ -14,12 +15,13 @@ export default function Navbar() {
   const menuRef = useRef(null);
 
   const { schoolInfo, loading } = useSchool();
+  const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
+    schoolInfo?.Logo_Url,
+    "/logo/logo.png"
+  );
 
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
   const shortName = schoolInfo?.Short_Name ?? "Degree College";
-  const logoUrl = schoolInfo?.Logo_Url
-    ? `/uploads/${schoolInfo?.Logo_Url}`
-    : "/logo/logo.png";
 
   useEffect(() => {
     const fetchPages = async () => {
@@ -424,12 +426,13 @@ export default function Navbar() {
             <Link href="/" className="nb-logo">
               <div className="nb-logo-img-wrap  bg-amber-800">
                 <Image
-                  src={logoUrl || "/logo/logo.png"}
+                  src={logoSrc}
                   alt={`${schoolName} logo`}
                   width={502}
                   height={52}
                   className="nb-logo-img"
-                  onError={(e) => { e.currentTarget.src = "/logo/logo.png"; }}
+                  onError={handleLogoError}
+                  unoptimized
                   priority
                 />
               </div>
