@@ -24,7 +24,7 @@ export default function TopSlider() {
           setSlides(valid);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
@@ -40,9 +40,7 @@ export default function TopSlider() {
 
   return (
     <>
- 
-
-      <div className="ts-wrap">
+      <div>
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           effect="fade"
@@ -50,7 +48,6 @@ export default function TopSlider() {
           pagination={{ clickable: true }}
           autoplay={{ delay: 4500, disableOnInteraction: false }}
           loop={slides.length > 1}
-          className="ts-swiper"
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={slide.Id || index}>
@@ -60,13 +57,13 @@ export default function TopSlider() {
                   alt={slide.Name || "Poster"}
                   fill
                   sizes="100vw"
-                  className="ts-slide-img object-contain"
                   priority={index === 0}
+                  style={{ objectFit: "contain" }}
                 />
                 {slide.Name && (
-                  <div className="ts-slide-label">
-                    <div className="ts-label-bar" />
-                    <span className="ts-label-text">{slide.Name}</span>
+                  <div>
+                    <div />
+                    <span>{slide.Name}</span>
                   </div>
                 )}
               </div>
@@ -76,19 +73,19 @@ export default function TopSlider() {
 
         {/* Slide counter */}
         {slides.length > 1 && (
-          <div className="ts-counter">
-            <span className="ts-counter-cur">01</span>
+          <div>
+            <span>01</span>
             <span> / {String(slides.length).padStart(2, "0")}</span>
           </div>
         )}
 
         {/* Custom nav */}
-        <button className="ts-prev" aria-label="Previous">
+        <button aria-label="Previous">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <button className="ts-next" aria-label="Next">
+        <button aria-label="Next">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>

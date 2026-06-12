@@ -83,29 +83,7 @@ export default async function Home() {
         <FacilitySection />
         <AdmissionSection />
         <BlogSection />
-        <section className="w-full bg-[#f6f8fc] px-6 py-16">
-          <div className="mx-auto max-w-5xl">
-            <p className="text-center text-[10px] font-bold uppercase tracking-[0.28em] text-[#c4a048]">
-              Help Center
-            </p>
-            <h2 className="mt-3 text-center font-[var(--font-playfair)] text-3xl font-bold text-[#10213a]">
-              Frequently Asked Questions
-            </h2>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {HOME_FAQS.map((item) => (
-                <article
-                  key={item.question}
-                  className="rounded border border-[rgba(196,160,72,0.14)] bg-white p-5"
-                >
-                  <h3 className="font-[var(--font-playfair)] text-lg font-bold text-[#10213a]">
-                    {item.question}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-[#3a5a7a]">{item.answer}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+      
       </div>
     </>
   );

@@ -36,36 +36,34 @@ export default function StudentToppers() {
 
   return (
     <>
-     
-
-      <section className="tp-root">
-        <div className="tp-inner">
-
-          <div className="tp-eyebrow">
-            <div className="tp-ey-line" />
-            <span className="tp-ey-text">Hall of Fame</span>
-            <div className="tp-ey-line rev" />
+      <section>
+        <div>
+          <div>
+            <div />
+            <span>Hall of Fame</span>
+            <div />
           </div>
-          <h2 className="tp-heading">Our Student Toppers</h2>
+          <h2>Our Student Toppers</h2>
 
           {loading ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
-              {[1, 2, 3].map(i => <div key={i} className="tp-skel" />)}
+              {[1, 2, 3].map((i) => <div key={i} />)}
             </div>
           ) : (
             <>
               {/* Podium — top 3 */}
               {top3.length > 0 && (
-                <div className="tp-podium">
+                <div>
                   {podiumOrder.map((topper) => {
                     if (!topper) return null;
                     const rank = parseInt(topper.Rank) || 1;
                     const medal = medalColors[rank] || medalColors[3];
                     const initials = topper.Student_Name?.charAt(0)?.toUpperCase() || "S";
+
                     return (
-                      <div key={topper.Id} className="tp-podium-item">
-                        <div className="tp-photo-wrap">
-                          <div className={`tp-photo-ring rank-${rank}`}>
+                      <div key={topper.Id}>
+                        <div>
+                          <div>
                             {topper.Image ? (
                               <Link href={"./student/" + topper?.Id}>
                                 <Image
@@ -73,33 +71,30 @@ export default function StudentToppers() {
                                   alt={topper.Student_Name || "Topper"}
                                   fill
                                   sizes="110px"
-                                  className="object-contain object-top"
+                                  style={{ objectFit: "contain", objectPosition: "top" }}
                                 />
                               </Link>
                             ) : (
-                              <div className="tp-avatar-placeholder">{initials}</div>
+                              <div>{initials}</div>
                             )}
                           </div>
-                          <div
-                            className="tp-rank-badge"
-                            style={{ background: medal.bg, color: medal.text }}
-                          >
+                          <div style={{ background: medal.bg, color: medal.text }}>
                             {rank}
                           </div>
                         </div>
 
-                        <div className={`tp-card rank-${rank}`}>
-                          <div className="tp-name">{topper.Student_Name}</div>
+                        <div>
+                          <div>{topper.Student_Name}</div>
                           {topper.Student_Class && (
-                            <div className="tp-class">{topper.Student_Class}</div>
+                            <div>{topper.Student_Class}</div>
                           )}
                           {topper.Marks_Percentage && (
-                            <div className="tp-score">
-                              <span className="tp-score-num">{topper.Marks_Percentage}</span>
-                              <span className="tp-score-pct">%</span>
+                            <div>
+                              <span>{topper.Marks_Percentage}</span>
+                              <span>%</span>
                             </div>
                           )}
-                          {topper.Year && <div className="tp-year">Batch {topper.Year}</div>}
+                          {topper.Year && <div>Batch {topper.Year}</div>}
                         </div>
                       </div>
                     );
@@ -109,13 +104,14 @@ export default function StudentToppers() {
 
               {/* Rest — mini cards */}
               {rest.length > 0 && (
-                <div className="tp-grid">
+                <div>
                   {rest.map((topper) => {
                     const rank = parseInt(topper.Rank) || "-";
                     const initials = topper.Student_Name?.charAt(0)?.toUpperCase() || "S";
+
                     return (
-                      <div key={topper.Id} className="tp-mini-card">
-                        <div className="tp-mini-img">
+                      <div key={topper.Id}>
+                        <div>
                           {topper.Image ? (
                             <Link href={"./student/" + topper?.Id}>
                               <Image
@@ -123,23 +119,20 @@ export default function StudentToppers() {
                                 alt={topper.Student_Name || "Topper"}
                                 fill
                                 sizes="44px"
-                                className="object-cover object-top"
+                                style={{ objectFit: "cover", objectPosition: "top" }}
                               />
                             </Link>
                           ) : (
-                            <div className="tp-mini-placeholder">{initials}</div>
+                            <div>{initials}</div>
                           )}
                         </div>
-                        <div className="tp-mini-body">
-                          <div className="tp-mini-name">{topper.Student_Name}</div>
-                          <div className="tp-mini-meta">
+                        <div>
+                          <div>{topper.Student_Name}</div>
+                          <div>
                             <span>#{rank}</span>
                             {topper.Year && <><span>·</span><span>{topper.Year}</span></>}
                           </div>
                         </div>
-                        {/* {topper.Marks_Percentage && (
-                          <div className="tp-mini-score">{topper.Marks_Percentage}%</div>
-                        )} */}
                       </div>
                     );
                   })}
@@ -147,7 +140,6 @@ export default function StudentToppers() {
               )}
             </>
           )}
-
         </div>
       </section>
     </>

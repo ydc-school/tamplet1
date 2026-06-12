@@ -46,72 +46,65 @@ export default function AdmissionSection() {
   const yearTitle = match ? match[2] : "";
 
   return (
-    <>
-     
+    <section>
+      <div>
+        {/* Eyebrow */}
+        <div>
+          <div />
+          <span>Admissions</span>
+          <div />
+        </div>
 
-      <section className="adm-root">
-        <div className="adm-inner">
+        {/* Card */}
+        <div>
+          <div />
 
-          {/* Eyebrow */}
-          <div className="adm-eyebrow">
-            <div className="adm-eyebrow-line" />
-            <span className="adm-eyebrow-text">Admissions</span>
-            <div className="adm-eyebrow-line rev" />
-          </div>
+          {/* Image */}
+          {admissionData.Image && (
+            <div>
+              <Image
+                src={`/uploads/${admissionData.Image}`}
+                alt={admissionData.Title || "Admission"}
+                fill
+                sizes="(max-width: 860px) 100vw, 860px"
+                style={{ objectFit: "cover" }}
+                priority
+              />
+              <span>Now Open</span>
+            </div>
+          )}
 
-          {/* Card */}
-          <div className="adm-card">
-            <div className="adm-card-strip" />
+          {/* Content */}
+          <div>
+            <h2>
+              {mainTitle}{" "}
+              {yearTitle && <span>{yearTitle}</span>}
+            </h2>
 
-            {/* Image */}
-            {admissionData.Image && (
-              <div className="adm-img-wrap">
-                <Image
-                  src={`/uploads/${admissionData.Image}`}
-                  alt={admissionData.Title || "Admission"}
-                  fill
-                  sizes="(max-width: 860px) 100vw, 860px"
-                  className="object-cover"
-                  priority
-                />
-                <span className="adm-badge">Now Open</span>
-              </div>
+            <div />
+
+            {admissionData.Message && (
+              <div
+                dangerouslySetInnerHTML={{ __html: admissionData.Message }}
+              />
             )}
 
-            {/* Content */}
-            <div className="adm-content">
-              <h2 className="adm-title">
-                {mainTitle}{" "}
-                {yearTitle && <span className="adm-title-year">{yearTitle}</span>}
-              </h2>
-
-              <div className="adm-divider" />
-
-              {admissionData.Message && (
-                <div
-                  className="adm-message"
-                  dangerouslySetInnerHTML={{ __html: admissionData.Message }}
-                />
-              )}
-
-              <div className="adm-cta-row">
-                {admissionData.Read_More_Url && (
-                  <Link href="https://yaduvanshigroup.edu.in/admission-Form" className="adm-cta-primary">
-                    Apply Now
-                    <svg className="adm-cta-arrow" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                )}
-                <Link href={admissionData.Read_More_Url} className="adm-cta-secondary">
-                  Learn More
+            <div>
+              {admissionData.Read_More_Url && (
+                <Link href="https://yaduvanshigroup.edu.in/admission-Form">
+                  Apply Now
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
-              </div>
+              )}
+              <Link href={admissionData.Read_More_Url}>
+                Learn More
+              </Link>
             </div>
           </div>
-
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

@@ -41,27 +41,24 @@ export default function FacilitySection() {
 
   return (
     <>
-    
-
-      <section className="fc-root">
-        <div className="fc-inner">
-
+      <section>
+        <div>
           {/* Eyebrow + heading */}
-          <div className="fc-eyebrow">
-            <div className="fc-ey-line" />
-            <span className="fc-ey-text">Campus Infrastructure</span>
-            <div className="fc-ey-line rev" />
+          <div>
+            <div />
+            <span>Campus Infrastructure</span>
+            <div />
           </div>
-          <h2 className="fc-heading">Our Facilities</h2>
-          <p className="fc-subheading">
+          <h2>Our Facilities</h2>
+          <p>
             World-class infrastructure designed to support learning, growth, and overall student well-being.
           </p>
 
           {/* Grid */}
-          <div className="fc-grid">
+          <div>
             {loading
               ? Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="fc-skel" />
+                <div key={i} />
               ))
               : facilities.map((f, idx) => (
                 <FacilityCard
@@ -72,19 +69,16 @@ export default function FacilitySection() {
                 />
               ))}
           </div>
-
         </div>
       </section>
 
       {/* Modal */}
       {selected && (
-        <div className="fc-overlay" onClick={() => setSelected(null)}>
-          <div className="fc-modal" onClick={(e) => e.stopPropagation()}>
-
+        <div onClick={() => setSelected(null)}>
+          <div onClick={(e) => e.stopPropagation()}>
             {/* Modal image */}
             {selected.Image ? (
               <Image
-                className="fc-modal-img"
                 src={`/uploads/${selected.Image}`}
                 alt={selected.Title}
                 width={900}
@@ -92,7 +86,7 @@ export default function FacilitySection() {
                 sizes="(max-width: 720px) 100vw, 680px"
               />
             ) : (
-              <div className="fc-modal-img-placeholder">
+              <div>
                 <svg width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="rgba(196,160,72,0.15)" strokeWidth={0.8}>
                   <path strokeLinecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -100,15 +94,14 @@ export default function FacilitySection() {
             )}
 
             {/* Modal header */}
-            <div className="fc-modal-header">
+            <div>
               <div>
-                <div className="fc-modal-label">
+                <div>
                   {selected.Name || "Facility Details"}
                 </div>
-                <h3 className="fc-modal-title">{selected.Title}</h3>
+                <h3>{selected.Title}</h3>
               </div>
               <button
-                className="fc-close-btn"
                 onClick={() => setSelected(null)}
                 aria-label="Close"
               >
@@ -119,20 +112,19 @@ export default function FacilitySection() {
             </div>
 
             {/* Modal body */}
-            <div className="fc-modal-body">
+            <div>
               <p>{selected.Description}</p>
             </div>
 
             {/* Modal footer */}
-            <div className="fc-modal-footer">
-              <button className="fc-close-full" onClick={() => setSelected(null)}>
+            <div>
+              <button onClick={() => setSelected(null)}>
                 Close
                 <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-
           </div>
         </div>
       )}
@@ -146,13 +138,11 @@ function FacilityCard({ facility, idx, onClick }) {
   const hasImg = facility.Image && !imgErr;
 
   return (
-    <div className="fc-card" onClick={onClick}>
-
+    <div onClick={onClick}>
       {/* Image / placeholder */}
-      <div className="fc-img-wrap">
+      <div>
         {hasImg ? (
           <Image
-            className="fc-img"
             src={`/uploads/${facility.Image}`}
             alt={facility.Title}
             width={520}
@@ -161,27 +151,27 @@ function FacilityCard({ facility, idx, onClick }) {
             onError={() => setImgErr(true)}
           />
         ) : (
-          <div className="fc-img-placeholder">
-            <svg className="fc-img-ph-icon" width="44" height="44" fill="none" viewBox="0 0 24 24" stroke="#c4a048" strokeWidth={0.9}>
+          <div>
+            <svg width="44" height="44" fill="none" viewBox="0 0 24 24" stroke="#c4a048" strokeWidth={0.9}>
               <path strokeLinecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
         )}
         {facility.Index_No > 0 && (
-          <span className="fc-index-badge">#{String(idx + 1).padStart(2, "0")}</span>
+          <span>#{String(idx + 1).padStart(2, "0")}</span>
         )}
       </div>
 
       {/* Body */}
-      <div className="fc-card-body">
+      <div>
         {facility.Name && (
-          <span className="fc-card-name">{facility.Name}</span>
+          <span>{facility.Name}</span>
         )}
-        <h3 className="fc-card-title">{facility.Title}</h3>
-        <p className="fc-card-desc">{facility.Description}</p>
+        <h3>{facility.Title}</h3>
+        <p>{facility.Description}</p>
 
-        <div className="fc-card-footer">
-          <button className="fc-view-btn" tabIndex={-1}>
+        <div>
+          <button tabIndex={-1}>
             View Details
             <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -189,7 +179,6 @@ function FacilityCard({ facility, idx, onClick }) {
           </button>
         </div>
       </div>
-
     </div>
   );
 }

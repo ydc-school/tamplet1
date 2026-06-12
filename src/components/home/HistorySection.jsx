@@ -20,7 +20,7 @@ export default function HistorySection() {
     axios
       .get("/api/client/pages/history")
       .then((res) => {
-        
+
         if (res.data.status === "success") setHistory(res.data.data);
       })
       .catch(() => { })
@@ -40,36 +40,31 @@ export default function HistorySection() {
 
   return (
     <>
-      
-
-      <section className="hs-root">
-        <div className="hs-inner">
-
+      <section>
+        <div>
           {/* Left */}
-          <div className="hs-left">
-            <div className="hs-eyebrow">
-              <span className="hs-ey-dot" />
-              <span className="hs-ey-text">Our Legacy</span>
+          <div>
+            <div>
+              <span />
+              <span>Our Legacy</span>
             </div>
-            <h2 className="hs-heading">
+            <h2>
               History of <em>Yaduvanshi</em>
             </h2>
-            <div className="hs-year-block">
-              <div className="hs-year-line" />
-              <span className="hs-year-label">Est. 1998</span>
+            <div>
+              <div />
+              <span>Est. 1998</span>
             </div>
           </div>
 
           {/* Right */}
-          <div className="hs-right">
-            <div className="hs-card">
+          <div>
+            <div>
               <div
-                className="nt-modal-body"
                 dangerouslySetInnerHTML={{ __html: history.Page_Data }}
               />
 
-
-            <Link href={historyHref} className="hs-cta">
+              <Link href={historyHref}>
                 Read More
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -77,7 +72,6 @@ export default function HistorySection() {
               </Link>
             </div>
           </div>
-
         </div>
       </section>
     </>

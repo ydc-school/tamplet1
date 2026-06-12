@@ -77,33 +77,29 @@ export default function AchievementsSection() {
 
   return (
     <>
-    
-      <section className="ach-root">
-        <div className="ach-glow" />
-        <div className="ach-inner">
-
-          <div className="ach-eyebrow">
-            <div className="ach-ey-line" />
-            <span className="ach-ey-text">By the Numbers</span>
-            <div className="ach-ey-line rev" />
+      <section>
+        <div />
+        <div>
+          <div>
+            <div />
+            <span>By the Numbers</span>
+            <div />
           </div>
-          <h2 className="ach-heading">Our Achievements</h2>
+          <h2>Our Achievements</h2>
 
-          <div className="ach-grid">
+          <div>
             {loading
-              ? [1, 2, 3, 4].map((i) => <div key={i} className="ach-skel-item" />)
+              ? [1, 2, 3, 4].map((i) => <div key={i} />)
               : stats.map((item, i) => (
-                  <StatItem
-                    key={i}
-                    number={item.number}
-                    suffix={item.suffix}
-                    label={item.label}
-                    delay={i * 120}
-                  />
-                ))
-            }
+                <StatItem
+                  key={i}
+                  number={item.number}
+                  suffix={item.suffix}
+                  label={item.label}
+                  delay={i * 120}
+                />
+              ))}
           </div>
-
         </div>
       </section>
     </>

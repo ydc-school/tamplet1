@@ -50,22 +50,22 @@ export default function DynamicPage({ params: paramsPromise }) {
   const jsonLd =
     !loading && !error && pageData
       ? {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: pageData.Name?.replace(/-/g, " ") || "Page",
-          description: pageData.Page_Data
-            ? pageData.Page_Data.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
-            : "",
-          url:
-            typeof window !== "undefined"
-              ? window.location.href
-              : `https://yaduvanshigroup.edu.in/pages/${name}/${id}`,
-          publisher: {
-            "@type": "Organization",
-            name: "Yaduvanshi Group",
-            url: "https://yaduvanshigroup.edu.in",
-          },
-        }
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: pageData.Name?.replace(/-/g, " ") || "Page",
+        description: pageData.Page_Data
+          ? pageData.Page_Data.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
+          : "",
+        url:
+          typeof window !== "undefined"
+            ? window.location.href
+            : `https://yaduvanshigroup.edu.in/pages/${name}/${id}`,
+        publisher: {
+          "@type": "Organization",
+          name: "Yaduvanshi Group",
+          url: "https://yaduvanshigroup.edu.in",
+        },
+      }
       : null;
 
   return (
@@ -80,26 +80,26 @@ export default function DynamicPage({ params: paramsPromise }) {
         />
       )}
 
-    
 
-      <div className="dp-root">
+
+      <div>
         {/* Loading */}
         {loading && (
-          <div className="dp-state">
-            <div className="dp-state-box">
-              <div className="dp-spinner" />
-              <p className="dp-state-label">Loading page...</p>
+          <div>
+            <div>
+              <div />
+              <p>Loading page...</p>
             </div>
           </div>
         )}
 
         {/* Error */}
         {!loading && error && (
-          <div className="dp-state">
-            <div className="dp-state-box">
-              <h2 className="dp-err-title">Something went wrong</h2>
-              <p className="dp-err-msg">{error}</p>
-              <button className="dp-retry-btn" onClick={() => window.location.reload()}>
+          <div>
+            <div>
+              <h2>Something went wrong</h2>
+              <p>{error}</p>
+              <button onClick={() => window.location.reload()}>
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
@@ -112,31 +112,29 @@ export default function DynamicPage({ params: paramsPromise }) {
         {/* Content */}
         {!loading && !error && pageData && (
           <>
-            {/* Hero — h1 is the main on-page heading for SEO */}
-            <div className="dp-hero">
-              <div className="dp-hero-inner">
-                <button className="dp-back" onClick={() => router.back()}>
-                  <svg className="dp-back-arr" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            {/* Hero */}
+            <div>
+              <div>
+                <button onClick={() => router.back()}>
+                  <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                   </svg>
                   Back
                 </button>
-                <div className="dp-eyebrow">
-                  <span className="dp-ey-dot" />
-                  <span className="dp-ey-text">Page</span>
+                <div>
+                  <span />
+                  <span>Page</span>
                 </div>
-                {/* h1 — important for on-page SEO */}
-                <h1 className="dp-title">
+                <h1>
                   {pageData.Name.replace(/-/g, " ")}
                 </h1>
               </div>
             </div>
 
             {/* Body */}
-            <div className="dp-content-wrap">
-              <div className="dp-content-card">
+            <div>
+              <div>
                 <div
-                  className="dp-prose"
                   dangerouslySetInnerHTML={{ __html: pageData.Page_Data }}
                 />
               </div>
