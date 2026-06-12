@@ -7,9 +7,9 @@ export default function MainLayout({ children }) {
     <>
       <main className="overflow-hidden">
         <Navbar />
-        {/* <div className="w-full ">
+        <div className="w-full ">
           {children}
-        </div> */}
+        </div>
         <Footer />
       </main>
     </>

@@ -19,7 +19,6 @@ export default function Footer() {
   useEffect(() => {
     axios.get("/api/client/quick-link")
       .then((res) => {
-        // Safely access deeply nested data with optional chaining and a fallback array
         setQuickLinks(res?.data?.data?.data || []);
       })
       .catch((err) => {
@@ -52,151 +51,214 @@ export default function Footer() {
   const instagramUrl = schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
   const twitterUrl = schoolInfo?.Twitter_Url ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
 
+  // Helper for link items (handles different possible field names from API)
+  const getLinkLabel = (link) => link?.Name ?? link?.name ?? link?.Title ?? link?.title ?? "Link";
+  const getLinkUrl = (link) => link?.Url ?? link?.url ?? link?.Link ?? "#";
+  const getLinkKey = (link, idx) => link?.Id ?? link?.id ?? `${getLinkLabel(link)}-${idx}`;
+
   return (
-    <>
+    <footer className="bg-[#01327F] text-white">
+      {/* Decorative top divider */}
+      <div className="flex items-center justify-center gap-4 py-4">
+        <div className="h-px flex-1 max-w-[200px] bg-white/15" />
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24" className="text-amber-400 shrink-0">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <div className="h-px flex-1 max-w-[200px] bg-white/15" />
+      </div>
 
+      {/* Main grid */}
+      <div className="max-w-7xl mx-auto px-4 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* Brand */}
+        <div className="flex flex-col gap-4 lg:col-span-1">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="shrink-0">
+              <Image
+                src={logoSrc}
+                alt={`${schoolName} Logo`}
+                width={64}
+                height={64}
+                style={{ objectFit: "contain" }}
+                onError={handleLogoError}
+                unoptimized
+                className="h-14 w-14 object-contain"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-lg leading-tight">
+                {loading ? "Loading…" : schoolName}
+              </span>
+              <span className="text-blue-200 text-xs leading-tight">
+                {loading ? "" : shortName}
+              </span>
+            </div>
+          </Link>
 
-      <footer>
-        {/* Decorative top divider */}
-        <div>
-          <div />
-          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
-          <div />
+          <p className="text-sm text-blue-100/80 leading-relaxed">{schoolMotto}</p>
+
+          <div className="flex items-center gap-3 pt-1">
+            <a
+              href={youtubeUrl}
+              target="_blank"
+              rel="noreferrer"
+              title="YouTube"
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#01327F] transition-colors"
+            >
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z" />
+              </svg>
+            </a>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              title="Instagram"
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#01327F] transition-colors"
+            >
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5 1.2-.1 1.6-.1 4.7-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z" />
+              </svg>
+            </a>
+            <a
+              href={twitterUrl}
+              target="_blank"
+              rel="noreferrer"
+              title="Twitter"
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#01327F] transition-colors"
+            >
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.25.2 2.25.2v2.47H15.2c-1.25 0-1.64.78-1.64 1.58v1.88h2.8l-.45 2.9h-2.35V22c4.78-.75 8.44-4.91 8.44-9.93z" />
+              </svg>
+            </a>
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              title="LinkedIn"
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#01327F] transition-colors"
+            >
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM3.56 20.45h3.57V9H3.56v11.45zM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z" />
+              </svg>
+            </a>
+          </div>
         </div>
 
-        <div>
-          {/* Brand */}
-          <div>
-            <Link href="/">
-              <div>
-                <Image
-                  src={logoSrc}
-                  alt={`${schoolName} Logo`}
-                  width={500}
-                  height={50}
-                  style={{ objectFit: "contain" }}
-                  onError={handleLogoError}
-                  unoptimized
-                />
-              </div>
-              <div>
-                <div>{loading ? "Loading…" : schoolName}</div>
-                <div>{loading ? "" : shortName}</div>
-              </div>
-            </Link>
+        {/* Useful Links */}
+        <div className="flex flex-col gap-3">
+          <h3 className="flex items-center gap-2 font-semibold text-base tracking-wide">
+            <span className="h-4 w-1 bg-amber-400 rounded-full" />
+            Useful Links
+          </h3>
+          <ul className="flex flex-col gap-2">
+            {useFullLinks.map((link, idx) => (
+              <li key={getLinkKey(link, idx)}>
+                <Link
+                  href={getLinkUrl(link)}
+                  className="text-sm text-blue-100/80 hover:text-amber-400 transition-colors"
+                >
+                  {getLinkLabel(link)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            <p>{schoolMotto}</p>
+        {/* Quick Links */}
+        <div className="flex flex-col gap-3">
+          <h3 className="flex items-center gap-2 font-semibold text-base tracking-wide">
+            <span className="h-4 w-1 bg-amber-400 rounded-full" />
+            Quick Links
+          </h3>
+          <ul className="flex flex-col gap-2">
+            {quickLinks.map((link, idx) => (
+              <li key={getLinkKey(link, idx)}>
+                <Link
+                  href={getLinkUrl(link)}
+                  className="text-sm text-blue-100/80 hover:text-amber-400 transition-colors"
+                >
+                  {getLinkLabel(link)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            <div>
-              <a href={youtubeUrl} target="_blank" rel="noreferrer" title="YouTube">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z" />
+        {/* Contact */}
+        <div className="flex flex-col gap-3">
+          <h3 className="flex items-center gap-2 font-semibold text-base tracking-wide">
+            <span className="h-4 w-1 bg-amber-400 rounded-full" />
+            Contact Us
+          </h3>
+          <div className="flex flex-col gap-3 text-sm text-blue-100/80">
+            <div className="flex items-start gap-3">
+              <div className="shrink-0 mt-0.5 text-amber-400">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-              </a>
-              <a href={instagramUrl} target="_blank" rel="noreferrer" title="Instagram">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5 1.2-.1 1.6-.1 4.7-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z" />
-                </svg>
-              </a>
-              <a href={twitterUrl} target="_blank" rel="noreferrer" title="Twitter">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.25.2 2.25.2v2.47H15.2c-1.25 0-1.64.78-1.64 1.58v1.88h2.8l-.45 2.9h-2.35V22c4.78-.75 8.44-4.91 8.44-9.93z" />
-                </svg>
-              </a>
-              <a href={linkedinUrl} target="_blank" rel="noreferrer" title="LinkedIn">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM3.56 20.45h3.57V9H3.56v11.45zM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z" />
-                </svg>
-              </a>
+              </div>
+              <span style={{ lineHeight: "1.5" }}>{address}</span>
             </div>
-          </div>
 
-          {/* Useful Links */}
-          <div>
-            <h3><span></span>Useful Links</h3>
-            <ul>
-              {useFullLinks.map((link) => (
-                <li key={link.Id}>
-                  <Link href={link.Url || "#"}>{link.Name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3><span></span>Quick Links</h3>
-            <ul>
-              {quickLinks.map((link) => (
-                <li key={link.Id}>
-                  <Link href={link.Url || "#"}>{link.Name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3><span></span>Contact Us</h3>
-            <div>
-              <div>
-                <div>
-                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <span style={{ lineHeight: "1.5" }}>{address}</span>
+            <a href={`mailto:${email}`} className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+              <div className="shrink-0 text-amber-400">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
               </div>
+              {email}
+            </a>
 
-              <a href={`mailto:${email}`}>
-                <div>
+            <div className="flex items-center gap-3 flex-wrap">
+              <a href={`tel:${phone}`} className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+                <div className="shrink-0 text-amber-400">
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                {email}
+                {phone}
               </a>
-
-              <div>
-                <a href={`tel:${phone}`}>
-                  <div>
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  {phone}
+              {phone2 && (
+                <a href={`tel:${phone2}`} className="hover:text-amber-400 transition-colors">
+                  | &nbsp; {phone2}
                 </a>
-                {phone2 && (
-                  <a href={`tel:${phone2}`}> | &nbsp; {phone2}</a>
-                )}
+              )}
+            </div>
+
+            <a
+              href={`http://${website}`}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-3 hover:text-amber-400 transition-colors"
+            >
+              <div className="shrink-0 text-amber-400">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
               </div>
-
-              <a href={`http://${website}`} target="_blank" rel="noreferrer">
-                <div>
-                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                  </svg>
-                </div>
-                {website}
-              </a>
-            </div>
+              {website}
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div>
-          <div>
-            <p>© {new Date().getFullYear()} {loading ? "Yaduvanshi" : schoolName}. All Rights Reserved.</p>
-            <div>
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms">Terms &amp; Conditions</Link>
-            </div>
+      {/* Bottom bar */}
+      <div className="bg-[#02418f]">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-100/80 text-center sm:text-left">
+          <p>
+            © {new Date().getFullYear()} {loading ? "Yaduvanshi" : schoolName}. All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-amber-400 transition-colors">
+              Terms &amp; Conditions
+            </Link>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 }
