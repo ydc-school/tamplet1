@@ -48,7 +48,11 @@ export default function Navbar() {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
@@ -59,11 +63,9 @@ export default function Navbar() {
 
       {/* Header Branding */}
       <div className="bg-white border-b border-gray-100 lg:border-none">
-        {/* flex-col se sm:flex-row kiya taaki mobile par vertical ho jaye aur space bache */}
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
           <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
-            {/* Logo sizes adjusted for absolute fluid responsiveness */}
-            <div className="w-[250px] h-[60px] sm:w-[194px] sm:h-[54px] flex items-center justify-center relative transition-transform duration-300 group-hover:scale-[1.02]">
+            <div className="w-[150px] h-[45px] sm:w-[194px] sm:h-[54px] flex items-center justify-center relative transition-transform duration-300 group-hover:scale-[1.02]">
               <Image src={logoSrc} alt={schoolName} fill className="object-contain" onError={handleLogoError} unoptimized priority />
             </div>
             <div className="hidden xs:block sm:block">
@@ -80,9 +82,8 @@ export default function Navbar() {
               )}
             </div>
           </Link>
-          {/* Banner hides or resizes beautifully on small screens */}
           <div className="relative transition-transform duration-300 hover:scale-[1.01] w-full sm:w-auto flex justify-center sm:justify-end">
-            <Image src="/poster/31y.png" alt="Admission Banner" width={180} height={55} className="object-contain max-h-[82px] sm:max-h-[55px] rounded-xl" priority />
+            <Image src="/poster/31y.png" alt="Admission Banner" width={180} height={55} className="object-contain max-h-[45px] sm:max-h-[55px] rounded-xl" priority />
           </div>
         </div>
       </div>
@@ -91,7 +92,6 @@ export default function Navbar() {
       <nav className={`sticky top-0 z-[999] w-full transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-md text-[#01327F]" : "bg-[#01327F] text-white"}`}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-[56px] sm:h-[64px] flex items-center justify-between">
           
-          {/* Logo element visible ONLY on scrolled state in desktop view if needed, but keeping your original design simple */}
           <span className="lg:hidden font-bold text-sm tracking-wider uppercase">
             {scrolled ? <span className="text-[#01327F]">Menu</span> : <span className="text-white">Menu</span>}
           </span>
@@ -117,7 +117,6 @@ export default function Navbar() {
                     <ChevronDown className={`w-4 h-4 transition-transform duration-300 group-hover:rotate-180 ${scrolled ? "text-amber-500" : "text-amber-400"}`} />
                   </button>
                   
-                  {/* Dropdown Menu */}
                   <div className="absolute top-full left-0 hidden group-hover:block w-60 bg-white rounded-b-2xl shadow-xl p-2 z-[1000]">
                     <div className="bg-white rounded-xl p-1.5 overflow-hidden border border-gray-100">
                       {cat?.pages?.map((p) => (
@@ -134,7 +133,6 @@ export default function Navbar() {
 
           {/* CTA & Mobile trigger arrangement */}
           <div className="flex items-center gap-4">
-            {/* Desktop CTA */}
             <Link href="/admission-form" className={`hidden lg:flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 ${scrolled ? "bg-[#01327F] text-white hover:bg-amber-500 hover:text-[#01327F]" : "bg-amber-400 text-[#01327F] hover:bg-amber-500"}`}>
               Student Admission &rarr;
             </Link>
@@ -147,9 +145,19 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Drawer Panel - Fullscreen logic fixed */}
-      <div className={`lg:hidden fixed inset-0 top-[calc(56px+4px)] sm:top-[calc(64px+4px)] z-[998] bg-white transition-transform duration-300 ease-in-out transform ${open ? "translate-x-0" : "translate-x-full"} overflow-y-auto ${scrolled ? 'top-[56px] sm:top-[64px]' : ''}`}>
-        <div className="flex flex-col p-4 sm:p-6 gap-2 bg-[#01327F]/[0.02] min-h-full pb-24">
+      {/* FIXED MOBILE DRAWER PANEL - Pure screen-height based overlay */}
+      <div className={`lg:hidden fixed inset-0 z-[1001] bg-white transition-all duration-300 ease-in-out ${open ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full"}`}>
+        
+        {/* Mobile Menu Header inside Drawer */}
+        <div className="flex items-center justify-between px-4 h-[56px] border-b border-gray-100 bg-[#01327F] text-white">
+          <span className="font-bold text-sm tracking-wider uppercase">Navigation Menu</span>
+          <button onClick={() => setOpen(false)} className="p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all text-white">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Scrollable Container */}
+        <div className="overflow-y-auto h-[calc(100vh-56px)] bg-[#01327F]/[0.02] p-4 flex flex-col gap-2 pb-28">
           <Link href="/" onClick={() => setOpen(false)} className="py-3.5 px-4 text-sm font-bold tracking-wide text-[#01327F] hover:bg-[#01327F]/[0.04] rounded-xl transition-all duration-200">
             Home
           </Link>
@@ -168,7 +176,7 @@ export default function Navbar() {
                 </button>
                 
                 {openCategory === cat?.Id && (
-                  <div className="bg-[#01327F]/[0.02] px-2 pb-2 pt-1 space-y-1 entry-animation">
+                  <div className="bg-[#01327F]/[0.02] px-2 pb-2 pt-1 space-y-1">
                     {cat?.pages?.map((p) => (
                       <Link key={p?.Id} href={`/pages/${slugify(p?.Name ?? "")}/${p?.Id}`} onClick={() => setOpen(false)} className="block py-3 px-6 text-[13px] font-semibold text-[#01327F]/80 hover:text-amber-500 transition-all duration-200 capitalize rounded-xl">
                         {p?.Name}
