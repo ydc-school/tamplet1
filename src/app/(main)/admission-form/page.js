@@ -3,7 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useSchool } from "@/context/SchoolContext";
 
-
 export default function AdmissionForm() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -11,14 +10,12 @@ export default function AdmissionForm() {
   const [error, setError] = useState(null);
   const { schoolInfo } = useSchool();
 
-  // 1. Unified state keys to perfectly match the JSX input 'name' attributes
   const [formData, setFormData] = useState({
     fullName: "",
     fathersName: "",
     mothersName: "",
     email: "",
     phone: "",
-    Branch_Id: schoolInfo?.Branch_Id, // Enabled and matched here
     classGrade: "",
     dob: "",
     gender: "",
@@ -34,23 +31,15 @@ export default function AdmissionForm() {
   };
 
   const nextStep = () => setStep((s) => Math.min(s + 1, 3));
-  const prevStep = () => {
-    setStep((s) => Math.max(s - 1, 1));
-    setError(null);
-  };
+  const prevStep = () => { setStep((s) => Math.max(s - 1, 1)); setError(null); };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (step < 3) {
-      nextStep();
-      return;
-    }
+    if (step < 3) { nextStep(); return; }
 
     setLoading(true);
     setError(null);
 
-    // 2. Map the camelCase state back to the Pascal/Snake case format your API expects
     const apiPayload = {
       Name: formData.fullName,
       Father_Name: formData.fathersName,
@@ -70,170 +59,104 @@ export default function AdmissionForm() {
     try {
       const response = await axios.post("/api/client/admission", apiPayload, {
         withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
 
-      if (response.data.status === "success") {
-        setSuccess(true);
-      } else {
-        setError(response.data.message || "Failed to submit admission details.");
-      }
+      if (response.data.status === "success") setSuccess(true);
+      else setError(response.data.message || "Failed to submit.");
     } catch (err) {
-      console.error("API Error:", err);
-      setError(
-        err.response?.data?.message ||
-        "Network error occurred. Please try again later."
-      );
+      setError(err.response?.data?.message || "Network error occurred.");
     } finally {
       setLoading(false);
     }
   };
 
+  const inputClass = "w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-[#c4a048]/50 focus:border-[#c4a048] outline-none transition-all text-sm";
+  const labelClass = "block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5";
+
   return (
-    <>
-
-      <div>
-        <div>
-          <div>
-            <h1>Student Admission Form</h1>
-            <p>Please enter accurate details to register your student profile.</p>
-          </div>
-
-          {!success ? (
-            <form onSubmit={handleSubmit}>
-              {/* Progress Steps */}
-              <div>
-                <div style={{ fontWeight: step === 1 ? "bold" : "normal" }}>
-                  <span>1</span> Basic Info
-                </div>
-                <div style={{ fontWeight: step === 2 ? "bold" : "normal" }}>
-                  <span>2</span> Academic & Path
-                </div>
-                <div style={{ fontWeight: step === 3 ? "bold" : "normal" }}>
-                  <span>3</span> Address & Meta
-                </div>
-              </div>
-
-              <div>
-                {/* ── STEP 1: Personal Details ── */}
-                {step === 1 && (
-                  <div>
-                    <div>
-                      <label>Full Name *</label>
-                      <input type="text" name="fullName" required placeholder="Enter student's full name" value={formData.fullName} onChange={handleChange} />
-                    </div>
-                    <div>
-                      <label>Father's Name *</label>
-                      <input type="text" name="fathersName" required placeholder="Enter father's name" value={formData.fathersName} onChange={handleChange} />
-                    </div>
-                    <div>
-                      <label>Mother's Name *</label>
-                      <input type="text" name="mothersName" required placeholder="Enter mother's name" value={formData.mothersName} onChange={handleChange} />
-                    </div>
-                    <div>
-                      <div>
-                        <label>Email Address *</label>
-                        <input type="email" name="email" required placeholder="name@example.com" value={formData.email} onChange={handleChange} />
-                      </div>
-                      <div>
-                        <label>Phone Number *</label>
-                        <input type="tel" name="phone" required placeholder="10-digit mobile number" value={formData.phone} onChange={handleChange} />
-                      </div>
-                    </div>
+    <div className="max-w-2xl mx-auto py-12 px-6">
+      <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+        {!success ? (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-8">
+              <h1 className="text-2xl font-black text-[#10213a] mb-2">Student Admission</h1>
+              <p className="text-slate-600 text-sm">Fill in the student details to begin the registration process.</p>
+              
+              {/* Progress Indicator */}
+              <div className="flex justify-between mt-6 relative">
+                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -z-10" />
+                {[1, 2, 3].map((s) => (
+                  <div key={s} className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ${step >= s ? "bg-[#c4a048] text-white" : "bg-slate-100 text-slate-400"}`}>
+                    {s}
                   </div>
-                )}
-
-                {/* ── STEP 2: Academic & Gender ── */}
-                {step === 2 && (
-                  <div>
-                    <div>
-                      <label>Class / Grade *</label>
-                      <input type="text" name="classGrade" required placeholder="e.g. Grade 10, Freshman" value={formData.classGrade} onChange={handleChange} />
-                    </div>
-                    <div>
-                      <div>
-                        <label>Date of Birth *</label>
-                        <input type="date" name="dob" required value={formData.dob} onChange={handleChange} />
-                      </div>
-                      <div>
-                        <label>Admission Date *</label>
-                        <input type="date" name="admissionDate" required value={formData.admissionDate} onChange={handleChange} />
-                      </div>
-                    </div>
-                    <div>
-                      <label>Gender *</label>
-                      <div>
-                        <label>
-                          <input type="radio" name="gender" value="Male" checked={formData.gender === "Male"} required onChange={handleChange} />
-                          Male
-                        </label>
-                        <label>
-                          <input type="radio" name="gender" value="Female" checked={formData.gender === "Female"} onChange={handleChange} />
-                          Female
-                        </label>
-                        <label>
-                          <input type="radio" name="gender" value="Other" checked={formData.gender === "Other"} onChange={handleChange} />
-                          Other
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ── STEP 3: Location & Additional Meta ── */}
-                {step === 3 && (
-                  <div>
-                    <div>
-                      <div>
-                        <label>City *</label>
-                        <input type="text" name="city" required placeholder="e.g. Mumbai" value={formData.city} onChange={handleChange} />
-                      </div>
-                      <div>
-                        <label>State *</label>
-                        <input type="text" name="state" required placeholder="e.g. Maharashtra" value={formData.state} onChange={handleChange} />
-                      </div>
-                    </div>
-                    <div>
-                      <label>Additional Information (Optional)</label>
-                      <textarea name="additionalInfo" placeholder="Provide extra background or medical information if needed..." value={formData.additionalInfo} onChange={handleChange} />
-                    </div>
-                  </div>
-                )}
-
-                {/* ── Error Display ── */}
-                {error && <div>{error}</div>}
-
-                {/* ── Footer Navigation Controls ── */}
-                <div>
-                  {step > 1 && (
-                    <button type="button" onClick={prevStep}>
-                      Back
-                    </button>
-                  )}
-                  <button type="submit" disabled={loading}>
-                    {loading ? "Submitting..." : step === 3 ? "Submit Admission" : "Next"}
-                  </button>
-                </div>
+                ))}
               </div>
-            </form>
-          ) : (
-            /* ── Final Submission Success Layout ── */
-            <div>
-              <div>
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h2>Admission Form Submitted</h2>
-              <p style={{ maxWidth: "420px", lineHeight: "1.6" }}>
-                Success! The profile for student <strong>{formData.fullName}</strong> has been successfully configured into the system pipeline.
-              </p>
             </div>
-          )}
-        </div>
+
+            <div className="space-y-6">
+              {step === 1 && (
+                <div className="space-y-4">
+                  <div><label className={labelClass}>Full Name *</label><input type="text" name="fullName" required className={inputClass} value={formData.fullName} onChange={handleChange} /></div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div><label className={labelClass}>Father's Name *</label><input type="text" name="fathersName" required className={inputClass} value={formData.fathersName} onChange={handleChange} /></div>
+                    <div><label className={labelClass}>Mother's Name *</label><input type="text" name="mothersName" required className={inputClass} value={formData.mothersName} onChange={handleChange} /></div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div><label className={labelClass}>Email *</label><input type="email" name="email" required className={inputClass} value={formData.email} onChange={handleChange} /></div>
+                    <div><label className={labelClass}>Phone *</label><input type="tel" name="phone" required className={inputClass} value={formData.phone} onChange={handleChange} /></div>
+                  </div>
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="space-y-4">
+                  <div><label className={labelClass}>Class / Grade *</label><input type="text" name="classGrade" required className={inputClass} value={formData.classGrade} onChange={handleChange} /></div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div><label className={labelClass}>Date of Birth *</label><input type="date" name="dob" required className={inputClass} value={formData.dob} onChange={handleChange} /></div>
+                    <div><label className={labelClass}>Admission Date *</label><input type="date" name="admissionDate" required className={inputClass} value={formData.admissionDate} onChange={handleChange} /></div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Gender *</label>
+                    <div className="flex gap-6 mt-2">
+                      {["Male", "Female", "Other"].map((g) => (
+                        <label key={g} className="flex items-center gap-2 cursor-pointer text-sm font-medium"><input type="radio" name="gender" value={g} checked={formData.gender === g} onChange={handleChange} /> {g}</label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div><label className={labelClass}>City *</label><input type="text" name="city" required className={inputClass} value={formData.city} onChange={handleChange} /></div>
+                    <div><label className={labelClass}>State *</label><input type="text" name="state" required className={inputClass} value={formData.state} onChange={handleChange} /></div>
+                  </div>
+                  <div><label className={labelClass}>Additional Info</label><textarea name="additionalInfo" className={`${inputClass} h-32`} value={formData.additionalInfo} onChange={handleChange} /></div>
+                </div>
+              )}
+            </div>
+
+            {error && <p className="mt-4 text-red-500 text-xs font-bold">{error}</p>}
+
+            <div className="flex justify-between mt-8">
+              {step > 1 && <button type="button" onClick={prevStep} className="px-6 py-2.5 text-slate-500 font-bold text-sm">Back</button>}
+              <button type="submit" disabled={loading} className="ml-auto bg-[#c4a048] text-white px-8 py-2.5 rounded-lg font-bold text-sm hover:bg-[#b08e3d] transition-all disabled:opacity-50">
+                {loading ? "Submitting..." : step === 3 ? "Submit" : "Next Step"}
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="text-center py-12">
+            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h2 className="text-xl font-black text-slate-800">Form Submitted!</h2>
+            <p className="text-slate-500 mt-2 text-sm">Student <strong>{formData.fullName}</strong> is now in our registry.</p>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
