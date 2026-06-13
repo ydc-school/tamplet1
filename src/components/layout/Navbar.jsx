@@ -58,36 +58,44 @@ export default function Navbar() {
       <div className="h-[4px] bg-amber-400 w-full" />
 
       {/* Header Branding */}
-      <div className="bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
-          <Link href="/" className="flex items-center gap-4 group">
-            <div className="w-[194px] h-[54px] flex items-center justify-center relative transition-transform duration-300 group-hover:scale-[1.02]">
-              <Image src={logoSrc} alt={schoolName} width={194} height={54} className="object-contain" onError={handleLogoError} unoptimized priority />
+      <div className="bg-white border-b border-gray-100 lg:border-none">
+        {/* flex-col se sm:flex-row kiya taaki mobile par vertical ho jaye aur space bache */}
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+          <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
+            {/* Logo sizes adjusted for absolute fluid responsiveness */}
+            <div className="w-[150px] h-[45px] sm:w-[194px] sm:h-[54px] flex items-center justify-center relative transition-transform duration-300 group-hover:scale-[1.02]">
+              <Image src={logoSrc} alt={schoolName} fill className="object-contain" onError={handleLogoError} unoptimized priority />
             </div>
-            <div className="hidden sm:block">
+            <div className="hidden xs:block sm:block">
               {schoolLoading ? (
                 <div className="space-y-2">
-                  <div className="h-5 w-48 bg-[#01327F]/10 animate-pulse rounded-md" />
-                  <div className="h-3 w-24 bg-amber-400/20 animate-pulse rounded-md" />
+                  <div className="h-5 w-36 sm:w-48 bg-[#01327F]/10 animate-pulse rounded-md" />
+                  <div className="h-3 w-20 sm:w-24 bg-amber-400/20 animate-pulse rounded-md" />
                 </div>
               ) : (
                 <>
-                  <h1 className="text-lg md:text-xl font-bold text-[#01327F] leading-tight tracking-tight transition-colors duration-300 group-hover:text-amber-500">{schoolName}</h1>
-                  <p className="text-xs font-bold tracking-[0.25em] text-amber-500 uppercase mt-0.5">{shortName}</p>
+                  <h1 className="text-base sm:text-lg md:text-xl font-bold text-[#01327F] leading-tight tracking-tight transition-colors duration-300 group-hover:text-amber-500">{schoolName}</h1>
+                  <p className="text-[10px] sm:text-xs font-bold tracking-[0.25em] text-amber-500 uppercase mt-0.5">{shortName}</p>
                 </>
               )}
             </div>
           </Link>
-          <div className="relative transition-transform duration-300 hover:scale-[1.01]">
-            <Image src="/poster/31y.png" alt="Admission Banner" width={180} height={55} className="object-contain max-h-[55px] rounded-xl" priority />
+          {/* Banner hides or resizes beautifully on small screens */}
+          <div className="relative transition-transform duration-300 hover:scale-[1.01] w-full sm:w-auto flex justify-center sm:justify-end">
+            <Image src="/poster/31y.png" alt="Admission Banner" width={180} height={55} className="object-contain max-h-[45px] sm:max-h-[55px] rounded-xl" priority />
           </div>
         </div>
       </div>
 
-      {/* Main Nav */}
-      <nav className={`sticky top-0 z-[999] w-full transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md bg-[#01327F]/[0.02]" : "bg-[#01327F]"}`}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-[64px] flex items-center justify-between">
+      {/* Main Nav Navigation */}
+      <nav className={`sticky top-0 z-[999] w-full transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-md text-[#01327F]" : "bg-[#01327F] text-white"}`}>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-[56px] sm:h-[64px] flex items-center justify-between">
           
+          {/* Logo element visible ONLY on scrolled state in desktop view if needed, but keeping your original design simple */}
+          <span className="lg:hidden font-bold text-sm tracking-wider uppercase">
+            {scrolled ? <span className="text-[#01327F]">Menu</span> : <span className="text-white">Menu</span>}
+          </span>
+
           {/* Desktop Links */}
           <ul className="hidden lg:flex items-center h-full gap-1">
             <li>
@@ -98,9 +106,8 @@ export default function Navbar() {
 
             {loadingPages ? (
               <div className="flex items-center gap-4 px-4">
-                <div className="h-4 w-16 bg-white/20 animate-pulse rounded-full" />
-                <div className="h-4 w-20 bg-white/20 animate-pulse rounded-full" />
-                <div className="h-4 w-16 bg-white/20 animate-pulse rounded-full" />
+                <div className="h-4 w-16 bg-current opacity-20 animate-pulse rounded-full" />
+                <div className="h-4 w-20 bg-current opacity-20 animate-pulse rounded-full" />
               </div>
             ) : (
               categories?.map((cat) => (
@@ -111,8 +118,8 @@ export default function Navbar() {
                   </button>
                   
                   {/* Dropdown Menu */}
-                  <div className="absolute top-full left-0 hidden group-hover:block w-60 bg-white rounded-b-2xl transition-all duration-300 p-2 text-[#01327F]/10">
-                    <div className="bg-white rounded-xl p-1.5 overflow-hidden">
+                  <div className="absolute top-full left-0 hidden group-hover:block w-60 bg-white rounded-b-2xl shadow-xl p-2 z-[1000]">
+                    <div className="bg-white rounded-xl p-1.5 overflow-hidden border border-gray-100">
                       {cat?.pages?.map((p) => (
                         <Link key={p?.Id} href={`/pages/${slugify(p?.Name ?? "")}/${p?.Id}`} className="block px-4 py-3 text-[13.5px] font-medium text-[#01327F] hover:bg-[#01327F]/[0.04] hover:text-amber-500 rounded-xl transition-all duration-200 capitalize">
                           {p?.Name}
@@ -126,23 +133,23 @@ export default function Navbar() {
           </ul>
 
           {/* CTA & Mobile trigger arrangement */}
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-4">
             {/* Desktop CTA */}
             <Link href="/admission-form" className={`hidden lg:flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 ${scrolled ? "bg-[#01327F] text-white hover:bg-amber-500 hover:text-[#01327F]" : "bg-amber-400 text-[#01327F] hover:bg-amber-500"}`}>
               Student Admission &rarr;
             </Link>
 
             {/* Mobile Toggle Button */}
-            <button className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${scrolled ? "bg-[#01327F]/5 text-[#01327F] hover:bg-[#01327F]/10" : "bg-white/10 text-white hover:bg-white/20"}`} onClick={() => setOpen(!open)} aria-label="Toggle navigation menu">
+            <button className={`lg:hidden p-2 rounded-xl transition-all duration-300 ${scrolled ? "bg-[#01327F]/5 text-[#01327F] hover:bg-[#01327F]/10" : "bg-white/10 text-white hover:bg-white/20"}`} onClick={() => setOpen(!open)} aria-label="Toggle navigation menu">
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Drawer Panel */}
-      <div className={`lg:hidden fixed inset-x-0 bottom-0 top-[128px] z-[998] bg-white transition-transform duration-300 ease-in-out transform ${open ? "translate-x-0" : "translate-x-full"} overflow-y-auto`}>
-        <div className="flex flex-col p-6 gap-2 bg-[#01327F]/[0.02] min-h-full">
+      {/* Mobile Drawer Panel - Fullscreen logic fixed */}
+      <div className={`lg:hidden fixed inset-0 top-[calc(56px+4px)] sm:top-[calc(64px+4px)] z-[998] bg-white transition-transform duration-300 ease-in-out transform ${open ? "translate-x-0" : "translate-x-full"} overflow-y-auto ${scrolled ? 'top-[56px] sm:top-[64px]' : ''}`}>
+        <div className="flex flex-col p-4 sm:p-6 gap-2 bg-[#01327F]/[0.02] min-h-full pb-24">
           <Link href="/" onClick={() => setOpen(false)} className="py-3.5 px-4 text-sm font-bold tracking-wide text-[#01327F] hover:bg-[#01327F]/[0.04] rounded-xl transition-all duration-200">
             Home
           </Link>
@@ -151,18 +158,17 @@ export default function Navbar() {
             <div className="space-y-4 px-4 py-3">
               <div className="h-5 w-full bg-[#01327F]/5 animate-pulse rounded-lg" />
               <div className="h-5 w-full bg-[#01327F]/5 animate-pulse rounded-lg" />
-              <div className="h-5 w-full bg-[#01327F]/5 animate-pulse rounded-lg" />
             </div>
           ) : (
             categories?.map((cat) => (
-              <div key={cat?.Id} className="bg-white rounded-2xl overflow-hidden transition-all">
-                <button onClick={() => setOpenCategory(openCategory === cat?.Id ? null : cat?.Id)} className="w-full flex justify-between items-center py-3.5 px-4 text-sm font-bold tracking-wide text-[#01327F] hover:bg-[#01327F]/[0.02] transition-all duration-200">
+              <div key={cat?.Id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100/50">
+                <button onClick={() => setOpenCategory(openCategory === cat?.Id ? null : cat?.Id)} className="w-full flex justify-between items-center py-3.5 px-4 text-sm font-bold tracking-wide text-[#01327F] transition-all duration-200">
                   <span>{cat?.Name}</span>
                   <ChevronDown className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${openCategory === cat?.Id ? "rotate-180" : ""}`} />
                 </button>
                 
                 {openCategory === cat?.Id && (
-                  <div className="bg-[#01327F]/[0.02] px-2 pb-2 pt-1 space-y-1">
+                  <div className="bg-[#01327F]/[0.02] px-2 pb-2 pt-1 space-y-1 entry-animation">
                     {cat?.pages?.map((p) => (
                       <Link key={p?.Id} href={`/pages/${slugify(p?.Name ?? "")}/${p?.Id}`} onClick={() => setOpen(false)} className="block py-3 px-6 text-[13px] font-semibold text-[#01327F]/80 hover:text-amber-500 transition-all duration-200 capitalize rounded-xl">
                         {p?.Name}
@@ -174,7 +180,7 @@ export default function Navbar() {
             ))
           )}
           
-          <Link href="/admission-form" onClick={() => setOpen(false)} className="mt-6 bg-[#01327F] text-white text-center font-bold text-sm uppercase tracking-wider p-4 rounded-xl transition-all duration-300 hover:bg-amber-500 hover:text-[#01327F] active:scale-[0.99]">
+          <Link href="/admission-form" onClick={() => setOpen(false)} className="mt-4 bg-[#01327F] text-white text-center font-bold text-sm uppercase tracking-wider p-4 rounded-xl shadow-lg transition-all duration-300 hover:bg-amber-500 hover:text-[#01327F] active:scale-[0.99]">
             Student Admission
           </Link>
         </div>
