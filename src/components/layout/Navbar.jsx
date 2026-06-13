@@ -63,7 +63,7 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
           <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
             {/* Logo sizes adjusted for absolute fluid responsiveness */}
-            <div className="w-[150px] h-[45px] sm:w-[194px] sm:h-[54px] flex items-center justify-center relative transition-transform duration-300 group-hover:scale-[1.02]">
+            <div className="w-[250px] h-[60px] sm:w-[194px] sm:h-[54px] flex items-center justify-center relative transition-transform duration-300 group-hover:scale-[1.02]">
               <Image src={logoSrc} alt={schoolName} fill className="object-contain" onError={handleLogoError} unoptimized priority />
             </div>
             <div className="hidden xs:block sm:block">
@@ -82,7 +82,7 @@ export default function Navbar() {
           </Link>
           {/* Banner hides or resizes beautifully on small screens */}
           <div className="relative transition-transform duration-300 hover:scale-[1.01] w-full sm:w-auto flex justify-center sm:justify-end">
-            <Image src="/poster/31y.png" alt="Admission Banner" width={180} height={55} className="object-contain max-h-[45px] sm:max-h-[55px] rounded-xl" priority />
+            <Image src="/poster/31y.png" alt="Admission Banner" width={180} height={55} className="object-contain max-h-[82px] sm:max-h-[55px] rounded-xl" priority />
           </div>
         </div>
       </div>
