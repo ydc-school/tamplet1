@@ -16,155 +16,80 @@ export default function BlogSection() {
           setBlogs(res.data.data.data);
         }
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <section className="bl-root">
-        <div className="bl-inner">
-          <div className="bl-eyebrow">
-            <div className="bl-ey-line" />
-            <span className="bl-ey-text">Latest Updates</span>
-            <div className="bl-ey-line rev" />
-          </div>
-          <div className="bl-grid">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bl-skeleton" />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
+  if (loading) return <section className="py-24 bg-surface animate-pulse"><div className="max-w-container-max mx-auto px-6 h-96 bg-secondary-container" /></section>;
   if (blogs.length === 0) return null;
 
-  // Format date
-  const formatDate = (dateStr) => {
-    if (!dateStr) return "";
-    const d = new Date(dateStr);
-    return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
-  };
-
-  // Strip HTML for plain text preview
-  const stripHtml = (html) => {
-    if (!html) return "";
-    return html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
-  };
+  const formatDate = (dateStr) => new Date(dateStr).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+  const stripHtml = (html) => html?.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().substring(0, 120) + "...";
 
   const featured = blogs[0];
-  const rest = blogs.slice(1);
+  const rest = blogs.slice(1, 4); // Display limited posts for balance
 
   return (
-    <>
+    <section className="py-24 bg-surface">
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop">
+        
+        {/* Header */}
+        <div className="flex flex-col items-center mb-16 text-center">
+          <span className="font-label-caps text-secondary mb-4 flex items-center gap-3">
+            <span className="w-8 h-[1px] bg-primary"></span> LATEST FROM CAMPUS
+          </span>
+          <h2 className="font-headline-lg text-primary">News & Updates</h2>
+        </div>
 
-
-      <section>
-        <div>
-          {/* Header */}
-          <div>
-            <div />
-            <span>News &amp; Updates</span>
-            <div />
-          </div>
-          <h2>Latest from Campus</h2>
-
-          {/* Featured (first blog) */}
-          <Link href={`/blogs/${featured.Id}`}>
-            {featured.Image ? (
-              <div>
-                <Image
-                  src={`/uploads/${featured.Image}`}
-                  alt={featured.Title || "Blog"}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 44vw"
-                  style={{ objectFit: "cover" }}
-                  priority
-                />
-                <span>Featured</span>
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          
+          {/* Featured Post */}
+          <Link href={`/blogs/${featured.Id}`} className="group relative block overflow-hidden bg-surface-container-lowest">
+            <div className="relative h-96 w-full overflow-hidden">
+              {featured.Image && <Image src={`/uploads/${featured.Image}`} alt={featured.Title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />}
+              <div className="absolute top-6 left-6 bg-primary text-on-primary px-4 py-1 font-label-caps text-xs">FEATURED</div>
+            </div>
+            <div className="p-8">
+              <div className="flex items-center gap-4 text-sm text-secondary mb-4 font-label-caps">
+                <span>{formatDate(featured.Date)}</span>
+                <span className="w-1 h-1 bg-secondary rounded-full" />
+                <span>{featured.Author || "Admin"}</span>
               </div>
-            ) : null}
-            <div>
-              <div>
-                {featured.Date && <span>{formatDate(featured.Date)}</span>}
-                {featured.Author && (
-                  <>
-                    <span />
-                    <span>{featured.Author}</span>
-                  </>
-                )}
-              </div>
-              {featured.Title && <h3>{featured.Title}</h3>}
-              {featured.Description && <p>{stripHtml(featured.Description)}</p>}
-              <span>
-                Read More
-                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+              <h3 className="font-headline-md text-primary mb-4 group-hover:text-secondary transition-colors">{featured.Title}</h3>
+              <p className="text-secondary leading-relaxed mb-6">{stripHtml(featured.Description)}</p>
+              <span className="inline-flex items-center gap-2 font-label-caps text-primary border-b border-primary pb-1">
+                Read More <span className="material-symbols-outlined text-sm">arrow_forward</span>
               </span>
             </div>
           </Link>
 
-          {/* Grid (remaining blogs) */}
-          {rest.length > 0 && (
-            <div>
-              {rest.map((blog) => (
-                <Link key={blog.Id} href={`/blogs/${blog.Id}`}>
-                  <div />
-                  {blog.Image ? (
-                    <div>
-                      <Image
-                        src={`/uploads/${blog.Image}`}
-                        alt={blog.Title || "Blog"}
-                        fill
-                        sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                  ) : (
-                    <div>
-                      <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="rgba(196,160,72,0.2)" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
-                    </div>
-                  )}
-                  <div>
-                    <div>
-                      {blog.Date && <span>{formatDate(blog.Date)}</span>}
-                      {blog.Author && (
-                        <>
-                          <span />
-                          <span>{blog.Author}</span>
-                        </>
-                      )}
-                    </div>
-                    {blog.Title && <h3>{blog.Title}</h3>}
-                    {blog.Description && <p>{stripHtml(blog.Description)}</p>}
-                    <span>
-                      Read More
-                      <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
+          {/* Secondary Posts */}
+          <div className="flex flex-col gap-8">
+            {rest.map((blog) => (
+              <Link key={blog.Id} href={`/blogs/${blog.Id}`} className="group flex items-start gap-6 border-b border-on-surface/10 pb-8 last:border-0 last:pb-0">
+                <div className="relative w-32 h-32 flex-shrink-0 overflow-hidden">
+                  {blog.Image ? <Image src={`/uploads/${blog.Image}`} alt={blog.Title} fill className="object-cover" /> : <div className="w-full h-full bg-secondary-container" />}
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 text-xs text-secondary mb-2 font-label-caps">
+                    <span>{formatDate(blog.Date)}</span>
                   </div>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {/* View all */}
-          <div>
-            <Link href="/blogs">
-              View All Posts
-              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+                  <h4 className="font-headline-sm text-primary mb-2 group-hover:text-secondary transition-colors">{blog.Title}</h4>
+                  <p className="text-sm text-secondary line-clamp-2">{stripHtml(blog.Description)}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
-      </section>
-    </>
+
+        {/* View All Button */}
+        <div className="mt-16 text-center">
+          <Link href="/blogs" className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 font-label-caps hover:opacity-90 transition-all">
+            View All Posts <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

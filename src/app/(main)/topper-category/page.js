@@ -1,455 +1,114 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
 
-const sortByIndex = (items) =>
+const getRankValue = (rank) => {
+  const parsed = parseInt(rank, 10);
+  return Number.isNaN(parsed) ? 999 : parsed;
+};
+
+const sortToppers = (items) =>
   [...items].sort((a, b) => {
-    const aIndex = a?.Index_No;
-    const bIndex = b?.Index_No;
-
-    if (aIndex = <style>{`
-        .tcd-root {
-          min-height: 100vh;
-          background: #f6f8fc;
-          font-family: 'Source Sans 3', sans-serif;
-          position: relative;
-          overflow: hidden;
-        }
-        .tcd-root::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(ellipse 60% 35% at 50% 0%, rgba(196,160,72,0.055) 0%, transparent 65%);
-          pointer-events: none;
-        }
-        .tcd-root::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(196,160,72,0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(196,160,72,0.02) 1px, transparent 1px);
-          background-size: 56px 56px;
-          pointer-events: none;
-        }
-
-        .tcd-hero {
-          background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
-          border-bottom: 1px solid rgba(196,160,72,0.12);
-          padding: 110px 24px 56px;
-          position: relative;
-          z-index: 1;
-        }
-        .tcd-hero::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, transparent, #c4a048, #e0c060, #c4a048, transparent);
-        }
-        .tcd-hero-inner,
-        .tcd-body {
-          max-width: 1160px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 1;
-        }
-        .tcd-back {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          margin-bottom: 22px;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #3a5a7a;
-          background: none;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          transition: color 0.2s;
-        }
-        .tcd-back:hover {
-          color: #c4a048;
-        }
-        .tcd-back:hover .tcd-back-arr {
-          transform: translateX(-3px);
-        }
-        .tcd-back-arr {
-          transition: transform 0.2s;
-        }
-        .tcd-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 12px;
-        }
-        .tcd-ey-dot {
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          background: #c4a048;
-        }
-        .tcd-ey-text {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.26em;
-          text-transform: uppercase;
-          color: #c4a048;
-        }
-        .tcd-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(30px, 4vw, 46px);
-          font-weight: 800;
-          color: #10213a;
-          line-height: 1.1;
-          margin-bottom: 10px;
-          text-transform: capitalize;
-        }
-        .tcd-sub {
-          max-width: 760px;
-          font-size: 15px;
-          line-height: 1.7;
-          color: #3a5a7a;
-        }
-        .tcd-meta-row {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 10px;
-          margin-top: 18px;
-        }
-        .tcd-chip {
-          display: inline-flex;
-          align-items: center;
-          padding: 8px 12px;
-          border-radius: 2px;
-          background: rgba(16,33,58,0.05);
-          border: 1px solid rgba(16,33,58,0.08);
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #1d3557;
-        }
-        .tcd-count {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: rgba(196,160,72,0.55);
-        }
-        .tcd-count-num {
-          font-size: 16px;
-          color: #c4a048;
-        }
-
-        .tcd-body {
-          padding: 52px 24px 84px;
-        }
-        .tcd-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 18px;
-        }
-        @media (min-width: 720px) {
-          .tcd-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-        }
-        @media (min-width: 1040px) {
-          .tcd-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-        }
-
-        .tcd-card {
-          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
-          border: 1px solid rgba(196,160,72,0.12);
-          border-radius: 4px;
-          overflow: hidden;
-          box-shadow: 0 8px 28px rgba(0,0,0,0.35);
-          transition: transform 0.28s, box-shadow 0.28s, border-color 0.28s;
-          animation: tcd-fadein 0.45s ease both;
-        }
-        .tcd-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 20px 52px rgba(0,0,0,0.48);
-          border-color: rgba(196,160,72,0.28);
-        }
-        @keyframes tcd-fadein {
-          from { opacity: 0; transform: translateY(14px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .tcd-strip {
-          height: 3px;
-          background: linear-gradient(90deg, #c4a048, #e0c060, #c4a048);
-        }
-        .tcd-image-wrap {
-          position: relative;
-          aspect-ratio: 5 / 4;
-          background: linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
-          overflow: hidden;
-        }
-        .tcd-image {
-          object-fit: contain;
-          object-position: top;
-        }
-        .tcd-placeholder {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: 'Playfair Display', serif;
-          font-size: 64px;
-          font-weight: 700;
-          color: rgba(196,160,72,0.22);
-        }
-        .tcd-rank {
-          position: absolute;
-          right: 14px;
-          bottom: 14px;
-          min-width: 42px;
-          height: 42px;
-          padding: 0 10px;
-          border-radius: 999px;
-          background: #10213a;
-          color: #f6f8fc;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-          font-weight: 800;
-          border: 2px solid rgba(246,248,252,0.9);
-          box-shadow: 0 10px 24px rgba(16,33,58,0.28);
-        }
-
-        .tcd-card-body {
-          padding: 20px 20px 22px;
-        }
-        .tcd-name {
-          font-family: 'Playfair Display', serif;
-          font-size: 21px;
-          font-weight: 800;
-          color: #10213a;
-          line-height: 1.15;
-        }
-        .tcd-student-meta {
-          margin-top: 7px;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          color: #3a5a7a;
-          font-size: 12px;
-          font-weight: 600;
-        }
-        .tcd-student-chip {
-          display: inline-flex;
-          align-items: center;
-          padding: 6px 10px;
-          border-radius: 2px;
-          background: rgba(196,160,72,0.08);
-          border: 1px solid rgba(196,160,72,0.14);
-        }
-        .tcd-desc {
-          margin-top: 14px;
-          font-size: 13px;
-          line-height: 1.7;
-          color: #3a5a7a;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          min-height: 66px;
-        }
-        .tcd-card-foot {
-          margin-top: 18px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-        }
-        .tcd-score {
-          display: inline-flex;
-          align-items: baseline;
-          gap: 2px;
-          padding: 7px 12px;
-          border-radius: 2px;
-          background: rgba(196,160,72,0.09);
-          border: 1px solid rgba(196,160,72,0.15);
-        }
-        .tcd-score-num {
-          font-family: 'Playfair Display', serif;
-          font-size: 22px;
-          font-weight: 800;
-          color: #c4a048;
-          line-height: 1;
-        }
-        .tcd-score-pct {
-          font-size: 12px;
-          font-weight: 700;
-          color: #8a9aaa;
-        }
-        .tcd-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: rgba(196,160,72,0.48);
-          text-decoration: none;
-          transition: gap 0.2s, color 0.2s;
-        }
-        .tcd-card:hover .tcd-link {
-          color: #c4a048;
-          gap: 10px;
-        }
-
-        .tcd-empty {
-          text-align: center;
-          padding: 84px 24px;
-          color: #3a5a7a;
-        }
-        .tcd-empty-title {
-          margin: 14px 0 8px;
-          font-family: 'Playfair Display', serif;
-          font-size: 24px;
-          color: #1d3557;
-        }
-
-        .tcd-skel-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 18px;
-        }
-        @media (min-width: 720px) {
-          .tcd-skel-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-        }
-        @media (min-width: 1040px) {
-          .tcd-skel-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-        }
-        .tcd-skel {
-          height: 420px;
-          border-radius: 4px;
-          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
-          background-size: 200% 100%;
-          animation: tcd-shimmer 1.5s infinite;
-        }
-        @keyframes tcd-shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-      `}</style> == null || aIndex === undefined) return 1;
-    if (bIndex === null || bIndex === undefined) return -1;
-
-    return aIndex - bIndex;
+    const rankDiff = getRankValue(a?.Rank) - getRankValue(b?.Rank);
+    if (rankDiff !== 0) return rankDiff;
+    return (a?.Index_No ?? 999) - (b?.Index_No ?? 999);
   });
 
-export default function TopperCategoryPage() {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function TopperCategoryDetailPage({
+  categoryId: categoryIdProp,
+  initialCategory = null,
+  initialToppers = [],
+  initialLoaded = false,
+}) {
+  const params = useParams();
+  const categoryId = categoryIdProp || params.categoryId;
+  const router = useRouter();
+  const [category, setCategory] = useState(initialCategory);
+  const [toppers, setToppers] = useState(initialToppers);
+  const [loading, setLoading] = useState(!initialLoaded);
 
   useEffect(() => {
-    axios
-      .get("/api/client/toper-category")
+    if (initialLoaded) return;
+    if (!categoryId) return;
+
+    setLoading(true);
+    axios.get("/api/client/toper?topperCategoryId=" + categoryId, {
+      params: { topperCategoryId: categoryId, limit: 1000, sortBy: "Rank", sortOrder: "ASC" },
+    })
       .then((res) => {
-        if (res.data.status === "success") {
-          const data = res.data.data?.data ?? res.data.data ?? [];
-          setCategories(sortByIndex(data));
+        if (res.data?.status === "success") {
+          setToppers(sortToppers(res.data.data?.data ?? res.data.data ?? []));
         }
       })
-      .catch(() => { })
       .finally(() => setLoading(false));
-  }, []);
+  }, [categoryId, initialLoaded]);
 
   return (
-    <div>
-      {/* Hero Section */}
-      <div>
-        <div>
-          <div>
-            <span />
-            <span>Hall of Fame</span>
-          </div>
-          <h1>Topper Categories</h1>
-          <p>
-            Explore topper groups by stream, level, class, or academic year and open each category to view the students featured inside it.
-          </p>
-          {!loading && (
-            <div>
-              <span>{categories.length}</span>
-              Categor{categories.length === 1 ? "y" : "ies"}
-            </div>
-          )}
-        </div>
-      </div>
+    <div className="max-w-7xl mx-auto px-6 py-20">
+      {/* Header Section */}
+      <header className="mb-16 border-b border-stone-200 pb-12">
+        <button onClick={() => router.push("/topper-category")} className="text-xs uppercase tracking-widest text-stone-500 hover:text-amber-800 transition-colors mb-8 flex items-center gap-2">
+          ← Back to All Categories
+        </button>
+        <span className="text-amber-800 uppercase tracking-[0.2em] text-xs font-semibold">Academic Honors</span>
+        <h1 className="font-serif text-5xl md:text-6xl text-stone-900 mt-4 mb-6">
+          {loading ? "Loading..." : category?.Name || "Topper Category"}
+        </h1>
+        <p className="text-stone-500 text-lg font-serif italic max-w-xl">
+          Celebrating our brightest scholars who have set the benchmark for excellence.
+        </p>
+      </header>
 
-      {/* Body Section */}
-      <div>
+      {/* Toppers Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {loading ? (
-          <div>
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} />
-            ))}
-          </div>
-        ) : categories.length === 0 ? (
-          <div>
-            <svg style={{ margin: "0 auto", display: "block", color: "rgba(196,160,72,0.15)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2a4 4 0 014-4h4m0 0l-2-2m2 2l-2 2M5 7h14M5 12h5" />
-            </svg>
-            <div>No topper categories found</div>
-            <p style={{ fontSize: 14 }}>New categories will appear here once they are added.</p>
-          </div>
+          <div className="col-span-full py-20 text-center text-stone-400">Loading scholars...</div>
+        ) : toppers.length === 0 ? (
+          <div className="col-span-full py-20 text-center text-stone-500">No toppers recorded in this category yet.</div>
         ) : (
-          <div>
-            {categories.map((category) => (
-              <Link key={category.Id} href={`/topper-category/${category.Id}`}>
-                <div />
-                <div>
-                  <div>
-                    Display Order
-                    <span>{category.Index_No ?? 0}</span>
+          toppers.map((topper) => (
+            <div key={topper.Id} className="group flex flex-col bg-stone-50 border border-stone-200 p-6 hover:border-amber-800 transition-all">
+              {/* Image Container */}
+              <div className="relative aspect-square mb-6 overflow-hidden bg-stone-200">
+                {topper.Image ? (
+                  <Image src={`/uploads/${topper.Image}`} alt={topper.Student_Name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-stone-400 text-4xl font-serif">
+                    {topper.Student_Name?.charAt(0)}
                   </div>
-                  <div>{category.Name || `Category ${category.Id}`}</div>
-                  <p>
-                    View the topper list for this category and open student profiles for more details.
-                  </p>
+                )}
+                <div className="absolute top-4 left-4 bg-amber-800 text-white text-[10px] uppercase tracking-widest px-3 py-1 font-bold">
+                  Rank {topper.Rank || "-"}
                 </div>
-                <div>
-                  <div>
-                    {category.Class && <span>{category.Class}</span>}
-                    {category.Year && <span>{category.Year}</span>}
-                    {!category.Class && !category.Year && (
-                      <span>Active Category</span>
-                    )}
+              </div>
+
+              {/* Details */}
+              <div className="flex flex-col flex-grow">
+                <h2 className="font-serif text-2xl text-stone-900 mb-2 group-hover:text-amber-900 transition-colors">
+                  {topper.Student_Name || "Student"}
+                </h2>
+                <div className="text-xs uppercase tracking-widest text-stone-500 mb-4 flex gap-4">
+                  <span>{topper.Student_Class}</span>
+                  <span>{topper.Year}</span>
+                </div>
+                
+                <div className="mt-auto pt-6 border-t border-stone-200 flex items-center justify-between">
+                  <div className="text-2xl font-serif text-amber-900">
+                    {topper.Marks_Percentage || "--"}<span className="text-sm font-sans">%</span>
                   </div>
-                  <span>
-                    View Toppers
-                    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
+                  <Link href={`/student/${topper.Id}`} className="text-xs uppercase tracking-widest text-stone-900 font-semibold hover:text-amber-800 transition-colors">
+                    Profile →
+                  </Link>
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+            </div>
+          ))
         )}
-      </div>
+      </section>
     </div>
   );
 }

@@ -10,117 +10,82 @@ export const Hero = () => {
     "/logo/logo.png"
   );
 
-
   return (
-    <section>
+    <section className="relative py-24 bg-surface overflow-hidden">
       {/* Background Decorators */}
-      <div>
-        <div />
-        <div />
-      </div>
+      <div className="absolute top-0 right-0 w-[40%] h-full bg-secondary-container opacity-20 -z-10 rounded-bl-[100px]" />
 
-      <div>
-        <div>
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        {/* Text Content */}
+        <div className="space-y-8">
           {/* School Badge */}
-          <div>
-            <div>
-              <Image
-                src={logoSrc}
-                alt={`${schoolInfo?.School_Name ?? "School"} Logo`}
-                width={40}
-                height={40}
-                onError={handleLogoError}
-                unoptimized
-              />
+          <div className="flex items-center gap-4 p-2 bg-secondary-container/50 w-fit rounded-full pr-6">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-white">
+              <Image src={logoSrc} alt="Logo" width={40} height={40} onError={handleLogoError} unoptimized />
             </div>
             <div>
-              <h2>
+              <h2 className="font-label-caps text-sm text-primary tracking-wider">
                 {schoolInfo?.School_Name ?? "Yaduvanshi Degree College"}
               </h2>
-              <div>
-                <span />
-                <p>
-                  {schoolInfo?.City ?? "Mahendergarh"}, {schoolInfo?.State ?? "Haryana"}
-                </p>
-              </div>
             </div>
           </div>
 
           {/* Hero Heading */}
-          <h1>
-            {schoolInfo?.Motto
-              ? <>{schoolInfo.Motto} through <span>Holistic Education</span>.</>
-              : <>Empowering futures through <span>Holistic Education</span>.</>
-            }
+          <h1 className="font-headline-lg text-primary leading-tight">
+            {schoolInfo?.Motto ? (
+              <>{schoolInfo.Motto} through <span className="italic font-serif text-secondary">Holistic Education</span>.</>
+            ) : (
+              <>Empowering futures through <span className="italic font-serif text-secondary">Holistic Education</span>.</>
+            )}
           </h1>
 
           {/* Description */}
-          <p>
-            {schoolInfo?.Address && schoolInfo?.City
-              ? `Located at ${schoolInfo.Address}, ${schoolInfo.City}, ${schoolInfo.State} — ${schoolInfo.Pin_Code}. Affiliated with ${schoolInfo.Board_Affiliation ?? "leading boards"}, offering quality ${schoolInfo.Medium_Of_Instruction ?? "English"}-medium education.`
-              : "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust. We offer a serene, pollution-free environment conducive to complete child development."
+          <p className="font-body-lg text-secondary max-w-lg">
+            {schoolInfo?.Address 
+              ? `Located at ${schoolInfo.Address}, ${schoolInfo.City}. Affiliated with ${schoolInfo.Board_Affiliation ?? "leading boards"}, offering quality education.`
+              : "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust."
             }
           </p>
 
           {/* Contact Helpline */}
-          <div>
-            <div>
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-              </svg>
-            </div>
-            <p>
-              Admission Helpline: {schoolInfo?.Contact_Person_Phone ?? schoolInfo?.Alternate_Phone ?? "+91 8607062323"}
-            </p>
+          <div className="flex items-center gap-3 text-primary font-semibold bg-surface-container p-4 rounded-lg w-fit">
+            <span className="material-symbols-outlined">call</span>
+            <span>Admission Helpline: {schoolInfo?.Contact_Person_Phone ?? "+91 8607062323"}</span>
           </div>
 
           {/* Actions */}
-          <div>
-            <button>
-              Apply Now
-              <span>→</span>
+          <div className="flex gap-4">
+            <button className="bg-primary text-on-primary px-8 py-4 font-label-caps hover:opacity-90 transition-all flex items-center gap-2">
+              Apply Now <span>→</span>
             </button>
-
-            <button>
+            <button className="border border-primary text-primary px-8 py-4 font-label-caps hover:bg-primary hover:text-on-primary transition-all">
               Explore Courses
             </button>
           </div>
         </div>
 
         {/* Featured Image Section */}
-        <div>
-          <div />
-
-          <div>
-            <Image
-              src="/logo/5.png"
-              alt={`${schoolInfo?.School_Name ?? "College"} Campus`}
-              fill
-              priority
-              style={{ objectFit: "cover" }}
-            />
-
-            <div />
-
+        <div className="relative aspect-[4/5] w-full">
+          <div className="absolute inset-0 bg-primary opacity-5 rounded-tl-[80px]" />
+          <Image
+            src="/logo/5.png"
+            alt="Campus"
+            fill
+            className="object-cover rounded-tl-[80px]"
+            priority
+          />
+          
+          {/* Growth Stats Overlay */}
+          <div className="absolute -bottom-8 -left-8 bg-surface p-6 shadow-xl border-l-4 border-primary flex gap-4 items-center">
+            <div className="text-primary"><span className="material-symbols-outlined text-4xl">school</span></div>
             <div>
-              <span>🏫</span> {schoolInfo?.Short_Name ?? "Top Residential College"}
-            </div>
-
-            <div>
-              <div>
-                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                </svg>
-              </div>
-              <div>
-                <h4>
-                  {schoolInfo?.Students ? `${schoolInfo.Students}+ Students` : "Holistic Growth"}
-                </h4>
-                <p>
-                  {schoolInfo?.Teachers ? `${schoolInfo.Teachers} Expert Faculty` : "Expert Faculty & Trust"}
-                  {schoolInfo?.Experience ? ` • ${schoolInfo.Experience} Yrs Experience` : ""}
-                </p>
-              </div>
+              <h4 className="font-headline-sm text-primary">
+                {schoolInfo?.Students ? `${schoolInfo.Students}+ Students` : "Holistic Growth"}
+              </h4>
+              <p className="text-secondary text-sm">
+                {schoolInfo?.Teachers ? `${schoolInfo.Teachers} Expert Faculty` : "Expert Faculty"}
+              </p>
             </div>
           </div>
         </div>

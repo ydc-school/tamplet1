@@ -27,84 +27,64 @@ export default function GalleryCategoryPage({
           setGalleries(res.data.data?.data ?? []);
         }
       })
-      .catch(() => { })
       .finally(() => setLoading(false));
-
   }, [categoryId, initialLoaded]);
+
   const stripHtml = (html) => html?.replace(/<[^>]+>/g, " ").trim() ?? "";
 
   return (
-    <div>
-      <div>
-        <div>
-          <button onClick={() => router.push("/gallery")}>
-            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            All Categories
-          </button>
-          <div>
-            <span />
-            <span>Gallery</span>
-          </div>
-          <h1>
-            {loading ? "Loading…" : category?.Name || category?.Title || "Gallery"}
-          </h1>
-          {!loading && (
-            <div>
-              <span>{galleries.length}</span>
-              Album{galleries.length !== 1 ? "s" : ""}
-            </div>
-          )}
-        </div>
-      </div>
+    <div className="max-w-7xl mx-auto px-6 py-16">
+      {/* Editorial Header */}
+      <header className="mb-16 border-b border-stone-200 pb-12">
+        <button onClick={() => router.push("/gallery")} className="text-xs uppercase tracking-widest text-stone-500 hover:text-amber-800 transition-colors mb-6 flex items-center gap-2">
+          ← All Categories
+        </button>
+        <span className="text-amber-800 uppercase tracking-[0.2em] text-xs font-semibold">Visual Archives</span>
+        <h1 className="font-serif text-5xl text-stone-900 mt-4 mb-6">
+          {loading ? "Loading..." : category?.Name || category?.Title || "Gallery"}
+        </h1>
+        {!loading && (
+          <p className="text-stone-500 uppercase text-xs tracking-widest">
+            {galleries.length} {galleries.length !== 1 ? "Albums" : "Album"}
+          </p>
+        )}
+      </header>
 
-      <div>
+      {/* Albums Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {loading ? (
-          <div>
-            {[1, 2, 3, 4, 5, 6].map(i => <div key={i} />)}
-          </div>
+          <div className="col-span-full py-20 text-center text-stone-400 font-serif italic">Loading archives...</div>
         ) : galleries.length === 0 ? (
-          <div>
-            <svg style={{ margin: "0 auto", display: "block", color: "rgba(196,160,72,0.12)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <div>No albums in this category</div>
-            <p style={{ fontSize: 14 }}>Check back soon.</p>
+          <div className="col-span-full py-20 text-center">
+            <p className="text-stone-400">No albums found in this category.</p>
           </div>
         ) : (
-          <div>
-            {galleries.map((gal) => (
-              <Link key={gal.Id} href={`/gallery/${categoryId}/${gal.Id}`}>
-                <div />
-                <div>
-                  <div />
-                  <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <div>
-                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
+          galleries.map((gal) => (
+            <Link key={gal.Id} href={`/gallery/${categoryId}/${gal.Id}`} className="group flex flex-col">
+              <div className="aspect-[4/3] bg-stone-100 mb-6 overflow-hidden relative">
+                {/* Image Placeholder effect */}
+                <div className="absolute inset-0 bg-stone-200 group-hover:bg-stone-300 transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-stone-800 uppercase text-xs tracking-widest font-semibold">Explore</span>
                 </div>
-                <div>
-                  <div>{gal.Name || `Album ${gal.Id}`}</div>
-                  {gal.Description && (
-                    <p>{stripHtml(gal.Description)}</p>
-                  )}
-                  <span>
-                    View Photos
-                    <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+              
+              <div className="flex-grow">
+                <h2 className="font-serif text-2xl text-stone-900 mb-3 group-hover:text-amber-900 transition-colors">
+                  {gal.Name || `Album ${gal.Id}`}
+                </h2>
+                {gal.Description && (
+                  <p className="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2">{stripHtml(gal.Description)}</p>
+                )}
+              </div>
+              
+              <div className="text-xs uppercase tracking-widest text-amber-800 font-semibold mt-auto pt-4 border-t border-stone-100">
+                View Photos →
+              </div>
+            </Link>
+          ))
         )}
-      </div>
+      </section>
     </div>
   );
 }

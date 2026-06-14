@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,10 +14,7 @@ const sortToppers = (items) =>
   [...items].sort((a, b) => {
     const rankDiff = getRankValue(a?.Rank) - getRankValue(b?.Rank);
     if (rankDiff !== 0) return rankDiff;
-
-    const aIndex = a?.Index_No ?? Number.MAX_SAFE_INTEGER;
-    const bIndex = b?.Index_No ?? Number.MAX_SAFE_INTEGER;
-    return aIndex - bIndex;
+    return (a?.Index_No ?? 999) - (b?.Index_No ?? 999);
   });
 
 export default function TopperCategoryDetailPage() {
@@ -30,158 +26,80 @@ export default function TopperCategoryDetailPage() {
 
   useEffect(() => {
     if (!categoryId) return;
-
     setLoading(true);
-
-    Promise.all([
-      // axios.get(`/api/client/toper/${categoryId}`),
-      axios.get("/api/client/toper?topperCategoryId=" + categoryId, {
-        params: {
-          topperCategoryId: categoryId,
-          limit: 1000,
-          sortBy: "Rank",
-          sortOrder: "ASC",
-        },
-      }),
-    ])
-      .then(([topperRes]) => {
-
-
-        if (topperRes.data?.status === "success") {
-          const records = topperRes.data.data?.data ?? topperRes.data.data ?? [];
-          setToppers(sortToppers(records));
-        } else {
-          setToppers([]);
+    axios.get("/api/client/toper?topperCategoryId=" + categoryId, {
+      params: { topperCategoryId: categoryId, limit: 1000, sortBy: "Rank", sortOrder: "ASC" },
+    })
+      .then((res) => {
+        if (res.data?.status === "success") {
+          setToppers(sortToppers(res.data.data?.data ?? res.data.data ?? []));
         }
-      })
-      .catch(() => {
-        setCategory(null);
-        setToppers([]);
       })
       .finally(() => setLoading(false));
   }, [categoryId]);
 
-  const categoryTitle = useMemo(() => {
-    if (loading) return "Loading…";
-    return category?.Name || "Topper Category";
-  }, [category, loading]);
-
   return (
-    <>
+    <div className="max-w-7xl mx-auto px-6 py-20">
+      {/* Editorial Header */}
+      <header className="mb-20 border-b border-stone-200 pb-12">
+        <button onClick={() => router.push("/topper-category")} className="text-xs uppercase tracking-widest text-stone-500 hover:text-amber-800 transition-colors mb-6 flex items-center gap-2">
+          ← All Categories
+        </button>
+        <span className="text-amber-800 uppercase tracking-[0.2em] text-xs font-semibold">Academic Excellence</span>
+        <h1 className="font-serif text-5xl md:text-6xl text-stone-900 mt-4 mb-6">
+          {loading ? "Loading..." : category?.Name || "Topper Category"}
+        </h1>
+        {!loading && (
+          <p className="text-stone-500 text-lg font-serif italic max-w-xl">
+            Celebrating our top achievers who have set new benchmarks in academic brilliance.
+          </p>
+        )}
+      </header>
 
-
-      <div>
-        {/* Hero Section */}
-        <div>
-          <div>
-            <button onClick={() => router.push("/topper-category")}>
-              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-              All Categories
-            </button>
-
-            <div>
-              <span />
-              <span>Topper Category</span>
-            </div>
-
-            <h1>{categoryTitle}</h1>
-            <p>
-              Browse the students listed under this topper category and open any profile to see more detailed academic information.
-            </p>
-
-            {!loading && (
-              <div>
-                {category?.Class && <span>{category.Class}</span>}
-                {category?.Year && <span>{category.Year}</span>}
-                <div>
-                  <span>{toppers.length}</span>
-                  Student{toppers.length === 1 ? "" : "s"}
+      {/* Grid Layout */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {loading ? (
+          <div className="col-span-full py-20 text-center text-stone-400 font-serif italic">Loading scholars...</div>
+        ) : toppers.length === 0 ? (
+          <div className="col-span-full py-20 text-center text-stone-500">No toppers recorded in this category yet.</div>
+        ) : (
+          toppers.map((topper) => (
+            <div key={topper.Id} className="group flex flex-col bg-stone-50 border border-stone-200 p-6 transition-all hover:border-amber-800">
+              {/* Profile Image */}
+              <div className="relative aspect-square mb-6 overflow-hidden bg-stone-200">
+                {topper.Image ? (
+                  <Image src={`/uploads/${topper.Image}`} alt={topper.Student_Name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-stone-400 text-3xl font-serif">
+                    {topper.Student_Name?.charAt(0)}
+                  </div>
+                )}
+                <div className="absolute top-4 left-4 bg-amber-800 text-white text-[10px] uppercase tracking-widest px-3 py-1">
+                  Rank {topper.Rank || "-"}
                 </div>
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* Body Section */}
-        <div>
-          {loading ? (
-            <div>
-              {[1, 2, 3, 4, 5, 6].map((item) => <div key={item} />)}
-            </div>
-          ) : toppers.length === 0 ? (
-            <div>
-              <svg style={{ margin: "0 auto", display: "block", color: "rgba(196,160,72,0.15)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586A2 2 0 0114 3.586L18.414 8A2 2 0 0119 9.414V19a2 2 0 01-2 2z" />
-              </svg>
-              <div>No toppers in this category</div>
-              <p style={{ fontSize: 14 }}>Students added to this category will show here.</p>
-            </div>
-          ) : (
-            <div>
-              {toppers.map((topper) => {
-                const initials = topper.Student_Name?.charAt(0)?.toUpperCase() || "S";
-
-                return (
-                  <div key={topper.Id}>
-                    <div />
-                    <div>
-                      {topper.Image ? (
-                        <Image
-                          src={`/uploads/${topper.Image}`}
-                          alt={topper.Student_Name || "Topper"}
-                          fill
-                          sizes="(max-width: 719px) 100vw, (max-width: 1039px) 50vw, 33vw"
-                          style={{ objectFit: "cover" }}
-                        />
-                      ) : (
-                        <div>{initials}</div>
-                      )}
-                      <div>#{topper.Rank || "-"}</div>
-                    </div>
-
-                    <div>
-                      <div>{topper.Student_Name || "Student"}</div>
-                      <div>
-                        {topper.Student_Class && (
-                          <span>{topper.Student_Class}</span>
-                        )}
-                        {topper.Year && (
-                          <span>{topper.Year}</span>
-                        )}
-                        {topper.Gender && (
-                          <span style={{ textTransform: "capitalize" }}>
-                            {topper.Gender}
-                          </span>
-                        )}
-                      </div>
-
-                      <div>
-                        {topper.Description || `Open ${topper.Student_Name || "this student"}'s profile to view more information.`}
-                      </div>
-
-                      <div>
-                        <div>
-                          <span>{topper.Marks_Percentage || "--"}</span>
-                          <span>%</span>
-                        </div>
-
-                        <Link href={`/student/${topper.Id}`}>
-                          Student Profile
-                          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
+              {/* Info */}
+              <div className="flex flex-col flex-grow">
+                <h2 className="font-serif text-2xl text-stone-900 mb-2 group-hover:text-amber-900">{topper.Student_Name || "Student"}</h2>
+                <div className="text-xs uppercase tracking-widest text-stone-500 mb-4 flex gap-4">
+                  <span>{topper.Student_Class}</span>
+                  <span>{topper.Year}</span>
+                </div>
+                
+                <div className="mt-auto pt-6 border-t border-stone-200 flex items-center justify-between">
+                  <div className="text-2xl font-serif text-amber-900">
+                    {topper.Marks_Percentage}% <span className="text-xs text-stone-400 uppercase tracking-widest">Score</span>
                   </div>
-                );
-              })}
+                  <Link href={`/student/${topper.Id}`} className="text-xs uppercase tracking-widest text-stone-900 font-semibold hover:text-amber-800 transition-colors">
+                    View Profile →
+                  </Link>
+                </div>
+              </div>
             </div>
-          )}
-        </div>
-      </div>
-    </>
+          ))
+        )}
+      </section>
+    </div>
   );
 }

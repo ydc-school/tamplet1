@@ -14,11 +14,7 @@ export default function AdmissionSection() {
         const response = await axios.get("/api/client/admission-open-message");
         if (response.data.status === "success") {
           const data = response.data.data;
-          const finalData = Array.isArray(data)
-            ? data[0]
-            : data.data
-              ? data.data[0]
-              : null;
+          const finalData = Array.isArray(data) ? data[0] : data.data ? data.data[0] : null;
           setAdmissionData(finalData);
         }
       } catch (error) {
@@ -30,14 +26,7 @@ export default function AdmissionSection() {
     fetchAdmissionData();
   }, []);
 
-  if (loading) {
-    return (
-      <section className="adm-root">
-        <div className="adm-skeleton" />
-      </section>
-    );
-  }
-
+  if (loading) return <section className="py-24 bg-surface animate-pulse"><div className="max-w-container-max mx-auto px-6 h-96 bg-secondary-container" /></section>;
   if (!admissionData) return null;
 
   const titleText = admissionData.Title || "";
@@ -46,59 +35,64 @@ export default function AdmissionSection() {
   const yearTitle = match ? match[2] : "";
 
   return (
-    <section>
-      <div>
-        {/* Eyebrow */}
-        <div>
-          <div />
-          <span>Admissions</span>
-          <div />
+    <section className="py-24 bg-surface-container-lowest">
+      <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop">
+        
+        {/* Header */}
+        <div className="flex flex-col items-center mb-16 text-center">
+          <span className="font-label-caps text-secondary mb-4 flex items-center gap-3">
+            <span className="w-8 h-[1px] bg-primary"></span> ADMISSIONS
+          </span>
         </div>
 
-        {/* Card */}
-        <div>
-          <div />
-
+        {/* Admission Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-on-surface/10 bg-surface shadow-xl">
+          
           {/* Image */}
           {admissionData.Image && (
-            <div>
+            <div className="relative h-80 lg:h-auto min-h-[400px] w-full overflow-hidden">
               <Image
                 src={`/uploads/${admissionData.Image}`}
                 alt={admissionData.Title || "Admission"}
                 fill
-                sizes="(max-width: 860px) 100vw, 860px"
-                style={{ objectFit: "cover" }}
+                className="object-cover"
                 priority
               />
-              <span>Now Open</span>
+              <div className="absolute top-6 left-6 bg-primary text-on-primary px-4 py-1 font-label-caps text-xs">
+                ADMISSIONS OPEN
+              </div>
             </div>
           )}
 
           {/* Content */}
-          <div>
-            <h2>
+          <div className="p-10 md:p-16 flex flex-col justify-center">
+            <h2 className="font-headline-lg text-primary mb-4 leading-tight">
               {mainTitle}{" "}
-              {yearTitle && <span>{yearTitle}</span>}
+              {yearTitle && <span className="block text-secondary font-serif italic text-3xl">{yearTitle}</span>}
             </h2>
 
-            <div />
+            <div className="w-16 h-[2px] bg-primary mb-8" />
 
             {admissionData.Message && (
               <div
+                className="prose text-secondary mb-10"
                 dangerouslySetInnerHTML={{ __html: admissionData.Message }}
               />
             )}
 
-            <div>
+            <div className="flex flex-wrap gap-4">
               {admissionData.Read_More_Url && (
-                <Link href="https://yaduvanshigroup.edu.in/admission-Form">
-                  Apply Now
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                <Link 
+                  href="https://yaduvanshigroup.edu.in/admission-Form"
+                  className="bg-primary text-on-primary px-8 py-4 font-label-caps hover:opacity-90 transition-all flex items-center gap-2"
+                >
+                  Apply Now <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </Link>
               )}
-              <Link href={admissionData.Read_More_Url}>
+              <Link 
+                href={admissionData.Read_More_Url || "#"}
+                className="border border-primary text-primary px-8 py-4 font-label-caps hover:bg-primary hover:text-on-primary transition-all"
+              >
                 Learn More
               </Link>
             </div>

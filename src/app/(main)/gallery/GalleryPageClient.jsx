@@ -4,109 +4,72 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 
-export default function GalleryPage({
-  initialCategories = [],
-  initialLoaded = false,
-}) {
+export default function GalleryPage({ initialCategories = [], initialLoaded = false }) {
   const [categories, setCategories] = useState(initialCategories);
   const [loading, setLoading] = useState(!initialLoaded);
 
   useEffect(() => {
     if (initialLoaded) return;
-    axios
-      .get("/api/client/gallery-category")
+    axios.get("/api/client/gallery-category")
       .then((res) => {
         if (res.data.status === "success") {
           const data = res.data.data?.data ?? res.data.data ?? [];
-          // Index_No ascending (lower = top), nulls last
-          const sorted = [...data].sort((a, b) => {
-            if (a.Index_No === null && b.Index_No === null) return 0;
-            if (a.Index_No === null) return 1;
-            if (b.Index_No === null) return -1;
-            return a.Index_No - b.Index_No;
-          });
+          const sorted = [...data].sort((a, b) => (a.Index_No ?? 999) - (b.Index_No ?? 999));
           setCategories(sorted);
         }
       })
-      .catch(() => { })
       .finally(() => setLoading(false));
   }, [initialLoaded]);
 
   return (
-    <div>
-      {/* Hero */}
-      <div>
-        <div>
-          <div>
-            <span />
-            <span>Media</span>
-          </div>
-          <h1>Photo Gallery</h1>
-          <p>Explore our campus life, events and achievements</p>
-        </div>
-      </div>
+    <div className="max-w-7xl mx-auto px-6 py-20">
+      {/* Editorial Header */}
+      <header className="mb-20 border-b border-stone-200 pb-12">
+        <span className="text-amber-800 uppercase tracking-[0.2em] text-xs font-semibold">Visual Archives</span>
+        <h1 className="font-serif text-6xl text-stone-900 mt-4 mb-6">Photo Gallery</h1>
+        <p className="text-stone-500 text-lg font-serif italic max-w-xl">Explore our campus life, events, and academic achievements through our curated visual records.</p>
+      </header>
 
-      {/* Body */}
-      <div>
+      {/* Categories Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {loading ? (
-          <div>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => <div key={i} />)}
-          </div>
+          <div className="col-span-full py-20 text-center text-stone-400">Loading archives...</div>
         ) : categories.length === 0 ? (
-          <div>
-            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <div>No galleries yet</div>
-            <p style={{ fontSize: 14 }}>Check back soon for photos and updates.</p>
-          </div>
+          <div className="col-span-full py-20 text-center text-stone-500">No galleries available at the moment.</div>
         ) : (
-          <div>
-            {categories.map((cat) => (
-              <Link key={cat.Id} href={`/gallery/${cat.Id}`}>
-                <div />
-                {cat.Image ? (
-                  <div>
-                    <Image
-                      src={`/uploads/${cat.Image}`}
-                      alt={cat.Name || "Gallery"}
-                      fill
-                      sizes="(max-width: 540px) 100vw, (max-width: 860px) 50vw, (max-width: 1100px) 33vw, 25vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                    <div />
-                    <div>
-                      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="rgba(196,160,72,0.15)" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
+          categories.map((cat) => (
+            <Link key={cat.Id} href={`/gallery/${cat.Id}`} className="group flex flex-col">
+              {/* Image Container with Hover Effect */}
+              <div className="relative aspect-[4/3] bg-stone-100 mb-6 overflow-hidden">
+                {cat.Image && (
+                  <Image
+                    src={`/uploads/${cat.Image}`}
+                    alt={cat.Name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 )}
-                <div>
-                  <div>{cat.Name || "Untitled Gallery"}</div>
-                  {cat.Description && (
-                    <div>
-                      {cat.Description.replace(/<[^>]+>/g, " ").trim()}
-                    </div>
-                  )}
-                  <span>
-                    View Photos
-                    <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-stone-900/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+
+              {/* Text Info */}
+              <h2 className="font-serif text-2xl text-stone-900 mb-3 group-hover:text-amber-900 transition-colors">
+                {cat.Name || "Untitled Gallery"}
+              </h2>
+              {cat.Description && (
+                <p className="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                  {cat.Description.replace(/<[^>]+>/g, "").trim()}
+                </p>
+              )}
+              
+              <div className="text-xs uppercase tracking-widest text-amber-800 font-semibold mt-auto pt-4 border-t border-stone-100">
+                View Photos →
+              </div>
+            </Link>
+          ))
         )}
-      </div>
+      </section>
     </div>
   );
 }

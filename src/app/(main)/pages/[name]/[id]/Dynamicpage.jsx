@@ -6,8 +6,7 @@ import Script from "next/script";
 
 export default function DynamicPage({ params: paramsPromise }) {
   const params = use(paramsPromise);
-  const { id } = params;
-  const { name } = params;
+  const { id, name } = params;
   const router = useRouter();
   const requestKey = `${id || ""}:${name || ""}`;
   const [pageData, setPageData] = useState(null);
@@ -18,12 +17,9 @@ export default function DynamicPage({ params: paramsPromise }) {
   useEffect(() => {
     if (!id) return;
     let isCurrent = true;
-
-    axios
-      .get(`/api/client/pages/${id}/${name}`)
+    axios.get(`/api/client/pages/${id}/${name}`)
       .then((res) => {
         if (!isCurrent) return;
-
         if (res.data.status === "success") {
           setPageData(res.data.data);
           setError(null);
@@ -37,111 +33,72 @@ export default function DynamicPage({ params: paramsPromise }) {
         setPageData(null);
         setError("Error loading page content. Please try again later.");
       })
-      .finally(() => {
-        if (isCurrent) setLoadedKey(requestKey);
-      });
-
-    return () => {
-      isCurrent = false;
-    };
+      .finally(() => { if (isCurrent) setLoadedKey(requestKey); });
+    return () => { isCurrent = false; };
   }, [id, name, requestKey]);
 
-  // ── JSON-LD structured data (renders only when page loaded) ──────────────
-  const jsonLd =
-    !loading && !error && pageData
-      ? {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        name: pageData.Name?.replace(/-/g, " ") || "Page",
-        description: pageData.Page_Data
-          ? pageData.Page_Data.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
-          : "",
-        url:
-          typeof window !== "undefined"
-            ? window.location.href
-            : `https://yaduvanshigroup.edu.in/pages/${name}/${id}`,
-        publisher: {
-          "@type": "Organization",
-          name: "Yaduvanshi Group",
-          url: "https://yaduvanshigroup.edu.in",
-        },
-      }
-      : null;
+  const jsonLd = !loading && !error && pageData ? {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: pageData.Name?.replace(/-/g, " "),
+    description: pageData.Page_Data?.replace(/<[^>]*>/g, " ").slice(0, 160),
+    publisher: { "@type": "Organization", name: "Heritage Academy" },
+  } : null;
 
   return (
     <>
-      {/* JSON-LD structured data */}
-      {jsonLd && (
-        <Script
-          id="page-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          strategy="afterInteractive"
-        />
-      )}
+      {jsonLd && <Script id="page-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} strategy="afterInteractive" />}
 
-
-
-      <div>
-        {/* Loading */}
-        {loading && (
-          <div>
-            <div>
-              <div />
-              <p>Loading page...</p>
-            </div>
+      <main className="max-w-4xl mx-auto px-6 py-24 min-h-[80vh]">
+        {loading ? (
+          <div className="py-24 text-center font-serif italic text-stone-400 animate-pulse">
+            Loading archival content...
           </div>
-        )}
-
-        {/* Error */}
-        {!loading && error && (
-          <div>
-            <div>
-              <h2>Something went wrong</h2>
-              <p>{error}</p>
-              <button onClick={() => window.location.reload()}>
-                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                Try Again
+        ) : error ? (
+          <div className="py-24 text-center">
+            <h2 className="font-serif text-3xl mb-4 text-stone-900">Unavailable</h2>
+            <p className="text-stone-600 mb-8 max-w-sm mx-auto">{error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="px-8 py-3 text-xs uppercase tracking-[0.2em] bg-stone-900 text-white hover:bg-amber-900 transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : pageData && (
+          <article className="animate-in fade-in duration-700">
+            {/* Editorial Header */}
+            <header className="mb-20 border-b border-stone-200 pb-12">
+              <button 
+                onClick={() => router.back()} 
+                className="text-[10px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-900 transition-colors mb-10 flex items-center gap-2"
+              >
+                ← Return to Archive
               </button>
-            </div>
-          </div>
-        )}
+              <span className="text-amber-800 uppercase tracking-[0.2em] text-[10px] font-bold">
+                Institutional Documentation
+              </span>
+              <h1 className="font-serif text-5xl md:text-6xl text-stone-900 mt-4 leading-[1.1]">
+                {pageData.Name.replace(/-/g, " ")}
+              </h1>
+            </header>
 
-        {/* Content */}
-        {!loading && !error && pageData && (
-          <>
-            {/* Hero */}
-            <div>
-              <div>
-                <button onClick={() => router.back()}>
-                  <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                  Back
-                </button>
-                <div>
-                  <span />
-                  <span>Page</span>
-                </div>
-                <h1>
-                  {pageData.Name.replace(/-/g, " ")}
-                </h1>
-              </div>
+            {/* Editorial Content Body */}
+            <div className="prose prose-stone prose-lg max-w-none 
+                            prose-headings:font-serif prose-headings:text-stone-900 
+                            prose-p:leading-8 prose-p:text-stone-700
+                            prose-a:text-amber-900 prose-a:underline-offset-4 
+                            prose-blockquote:border-l-amber-800 prose-blockquote:bg-stone-50 prose-blockquote:py-1">
+              <div dangerouslySetInnerHTML={{ __html: pageData.Page_Data }} />
             </div>
-
-            {/* Body */}
-            <div>
-              <div>
-                <div
-                  dangerouslySetInnerHTML={{ __html: pageData.Page_Data }}
-                />
-              </div>
-            </div>
-          </>
+            
+            {/* Footer */}
+            <footer className="mt-20 pt-10 border-t border-stone-100 text-[10px] uppercase tracking-[0.2em] text-stone-400 italic">
+              Heritage Academy Archive — {new Date().getFullYear()}
+            </footer>
+          </article>
         )}
-      </div>
+      </main>
     </>
   );
 }

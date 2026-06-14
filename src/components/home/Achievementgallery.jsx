@@ -12,10 +12,9 @@ export default function AchievementGallery() {
     axios
       .get("/api/client/achievements")
       .then((res) => {
-        console.log(res.data.data)
         if (res.data.status === "success") setAchievements(res.data.data);
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
@@ -28,107 +27,91 @@ export default function AchievementGallery() {
   };
 
   return (
-   <>
-  <section>
-    <div>
-      <div>
-        <div />
-        <span>Pride &amp; Excellence</span>
-        <div />
-      </div>
-      <h2>Our Achievements</h2>
+    <>
+      <section className="py-24 bg-surface">
+        <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop">
+          {/* Header */}
+          <div className="flex flex-col items-center mb-16 text-center">
+            <span className="font-label-caps text-secondary mb-4 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-primary"></span> PRIDE & EXCELLENCE
+            </span>
+            <h2 className="font-headline-lg text-primary">Our Achievements</h2>
+          </div>
 
-      <div>
-        {loading
-          ? [1, 2, 3, 4].map((i) => <div key={i} />)
-          : achievements.map((item) => (
-              <div key={item.Id} onClick={() => setSelected(item)}>
-                <div />
-                {item.Image ? (
-                  <div>
-                    <Image
-                      src={`/uploads/${item.Image}`}
-                      alt={item.Title || item.Name || "Achievement"}
-                      width={800}
-                      height={600}
-                      style={{ width: "100%", height: "auto" }}
-                      sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                    />
-                    {item.Year && <span>{formatYear(item.Year)}</span>}
-                    <div>
-                      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6" />
-                      </svg>
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {loading
+              ? [1, 2, 3, 4].map((i) => <div key={i} className="h-80 bg-surface-container animate-pulse" />)
+              : achievements.map((item) => (
+                  <div
+                    key={item.Id}
+                    onClick={() => setSelected(item)}
+                    className="group cursor-pointer relative overflow-hidden bg-surface-container-lowest border border-on-surface/10 hover:border-primary/30 transition-all duration-500"
+                  >
+                    {item.Image ? (
+                      <div className="relative h-80 w-full overflow-hidden">
+                        <Image
+                          src={`/uploads/${item.Image}`}
+                          alt={item.Title || item.Name || "Achievement"}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                        </div>
+                        {item.Year && (
+                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 font-label-caps text-xs">
+                            {formatYear(item.Year)}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="h-80 w-full bg-secondary-container flex items-center justify-center text-primary/20">
+                        <span className="material-symbols-outlined text-6xl">emoji_events</span>
+                      </div>
+                    )}
+                    
+                    <div className="p-6">
+                      <h3 className="font-headline-sm text-primary mb-2 group-hover:text-secondary transition-colors line-clamp-1">
+                        {item.Title || item.Name}
+                      </h3>
+                      <span className="inline-flex items-center gap-2 font-label-caps text-primary border-b border-primary pb-1 text-xs">
+                        View Details <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                      </span>
                     </div>
                   </div>
-                ) : (
-                  <div>
-                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                    </svg>
-                  </div>
-                )}
-                <div>
-                  <h3>{item.Title || item.Name}</h3>
-                  {item.Description && <p>{item.Description}</p>}
-                  <span>
-                    View Details
-                    <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            ))}
-      </div>
-    </div>
-  </section>
-
-  {/* Modal */}
-  {selected && (
-    <div onClick={() => setSelected(null)}>
-      <div onClick={(e) => e.stopPropagation()}>
-        {selected.Image && (
-          <div>
-            <Image
-              src={`/uploads/${selected.Image}`}
-              alt={selected.Title || selected.Name || "Achievement"}
-              width={1200}
-              height={900}
-              style={{ width: "100%", height: "auto", display: "block" }}
-              sizes="680px"
-            />
-            <button onClick={() => setSelected(null)}>
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+                ))}
           </div>
-        )}
-        <div>
-          {!selected.Image && (
-            <button style={{ display: "flex" }} onClick={() => setSelected(null)}>
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          )}
-          <div>Achievement</div>
-          <h3>{selected.Title || selected.Name}</h3>
-          <div />
-          {selected.Description && <p>{selected.Description}</p>}
-          {selected.Year && (
-            <div>
-              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Year: {formatYear(selected.Year)}
-            </div>
-          )}
         </div>
-      </div>
-    </div>
-  )}
-</>
+      </section>
+
+      {/* Modern Modal */}
+      {selected && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-6" onClick={() => setSelected(null)}>
+          <div className="bg-surface max-w-2xl w-full shadow-2xl animate-in fade-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
+            {selected.Image && (
+              <div className="relative h-80 w-full">
+                <Image src={`/uploads/${selected.Image}`} alt={selected.Title || ""} fill className="object-cover" />
+                <button onClick={() => setSelected(null)} className="absolute top-4 right-4 bg-black/50 text-white p-2 hover:bg-black transition-colors">
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+              </div>
+            )}
+            <div className="p-10">
+              <div className="flex items-center gap-2 text-primary/60 font-label-caps text-sm mb-4">
+                <span className="material-symbols-outlined text-sm">emoji_events</span> Achievement
+              </div>
+              <h3 className="font-headline-md text-primary mb-4">{selected.Title || selected.Name}</h3>
+              <p className="text-secondary leading-relaxed mb-8">{selected.Description}</p>
+              {selected.Year && (
+                <div className="inline-flex items-center gap-2 text-sm font-label-caps text-secondary border border-on-surface/10 px-4 py-2">
+                  <span className="material-symbols-outlined text-sm">calendar_month</span> {formatYear(selected.Year)}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

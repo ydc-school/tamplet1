@@ -23,20 +23,16 @@ export default function GalleryDetailPage({
   useEffect(() => {
     if (initialLoaded) return;
     if (!galleryId) return;
-    axios
-      .get(`/api/client/gallery/${galleryId}`)
+    axios.get(`/api/client/gallery/${galleryId}`)
       .then((res) => {
         if (res.data.status === "success") {
-          const data = res.data.data;
-          setGallery({ Name: data.Name, Description: data.Description });
-          setImages(data.img ?? []);
+          setGallery({ Name: res.data.data.Name, Description: res.data.data.Description });
+          setImages(res.data.data.img ?? []);
         }
       })
-      .catch(() => { })
       .finally(() => setLoading(false));
   }, [galleryId, initialLoaded]);
 
-  // Keyboard nav
   const handleKey = useCallback((e) => {
     if (lightbox === null) return;
     if (e.key === "ArrowRight") setLightbox(i => (i + 1) % images.length);
@@ -49,118 +45,46 @@ export default function GalleryDetailPage({
     return () => window.removeEventListener("keydown", handleKey);
   }, [handleKey]);
 
-  useEffect(() => {
-    document.body.style.overflow = lightbox !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [lightbox]);
-
-  const stripHtml = (html) => html?.replace(/<[^>]+>/g, " ").trim() ?? "";
-
   return (
-    <>
-      <div>
-        {/* Hero Section */}
-        <div>
-          <div>
-            <button onClick={() => router.push(`/gallery/${categoryId}`)}>
-              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Albums
-            </button>
-            <div>
-              <span />
-              <span>Photos</span>
+    <div className="max-w-7xl mx-auto px-6 py-16">
+      {/* Editorial Header */}
+      <header className="mb-16 border-b border-stone-200 pb-12">
+        <button onClick={() => router.push(`/gallery/${categoryId}`)} className="text-xs uppercase tracking-widest text-stone-500 hover:text-amber-800 transition-colors mb-6 flex items-center gap-2">
+          ← Back to Albums
+        </button>
+        <span className="text-amber-800 uppercase tracking-[0.2em] text-xs font-semibold">Visual Archives</span>
+        <h1 className="font-serif text-5xl text-stone-900 mt-4 mb-6">{loading ? "Loading..." : gallery?.Name}</h1>
+        {gallery?.Description && <p className="text-stone-600 max-w-2xl text-lg font-serif italic">{gallery.Description}</p>}
+      </header>
+
+      {/* Masonry-Style Grid */}
+      <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {images.map((img, idx) => (
+          <div key={img.Id} onClick={() => setLightbox(idx)} className="relative group aspect-square bg-stone-100 overflow-hidden cursor-pointer">
+            <Image src={`/uploads/${img.Image}`} alt="Gallery photo" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="text-white text-xs uppercase tracking-widest">View</span>
             </div>
-            <h1>{loading ? "Loading…" : gallery?.Name || "Photo Album"}</h1>
-            {gallery?.Description && <p>{stripHtml(gallery.Description)}</p>}
-            {!loading && (
-              <div>
-                <span>{images.length}</span>
-                Photo{images.length !== 1 ? "s" : ""}
-              </div>
-            )}
           </div>
-        </div>
+        ))}
+      </section>
 
-        {/* Gallery Body */}
-        <div>
-          {loading ? (
-            <div>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => <div key={i} />)}
-            </div>
-          ) : images.length === 0 ? (
-            <div>
-              <svg style={{ margin: "0 auto", display: "block", color: "rgba(196,160,72,0.12)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <div>No photos in this album yet</div>
-              <p style={{ fontSize: 14 }}>Check back soon.</p>
-            </div>
-          ) : (
-            <div>
-              {images.map((img, idx) => (
-                <div key={img.Id} onClick={() => setLightbox(idx)}>
-                  <Image
-                    src={`/uploads/${img.Image}`}
-                    alt={`${gallery?.Name || "Gallery"} photo ${idx + 1}`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div />
-                  <div>
-                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6" />
-                    </svg>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Lightbox */}
-      {lightbox !== null && images[lightbox] && (
-        <div onClick={() => setLightbox(null)}>
-          <div onClick={(e) => e.stopPropagation()}>
-            <Image
-              src={`/uploads/${images[lightbox].Image}`}
-              alt={`${gallery?.Name || "Gallery"} photo ${lightbox + 1}`}
-              fill
-              sizes="92vw"
-              style={{ objectFit: "contain" }}
-              priority
-            />
+      {/* Editorial Lightbox */}
+      {lightbox !== null && (
+        <div className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center p-8 animate-fade-in" onClick={() => setLightbox(null)}>
+          <button onClick={() => setLightbox(null)} className="absolute top-8 right-8 text-stone-900 hover:text-amber-800">✕</button>
+          
+          <div className="relative w-full h-[80vh] flex items-center justify-center">
+            <Image src={`/uploads/${images[lightbox].Image}`} alt="Full view" fill className="object-contain" />
           </div>
 
-          <button onClick={() => setLightbox(null)}>
-            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-          {images.length > 1 && (
-            <>
-              <button onClick={(e) => { e.stopPropagation(); setLightbox((i) => (i - 1 + images.length) % images.length); }}>
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button onClick={(e) => { e.stopPropagation(); setLightbox((i) => (i + 1) % images.length); }}>
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-              <div>
-                <span>{String(lightbox + 1).padStart(2, "0")}</span>
-                {" / "}{String(images.length).padStart(2, "0")}
-              </div>
-            </>
-          )}
+          <div className="flex gap-8 mt-6">
+            <button onClick={(e) => { e.stopPropagation(); setLightbox((i) => (i - 1 + images.length) % images.length); }} className="uppercase text-xs tracking-widest text-stone-500 hover:text-amber-800">Previous</button>
+            <span className="text-stone-300">|</span>
+            <button onClick={(e) => { e.stopPropagation(); setLightbox((i) => (i + 1) % images.length); }} className="uppercase text-xs tracking-widest text-stone-500 hover:text-amber-800">Next</button>
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
