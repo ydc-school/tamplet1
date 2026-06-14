@@ -1,115 +1,115 @@
-"use client"
-import React, { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, Search, ExternalLink } from "lucide-react";
-// Assuming these exist in your project path, kept as per your logic
-// import { useSchool } from "@/context/SchoolContext";
-// import { useFallbackImage } from "@/hooks/useFallbackImage";
+"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import axios from "axios";
+import Link from "next/link";
+import { useSchool } from "@/context/SchoolContext";
+import { useFallbackImage } from "@/hooks/useFallbackImage";
+import slugify from "@/utils/slugify";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [openCategory, setOpenCategory] = useState(null);
   const [scrolled, setScrolled] = useState(false);
-  const menuRef = useRef(null);
+  const [loadingPages, setLoadingPages] = useState(true);
 
-  // MOCK: Replace these with your actual context hooks
-  const schoolInfo = { School_Name: "Heritage Academy", Short_Name: "Degree College", Logo_Url: "" };
-  const loading = false;
-  const logoSrc = "/logo/logo.png";
-  const handleLogoError = (e) => (e.target.src = "/logo/fallback.png");
-
-  const schoolName = schoolInfo?.School_Name ?? "Heritage Academy";
-  const shortName = schoolInfo?.Short_Name ?? "Degree College";
+  const { schoolInfo, loading: schoolLoading } = useSchool();
+  const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
+    schoolInfo?.Logo_Url,
+    "/logo/logo.png"
+  );
 
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        // Keeping your fetching logic
-        // const response = await axios.get("/api/client/pages");
-        // if (response.data.status === "success") setCategories(response.data.data);
-      } catch (error) {
-        console.error("Error fetching pages:", error);
-      }
+        const response = await axios.get("/api/client/pages");
+        if (response.data?.status === "success") setCategories(response.data?.data ?? []);
+      } catch (error) { console.error(error); }
+      finally { setLoadingPages(false); }
     };
     fetchPages();
-  }, []);
 
-  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
   return (
-    <header 
-      className={`bg-secondary-container sticky top-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? "border-on-surface/20 py-2" : "border-on-surface/10 py-4"
-      }`}
-      ref={menuRef}
-    >
-      <div className="flex justify-between items-center w-full px-6 md:px-16 max-w-[1280px] mx-auto">
-        {/* Brand Logo & Name */}
-        <a href="/" className="flex items-center gap-3">
-          <div className="bg-secondary-container p-2 rounded">
-             <img src={logoSrc} alt="Logo" className="w-10 h-10 object-contain" onError={handleLogoError} />
+    <header className="relative z-[1000] font-sans">
+      {/* Gold Accent Strip */}
+      <div className="h-1.5 w-full bg-amber-500" />
+
+      {/* Header Branding */}
+      <div className="bg-white border-b border-stone-100 py-6">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <Link href="/" className="flex items-center gap-5">
+            <div className="w-[180px] h-[50px] relative">
+              <Image src={logoSrc} alt={schoolInfo?.School_Name || "Logo"} fill className="object-contain" onError={handleLogoError} priority />
+            </div>
+            {!schoolLoading && (
+              <div>
+                <h1 className="text-xl font-bold text-stone-900 tracking-tight leading-none">{schoolInfo?.School_Name}</h1>
+                <p className="text-[10px] font-bold tracking-[0.25em] text-amber-800 uppercase mt-1">{schoolInfo?.Short_Name}</p>
+              </div>
+            )}
+          </Link>
+          <div className="hidden md:block">
+            <Image src="/poster/31y.png" alt="Admission" width={160} height={45} className="object-contain rounded-lg" priority />
           </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-primary leading-tight">{loading ? "..." : schoolName}</span>
-            <span className="text-xs text-secondary">{loading ? "" : shortName}</span>
-          </div>
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-8 items-center">
-          {["Academics", "Admissions", "Campus Life", "About"].map((item) => (
-            <a key={item} href="#" className="font-medium text-sm text-secondary hover:text-primary transition-colors uppercase tracking-widest">
-              {item}
-            </a>
-          ))}
-        </nav>
-
-        {/* Actions */}
-        <div className="flex items-center gap-4">
-          <button className="p-2 rounded-full hover:bg-surface-variant/20 transition-all">
-            <Search className="w-5 h-5 text-primary" />
-          </button>
-          
-          <button className="hidden md:block bg-primary text-white text-xs px-6 py-3 uppercase tracking-widest font-bold hover:opacity-90 transition-opacity">
-            Apply Now
-          </button>
-
-          <button 
-            className="md:hidden p-2" 
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X className="text-primary" /> : <Menu className="text-primary" />}
-          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {open && (
-        <div className="absolute top-full left-0 w-full bg-surface shadow-xl p-6 md:hidden animate-in slide-in-from-top-4">
-          <div className="flex flex-col gap-6">
-            {["Academics", "Admissions", "Campus Life", "About"].map((item) => (
-              <a 
-                key={item} 
-                href="#" 
-                className="text-lg font-medium text-primary border-b border-surface-variant pb-2"
-                onClick={() => setOpen(false)}
-              >
-                {item}
-              </a>
+      {/* Main Navigation */}
+      <nav className={`sticky top-0 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md border-b border-stone-200" : "bg-stone-900 text-white"}`}>
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <ul className="hidden md:flex items-center h-full gap-1 text-sm font-medium">
+            <li><Link href="/" className="px-5 hover:text-amber-500 transition-colors">Home</Link></li>
+            {!loadingPages && categories?.map((cat) => (
+              <li key={cat?.Id} className="group relative h-full flex items-center cursor-pointer px-5 hover:text-amber-500 transition-colors">
+                {cat?.Name} <ChevronDown className="w-3 h-3 ml-1" />
+              </li>
             ))}
-            <button className="w-full bg-primary text-white py-4 uppercase font-bold">Apply Now</button>
+          </ul>
+
+          <div className="flex items-center gap-6">
+            <Link href="/admission-form" className="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest bg-amber-500 text-stone-900 hover:bg-amber-600 transition-all">
+              Admission →
+            </Link>
+            <button onClick={() => setOpen(!open)} className="md:hidden">
+              {open ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      {open && (
+        <div className="fixed inset-0 z-[1100] bg-white p-8 md:hidden overflow-y-auto">
+          <div className="flex justify-between items-center mb-10">
+            <span className="text-xs uppercase tracking-widest font-bold">Navigation</span>
+            <button onClick={() => setOpen(false)}><X className="w-8 h-8" /></button>
+          </div>
+          <div className="flex flex-col gap-6 text-xl font-serif">
+            <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+            {categories.map((cat) => (
+              <div key={cat.Id} className="border-b pb-4">
+                <button className="flex justify-between w-full text-amber-800 text-sm font-bold uppercase tracking-widest" onClick={() => setOpenCategory(openCategory === cat.Id ? null : cat.Id)}>
+                    {cat.Name} <ChevronDown />
+                </button>
+                {openCategory === cat.Id && (
+                    <div className="flex flex-col gap-2 mt-2 ml-4">
+                        {cat.pages?.map((p) => (
+                            <Link key={p.Id} href={`/pages/${slugify(p.Name ?? "")}/${p.Id}`} onClick={() => setOpen(false)} className="hover:text-amber-600">
+                            {p.Name}
+                            </Link>
+                        ))}
+                    </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       )}
