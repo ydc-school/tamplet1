@@ -93,50 +93,7 @@ export default function AdmissionForm() {
 
   return (
     <>
-      <style>{`
-        .af-root { min-height: 100vh; background: #f6f8fc; font-family: 'Source Sans 3', sans-serif; padding: 60px 24px; position: relative; }
-        .af-root::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 35% at 50% 0%, rgba(196,160,72,0.055) 0%, transparent 65%); pointer-events: none; }
-        
-        .af-container { max-width: 650px; margin: 0 auto; background: #ffffff; border: 1px solid rgba(196,160,72,0.15); border-radius: 4px; box-shadow: 0 4px 20px rgba(16,33,58,0.03); position: relative; z-index: 1; overflow: hidden; }
-        .af-header { background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%); padding: 32px; border-bottom: 1px solid rgba(196,160,72,0.12); position: relative; }
-        .af-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c4a048, #e0c060, #c4a048, transparent); }
-        
-        .af-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800; color: #10213a; margin: 0 0 8px; }
-        .af-subtitle { font-size: 13px; color: #3a5a7a; margin: 0; }
-        
-        .af-steps { display: flex; justify-content: space-between; padding: 20px 32px; background: #fcfdfe; border-bottom: 1px solid rgba(196,160,72,0.06); }
-        .af-step { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: #3a5a7a; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.5; }
-        .af-step.active { opacity: 1; color: #c4a048; }
-        .af-step-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(58,90,122,0.1); display: flex; align-items: center; justify-content: center; font-size: 11px; }
-        .af-step.active .af-step-num { background: #c4a048; color: #fff; }
-
-        .af-body { padding: 32px; }
-        .af-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 500px) { .af-group-row { grid-template-columns: 1fr; gap: 0; } }
-        
-        .af-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
-        .af-label { font-size: 12px; font-weight: 700; color: #10213a; text-transform: uppercase; letter-spacing: 0.05em; }
-        .af-input, .af-select, .af-textarea { background: #fff; border: 1px solid rgba(196,160,72,0.2); border-radius: 2px; padding: 10px 14px; font-family: inherit; font-size: 14px; color: #1d3557; outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
-        .af-input:focus, .af-select:focus, .af-textarea:focus { border-color: #c4a048; box-shadow: 0 0 0 3px rgba(196,160,72,0.08); }
-        .af-textarea { resize: vertical; min-height: 90px; }
-        
-        .af-radio-group { display: flex; gap: 20px; padding: 10px 0; }
-        .af-radio-label { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #1d3557; cursor: pointer; }
-        .af-radio-label input { accent-color: #c4a048; width: 16px; height: 16px; }
-
-        .af-error-message { background: #fee2e2; color: #b91c1c; padding: 12px; border-radius: 4px; font-size: 13px; margin-bottom: 20px; border: 1px solid #f87171; }
-
-        .af-footer { display: flex; justify-content: space-between; margin-top: 12px; }
-        .af-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 24px; border: none; border-radius: 2px; cursor: pointer; font-family: inherit; transition: background 0.2s; }
-        .af-btn-prev { background: transparent; border: 1px solid rgba(196,160,72,0.3); color: #3a5a7a; }
-        .af-btn-prev:hover { background: rgba(196,160,72,0.05); }
-        .af-btn-next { background: #c4a048; color: #f6f8fc; margin-left: auto; }
-        .af-btn-next:hover { background: #e0c060; }
-        .af-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        .af-success-state { text-align: center; padding: 48px 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-        .af-success-icon { width: 56px; height: 56px; background: rgba(196,160,72,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #c4a048; }
-      `}</style>
+      
 
       <div className="af-root">
         <div className="af-container">
