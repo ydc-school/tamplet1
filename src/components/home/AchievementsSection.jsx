@@ -12,7 +12,7 @@ function useCountUp(target, duration = 2000, start = false) {
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * num));
       if (progress < 1) requestAnimationFrame(step);
     };
@@ -38,14 +38,14 @@ function StatItem({ number, label, suffix, delay }) {
   const formatted = count.toLocaleString("en-IN");
 
   return (
-    <div ref={ref} className="ach-item" style={{ animationDelay: `${delay}ms` }}>
-      <div className="ach-number">
+    <article ref={ref} style={{ animationDelay: `${delay}ms` }}>
+      <data value={count}>
         {formatted}
-        {suffix && <span className="ach-suffix">{suffix}</span>}
-      </div>
-      <div className="ach-divider" />
-      <p className="ach-label">{label}</p>
-    </div>
+        {suffix && <span>{suffix}</span>}
+      </data>
+      <hr />
+      <h3>{label}</h3>
+    </article>
   );
 }
 
@@ -53,60 +53,31 @@ export default function AchievementsSection() {
   const { schoolInfo, loading } = useSchool();
 
   const stats = [
-    {
-      number: schoolInfo?.Experience || "26",
-      suffix: "+",
-      label: "Years of Excellence",
-    },
-    {
-      number: schoolInfo?.Students || "55000",
-      suffix: "+",
-      label: "Students Enrolled",
-    },
-    {
-      number: schoolInfo?.Teachers || "3000",
-      suffix: "+",
-      label: "Expert Faculty",
-    },
-    {
-      number: schoolInfo?.Awards || "255",
-      suffix: "+",
-      label: "Awards Received",
-    },
+    { number: schoolInfo?.Experience || "26", suffix: "+", label: "Years of Excellence" },
+    { number: schoolInfo?.Students || "55000", suffix: "+", label: "Students Enrolled" },
+    { number: schoolInfo?.Teachers || "3000", suffix: "+", label: "Expert Faculty" },
+    { number: schoolInfo?.Awards || "255", suffix: "+", label: "Awards Received" },
   ];
 
   return (
     <>
-      
+      <header>
+        <span>By the Numbers</span>
+        <h2>Our Achievements</h2>
+      </header>
 
-      <section className="ach-root">
-        <div className="ach-glow" />
-        <div className="ach-inner">
-
-          <div className="ach-eyebrow">
-            <div className="ach-ey-line" />
-            <span className="ach-ey-text">By the Numbers</span>
-            <div className="ach-ey-line rev" />
-          </div>
-          <h2 className="ach-heading">Our Achievements</h2>
-
-          <div className="ach-grid">
-            {loading
-              ? [1, 2, 3, 4].map((i) => <div key={i} className="ach-skel-item" />)
-              : stats.map((item, i) => (
-                  <StatItem
-                    key={i}
-                    number={item.number}
-                    suffix={item.suffix}
-                    label={item.label}
-                    delay={i * 120}
-                  />
-                ))
-            }
-          </div>
-
-        </div>
-      </section>
+      {loading
+        ? Array.from({ length: 4 }).map((_, i) => <article key={i}>Loading...</article>)
+        : stats.map((item, i) => (
+            <StatItem
+              key={i}
+              number={item.number}
+              suffix={item.suffix}
+              label={item.label}
+              delay={i * 120}
+            />
+          ))
+      }
     </>
   );
 }

@@ -14,11 +14,7 @@ export default function AdmissionSection() {
         const response = await axios.get("/api/client/admission-open-message");
         if (response.data.status === "success") {
           const data = response.data.data;
-          const finalData = Array.isArray(data)
-            ? data[0]
-            : data.data
-              ? data.data[0]
-              : null;
+          const finalData = Array.isArray(data) ? data[0] : (data.data ? data.data[0] : null);
           setAdmissionData(finalData);
         }
       } catch (error) {
@@ -30,14 +26,7 @@ export default function AdmissionSection() {
     fetchAdmissionData();
   }, []);
 
-  if (loading) {
-    return (
-      <section className="adm-root">
-        <div className="adm-skeleton" />
-      </section>
-    );
-  }
-
+  if (loading) return <article>Loading...</article>;
   if (!admissionData) return null;
 
   const titleText = admissionData.Title || "";
@@ -46,72 +35,41 @@ export default function AdmissionSection() {
   const yearTitle = match ? match[2] : "";
 
   return (
-    <>
-     
+    <article>
+      <header>
+        <span>Admissions</span>
+        <h2>
+          {mainTitle} <span>{yearTitle}</span>
+        </h2>
+      </header>
 
-      <section className="adm-root">
-        <div className="adm-inner">
+      {admissionData.Image && (
+        <figure>
+          <Image
+            src={`/uploads/${admissionData.Image}`}
+            alt={admissionData.Title || "Admission"}
+            width={860}
+            height={500}
+            priority
+          />
+          <span>Now Open</span>
+        </figure>
+      )}
 
-          {/* Eyebrow */}
-          <div className="adm-eyebrow">
-            <div className="adm-eyebrow-line" />
-            <span className="adm-eyebrow-text">Admissions</span>
-            <div className="adm-eyebrow-line rev" />
-          </div>
+      {admissionData.Message && (
+        <div dangerouslySetInnerHTML={{ __html: admissionData.Message }} />
+      )}
 
-          {/* Card */}
-          <div className="adm-card">
-            <div className="adm-card-strip" />
-
-            {/* Image */}
-            {admissionData.Image && (
-              <div className="adm-img-wrap">
-                <Image
-                  src={`/uploads/${admissionData.Image}`}
-                  alt={admissionData.Title || "Admission"}
-                  fill
-                  sizes="(max-width: 860px) 100vw, 860px"
-                  className="object-cover"
-                  priority
-                />
-                <span className="adm-badge">Now Open</span>
-              </div>
-            )}
-
-            {/* Content */}
-            <div className="adm-content">
-              <h2 className="adm-title">
-                {mainTitle}{" "}
-                {yearTitle && <span className="adm-title-year">{yearTitle}</span>}
-              </h2>
-
-              <div className="adm-divider" />
-
-              {admissionData.Message && (
-                <div
-                  className="adm-message"
-                  dangerouslySetInnerHTML={{ __html: admissionData.Message }}
-                />
-              )}
-
-              <div className="adm-cta-row">
-                {admissionData.Read_More_Url && (
-                  <Link href="https://yaduvanshigroup.edu.in/admission-Form" className="adm-cta-primary">
-                    Apply Now
-                    <svg className="adm-cta-arrow" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                )}
-                <Link href={admissionData.Read_More_Url} className="adm-cta-secondary">
-                  Learn More
-                </Link>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-    </>
+      <footer>
+        {admissionData.Read_More_Url && (
+          <Link href="https://yaduvanshigroup.edu.in/admission-Form">
+            Apply Now
+          </Link>
+        )}
+        <Link href={admissionData.Read_More_Url || "#"}>
+          Learn More
+        </Link>
+      </footer>
+    </article>
   );
 }

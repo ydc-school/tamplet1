@@ -1,113 +1,71 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import "swiper/css";
-import "swiper/css/pagination";
+import Link from "next/link";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import axios from "axios";
-import Link from "next/link";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function FounderMessage() {
   const [founders, setFounders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get("/api/client/messages");
-        if (response.data.status === "success") {
-          setFounders(response.data.data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching founder messages:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMessages();
+    axios.get("/api/client/messages")
+      .then((res) => {
+        if (res.data?.status === "success") setFounders(res.data.data.data || []);
+      })
+      .catch((err) => console.error("Error:", err))
+      .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <section className="fm-root">
-        <div className="fm-skeleton" />
-      </section>
-    );
-  }
-
+  if (loading) return <article>Loading leadership message...</article>;
   if (founders.length === 0) return null;
 
   return (
-    <>
-     
+    <article>
+      <header>
+        <span>Message from Leadership</span>
+      </header>
 
-      <section className="fm-root">
-        <div className="fm-inner">
+      <Swiper
+        modules={[Pagination, Autoplay]}
+        pagination={{ clickable: true }}
+        autoplay={founders.length > 1 ? { delay: 6000, disableOnInteraction: false } : false}
+        loop={founders.length > 1}
+      >
+        {founders.map((founder) => (
+          <SwiperSlide key={founder.Id}>
+            <section>
+              {founder.Image && (
+                <figure>
+                  <Image
+                    src={`/uploads/${founder.Image}`}
+                    alt={founder.Name || "Leadership"}
+                    width={340}
+                    height={400}
+                  />
+                  <span>{founder.Roll}</span>
+                </figure>
+              )}
 
-          <div className="fm-eyebrow">
-            <div className="fm-ey-line" />
-            <span className="fm-ey-text">Message from Leadership</span>
-            <div className="fm-ey-line rev" />
-          </div>
+              <blockquote>
+                <h3>{founder.Name}</h3>
+                <p>{founder.Roll}</p>
+                <p>{founder.Description}</p>
+              </blockquote>
 
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            pagination={{ clickable: true }}
-            autoplay={founders.length > 1 ? { delay: 6000, disableOnInteraction: false } : false}
-            loop={founders.length > 1}
-            className="fm-swiper"
-          >
-            {founders.map((founder) => (
-              <SwiperSlide key={founder.Id}>
-                <div className="fm-card">
-                  <div className="fm-strip" />
-
-                  {/* Image */}
-                  {founder.Image && (
-                    <div className="fm-img-col">
-                      <Image
-                        src={`/uploads/${founder.Image}`}
-                        alt={founder.Name || "Leadership"}
-                        fill
-                        sizes="(max-width: 767px) 100vw, 340px"
-                        className="object-cover object-top"
-                      />
-                      {founder.Roll && (
-                        <span className="fm-role-badge">{founder.Roll}</span>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div className="fm-content">
-                    <span className="fm-quote-mark">&quot;</span>
-
-                    {founder.Name && <h3 className="fm-name">{founder.Name}</h3>}
-                    {founder.Roll && <p className="fm-role">{founder.Roll}</p>}
-
-                    <div className="fm-divider" />
-
-                    {founder.Description && (
-                      <p className="fm-description">{founder.Description}</p>
-                    )}
-
-                    {founder.Read_More_Url && (
-                      <Link href={founder.Read_More_Url} className="fm-read-more">
-                        Read Full Message
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-        </div>
-      </section>
-    </>
+              {founder.Read_More_Url && (
+                <footer>
+                  <Link href={founder.Read_More_Url}>Read Full Message &rarr;</Link>
+                </footer>
+              )}
+            </section>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </article>
   );
 }
