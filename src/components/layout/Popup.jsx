@@ -1,98 +1,129 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+
+// Swiper Essential CSS
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
-import Image from "next/image";
-import axios from "axios";
 
 export default function Popup() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentActiveIndex, setCurrentActiveIndex] = useState(0);
 
   useEffect(() => {
     axios
       .get("/api/client/poster?indexNo=100")
       .then((res) => {
         if (res.data.status === "success") {
-          const valid = res.data.data.data.filter((s) => s.Image && s.Image.trim() !== "");
+          const dataArray = res.data.data?.data || res.data.data || [];
+          const valid = dataArray.filter((s) => s.Image && s.Image.trim() !== "");
           setSlides(valid);
           if (valid.length > 0) setIsOpen(true);
         }
       })
-      .catch(() => {})
+      .catch((err) => console.error("Popup fetch error:", err))
       .finally(() => setLoading(false));
   }, []);
+
+  // बैकड्रॉप ओपन होने पर बॉडी स्क्रॉल लॉक गार्ड
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   if (loading || !isOpen || slides.length === 0) return null;
 
   return (
-    /* UI PROMPT — POPUP MODAL: Full-screen overlay z-2000, black/70 + blur backdrop.
-       Centered modal max-w-5xl, close button top-right (circular, white X).
-       Inner: Swiper fade slider 50vh mobile / 75vh desktop, object-contain images.
-       Prev/Next glass buttons left-right center. White pagination dots, active=gold.
-       Slide counter bottom-left "Slide / 03". Autoplay 5s, loop. Click outside to close.
-       Full prompt: UI_PROMPTS.md → Section 1 */
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-10" onClick={() => setIsOpen(false)}>
-      <div className="relative w-full max-w-5xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
+    <div 
+      className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 md:p-10 animate-[fadeIn_0.3s_ease-out]"
+      onClick={() => setIsOpen(false)}
+    >
+      <div 
+        className="relative w-full max-w-5xl rounded-[2.5rem] bg-transparent overflow-hidden shadow-2xl transition-all duration-300 animate-[zoomIn_0.3s_cubic-bezier(0.34,1.56,0.64,1)]"
+        onClick={(e) => e.stopPropagation()}
+      >
         
-        {/* Close Button */}
+        {/* PREMIUM CIRCULAR CLOSE BUTTON — TOP-RIGHT */}
         <button 
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 z-[2010] bg-black/50 hover:bg-black text-white p-2 rounded-full transition-all flex items-center justify-center"
+          className="absolute top-4 right-4 z-[2020] bg-black/40 hover:bg-[#7f1d1d] text-white w-10 h-10 rounded-full border border-white/20 transition-all duration-300 flex items-center justify-center backdrop-blur-md focus:outline-none group active:scale-90 shadow-lg"
+          aria-label="Close modal"
         >
-          <span className="material-symbols-outlined">close</span>
+          <svg className="w-4 h-4 transform group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
 
-        <section className="relative w-full h-[50vh] md:h-[75vh] overflow-hidden">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        effect="fade"
-        navigation={{ nextEl: ".ts-next", prevEl: ".ts-prev" }}
-        pagination={{ 
-          clickable: true,
-          bulletClass: "swiper-pagination-bullet !bg-white !opacity-50 !w-3 !h-3",
-          bulletActiveClass: "swiper-pagination-bullet-active !bg-primary !opacity-100" 
-        }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        loop={slides.length > 1}
-        className="h-full w-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={slide.Id || index}>
-            <div className="relative w-full h-full">
-              <Image
-                src={`/uploads/${slide.Image}`}
-                alt={slide.Name || "Poster"}
-                fill
-                className="object-contain"
-                priority={index === 0}
-              />
+        {/* CONTAINER SECTION HOLDER */}
+        <section className="relative w-full h-[50vh] md:h-[75vh] overflow-hidden rounded-[2.5rem] bg-slate-950/20
+          [&_.swiper-pagination-bullet]:!bg-white [&_.swiper-pagination-bullet]:!opacity-40 [&_.swiper-pagination-bullet]:!w-2.5 [&_.swiper-pagination-bullet]:!h-2.5 [&_.swiper-pagination-bullet]:mx-1.5 [&_.swiper-pagination-bullet]:transition-all [&_.swiper-pagination-bullet]:duration-300
+          [&_.swiper-pagination-bullet-active]:!bg-[#c4a048] [&_.swiper-pagination-bullet-active]:!opacity-100 [&_.swiper-pagination-bullet-active]:!w-6 [&_.swiper-pagination-bullet-active]:!rounded-full
+          [&_.swiper-pagination]:!bottom-6 z-10"
+        >
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay, EffectFade]}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            navigation={{ nextEl: ".ts-next", prevEl: ".ts-prev" }}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            loop={slides.length > 1}
+            onSlideChange={(swiper) => setCurrentActiveIndex(swiper.realIndex)}
+            className="h-full w-full"
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide key={slide.Id || index} className="w-full h-full bg-transparent flex items-center justify-center">
+                <div className="relative w-full h-full select-none">
+                  <Image
+                    src={`/uploads/${slide.Image}`}
+                    alt={slide.Name || "Campus Poster Announcement"}
+                    fill
+                    className="object-contain"
+                    priority={index === 0}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* GLASSMORPHISM NAVIGATION TRIGGERS (Only Visible on Multi-Slides) */}
+          {slides.length > 1 && (
+            <>
+              <button className="ts-prev absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-[2010] w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#1e1b4b] border border-white/10 hover:border-white shadow-xl transition-all duration-300 backdrop-blur-md flex items-center justify-center focus:outline-none active:scale-90 group">
+                <svg className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="ts-next absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-[2010] w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#1e1b4b] border border-white/10 hover:border-white shadow-xl transition-all duration-300 backdrop-blur-md flex items-center justify-center focus:outline-none active:scale-90 group">
+                <svg className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
+
+          {/* DYNAMIC REAL-TIME SLIDE COUNTER (BOTTOM LEFT) */}
+          {slides.length > 1 && (
+            <div className="absolute bottom-5 left-6 md:left-8 z-[2010] text-white font-sans font-black text-[11px] uppercase tracking-[0.2em] bg-black/30 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl hidden sm:flex items-center gap-1.5 shadow-lg select-none">
+              <span className="text-[#c4a048]">Slide</span>
+              <span>{String(currentActiveIndex + 1).padStart(2, "0")}</span>
+              <span className="opacity-40">/</span>
+              <span className="opacity-50">{String(slides.length).padStart(2, "0")}</span>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* Navigation Buttons */}
-      <button className="ts-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/10 hover:bg-white text-white hover:text-primary transition-all backdrop-blur-sm">
-        <span className="material-symbols-outlined">arrow_back</span>
-      </button>
-      <button className="ts-next absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/10 hover:bg-white text-white hover:text-primary transition-all backdrop-blur-sm">
-        <span className="material-symbols-outlined">arrow_forward</span>
-      </button>
-
-      {/* Slide Counter */}
-      {slides.length > 1 && (
-        <div className="absolute bottom-10 left-10 z-10 text-white font-label-caps">
-          <span className="text-2xl font-bold">Slide</span>
-          <span className="opacity-70"> / {String(slides.length).padStart(2, "0")}</span>
-        </div>
-      )}
-    </section>
+          )}
+        </section>
+        
       </div>
     </div>
   );

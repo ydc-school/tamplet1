@@ -69,17 +69,9 @@ export default async function Home() {
   return (
     <>
       <SchemaScript schemaJson={schema} />
-      {/*
-        UI PROMPT — HOMEPAGE (Landing Page) full section order:
-        1.TopSlider (hero) 2.WelcomeSection 3.HistorySection 4.AchievementsSection (stats)
-        5.NoticeSection 6.FounderMessage 7.StudentToppers 8.AchievementGallery
-        9.FacilitySection 10.AdmissionSection 11.BlogSection 12.FAQ Section
-        Global: white bg, Playfair headings, gold #c4a048 accents, navy #10213a text.
-        Full prompts: UI_PROMPTS.md → Homepage Sections 4-15
-      */}
+      
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
-        {/* <Hero /> */}
         <WelcomeSection />
         <HistorySection />
         <AchievementsSection />
@@ -87,36 +79,36 @@ export default async function Home() {
         <FounderMessage />
         <StudentToppers />
         <AchievementGallery />
-        {/* <CourseSection /> */}
         <FacilitySection />
         <AdmissionSection />
         <BlogSection />
-        {/*
-          UI PROMPT — FAQ SECTION (Homepage):
-          Container: max-w-5xl centered, bg #f6f8fc, py-16 px-6.
-          Centered header: eyebrow "Help Center" (gold uppercase 10px) + H2 "Frequently Asked Questions" (Playfair).
-          3-column grid (1 col mobile): white cards, rounded border rgba(196,160,72,0.14), p-5.
-          Each card: question H3 (navy Playfair bold) + answer paragraph (text-sm #3a5a7a leading-7).
-          Full prompt: UI_PROMPTS.md → Section 15
-        */}
-        <section className="w-full bg-[#f6f8fc] px-6 py-16">
+        
+        <section className="w-full bg-[#f6f8fc] px-6 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
-            <p className="text-center text-[10px] font-bold uppercase tracking-[0.28em] text-[#c4a048]">
-              Help Center
-            </p>
-            <h2 className="mt-3 text-center font-[var(--font-playfair)] text-3xl font-bold text-[#10213a]">
-              Frequently Asked Questions
-            </h2>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <header className="flex flex-col items-center text-center space-y-2 mb-12">
+              <p className="text-[10px] font-black uppercase tracking-[0.35em] text-[#c4a048]">
+                Help Center
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-black text-[#10213a] tracking-tight">
+                Frequently Asked Questions
+              </h2>
+              <div className="w-12 h-1 bg-[#c4a048] rounded-full mt-2" />
+            </header>
+
+            <div className="grid gap-6 md:grid-cols-3">
               {HOME_FAQS.map((item) => (
                 <article
                   key={item.question}
-                  className="rounded border border-[rgba(196,160,72,0.14)] bg-white p-5"
+                  className="rounded-[2rem] border border-[rgba(196,160,72,0.14)] bg-white p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] flex flex-col justify-start space-y-4"
                 >
-                  <h3 className="font-[var(--font-playfair)] text-lg font-bold text-[#10213a]">
-                    {item.question}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-[#3a5a7a]">{item.answer}</p>
+                  <header>
+                    <h3 className="font-serif text-lg font-black leading-snug text-[#10213a]">
+                      {item.question}
+                    </h3>
+                  </header>
+                  <p className="text-sm font-medium leading-relaxed text-[#3a5a7a]">
+                    {item.answer}
+                  </p>
                 </article>
               ))}
             </div>
