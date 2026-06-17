@@ -47,10 +47,10 @@ export default function Footer() {
   const website = schoolInfo?.Website ?? "www.ydu.com";
   const schoolMotto = schoolInfo?.Motto ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
 
-  const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
-  const linkedinUrl = schoolInfo?.Linkedin_Url ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
-  const instagramUrl = schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
-  const twitterUrl = schoolInfo?.Twitter_Url ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
+  const youtubeUrl = schoolInfo?.Youtube_Url ? `${schoolInfo.Youtube_Url}` : "#";
+  const linkedinUrl = schoolInfo?.Linkedin_Url ? `${schoolInfo.Linkedin_Url}` : "#";
+  const instagramUrl = schoolInfo?.Instagram_Url ? `${schoolInfo.Instagram_Url}` : "#";
+  const twitterUrl = schoolInfo?.Twitter_Url ? `${schoolInfo.Twitter_Url}` : "#";
 
   return (
     <>
