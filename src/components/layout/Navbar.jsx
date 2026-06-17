@@ -23,46 +23,51 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${
-      scrolled 
-        ? "bg-white/90 backdrop-blur-md shadow-lg border-b border-[#f1f5f9]" 
+    <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled
+        ? "bg-white/90 backdrop-blur-md shadow-lg border-b border-[#f1f5f9]"
         : "bg-white border-b border-[#f1f5f9]"
-    }`}>
-      {/* SECTION 1 — Branding Bar */}
-      <section 
-        className={`max-w-[1280px] mx-auto px-8 flex justify-between items-center border-b border-[#f1f5f9]/60 transition-all duration-500 ${
-          scrolled ? "h-0 opacity-0 overflow-hidden pointer-events-none py-0" : "h-24 py-4"
-        }`} 
+      }`}>
+      {/* SECTION 1 — Branding Bar (Large Logo Optimization) */}
+      <section
+        className={`max-w-[1280px] mx-auto px-8 flex justify-between items-center border-b border-[#f1f5f9]/60 transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden pointer-events-none py-0" : "h-32 py-4"
+          }`}
         aria-label="Branding"
       >
-        <Link href="/" className="flex items-center gap-4 group">
-          <div className="w-14 h-14 bg-[#1e1b4b] flex items-center justify-center transition-transform duration-500 group-hover:rotate-12" style={{ borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" }}>
-            <Image 
-              src={logoSrc} 
-              alt={schoolInfo?.School_Name || "Logo"} 
-              width={40} 
-              height={40} 
-              onError={handleLogoError} 
-              priority 
-              className="object-contain brightness-0 invert"
-            />
+        <Link href="/" className="flex items-center gap-6 group max-w-[70%] sm:max-w-[50%] lg:max-w-[40%]">
+          {/* Logo container dynamically computed using viewport width bounds */}
+          <div
+            className="w-[30vw] h-[30vw] min-w-[70px] min-h-[70px] max-w-[100px] max-h-[100px] bg-[#1e1b4b] flex items-center justify-center transition-transform duration-500 group-hover:rotate-6 shadow-md flex-shrink-0"
+            style={{ borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" }}
+          >
+            {/* Inner wrapper ko 70% से बढ़ाकर 90% कर दिया है ताकि लोगो कंटेनर के अंदर बड़ा दिखे */}
+            <div className="relative w-[90%] h-[90%]">
+              <Image
+                src={logoSrc}
+                alt={schoolInfo?.School_Name || "Logo"}
+                fill
+                sizes="(max-width: 768px) 30vw, 100px"
+                onError={handleLogoError}
+                priority
+                className="object-contain brightness-0 invert"
+              />
+            </div>
           </div>
-          <div>
-            <h1 className="font-serif text-2xl font-bold text-[#1e1b4b] leading-none tracking-tight">
+          <div className="flex flex-col justify-center">
+            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#1e1b4b] leading-tight tracking-tight uppercase">
               {loading ? "Yaduvanshi School" : schoolInfo?.School_Name}
             </h1>
-            <p className="font-sans text-[10px] text-[#7f1d1d] font-black tracking-[0.25em] uppercase mt-1">
+            <p className="font-sans text-[11px] text-[#7f1d1d] font-black tracking-[0.25em] uppercase mt-1">
               Heritage of Excellence
             </p>
           </div>
         </Link>
 
-        <figure aria-label="Admission Advertisement" className="hidden sm:block relative overflow-hidden rounded-full border border-[#7f1d1d]/20 shadow-sm group">
-          <Image 
-            src="/poster/31y.png" 
-            alt="Admission Open" 
-            width={180} 
-            height={55} 
+        <figure aria-label="Admission Advertisement" className="hidden sm:block relative overflow-hidden rounded-full border border-[#7f1d1d]/20 shadow-sm group flex-shrink-0">
+          <Image
+            src="/poster/31y.png"
+            alt="Admission Open"
+            width={180}
+            height={55}
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-[#7f1d1d]/5 pointer-events-none mix-blend-multiply" />
@@ -71,9 +76,8 @@ export default function Navbar() {
 
       {/* SECTION 2 — Primary Navigation Bar */}
       <div className="w-full">
-        <div className={`max-w-[1280px] mx-auto px-8 flex justify-between items-center transition-all duration-300 ${
-          scrolled ? "h-20" : "h-16"
-        }`}>
+        <div className={`max-w-[1280px] mx-auto px-8 flex justify-between items-center transition-all duration-300 ${scrolled ? "h-20" : "h-16"
+          }`}>
           {/* Desktop Navigation with Pure CSS Hover Dropdown */}
           <nav aria-label="Main Navigation" className="hidden lg:block h-full">
             <ul className="flex items-center gap-8 font-sans text-sm font-semibold text-[#0f172a]/70 h-full">
@@ -85,7 +89,6 @@ export default function Navbar() {
               </li>
 
               {categories.map((cat) => (
-                /* 'group' क्लास पैरेंट पर जोड़ी ताकि होवर डिटेक्ट हो, और 'h-full flex items-center' ताकि होवर एरिया बड़ा रहे */
                 <li key={cat.Id} className="relative group h-full flex items-center cursor-pointer">
                   {cat.pages?.length > 0 ? (
                     <div className="py-2">
@@ -95,12 +98,11 @@ export default function Navbar() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                         </svg>
                       </span>
-                      
-                      {/* Dropdown Container — Default 'invisible opacity-0' और Hover पर 'visible opacity-100' */}
+
                       <ul className="absolute top-[85%] left-0 w-64 bg-white/95 backdrop-blur-xl border border-[#f1f5f9] rounded-2xl shadow-xl p-3 space-y-1 z-50 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                         {cat.pages.map((page) => (
                           <li key={page.Id}>
-                            <Link 
+                            <Link
                               href={`/pages/${slugify(page.Name)}/${page.Id}`}
                               className="block px-4 py-2.5 rounded-xl hover:bg-[#f1f5f9] text-[#0f172a]/80 hover:text-[#1e1b4b] transition-all font-medium"
                             >
@@ -128,15 +130,15 @@ export default function Navbar() {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-4 ml-auto lg:ml-0">
-            <Link 
+            <Link
               href="/admission-form"
               className="bg-[#1e1b4b] hover:bg-[#7f1d1d] text-white text-xs font-black uppercase tracking-widest px-6 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
             >
               Student Admission
             </Link>
-            
-            <button 
-              onClick={() => setIsMobileMenuOpen(true)} 
+
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
               className="lg:hidden p-2.5 text-[#1e1b4b] hover:bg-[#f1f5f9] rounded-xl transition-colors focus:outline-none"
             >
@@ -148,10 +150,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation (Phone पर क्लिक ही सबसे बेस्ट रहता है) */}
+      {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <dialog 
-          open 
+        <dialog
+          open
           className="fixed inset-0 z-[100] w-full h-full bg-white/95 backdrop-blur-2xl flex flex-col p-8 overflow-y-auto border-none"
           onClose={() => setIsMobileMenuOpen(false)}
         >
@@ -162,7 +164,7 @@ export default function Navbar() {
               </div>
               <span className="font-serif font-bold text-lg text-[#1e1b4b]">Yaduvanshi Menu</span>
             </div>
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="w-10 h-10 bg-[#f1f5f9] hover:bg-[#7f1d1d] hover:text-white rounded-full flex items-center justify-center text-[#1e1b4b] transition-colors focus:outline-none"
             >
@@ -179,7 +181,7 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              
+
               {categories.map((cat) => (
                 <li key={cat.Id} className="border-b border-[#f1f5f9] pb-3">
                   {cat.pages?.length > 0 ? (
@@ -193,7 +195,7 @@ export default function Navbar() {
                       <ul className="mt-3 pl-4 space-y-3 text-sm font-sans font-medium text-[#0f172a]/70">
                         {cat.pages.map((page) => (
                           <li key={page.Id}>
-                            <Link 
+                            <Link
                               href={`/pages/${slugify(page.Name)}/${page.Id}`}
                               onClick={() => setIsMobileMenuOpen(false)}
                               className="block py-1 hover:text-[#1e1b4b] transition-colors"
