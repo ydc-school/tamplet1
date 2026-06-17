@@ -11,6 +11,43 @@ export default function Footer() {
     "/logo/logo.png"
   );
 
+  // Fetch Quick Links
+  useEffect(() => {
+    axios.get("/api/client/quick-link")
+      .then((res) => {
+        // Safely access deeply nested data with optional chaining and a fallback array
+        setQuickLinks(res?.data?.data?.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch quick links:", err);
+      });
+  }, []);
+
+  // Fetch Useful Links
+  useEffect(() => {
+    axios.get("/api/client/useful-link")
+      .then((res) => {
+        setUseFullLinks(res?.data?.data?.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch useful links:", err);
+      });
+  }, []);
+
+  const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
+  const shortName = schoolInfo?.Short_Name ?? "Degree College";
+  const address = schoolInfo?.Address ?? "Bucholi Road, Mahendergarh, Haryana, PIN-123029";
+  const email = schoolInfo?.Email ?? "ydcmgh@gmail.com";
+  const phone = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
+  const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
+  const website = schoolInfo?.Website ?? "www.ydu.com";
+  const schoolMotto = schoolInfo?.Motto ?? "Among the top residential Colleges in India. Established under the aegis of Rao Chiranji Lal Samriti Jan Seva Trust, Mahendergarh.";
+
+  const youtubeUrl = schoolInfo?.Youtube_Url ? `https://${schoolInfo.Youtube_Url}` : "#";
+  const linkedinUrl = schoolInfo?.Linkedin_Url ? `https://linkedin.com/in/${schoolInfo.Linkedin_Url}` : "#";
+  const instagramUrl = schoolInfo?.Instagram_Url ? `https://instagram.com/${schoolInfo.Instagram_Url}` : "#";
+  const twitterUrl = schoolInfo?.Twitter_Url ? `https://twitter.com/${schoolInfo.Twitter_Url}` : "#";
+
   return (
     <footer>
       {/*
