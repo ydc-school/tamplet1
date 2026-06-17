@@ -27,6 +27,15 @@ export default function StudentToppers() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — STUDENT TOPPERS (Hall of Fame):
+        Header: eyebrow "Hall of Fame" + H2 "Our Student Toppers".
+        PODIUM (top 3): 3 columns, center tallest (rank 1). Circular photo 110×110,
+        name H3, class, gold percentage score, "Batch YEAR" badge. Photo links to profile.
+        REMAINING: smaller cards with 44×44 photo, name, "#rank • year".
+        Celebratory gold accents, navy bg option, trophy visual cues.
+        Full prompt: UI_PROMPTS.md → Section 10
+      */}
       <header>
         <span>Hall of Fame</span>
         <h2>Our Student Toppers</h2>

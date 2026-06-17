@@ -13,6 +13,17 @@ export default function Footer() {
 
   return (
     <footer>
+      {/*
+        UI PROMPT — FOOTER:
+        4-column grid (stacked on mobile):
+          Col 1 — Brand: logo, school name H2, short name, motto, social icons (YouTube, Instagram, Twitter, LinkedIn).
+          Col 2 — Useful Links: heading + vertical link list.
+          Col 3 — Quick Links: heading + vertical link list.
+          Col 4 — Contact: address, email, phone in <address> tag.
+        Bottom bar: © year + school name | Privacy Policy + Terms links.
+        Colors: navy #10213a headings, gold #c4a048 accents, bg dark navy or #f6f8fc.
+        Full prompt: UI_PROMPTS.md → Section 3
+      */}
       <section>
         {/* Brand Section */}
         <article>

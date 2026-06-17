@@ -69,6 +69,14 @@ export default async function Home() {
   return (
     <>
       <SchemaScript schemaJson={schema} />
+      {/*
+        UI PROMPT — HOMEPAGE (Landing Page) full section order:
+        1.TopSlider (hero) 2.WelcomeSection 3.HistorySection 4.AchievementsSection (stats)
+        5.NoticeSection 6.FounderMessage 7.StudentToppers 8.AchievementGallery
+        9.FacilitySection 10.AdmissionSection 11.BlogSection 12.FAQ Section
+        Global: white bg, Playfair headings, gold #c4a048 accents, navy #10213a text.
+        Full prompts: UI_PROMPTS.md → Homepage Sections 4-15
+      */}
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
         {/* <Hero /> */}
@@ -83,6 +91,14 @@ export default async function Home() {
         <FacilitySection />
         <AdmissionSection />
         <BlogSection />
+        {/*
+          UI PROMPT — FAQ SECTION (Homepage):
+          Container: max-w-5xl centered, bg #f6f8fc, py-16 px-6.
+          Centered header: eyebrow "Help Center" (gold uppercase 10px) + H2 "Frequently Asked Questions" (Playfair).
+          3-column grid (1 col mobile): white cards, rounded border rgba(196,160,72,0.14), p-5.
+          Each card: question H3 (navy Playfair bold) + answer paragraph (text-sm #3a5a7a leading-7).
+          Full prompt: UI_PROMPTS.md → Section 15
+        */}
         <section className="w-full bg-[#f6f8fc] px-6 py-16">
           <div className="mx-auto max-w-5xl">
             <p className="text-center text-[10px] font-bold uppercase tracking-[0.28em] text-[#c4a048]">

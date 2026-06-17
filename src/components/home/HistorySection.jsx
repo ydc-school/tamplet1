@@ -26,6 +26,13 @@ export default function HistorySection() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — HISTORY SECTION:
+        Header: eyebrow "Our Legacy" (gold) + H2 "History of Yaduvanshi" (italic gold) + "Est. 1998" badge.
+        Body: rich HTML prose content from API. Footer: "Read More →" link with arrow icon.
+        Light bg #f6f8fc, max-width prose container, academic elegant style.
+        Full prompt: UI_PROMPTS.md → Section 6
+      */}
       <header>
         <p>Our Legacy</p>
         <h2>History of <em>Yaduvanshi</em></h2>

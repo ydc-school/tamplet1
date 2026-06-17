@@ -15,6 +15,13 @@ export default function BlogsListPage({ initialBlogs = [], initialPagination = {
 
   return (
     <main className="bl-root">
+      {/*
+        UI PROMPT — BLOGS LIST PAGE:
+        Hero: H1 "Our Blog" + subtitle "Knowledge & Insights" + search bar (rounded, placeholder "Search articles...").
+        3-column blog grid: cover image 520×320, title H2, excerpt, footer meta (author + date). Hover shadow lift.
+        Pagination: numbered buttons, active page gold filled. Loading/empty states.
+        Full prompt: UI_PROMPTS.md → Section 17
+      */}
       <header className="bl-hero">
         <h1>Our Blog</h1>
         <p>Knowledge & Insights</p>

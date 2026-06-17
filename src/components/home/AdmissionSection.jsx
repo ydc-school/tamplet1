@@ -36,6 +36,13 @@ export default function AdmissionSection() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — ADMISSION SECTION:
+        Header: eyebrow "Admissions" + H2 "Admission Open 2025-2026" (year in gold span).
+        Image block: wide banner 860×500 + "Now Open" red/gold pill badge overlay top-left.
+        Body: rich HTML admission message. Footer: 2 CTAs side-by-side — "Apply Now" (gold filled) + "Learn More" (outlined).
+        Attention-grabbing, white or light gold tint bg. Full prompt: UI_PROMPTS.md → Section 13
+      */}
       <header>
         <span>Admissions</span>
         <h2>

@@ -8,6 +8,10 @@ export const metadata = {
 
 export default function NotFound() {
   return (
+  /* UI PROMPT — 404 PAGE: Centered layout min-h 60vh, bg #f6f8fc.
+     Eyebrow "404" (gold uppercase 10px) + H1 "Page not found" (Playfair 4xl, navy #10213a).
+     Description paragraph (#3a5a7a). Calm helpful tone matching site design system.
+     Full prompt: UI_PROMPTS.md → Section 27 */
     <main className="flex min-h-[60vh] items-center justify-center bg-[#f6f8fc] px-6 py-20">
       <section className="max-w-xl text-center">
         <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#c4a048]">

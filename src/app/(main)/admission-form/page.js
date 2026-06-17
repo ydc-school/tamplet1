@@ -69,6 +69,16 @@ export default function AdmissionForm() {
 
   return (
     <main>
+      {/*
+        UI PROMPT — ADMISSION FORM PAGE:
+        Header: H1 "Student Admission Form" + subtitle paragraph.
+        Progress stepper: 3 steps — Basic Info | Academic & Path | Address & Meta (active=gold highlight).
+        Form fieldset per step: labeled inputs with required asterisks.
+        Step 1: name, father, mother, email, phone. Step 2: class, DOB, gender, admission date.
+        Step 3: city, state, additional info textarea.
+        Footer: Back (outlined) + Next/Submit (gold primary). Success: checkmark + confirmation with student name.
+        Full prompt: UI_PROMPTS.md → Section 16
+      */}
       <header>
         <h1>Student Admission Form</h1>
         <p>Please enter accurate details to register your student profile.</p>

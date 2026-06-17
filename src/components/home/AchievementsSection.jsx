@@ -61,6 +61,15 @@ export default function AchievementsSection() {
 
   return (
     <>
+      {/*
+        UI PROMPT — ACHIEVEMENTS STATS (By the Numbers):
+        Centered header: eyebrow "By the Numbers" + H2 "Our Achievements".
+        4 stat cards in a row: large animated number with suffix (26+, 55,000+, 3000+, 255+),
+        gold hr divider, label below (Years of Excellence, Students Enrolled, Expert Faculty, Awards Received).
+        Numbers count up on scroll (IntersectionObserver), staggered 120ms delay per card.
+        Navy bg or white cards, Playfair large numbers, gold accents.
+        Full prompt: UI_PROMPTS.md → Section 7
+      */}
       <header>
         <span>By the Numbers</span>
         <h2>Our Achievements</h2>

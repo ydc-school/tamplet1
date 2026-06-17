@@ -28,6 +28,15 @@ export default function WelcomeSection() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — WELCOME SECTION (2 columns):
+        LEFT: Eyebrow "Welcome" (gold uppercase) + H2 title (first word italic).
+        Rich HTML message + feature pills: Quality Education | Experienced Faculty | Holistic Development | Modern Campus.
+        Optional "Learn More →" CTA link.
+        RIGHT: Square image 460×460 rounded + floating badge "26+ Years of Excellence" (gold card overlay).
+        Desktop: side-by-side. Mobile: stacked (text first). White bg.
+        Full prompt: UI_PROMPTS.md → Section 5
+      */}
       <header>
         <span>Welcome</span>
         <h2>

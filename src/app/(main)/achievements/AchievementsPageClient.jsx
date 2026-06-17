@@ -43,6 +43,13 @@ export default function AchievementsPageClient({ initialAchievements = [], initi
 
   return (
     <main className="ap-root">
+      {/*
+        UI PROMPT — ACHIEVEMENTS PAGE:
+        Hero: H1 "Achievements" + subtitle "Browse our recognition and milestones."
+        Grid 3-4 cols: image (or placeholder icon), year chip overlay, title H3, excerpt, "View Details" gold button.
+        Modal: large image, title H2, detail dl (Year, ID, description), close button. Staggered fade-in animation.
+        Full prompt: UI_PROMPTS.md → Section 19
+      */}
       <header className="ap-hero">
         <h1>Achievements</h1>
         <p>Browse our recognition and milestones.</p>

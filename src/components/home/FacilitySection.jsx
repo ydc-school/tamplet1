@@ -27,6 +27,14 @@ export default function FacilitySection() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — FACILITY SECTION:
+        Header: eyebrow "Campus Infrastructure" + H2 "Our Facilities" + subtitle paragraph.
+        Grid 2-3 cols: each card = image 520×320, "#01" index badge, category name (gold),
+        title H3, description excerpt, "View Details". Hover: card lift shadow.
+        Modal: full image 900×520, category + title H3, full description, close button. Body scroll locked.
+        Full prompt: UI_PROMPTS.md → Section 12
+      */}
       <header>
         <span>Campus Infrastructure</span>
         <h2>Our Facilities</h2>

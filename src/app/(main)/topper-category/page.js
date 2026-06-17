@@ -22,6 +22,13 @@ export default function TopperCategoryPage() {
 
   return (
     <main className="tc-root">
+      {/*
+        UI PROMPT — TOPPER CATEGORIES PAGE:
+        Hero: eyebrow "Hall of Fame" + H1 "Topper Categories" + subtitle + category count.
+        3-column grid: category name H2, description text, tag chips (Class + Year gold outlined pills).
+        Hover: gold border highlight. Links to /topper-category/[categoryId].
+        Full prompt: UI_PROMPTS.md → Section 23
+      */}
       {/* Page Header Landmark */}
       <header className="tc-hero">
         <p className="tc-eyebrow">Hall of Fame</p>

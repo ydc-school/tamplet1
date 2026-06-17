@@ -20,6 +20,13 @@ export default function TopperCategoryDetailPage({ categoryId: categoryIdProp, i
 
   return (
     <main className="tcd-root">
+      {/*
+        UI PROMPT — TOPPER CATEGORY DETAIL PAGE:
+        Hero: "← All Categories" back + category name H1 + subtitle + Class/Year chips + student count.
+        3-column topper grid: student name H2, photo (or initial avatar), rank badge "Rank #1",
+        description, footer "98.5% Score" + "View Profile →" link. Links to /student/[id].
+        Full prompt: UI_PROMPTS.md → Section 24
+      */}
       {/* Header Landmark */}
       <header className="tcd-hero">
         <button onClick={() => router.push("/topper-category")} aria-label="Go back to all topper categories">

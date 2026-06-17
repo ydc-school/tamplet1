@@ -22,6 +22,14 @@ export default function NoticeSection() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — NOTICE SECTION:
+        Header: eyebrow "Latest Updates" + H2 "News & Notices".
+        Notice Board panel: sub-heading + count badge + vertical notice list.
+        Each notice card: important "!" badge, title H4, date, "View Details" on right, hover highlight.
+        Modal on click: overlay dialog, title + date + HTML description + "Close Notice" button.
+        Full prompt: UI_PROMPTS.md → Section 8
+      */}
       <header>
         <span>Latest Updates</span>
         <h2>News &amp; Notices</h2>

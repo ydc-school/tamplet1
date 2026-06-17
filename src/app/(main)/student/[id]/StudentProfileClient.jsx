@@ -13,6 +13,14 @@ export default function StudentProfile({ id, initialStudent = null, initialLoade
 
   return (
     <main className="sp-root">
+      {/*
+        UI PROMPT — STUDENT PROFILE PAGE:
+        "← Back to Toppers" button. 2-column profile card:
+        LEFT: large student photo (circular/square) or initial avatar + rank badge "#1" (gold).
+        RIGHT: eyebrow "Student Profile" + name H1 + info grid dl (Class, Father's Name, Batch)
+        + "About Achievement" section (H3 + description). Clean white card, subtle shadow, celebratory.
+        Full prompt: UI_PROMPTS.md → Section 25
+      */}
       {loading ? (
         <section aria-busy="true">Loading profile...</section>
       ) : !student ? (

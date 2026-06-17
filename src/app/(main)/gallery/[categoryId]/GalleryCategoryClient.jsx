@@ -22,6 +22,13 @@ export default function GalleryCategoryPage({ categoryId: categoryIdProp, initia
 
   return (
     <main className="gcat-root">
+      {/*
+        UI PROMPT — GALLERY CATEGORY PAGE (Album List):
+        Hero: "← All Categories" back button + category name H1 + album count "5 Albums".
+        2-3 column album grid: album name H2, description excerpt, "View Photos" footer.
+        Text-focused minimal cards. Links to /gallery/[categoryId]/[galleryId].
+        Full prompt: UI_PROMPTS.md → Section 21
+      */}
       {/* Page Header */}
       <header className="gcat-hero">
         <button onClick={() => router.push("/gallery")} aria-label="Back to all categories">

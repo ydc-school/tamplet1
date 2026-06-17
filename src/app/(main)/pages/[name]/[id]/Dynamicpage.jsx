@@ -38,6 +38,13 @@ export default function DynamicPage({ params: paramsPromise }) {
 
   return (
     <main className="dp-root">
+      {/*
+        UI PROMPT — DYNAMIC CMS PAGE:
+        Hero: "← Back" button + eyebrow "Page" + page title H1 (e.g. "About Us").
+        Content: rich HTML prose (.dp-prose), max-width 4xl centered. Supports headings, tables, images.
+        States: loading spinner, error alert box. Minimal content-focused documentation style.
+        Full prompt: UI_PROMPTS.md → Section 26
+      */}
       {jsonLd && (
         <Script id="page-jsonld" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify(jsonLd)}

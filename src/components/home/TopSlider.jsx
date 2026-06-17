@@ -31,6 +31,14 @@ export default function TopSlider() {
 
   return (
     <section aria-label="Hero Slider">
+      {/*
+        UI PROMPT — TOP SLIDER / HERO:
+        Full-width Swiper carousel, fade effect, no side padding.
+        Each slide: full-width cover image (100vw) + optional bottom caption overlay.
+        Controls: Prev/Next buttons (left-right center), clickable pagination dots.
+        Slide counter "01 / 05" badge (if multiple slides). Autoplay 4.5s, loop.
+        Full prompt: UI_PROMPTS.md → Section 4
+      */}
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         effect="fade"

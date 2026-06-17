@@ -32,6 +32,14 @@ export default function BlogSection() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — BLOG SECTION (Latest from Campus):
+        Header: eyebrow "News & Updates" + H2 "Latest from Campus".
+        FEATURED POST: large cover 800×400 + "Featured" gold badge, date + author, title H3, excerpt. Full card clickable.
+        GRID: 2-3 col smaller cards with thumbnail 400×250, date, title, excerpt.
+        Footer: centered "View All Posts →" link to /blogs. Magazine layout, subtle card shadows.
+        Full prompt: UI_PROMPTS.md → Section 14
+      */}
       <header>
         <span>News &amp; Updates</span>
         <h2>Latest from Campus</h2>

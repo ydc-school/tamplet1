@@ -21,6 +21,13 @@ export default function GalleryPage({ initialCategories = [], initialLoaded = fa
 
   return (
     <main className="gl-root">
+      {/*
+        UI PROMPT — GALLERY PAGE (Categories):
+        Hero: H1 "Photo Gallery" + subtitle "Explore our campus life, events and achievements".
+        3-column category grid: cover image 4:3 aspect, category name H2, description excerpt, "View Photos" footer.
+        Hover: image zoom + overlay darken. Card links to /gallery/[categoryId].
+        Full prompt: UI_PROMPTS.md → Section 20
+      */}
       {/* Hero Section */}
       <header className="gl-hero">
         <h1>Photo Gallery</h1>

@@ -24,7 +24,20 @@ export default function Navbar() {
 
   return (
     <header className={scrolled ? "nb-scrolled" : ""}>
-      {/* Branding Section */}
+      {/*
+        UI PROMPT — NAVBAR (2 stacked sections):
+        SECTION 1 — Branding Bar (nb-branding): 2-column row.
+          Col 1 (left): Logo image (120×52) + School Name H1, clickable → homepage.
+          Col 2 (right): Admission poster banner image (180×55) "Admission Open".
+        On scroll → "nb-scrolled" sticky compact style.
+        SECTION 2 — Primary Nav: horizontal menu row.
+          Menu: Home + dynamic categories (dropdown <details> if sub-pages exist).
+          Right: "Student Admission" gold CTA + mobile "Menu" hamburger button.
+        Mobile: full-screen dialog panel with close button + vertical link list.
+        Colors: navy #10213a, gold accent #c4a048. Fonts: Playfair + Source Sans.
+        Full prompt: UI_PROMPTS.md → Section 2
+      */}
+      {/* Branding Section — UI PROMPT Col 1: Logo+Name (left) | Col 2: Admission poster (right). 2-column flex row. */}
       <section className="nb-branding" aria-label="Branding">
         <Link href="/">
           <figure>
@@ -37,7 +50,7 @@ export default function Navbar() {
         </figure>
       </section>
 
-      {/* Primary Navigation */}
+      {/* Primary Navigation — UI PROMPT: horizontal menu (Home + dropdown categories) + "Student Admission" CTA + mobile Menu button. */}
       <nav aria-label="Main Navigation">
         <ul>
           <li><Link href="/">Home</Link></li>

@@ -19,6 +19,13 @@ export default function GalleryDetailPage({ categoryId: categoryIdProp, galleryI
 
   return (
     <main className="gd-root">
+      {/*
+        UI PROMPT — GALLERY DETAIL (Photo Album + Lightbox):
+        Hero: "← Back to Albums" + album name H1 + description.
+        Photo grid 3-4 cols: square/landscape thumbnails, hover zoom + expand icon, click opens lightbox.
+        Lightbox: full-screen dark overlay, large centered image, "03 / 12" counter, Prev/Next arrows, close X.
+        Keyboard arrow navigation. Full prompt: UI_PROMPTS.md → Section 22
+      */}
       {/* Header Landmark */}
       <header className="gd-hero">
         <button onClick={() => router.push(`/gallery/${categoryId}`)}>Back to Albums</button>

@@ -14,6 +14,13 @@ export default function BlogDetailPage({ id, initialBlog = null, initialLoaded =
 
   return (
     <main className="bd-root">
+      {/*
+        UI PROMPT — BLOG DETAIL PAGE:
+        Hero: full-width cover image 1600×620 (or gray placeholder) + bottom gradient overlay.
+        "← Back to Blogs" button top-left. Article title H1 (white on overlay). Meta: author + date.
+        Content: max-width prose, rich HTML article (.bd-prose). Footer: divider + social share buttons.
+        Medium/Substack-like readable layout. Full prompt: UI_PROMPTS.md → Section 18
+      */}
       {loading && <section aria-busy="true">Loading article...</section>}
 
       {!loading && error && <section role="alert">Error: {error}</section>}

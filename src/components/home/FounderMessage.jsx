@@ -26,6 +26,14 @@ export default function FounderMessage() {
 
   return (
     <article>
+      {/*
+        UI PROMPT — FOUNDER / LEADERSHIP MESSAGE:
+        Eyebrow "Message from Leadership". Swiper carousel, one slide visible.
+        Each slide 2 columns: LEFT portrait photo 340×400 + role badge.
+        RIGHT blockquote: name H3, role, message paragraph, "Read Full Message →" link.
+        Pagination dots, autoplay 6s if multiple. Subtle gradient/light gray bg.
+        Full prompt: UI_PROMPTS.md → Section 9
+      */}
       <header>
         <span>Message from Leadership</span>
       </header>

@@ -31,6 +31,12 @@ export default function Popup() {
   if (loading || !isOpen || slides.length === 0) return null;
 
   return (
+    /* UI PROMPT — POPUP MODAL: Full-screen overlay z-2000, black/70 + blur backdrop.
+       Centered modal max-w-5xl, close button top-right (circular, white X).
+       Inner: Swiper fade slider 50vh mobile / 75vh desktop, object-contain images.
+       Prev/Next glass buttons left-right center. White pagination dots, active=gold.
+       Slide counter bottom-left "Slide / 03". Autoplay 5s, loop. Click outside to close.
+       Full prompt: UI_PROMPTS.md → Section 1 */
     <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 md:p-10" onClick={() => setIsOpen(false)}>
       <div className="relative w-full max-w-5xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
         

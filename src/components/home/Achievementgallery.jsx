@@ -28,6 +28,13 @@ export default function AchievementGallery() {
 
   return (
     <section>
+      {/*
+        UI PROMPT — ACHIEVEMENT GALLERY (Homepage):
+        H2 "Our Achievements". Responsive grid 2-4 columns.
+        Each card: image thumbnail + year chip overlay, title H3, description excerpt, "View Details".
+        Hover: image zoom. Modal on click: large image, title, description, year, close X button.
+        Loading: 4 skeleton cards. Full prompt: UI_PROMPTS.md → Section 11
+      */}
       <h2>Our Achievements</h2>
 
       {/* Grid List */}
