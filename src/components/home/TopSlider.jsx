@@ -6,8 +6,8 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
-import Image from "next/image";
 import axios from "axios";
+import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
 
 export default function TopSlider() {
   const [slides, setSlides] = useState([]);
@@ -18,9 +18,7 @@ export default function TopSlider() {
       .get("/api/client/poster")
       .then((res) => {
         if (res.data.status === "success") {
-          const valid = res.data.data.data.filter(
-            (s) => s.Image && s.Image.trim() !== ""
-          );
+          const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
           setSlides(valid);
         }
       })
@@ -41,7 +39,6 @@ export default function TopSlider() {
   return (
     <>
       <style>{`
-        /* ── Skeleton ── */
         .ts-skeleton {
           width: 100%;
           position: relative;
@@ -56,18 +53,15 @@ export default function TopSlider() {
           animation: ts-shimmer 1.5s infinite;
         }
         @keyframes ts-shimmer {
-          0%   { background-position: 200% 0; }
+          0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }
         }
-
-        /* ── Wrapper ── */
         .ts-wrap {
           width: 100%;
           position: relative;
           background: #f6f8fc;
           border-bottom: 3px solid #c4a048;
         }
-        /* Gold top accent */
         .ts-wrap::before {
           content: '';
           position: absolute;
@@ -77,16 +71,12 @@ export default function TopSlider() {
           z-index: 10;
           pointer-events: none;
         }
-
-        /* ── Swiper ── */
         .ts-swiper {
           width: 100%;
           height: clamp(200px, 42vw, 620px) !important;
           display: block;
-           background: #f6f8fc;
+          background: #f6f8fc;
         }
-
-        /* Slide image */
         .ts-slide-img {
           position: absolute;
           inset: 0;
@@ -95,8 +85,6 @@ export default function TopSlider() {
         .swiper-slide-active .ts-slide-img {
           transform: scale(1.04) !important;
         }
-
-        /* Slide name label */
         .ts-slide-label {
           position: absolute;
           bottom: 20px;
@@ -121,8 +109,6 @@ export default function TopSlider() {
           color: rgba(240,230,200,0.85);
           text-shadow: 0 1px 6px rgba(0,0,0,0.6);
         }
-
-        /* Slide counter */
         .ts-counter {
           position: absolute;
           bottom: 20px;
@@ -135,8 +121,6 @@ export default function TopSlider() {
           color: rgba(196,160,72,0.7);
         }
         .ts-counter-cur { color: #c4a048; font-size: 16px; }
-
-        /* ── Nav arrows ── */
         .ts-prev, .ts-next {
           position: absolute;
           top: 50%;
@@ -164,8 +148,6 @@ export default function TopSlider() {
           background: rgba(196,160,72,0.15);
           border-color: #c4a048;
         }
-
-        /* ── Pagination ── */
         .ts-swiper .swiper-pagination {
           bottom: 16px !important;
         }
@@ -194,13 +176,11 @@ export default function TopSlider() {
           className="ts-swiper"
         >
           {slides.map((slide, index) => (
-            <SwiperSlide key={slide.Id || index}>
+            <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500}>
               <div style={{ position: "relative", background: "#f6f8fc", width: "100%", height: "100%" }}>
-                <Image
-                  src={`/uploads/${slide.Image}`}
+                <PosterMedia
+                  slide={slide}
                   alt={slide.Name || "Poster"}
-                  fill
-                  sizes="100vw"
                   className="ts-slide-img object-contain"
                   priority={index === 0}
                 />
@@ -215,7 +195,6 @@ export default function TopSlider() {
           ))}
         </Swiper>
 
-        {/* Slide counter */}
         {slides.length > 1 && (
           <div className="ts-counter">
             <span className="ts-counter-cur">01</span>
@@ -223,7 +202,6 @@ export default function TopSlider() {
           </div>
         )}
 
-        {/* Custom nav */}
         <button className="ts-prev" aria-label="Previous">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
