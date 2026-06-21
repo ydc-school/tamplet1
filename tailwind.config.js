@@ -72,14 +72,14 @@ module.exports = {
         "gutter": "50px"
       },
       "fontFamily": {
-        "headline-md": ["Hanken Grotesk"],
+        "headline-md": ['var(--font-hanken-grotesk)'],
         "body-lg": ["Public Sans"],
-        "display-lg": ["Hanken Grotesk"],
-        "label-caps": ["Hanken Grotesk"],
+        "display-lg": ['var(--font-hanken-grotesk)'],
+        "label-caps": ['var(--font-hanken-grotesk)'],
         "body-md": ["Public Sans"],
-        "headline-lg": ["Hanken Grotesk"],
-        "display-lg-mobile": ["Hanken Grotesk"],
-        "stat-number": ["Hanken Grotesk"]
+        "headline-lg": ['var(--font-hanken-grotesk)'],
+        "display-lg-mobile": ['var(--font-hanken-grotesk)'],
+        "stat-number": ['var(--font-hanken-grotesk)']
       },
       "fontSize": {
         "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
