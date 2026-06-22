@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <div ref={menuRef}>
       <nav className="bg-heritage-navy dark:bg-primary text-on-primary dark:text-inverse-on-surface docked full-width top sticky z-50 border-b-2 border-academic-gold shadow-md transition-all duration-300 ease-in-out">
-        <div className="flex justify-between items-center px-gutter py-4 w-full max-w-container-max mx-auto">
+        <div className="flex justify-between items-center px-gutter py-8 w-full max-w-container-max mx-auto">
           
           {/* लोगो सेक्शन */}
           <div className="flex items-center gap-4">
