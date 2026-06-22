@@ -10,7 +10,7 @@ export default async function proxy(request) {
     const hostname = host.split(":")[0];
     const parts = hostname.split(".");
     const subdomain = parts.length >= 2 ? parts[0] : null;
-    console.log("Proxying request for:", url.pathname, "Subdomain:", subdomain);
+    
 
 
     if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/uploads/")) {
