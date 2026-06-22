@@ -102,9 +102,9 @@ export default function Navbar() {
         </nav>
       
         <div className="bg-white  border-b border-gray-100">
-          <div className="max-w-7xl mx-auto  flex justify-between items-center gap-4">
+          <div className="max-w-7xl mx-auto  px-6 flex justify-between items-center gap-4">
             <Link href="/" className="flex items-center gap-4 group">
-              <div className="relative w-full  h-auto md:w-92 md:h-32  flex-shrink-0">
+              <div className="relative w-72  h-32 md:w-92 md:h-32  flex-shrink-0">
                 <Image 
                   src={logoSrc} 
                   alt={`${schoolName} Logo`} 
