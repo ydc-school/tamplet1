@@ -19,7 +19,7 @@ export default function Navbar() {
     "/logo/logo.png"
   );
 
-  // API से कैटेगरीज और उनके पेजेस लोड करना
+ 
   useEffect(() => {
     const fetchPages = async () => {
       try {
@@ -34,7 +34,6 @@ export default function Navbar() {
     fetchPages();
   }, []);
 
-  // बाहर क्लिक करने पर मेनू बंद करने के लिए
   useEffect(() => {
     const handler = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false);
@@ -58,7 +57,7 @@ export default function Navbar() {
             <Link href="/">
               <img 
                 alt="School Logo" 
-                className="h-12 w-auto object-contain" 
+                className="h-28 w-auto object-contain" 
                 src={logoSrc} 
                 onError={handleLogoError}
               />
@@ -78,7 +77,7 @@ export default function Navbar() {
               <div key={cat.Id} className="relative group py-2">
                 {cat.pages?.length > 0 ? (
                   <>
-                    {/* ड्रॉपडाउन ट्रिगर बटन */}
+                   
                     <button className="font-label-caps text-label-caps text-white hover:text-academic-gold transition-colors duration-200 flex items-center gap-1 focus:outline-none">
                       {cat.Name}
                       <svg className="h-3 w-3 transform transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -86,7 +85,6 @@ export default function Navbar() {
                       </svg>
                     </button>
 
-                    {/* ड्रॉपडाउन बॉक्स */}
                     <div className="absolute left-0 mt-2 w-52 bg-heritage-navy border border-academic-gold/20 rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2">
                       {cat.pages.map((page) => (
                         <Link
