@@ -9,6 +9,7 @@ import FounderMessage from "@/components/home/FounderMessage";
 import BlogSection from "@/components/home/BlogSection";
 import AchievementGallery from "@/components/home/Achievementgallery";
 import FacilitySection from "@/components/home/FacilitySection";
+import Branch from "@/components/home/Branch";
 import SchemaScript from "@/components/SchemaScript";
 import {
   breadcrumbSchema,
@@ -73,6 +74,7 @@ export default async function Home() {
         <TopSlider />
         {/* <Hero /> */}
         <WelcomeSection />
+        <Branch/>
         <HistorySection />
         <AchievementsSection />
         <NoticeSection />
