@@ -62,11 +62,18 @@ export default function Footer() {
 
       <footer className="bg-deep-maroon text-on-primary border-t border-white/10 pt-16 pb-8">
         <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-        
+
           <div className="col-span-1 md:col-span-1">
             <div className="bg-white p-4 rounded-sm mb-6 inline-block">
-              <img alt="Lotus Valley Logo White" className="h-12 object-contain"
-                src="https://lh3.googleusercontent.com/aida/AP1WRLueGe-wnE9VO_V-_lt1RCPM1Bj9tGW76RrUZjbP9zhsn6ULtyoFy7bbIbjTwLdCz3UnQ_YNaVNuF6SsRAE__1hubtkGCe_Pd3qSI1SBBbPu0MIjaqwOb0g_NeaKIRELVhzK5FnnFpuj7GcSQSwgcTI2nJIP5Er-oy0Huyv7i12tZM5jN-pjDTy_PUDXRydn8cajyruVBc-a0PX5Go5U9hj_76Oz194vxptuWXyyzD3kPTuIAKMmeDzSXkM" />
+              <Image
+                src={logoSrc}
+                alt={`${schoolName} Logo`}
+                width={500}
+                height={50}
+                style={{ objectFit: "contain" }}
+                onError={handleLogoError}
+                unoptimized
+              />
             </div>
             <p className="font-label-sm text-label-sm tracking-wide opacity-80 leading-relaxed mb-4">
               Affiliation no - 531034<br />
@@ -87,50 +94,45 @@ export default function Footer() {
               </a>
             </div>
           </div>
-         
+
           <div>
             <h4 className="font-headline-md text-headline-md mb-8">Quick Links</h4>
+
             <ul className="space-y-4 font-label-md text-label-md">
-              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
-                href="#">Awards</a></li>
-              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
-                href="#">E-Magazine</a></li>
-              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
-                href="#">Career</a></li>
-              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
-                href="#">Admission</a></li>
-              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
-                href="#">Feedback</a></li>
+              {quickLinks.map((link) => (
+                <li key={link.Id}>
+                  <Link href={link.Url || "#"} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{link.Name}</Link>
+                </li>
+              ))}
             </ul>
           </div>
-        
+
           <div className="col-span-1 md:col-span-2">
             <h4 className="font-headline-md text-headline-md mb-8">Contact Us</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-label-md font-label-md">
               <div className="flex gap-4">
                 <span className="material-symbols-outlined text-heritage-gold shrink-0">location_on</span>
                 <p className="opacity-80">
-                  Lotus Valley International School, M-Block, South City-II, Nirvana Country, Sector-50
-                  (Behind North Close), Gurgaon - 122018
+                  {address}
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="flex gap-4">
                   <span className="material-symbols-outlined text-heritage-gold shrink-0">call</span>
-                  <p className="opacity-80">+91 9650544997 or 0124 - 4936900</p>
+                  <p className="opacity-80">    <a href={`tel:${phone}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{phone}</a>or  <a href={`tel:${phone2}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{phone2}</a></p>
                 </div>
                 <div className="flex gap-4">
                   <span className="material-symbols-outlined text-heritage-gold shrink-0">mail</span>
                   <div>
-                    <p className="opacity-80">info@lotusvalleygurgaon.com</p>
-                    <p className="opacity-80">principal@lotusvalleygurgaon.com</p>
+                    <p className="opacity-80"> <a href={`mailto:${email}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{email}</a></p>
+                    <p className="opacity-80"> <a href={`mailto: ydcmgh@gmail.com}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"> ydcmgh@gmail.com</a></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-     
+
         <div className="border-y border-white/10 py-6">
           <div className="max-w-container-max mx-auto px-gutter flex justify-center gap-10">
             <span
@@ -145,7 +147,7 @@ export default function Footer() {
               className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">video_library</span>
           </div>
         </div>
-       
+
         <div className="pt-8 text-center px-gutter">
           <p className="text-label-sm font-label-sm opacity-60">
             © Copyright 2018-2025 By Lotus Valley Gurgaon | Accelerating By Entab Infotech
@@ -188,7 +190,7 @@ export default function Footer() {
                 <Image
                   src={logoSrc}
                   alt={`${schoolName} Logo`}
-                  width={500}
+                  width={500}                                      ///
                   height={50}
                   style={{ objectFit: "contain" }}
                   onError={handleLogoError}

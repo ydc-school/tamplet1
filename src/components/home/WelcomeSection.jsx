@@ -35,9 +35,9 @@ export default function WelcomeSection() {
     );
   }
 
-  // if (!welcomeData) return null;
+  if (!welcomeData) return null;
 
-  // const hasImage = welcomeData.Image && welcomeData.Image.trim() !== "";
+  const hasImage = welcomeData.Image && welcomeData.Image.trim() !== "";
 
   return (
     <>

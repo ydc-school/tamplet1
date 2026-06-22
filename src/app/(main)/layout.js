@@ -17,7 +17,7 @@ export default function MainLayout({ children }) {
 
 
         <button
-          class="fixed bottom-8 right-8 bg-academic-teal text-white p-4 rounded-full shadow-2xl hover:bg-heritage-gold transition-all z-[100] group flex items-center gap-2 overflow-hidden w-14 hover:w-48">
+          className="fixed bottom-8 right-8 bg-academic-teal text-white p-4 rounded-full shadow-2xl hover:bg-heritage-gold transition-all z-[100] group flex items-center gap-2 overflow-hidden w-14 hover:w-48">
           <span className="material-symbols-outlined">edit_calendar</span>
           <span className="whitespace-nowrap font-label-md opacity-0 group-hover:opacity-100 transition-opacity">Enquiry
             Form</span>
