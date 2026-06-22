@@ -1,104 +1,21 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary:#41b620;
-  --secondary:#ffffff
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-
-
-
-@layer utilities {
-
-
-.bg-p{
-  background-color: var(--primary);
-  color: var(--secondary);
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-}
-
-
-
-
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-source);
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-}
-
-html {
-  color-scheme: light;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-source), Arial, Helvetica, sans-serif;
-}
-
-
-
-.gradient {
-  background: linear-gradient(to right,
-      rgba(255, 255, 255, 0) 60%,
-      rgba(0, 123, 255, 0.4) 100%),
-    #F4F4F4;
-  filter: blur(50px);
-}
-
-
-/* Right side blur gradient effect like image */
-
-.gradient-container {
-  position: relative;
-
-  background: #41b620;
-  overflow: hidden;
-}
-
-.gradient-container::after {
-  content: "";
+.quote-bg::before {
+  content: '"';
   position: absolute;
-  top: 0;
-  left: -5px;
-  /* z-index: -1; */
-  /* Adjust this value to control how much the gradient extends beyond the container */
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to left,
-      rgba(184, 188, 192, 0) 0%,
-      rgba(254, 254, 254, 0.7) 100%);
-  /* background: #000; */
-  /* filter: blur(80px); filter: blur(80px); */
-  /* filter: blur(1px); */
-  pointer-events: none;
-}
-
-.notice-content p {
-  margin-bottom: 1rem;
-}
-
-.notice-content ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-
-}
-
-.notice-content ol {
-  list-style-type: decimal;
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.notice-content h1, .notice-content h2, .notice-content h3 {
-  font-weight: bold;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  top: -20px;
+  left: 20px;
+  font-size: 120px;
+  font-family: 'Playfair Display';
+  color: rgba(142, 27, 49, 0.05);
+  line-height: 1;
 }

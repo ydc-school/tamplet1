@@ -22,7 +22,7 @@ export default function TopSlider() {
           setSlides(valid);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
@@ -34,138 +34,50 @@ export default function TopSlider() {
     );
   }
 
-  if (slides.length === 0) return null;
+  // if (slides.length === 0) return null;
 
   return (
     <>
-      <style>{`
-        .ts-skeleton {
-          width: 100%;
-          position: relative;
-          background: #f6f8fc;
-          border-bottom: 3px solid #c4a048;
-        }
-        .ts-skel-inner {
-          width: 100%;
-          height: clamp(200px, 42vw, 620px);
-          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
-          background-size: 200% 100%;
-          animation: ts-shimmer 1.5s infinite;
-        }
-        @keyframes ts-shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-        .ts-wrap {
-          width: 100%;
-          position: relative;
-          background: #f6f8fc;
-          border-bottom: 3px solid #c4a048;
-        }
-        .ts-wrap::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, transparent, #c4a048, #e0c060, #c4a048, transparent);
-          z-index: 10;
-          pointer-events: none;
-        }
-        .ts-swiper {
-          width: 100%;
-          height: clamp(200px, 42vw, 620px) !important;
-          display: block;
-          background: #f6f8fc;
-        }
-        .ts-slide-img {
-          position: absolute;
-          inset: 0;
-          transition: transform 8s ease !important;
-        }
-        .swiper-slide-active .ts-slide-img {
-          transform: scale(1.04) !important;
-        }
-        .ts-slide-label {
-          position: absolute;
-          bottom: 20px;
-          left: 24px;
-          z-index: 2;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .ts-label-bar {
-          width: 3px;
-          height: 28px;
-          background: #c4a048;
-          border-radius: 2px;
-          flex-shrink: 0;
-        }
-        .ts-label-text {
-          font-family: 'Source Sans 3', sans-serif;
-          font-size: 13px;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          color: rgba(240,230,200,0.85);
-          text-shadow: 0 1px 6px rgba(0,0,0,0.6);
-        }
-        .ts-counter {
-          position: absolute;
-          bottom: 20px;
-          right: 24px;
-          z-index: 2;
-          font-family: 'Source Sans 3', sans-serif;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          color: rgba(196,160,72,0.7);
-        }
-        .ts-counter-cur { color: #c4a048; font-size: 16px; }
-        .ts-prev, .ts-next {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 10;
-          width: 42px;
-          height: 42px;
-          background: rgba(7,16,32,0.6);
-          border: 1px solid rgba(196,160,72,0.25);
-          border-radius: 2px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          color: #c4a048;
-          opacity: 0;
-          transition: all 0.25s ease;
-          backdrop-filter: blur(4px);
-        }
-        .ts-prev { left: 16px; }
-        .ts-next { right: 16px; }
-        .ts-wrap:hover .ts-prev,
-        .ts-wrap:hover .ts-next { opacity: 1; }
-        .ts-prev:hover, .ts-next:hover {
-          background: rgba(196,160,72,0.15);
-          border-color: #c4a048;
-        }
-        .ts-swiper .swiper-pagination {
-          bottom: 16px !important;
-        }
-        .ts-swiper .swiper-pagination-bullet {
-          width: 6px !important;
-          height: 6px !important;
-          background: rgba(255,255,255,0.35) !important;
-          opacity: 1 !important;
-          transition: all 0.25s !important;
-          border-radius: 3px !important;
-        }
-        .ts-swiper .swiper-pagination-bullet-active {
-          background: #c4a048 !important;
-          width: 20px !important;
-        }
-      `}</style>
 
-      <div className="ts-wrap">
+
+
+
+      <section className="relative w-full h-[600px] overflow-hidden group">
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
+        <img className="w-full h-full object-cover"
+          data-alt="A grand theater stage filled with disciplined school students in smart formal blazers and sashes, standing at attention for an investiture ceremony at Lotus Valley International School. High-end stage lighting illuminates the children, creating a formal and prestigious atmosphere of academic achievement and tradition. The background features a large screen with school branding. Soft cinematic shadows and rich colors evoke excellence."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBysLaA1elv8rdKhXkT2vfPXjZK1fR-7T0RodV8Ggh8eKY8fPYzH4zkgOhT3TYJH8JnMqLf8NdU9mXAJwH2XGI7tOThXBRUbCK6fpCarvxyjqTbtxMlsQSv3Sf-5nAgzjAwl30EOapsNpafifa1C7YjOQ_2sn1cMlCEaI5h6foSDTb2nVKSnm0069jQz1jz8xv2uqaPfZ4UgsWzq-LBXes3bCmNFp6ef0_1hmLrUIIaw2138EsnKj_Emy1IQe2GVGvlc6z_uokVKI" />
+        <div
+          className="absolute inset-0 z-20 flex flex-col justify-center items-start px-gutter max-w-container-max mx-auto text-white">
+          <div className="bg-deep-maroon/90 backdrop-blur-sm p-4 mb-4 rounded-sm shadow-xl">
+            <span className="text-label-sm font-label-sm tracking-widest uppercase">Affiliation no - 531034</span>
+          </div>
+          <h1 className="font-headline-xl text-headline-xl mb-6 max-w-3xl leading-tight">
+            Shaping Visionaries <br />for a <span className="text-heritage-gold">Better Tomorrow</span>
+          </h1>
+          <button
+            className="bg-deep-maroon hover:bg-primary py-4 px-10 text-white font-label-md text-label-md uppercase tracking-widest transition-all shadow-lg hover:shadow-primary/40 flex items-center gap-3">
+            Virtual Tour 360 <span className="material-symbols-outlined">explore</span>
+          </button>
+        </div>
+        
+        <div
+          className="absolute bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md py-3 border-t border-heritage-gold">
+          <div className="max-w-container-max mx-auto px-gutter flex items-center">
+            <span className="bg-deep-maroon text-white px-4 py-1 font-label-md text-label-md mr-4 shrink-0">UPCOMING
+              EVENTS</span>
+            <marquee className="font-label-md text-on-surface" scrollamount="6">
+              Registration Open for Academic Session 2025-26 | Inter-School Sports Meet starting Dec 15th |
+              Parent-Teacher Interaction Schedule Updated...
+            </marquee>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      {/* <div className="ts-wrap">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           effect="fade"
@@ -212,7 +124,7 @@ export default function TopSlider() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
-      </div>
+      </div> */}
     </>
   );
 }

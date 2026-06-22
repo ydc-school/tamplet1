@@ -63,377 +63,109 @@ export default function Navbar() {
 
   return (
     <>
-      <style>{`
-        :root {
-          --nb-bg: #ffffff;
-          --nb-bg-scroll: rgba(255, 255, 255, 0.96);
-          --nb-border: rgba(196, 160, 72, 0.28);
-          --nb-gold: #c4a048;
-          --nb-gold-light: #e0c060;
-          --nb-text: #314155;
-          --nb-text-muted: rgba(49, 65, 85, 0.7);
-          --nb-dropdown-bg: #ffffff;
-          --nb-hover-bg: rgba(196, 160, 72, 0.08);
-          --nb-height: 60px;
-        }
+      <header className="w-full">
+        <nav className="bg-deep-maroon text-on-primary shadow-sm flex flex-col w-full">
+          <div
+            className="max-w-container-max mx-auto w-full px-gutter py-2 flex justify-between items-center text-label-sm font-label-sm">
+            <div className="flex gap-6 items-center">
+              <a className="flex items-center gap-2 hover:bg-primary-container/20 transition-colors py-1 px-2"
+                href="#">
+                <span className="material-symbols-outlined text-[18px]">badge</span>
+                I-Card
+              </a>
+              <a className="flex items-center gap-2 hover:bg-primary-container/20 transition-colors py-1 px-2"
+                href="#">
+                <span className="material-symbols-outlined text-[18px]">info</span>
+                Public Disclosure
+              </a>
+              <a className="flex items-center gap-2 hover:bg-primary-container/20 transition-colors py-1 px-2"
+                href="#">
+                <span className="material-symbols-outlined text-[18px]">menu_book</span>
+                NEP 2020
+              </a>
+              <a className="flex items-center gap-2 hover:bg-primary-container/20 transition-colors py-1 px-2"
+                href="#">
+                <span className="material-symbols-outlined text-[18px]">newspaper</span>
+                VISTAS
+              </a>
+            </div>
+            <div className="flex gap-6 items-center">
+              <a className="flex items-center gap-2 hover:bg-primary-container/20 transition-colors py-1 px-2"
+                href="#">
+                <span className="material-symbols-outlined text-[18px]">login</span>
+                Login
+              </a>
+              <a className="flex items-center gap-2 hover:bg-primary-container/20 transition-colors py-1 px-2"
+                href="#">
+                <span className="material-symbols-outlined text-[18px]">verified_user</span>
+                Cyber Security
+              </a>
+              <div className="flex gap-3 ml-4 border-l border-white/20 pl-4">
+                <span
+                  className="material-symbols-outlined cursor-pointer hover:text-heritage-gold">account_circle</span>
+                <span className="material-symbols-outlined cursor-pointer hover:text-heritage-gold">groups</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+      
+        <div className="bg-white py-6">
+          <div
+            className="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col items-center md:items-start">
+              <img alt="Lotus Valley Logo" className="h-16 md:h-20 object-contain"
+                src="https://lh3.googleusercontent.com/aida/AP1WRLueGe-wnE9VO_V-_lt1RCPM1Bj9tGW76RrUZjbP9zhsn6ULtyoFy7bbIbjTwLdCz3UnQ_YNaVNuF6SsRAE__1hubtkGCe_Pd3qSI1SBBbPu0MIjaqwOb0g_NeaKIRELVhzK5FnnFpuj7GcSQSwgcTI2nJIP5Er-oy0Huyv7i12tZM5jN-pjDTy_PUDXRydn8cajyruVBc-a0PX5Go5U9hj_76Oz194vxptuWXyyzD3kPTuIAKMmeDzSXkM" />
+            </div>
+            <div className="hidden md:flex gap-8 text-on-surface">
+              <div className="flex flex-col items-center group cursor-pointer">
+                <span
+                  className="material-symbols-outlined text-deep-maroon mb-1 transition-transform group-hover:-translate-y-1">school</span>
+                <span className="font-label-md text-label-md">About Us</span>
+              </div>
+              <div className="flex flex-col items-center group cursor-pointer">
+                <span
+                  className="material-symbols-outlined text-deep-maroon mb-1 transition-transform group-hover:-translate-y-1">auto_stories</span>
+                <span className="font-label-md text-label-md">Learning</span>
+              </div>
+              <div className="flex flex-col items-center group cursor-pointer">
+                <span
+                  className="material-symbols-outlined text-deep-maroon mb-1 transition-transform group-hover:-translate-y-1">how_to_reg</span>
+                <span className="font-label-md text-label-md">Admissions</span>
+              </div>
+              <div className="flex flex-col items-center group cursor-pointer text-heritage-gold">
+                <span
+                  className="material-symbols-outlined mb-1 transition-transform group-hover:-translate-y-1">event</span>
+                <span className="font-label-md text-label-md">News &amp; Events</span>
+              </div>
+              <div className="flex flex-col items-center group cursor-pointer">
+                <span
+                  className="material-symbols-outlined text-deep-maroon mb-1 transition-transform group-hover:-translate-y-1">contact_page</span>
+                <span className="font-label-md text-label-md">Contact Us</span>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <nav className="bg-academic-teal text-white w-full sticky top-0 z-50 shadow-md">
+          <div className="max-w-container-max mx-auto flex justify-center items-center w-full px-8 py-3">
+            <div
+              className="flex flex-wrap justify-center gap-x-8 gap-y-2 uppercase font-label-md text-label-md tracking-widest">
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">Awards</a>
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">Gallery</a>
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">Careers</a>
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">School Calendar</a>
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">Alumni</a>
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">eMagazine</a>
+              <a className="hover:text-heritage-gold transition-colors active:scale-95" href="#">TAABIR</a>
+            </div>
+          </div>
+        </nav>
+      </header>
 
-        .nb-top-branding {
-          background: #ffffff;
-          border-bottom: 1px solid rgba(196, 160, 72, 0.15);
-        }
-        .nb-branding-inner {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 10px 28px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .nb-admission-banner {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .nb-admission-img {
-          object-fit: contain;
-          height: auto;
-          max-height: 55px; 
-          width: auto;
-        }
-
-        .nb-wrap {
-          position: sticky;
-          top: 0;
-          z-index: 999;
-          width: 100%;
-          transition: background 0.3s ease, box-shadow 0.3s ease;
-          background: var(--nb-bg);
-          border-bottom: 1px solid var(--nb-border);
-          font-family: 'Source Sans 3', sans-serif;
-        }
-        .nb-wrap.scrolled {
-          background: var(--nb-bg-scroll);
-          backdrop-filter: blur(14px);
-          box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
-        }
-
-        .nb-topbar {
-          background: var(--nb-gold);
-          height: 3px;
-          width: 100%;
-        }
-
-        .nb-inner {
-          max-width: 1400px;
-          margin: 0 auto;
-          height: var(--nb-height);
-          padding: 0 28px;
-          display: flex;
-          align-items: center;
-          gap: 0;
-        }
-
-        .nb-logo {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          text-decoration: none;
-          flex-shrink: 0;
-          height: 52px;
-        }
-        .nb-logo-img-wrap {
-          width: 194px;
-          height: 54px;
-          border-radius: 0%;
-          background: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 4px;
-          flex-shrink: 0;
-        }
-        .nb-logo-img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-        .nb-logo-text { display: none; }
-        @media (min-width: 600px) { .nb-logo-text { display: block; } }
-        .nb-school-name {
-          font-family: 'Playfair Display', serif;
-          font-size: 17px;
-          font-weight: 700;
-          color: #10213a;
-          line-height: 1.15;
-        }
-        .nb-school-sub {
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: var(--nb-gold);
-          margin-top: 2px;
-        }
-
-        .nb-links {
-          display: none;
-          flex: 1;
-          height: 100%;
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          align-items: center;
-        }
-        @media (min-width: 960px) { .nb-links { display: flex; } }
-
-        .nb-item {
-          position: relative;
-          height: 100%;
-          display: flex;
-          align-items: center;
-        }
-
-        .nb-btn {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          padding: 0 14px;
-          height: 100%;
-          font-family: 'Source Sans 3', sans-serif;
-          font-size: 13.5px;
-          font-weight: 500;
-          color: var(--nb-text);
-          background: none;
-          border: none;
-          cursor: pointer;
-          text-decoration: none;
-          white-space: nowrap;
-          transition: color 0.2s;
-          position: relative;
-        }
-        .nb-btn::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 14px;
-          right: 14px;
-          height: 2px;
-          background: var(--nb-gold);
-          transform: scaleX(0);
-          transition: transform 0.25s ease;
-          transform-origin: center;
-        }
-        .nb-btn:hover, .nb-btn.active { color: #10213a; }
-        .nb-btn:hover::after, .nb-btn.active::after { transform: scaleX(1); }
-
-        .nb-chevron {
-          width: 10px;
-          height: 10px;
-          color: var(--nb-gold);
-          transition: transform 0.2s;
-        }
-        .nb-item:hover .nb-chevron { transform: rotate(180deg); }
-
-        .nb-dropdown {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          min-width: 210px;
-          background: var(--nb-dropdown-bg);
-          border: 1px solid var(--nb-border);
-          border-top: 2px solid var(--nb-gold);
-          opacity: 0;
-          visibility: hidden;
-          transform: translateY(8px);
-          transition: all 0.22s ease;
-          z-index: 200;
-        }
-        .nb-item:hover .nb-dropdown {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
-        }
-        .nb-drop-item {
-          display: block;
-          padding: 10px 18px;
-          font-size: 13px;
-          color: var(--nb-text);
-          text-decoration: none;
-          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-          transition: all 0.15s;
-          text-transform: capitalize;
-        }
-        .nb-drop-item:last-child { border-bottom: none; }
-        .nb-drop-item:hover {
-          background: var(--nb-hover-bg);
-          color: var(--nb-gold-light);
-          padding-left: 24px;
-        }
-
-        .nb-cta-wrap {
-          margin-left: auto;
-          padding-left: 24px;
-          border-left: 1px solid var(--nb-border);
-          height: 40px;
-          display: none;
-          align-items: center;
-        }
-        @media (min-width: 960px) { .nb-cta-wrap { display: flex; } }
-
-        .nb-cta {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: var(--nb-gold);
-          color: #16324f;
-          padding: 8px 18px;
-          font-family: 'Source Sans 3', sans-serif;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.04em;
-          text-decoration: none;
-          border-radius: 2px;
-          transition: all 0.25s ease;
-          white-space: nowrap;
-        }
-        .nb-cta:hover {
-          background: var(--nb-gold-light);
-          transform: translateY(-1px);
-          box-shadow: 0 4px 16px rgba(196, 160, 72, 0.35);
-        }
-        .nb-cta-arrow { transition: transform 0.2s; }
-        .nb-cta:hover .nb-cta-arrow { transform: translateX(3px); }
-
-        .nb-ham {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 42px;
-          height: 42px;
-          gap: 5px;
-          background: none;
-          border: 1px solid var(--nb-border);
-          border-radius: 3px;
-          cursor: pointer;
-          margin-left: auto;
-          transition: border-color 0.2s, background 0.2s;
-        }
-        .nb-ham:hover { border-color: var(--nb-gold); background: var(--nb-hover-bg); }
-        @media (min-width: 960px) { .nb-ham { display: none; } }
-        .nb-bar {
-          width: 18px;
-          height: 1.5px;
-          background: var(--nb-text);
-          transition: all 0.3s ease;
-          transform-origin: center;
-        }
-        .b1.open { transform: rotate(45deg) translate(4.5px, 4.5px); }
-        .b2.open { opacity: 0; transform: scaleX(0); }
-        .b3.open { transform: rotate(-45deg) translate(4.5px, -4.5px); }
-
-        .nb-panel {
-          display: none;
-          position: fixed;
-          top: calc(var(--nb-height) + 4px);
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: #ffffff;
-          border-top: 1px solid var(--nb-border);
-          overflow-y: auto;
-          z-index: 998;
-          transform: translateX(100%);
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nb-panel.open { transform: translateX(0); }
-        @media (max-width: 959px) { .nb-panel { display: block; } }
-
-        .nb-panel-inner { padding: 16px 24px 48px; }
-
-        .nb-panel-label {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: var(--nb-gold);
-          padding: 12px 0 10px;
-          border-bottom: 1px solid var(--nb-border);
-          margin-bottom: 4px;
-        }
-
-        .nb-m-link {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 14px 0;
-          font-size: 14px;
-          font-weight: 500;
-          color: var(--nb-text);
-          text-decoration: none;
-          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-          background: none;
-          border-top: none;
-          border-left: none;
-          border-right: none;
-          width: 100%;
-          text-align: left;
-          cursor: pointer;
-          transition: color 0.2s;
-        }
-        .nb-m-link:hover, .nb-m-link.active { color: var(--nb-gold); }
-
-        .nb-m-chevron {
-          width: 14px;
-          height: 14px;
-          color: var(--nb-gold);
-          transition: transform 0.2s;
-        }
-        .nb-m-chevron.r { transform: rotate(180deg); }
-
-        .nb-m-sub {
-          overflow: hidden;
-          max-height: 0;
-          transition: max-height 0.3s ease;
-        }
-        .nb-m-sub.open { max-height: 500px; }
-
-        .nb-m-sub-item {
-          display: block;
-          padding: 10px 16px;
-          font-size: 13px;
-          color: var(--nb-text-muted);
-          text-decoration: none;
-          border-bottom: 1px solid rgba(15, 23, 42, 0.05);
-          text-transform: capitalize;
-          transition: all 0.15s;
-        }
-        .nb-m-sub-item:hover { color: var(--nb-gold); padding-left: 22px; }
-
-        .nb-m-cta {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          margin-top: 24px;
-          padding: 15px;
-          background: var(--nb-gold);
-          color: #16324f;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.04em;
-          text-decoration: none;
-          border-radius: 2px;
-          transition: background 0.2s;
-        }
-        .nb-m-cta:hover { background: var(--nb-gold-light); }
-      `}</style>
-
-      <div ref={menuRef}>
+      {/* <div ref={menuRef}>
         <div className="nb-topbar" />
 
-        {/* Branding Section (Logo + Admission Open Image) */}
+       
         <div className="nb-top-branding">
           <div className="nb-branding-inner">
             <Link href="/" className="nb-logo">
@@ -455,7 +187,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Note: Change the src string below to your real image path when ready */}
+           
             <div className="nb-admission-banner">
               <Image
                 src="/poster/31y.png"
@@ -469,7 +201,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Navigation Bar */}
+        
         <nav className={`nb-wrap${scrolled ? " scrolled" : ""}`}>
           <div className="nb-inner">
             <ul className="nb-links">
@@ -564,7 +296,7 @@ export default function Navbar() {
             </div>
           </div>
         </nav>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -54,252 +54,123 @@ export default function Footer() {
 
   return (
     <>
-      <style>{`
-        .ft-root {
-          background: #f6f8fc;
-          color: #5f7288;
-          font-family: 'Source Sans 3', sans-serif;
-          position: relative;
-          overflow: hidden;
-          border-top: 3px solid #c4a048;
-        }
 
-        /* Subtle radial glow */
-        .ft-root::before {
-          content: '';
-          position: absolute;
-          top: -120px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 700px;
-          height: 300px;
-          background: radial-gradient(ellipse, rgba(196,160,72,0.06) 0%, transparent 70%);
-          pointer-events: none;
-        }
 
-        /* Crest divider pattern */
-        .ft-divider-top {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          padding: 28px 0 0;
-          margin-bottom: 0;
-        }
-        .ft-divider-line {
-          flex: 1;
-          max-width: 200px;
-          height: 1px;
-          background: linear-gradient(to right, transparent, rgba(196,160,72,0.3));
-        }
-        .ft-divider-line.rev {
-          background: linear-gradient(to left, transparent, rgba(196,160,72,0.3));
-        }
-        .ft-crest-icon {
-          color: #c4a048;
-          opacity: 0.7;
-        }
 
-        .ft-main {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 36px 32px 48px;
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-        @media (min-width: 640px) {
-          .ft-main { grid-template-columns: 1fr 1fr; }
-        }
-        @media (min-width: 1024px) {
-          .ft-main { grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 48px; }
-        }
 
-        /* Brand */
-        .ft-brand-logo {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 20px;
-          text-decoration: none;
-        }
-        .ft-logo-ring {
-          width: 120px;
-          height: 52px;
-         
-          background: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
+
+
+      <footer className="bg-deep-maroon text-on-primary border-t border-white/10 pt-16 pb-8">
+        <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         
-        }
-        .ft-brand-name {
-          font-family: 'Playfair Display', serif;
-          font-size: 18px;
-          font-weight: 700;
-          color: #10213a;
-          line-height: 1.2;
-        }
-        .ft-brand-sub {
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #c4a048;
-          margin-top: 2px;
-        }
-        .ft-motto {
-          font-size: 13.5px;
-          line-height: 1.75;
-          color: #5f7288;
-          margin-bottom: 22px;
-          max-width: 300px;
-        }
+          <div className="col-span-1 md:col-span-1">
+            <div className="bg-white p-4 rounded-sm mb-6 inline-block">
+              <img alt="Lotus Valley Logo White" className="h-12 object-contain"
+                src="https://lh3.googleusercontent.com/aida/AP1WRLueGe-wnE9VO_V-_lt1RCPM1Bj9tGW76RrUZjbP9zhsn6ULtyoFy7bbIbjTwLdCz3UnQ_YNaVNuF6SsRAE__1hubtkGCe_Pd3qSI1SBBbPu0MIjaqwOb0g_NeaKIRELVhzK5FnnFpuj7GcSQSwgcTI2nJIP5Er-oy0Huyv7i12tZM5jN-pjDTy_PUDXRydn8cajyruVBc-a0PX5Go5U9hj_76Oz194vxptuWXyyzD3kPTuIAKMmeDzSXkM" />
+            </div>
+            <p className="font-label-sm text-label-sm tracking-wide opacity-80 leading-relaxed mb-4">
+              Affiliation no - 531034<br />
+              School Code - 40991
+            </p>
+            <div className="flex gap-4">
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-heritage-gold transition-colors"
+                href="#">
+                <span className="material-symbols-outlined text-[20px]">public</span>
+              </a>
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-heritage-gold transition-colors"
+                href="#">
+                <span className="material-symbols-outlined text-[20px]">share</span>
+              </a>
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-heritage-gold transition-colors"
+                href="#">
+                <span className="material-symbols-outlined text-[20px]">play_arrow</span>
+              </a>
+            </div>
+          </div>
+         
+          <div>
+            <h4 className="font-headline-md text-headline-md mb-8">Quick Links</h4>
+            <ul className="space-y-4 font-label-md text-label-md">
+              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                href="#">Awards</a></li>
+              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                href="#">E-Magazine</a></li>
+              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                href="#">Career</a></li>
+              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                href="#">Admission</a></li>
+              <li><a className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                href="#">Feedback</a></li>
+            </ul>
+          </div>
+        
+          <div className="col-span-1 md:col-span-2">
+            <h4 className="font-headline-md text-headline-md mb-8">Contact Us</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-label-md font-label-md">
+              <div className="flex gap-4">
+                <span className="material-symbols-outlined text-heritage-gold shrink-0">location_on</span>
+                <p className="opacity-80">
+                  Lotus Valley International School, M-Block, South City-II, Nirvana Country, Sector-50
+                  (Behind North Close), Gurgaon - 122018
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <span className="material-symbols-outlined text-heritage-gold shrink-0">call</span>
+                  <p className="opacity-80">+91 9650544997 or 0124 - 4936900</p>
+                </div>
+                <div className="flex gap-4">
+                  <span className="material-symbols-outlined text-heritage-gold shrink-0">mail</span>
+                  <div>
+                    <p className="opacity-80">info@lotusvalleygurgaon.com</p>
+                    <p className="opacity-80">principal@lotusvalleygurgaon.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+        <div className="border-y border-white/10 py-6">
+          <div className="max-w-container-max mx-auto px-gutter flex justify-center gap-10">
+            <span
+              className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">camera</span>
+            <span
+              className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">face_nod</span>
+            <span
+              className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">close</span>
+            <span
+              className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">work</span>
+            <span
+              className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">video_library</span>
+          </div>
+        </div>
+       
+        <div className="pt-8 text-center px-gutter">
+          <p className="text-label-sm font-label-sm opacity-60">
+            © Copyright 2018-2025 By Lotus Valley Gurgaon | Accelerating By Entab Infotech
+          </p>
+        </div>
+      </footer>
 
-        /* Social icons */
-        .ft-socials {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-        }
-        .ft-social {
-          width: 36px;
-          height: 36px;
-          border-radius: 4px;
-          border: 1px solid rgba(196,160,72,0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #5f7288;
-          transition: all 0.2s ease;
-          text-decoration: none;
-        }
-        .ft-social:hover {
-          border-color: #c4a048;
-          color: #c4a048;
-          background: rgba(196,160,72,0.08);
-          transform: translateY(-2px);
-        }
 
-        /* Columns */
-        .ft-col-title {
-          font-family: 'Playfair Display', serif;
-          font-size: 15px;
-          font-weight: 600;
-          color: #10213a;
-          margin-bottom: 20px;
-          padding-bottom: 10px;
-          border-bottom: 1px solid rgba(196,160,72,0.2);
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .ft-col-dot {
-          width: 6px;
-          height: 6px;
-          background: #c4a048;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
 
-        .ft-links-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .ft-link {
-          font-size: 13.5px;
-          color: #5f7288;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          gap: 7px;
-          transition: all 0.2s;
-        }
-        .ft-link::before {
-          content: '›';
-          color: #c4a048;
-          font-size: 16px;
-          line-height: 1;
-        }
-        .ft-link:hover {
-          color: #c4a048;
-          transform: translateX(3px);
-        }
 
-        /* Contact */
-        .ft-contact-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          margin-bottom: 14px;
-          font-size: 13.5px;
-          color: #5f7288;
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-        .ft-contact-item.inline-link {
-          margin-bottom: 0;
-          align-items: center;
-        }
-        .ft-contact-item:hover { color: #c4a048; }
-        .ft-contact-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 4px;
-          background: rgba(196,160,72,0.1);
-          border: 1px solid rgba(196,160,72,0.15);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          color: #c4a048;
-        }
-        .ft-phone-group {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-bottom: 14px;
-        }
 
-        /* Bottom bar */
-        .ft-bottom {
-          border-top: 1px solid rgba(15, 23, 42, 0.06);
-          background: #eef2f7;
-        }
-        .ft-bottom-inner {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 16px 32px;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 12.5px;
-          color: #3d5066;
-        }
-        @media (min-width: 640px) {
-          .ft-bottom-inner { flex-direction: row; gap: 0; }
-        }
-        .ft-bottom-links {
-          display: flex;
-          gap: 20px;
-        }
-        .ft-bottom-link {
-          color: #3d5066;
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-        .ft-bottom-link:hover { color: #c4a048; }
-      `}</style>
 
-      <footer className="ft-root">
-        {/* Decorative top divider */}
+
+
+
+
+
+
+
+
+
+
+
+      {/* <footer className="ft-root">
+     
         <div className="ft-divider-top">
           <div className="ft-divider-line" />
           <svg className="ft-crest-icon" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
@@ -310,7 +181,7 @@ export default function Footer() {
 
         <div className="ft-main">
 
-          {/* Brand */}
+         
           <div>
             <Link href="/" className="ft-brand-logo">
               <div className="ft-logo-ring">
@@ -333,25 +204,25 @@ export default function Footer() {
             <p className="ft-motto">{schoolMotto}</p>
 
             <div className="ft-socials">
-              {/* YouTube */}
+      
               <a href={youtubeUrl} target="_blank" rel="noreferrer" className="ft-social" title="YouTube">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z" />
                 </svg>
               </a>
-              {/* Instagram */}
+           
               <a href={instagramUrl} target="_blank" rel="noreferrer" className="ft-social" title="Instagram">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5 1.2-.1 1.6-.1 4.7-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z" />
                 </svg>
               </a>
-              {/* Twitter/X */}
+           
               <a href={twitterUrl} target="_blank" rel="noreferrer" className="ft-social" title="Twitter">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.1 0 2.25.2 2.25.2v2.47H15.2c-1.25 0-1.64.78-1.64 1.58v1.88h2.8l-.45 2.9h-2.35V22c4.78-.75 8.44-4.91 8.44-9.93z" />
                 </svg>
               </a>
-              {/* LinkedIn */}
+           
               <a href={linkedinUrl} target="_blank" rel="noreferrer" className="ft-social" title="LinkedIn">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM3.56 20.45h3.57V9H3.56v11.45zM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z" />
@@ -360,7 +231,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Useful Links */}
+          
           <div>
             <h3 className="ft-col-title">
               <span className="ft-col-dot" />
@@ -375,7 +246,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="ft-col-title">
               <span className="ft-col-dot" />
@@ -390,7 +260,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+        
           <div>
             <h3 className="ft-col-title">
               <span className="ft-col-dot" />
@@ -398,7 +268,7 @@ export default function Footer() {
             </h3>
 
             <div>
-              {/* Address */}
+             
               <div className="ft-contact-item">
                 <div className="ft-contact-icon">
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -409,7 +279,7 @@ export default function Footer() {
                 <span style={{ lineHeight: "1.5" }}>{address}</span>
               </div>
 
-              {/* Email */}
+              
               <a href={`mailto:${email}`} className="ft-contact-item">
                 <div className="ft-contact-icon">
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -419,7 +289,6 @@ export default function Footer() {
                 {email}
               </a>
 
-              {/* Phone Grouping */}
               <div className="ft-phone-group">
                 <a href={`tel:${phone}`} className="ft-contact-item inline-link">
                   <div className="ft-contact-icon">
@@ -430,7 +299,7 @@ export default function Footer() {
                   {phone}
                 </a>
 
-                {/* Second Phone Number Layout Fixed */}
+                
                 {phone2 && (
                   <a href={`tel:${phone2}`} className="ft-contact-item inline-link">
                     | &nbsp; {phone2}
@@ -438,7 +307,7 @@ export default function Footer() {
                 )}
               </div>
 
-              {/* Website */}
+              
               <a href={`http://${website}`} target="_blank" rel="noreferrer" className="ft-contact-item">
                 <div className="ft-contact-icon">
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -452,7 +321,7 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
+        
         <div className="ft-bottom">
           <div className="ft-bottom-inner">
             <p>© {new Date().getFullYear()} {loading ? "Yaduvanshi" : schoolName}. All Rights Reserved.</p>
@@ -462,7 +331,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
