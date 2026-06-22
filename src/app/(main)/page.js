@@ -74,17 +74,17 @@ export default async function Home() {
         <TopSlider />
         {/* <Hero /> */}
         <WelcomeSection />
-        <Branch/>
-        <HistorySection />
         <AchievementsSection />
+        <Branch/>
+        {/* <HistorySection />
+        <AchievementGallery />
         <NoticeSection />
         <FounderMessage />
-        <StudentToppers />
-        <AchievementGallery />
+        <StudentToppers /> */}
         {/* <CourseSection /> */}
-        <FacilitySection />
-        <AdmissionSection />
-        <BlogSection />
+        {/* <FacilitySection /> */}
+        {/* <AdmissionSection />
+        <BlogSection /> */}
       </div>
     </>
   );

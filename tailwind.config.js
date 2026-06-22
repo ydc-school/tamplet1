@@ -73,10 +73,10 @@ module.exports = {
       },
       "fontFamily": {
         "headline-md": ['var(--font-hanken-grotesk)'],
-        "body-lg": ["Public Sans"],
+        "body-lg": ["var(--font-public-sans)"],
         "display-lg": ['var(--font-hanken-grotesk)'],
         "label-caps": ['var(--font-hanken-grotesk)'],
-        "body-md": ["Public Sans"],
+        "body-md": ["var(--font-public-sans)"],
         "headline-lg": ['var(--font-hanken-grotesk)'],
         "display-lg-mobile": ['var(--font-hanken-grotesk)'],
         "stat-number": ['var(--font-hanken-grotesk)']
