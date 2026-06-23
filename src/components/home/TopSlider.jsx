@@ -61,7 +61,7 @@ export default function TopSlider() {
                     priority={index === 0}
                   />
                   
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30 z-10" />
+                  <div className="absolute inset-0  z-10" />
 
                   <div className="absolute inset-0 z-20 flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto text-white">
                     <div className="bg-[#6d001d]/90 backdrop-blur-sm px-4 py-1.5 mb-4 rounded shadow-xl border border-white/10">
