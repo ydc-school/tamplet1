@@ -63,7 +63,7 @@ export default function TopSlider() {
                   
                   <div className="absolute inset-0  z-10" />
 
-                  <div className="absolute inset-0 z-20 flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto text-white">
+                  {/* <div className="absolute inset-0 z-20 flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto text-white">
                     <div className="bg-[#6d001d]/90 backdrop-blur-sm px-4 py-1.5 mb-4 rounded shadow-xl border border-white/10">
                       <span className="text-xs font-bold tracking-widest uppercase">Affiliation no - 531034</span>
                     </div>
@@ -73,7 +73,7 @@ export default function TopSlider() {
                     <button className="bg-[#6d001d] hover:bg-[#850325] py-3.5 px-8 text-white font-bold text-xs uppercase tracking-widest transition-all shadow-lg flex items-center gap-3 rounded-md active:scale-95">
                       Virtual Tour 360 <span className="material-symbols-outlined text-sm">explore</span>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </SwiperSlide>
             ))}
