@@ -25,7 +25,7 @@ export default function TopSlider() {
       .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
-   if (!loading && slides.length === 0) return null;
+  if (!loading && slides.length === 0) return null;
 
   if (loading) {
     return (
@@ -37,10 +37,10 @@ export default function TopSlider() {
 
 
 
- return (
+  return (
     <>
-   
-      <section className="group relative w-full h-[600px] md:h-screen overflow-hidden bg-black">
+
+      <section className="group relative w-full h-[209px] md:h-screen overflow-hidden bg-black">
         {slides?.length > 0 && (
           <Swiper
             modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -60,10 +60,10 @@ export default function TopSlider() {
                     className="w-full h-full object-contain"
                     priority={index === 0}
                   />
-                  
+
                   <div className="absolute inset-0  z-10" />
 
-                  
+
                 </div>
               </SwiperSlide>
             ))}
@@ -85,17 +85,18 @@ export default function TopSlider() {
           </>
         )}
 
-        <div className="absolute bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md py-3 border-t border-amber-500">
-          <div className="max-w-7xl mx-auto px-6 flex items-center">
-            <span className="bg-[#6d001d] text-white px-4 py-1 text-xs font-bold mr-4 shrink-0 rounded-sm">
-              UPCOMING EVENTS
-            </span>
-            <marquee className="text-xs font-bold text-gray-800 tracking-wide" scrollamount="6">
-              Registration Open for Academic Session 2026-27 | Inter-School Sports Meet starting Dec 15th | Parent-Teacher Interaction Schedule Updated...
-            </marquee>
-          </div>
-        </div>
+
       </section>
+      <div className="z-30 bg-white/95 backdrop-blur-md py-3 border-t border-amber-500">
+        <div className="max-w-7xl mx-auto px-6 flex items-center">
+          <span className="bg-[#6d001d] text-white px-4 py-1 text-xs font-bold mr-4 shrink-0 rounded-sm">
+            UPCOMING EVENTS
+          </span>
+          <marquee className="text-xs font-bold text-gray-800 tracking-wide" scrollamount="6">
+            Registration Open for Academic Session 2026-27 | Inter-School Sports Meet starting Dec 15th | Parent-Teacher Interaction Schedule Updated...
+          </marquee>
+        </div>
+      </div>
     </>
   );
 }

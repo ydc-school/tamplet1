@@ -5,9 +5,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import { Parallax, Navigation } from 'swiper/modules';
 import axios from "axios";
 import Link from "next/link";
 
+
+
+import 'swiper/css/navigation';
+
+
+// import required modules
 export default function FounderMessage() {
   const [founders, setFounders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,290 +43,127 @@ export default function FounderMessage() {
     );
   }
 
-  if (founders.length === 0) return null;
+  // if (founders.length === 0) return null;
 
   return (
     <>
+
       <style>{`
 
-        .fm-root {
-          width: 100%;
-          background: #f8fbff;
-          padding: 80px 24px;
-          font-family: 'Source Sans 3', sans-serif;
-          position: relative;
-          overflow: hidden;
-        }
-        .fm-root::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(ellipse 70% 50% at 50% 100%, rgba(196,160,72,0.05) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 60% at 0% 50%, rgba(15,32,68,0.6) 0%, transparent 60%);
-          pointer-events: none;
-        }
-        .fm-root::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(196,160,72,0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(196,160,72,0.025) 1px, transparent 1px);
-          background-size: 56px 56px;
-          pointer-events: none;
-        }
-
-        .fm-inner {
-          max-width: 1160px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 1;
-        }
-
-        /* Eyebrow */
-        .fm-eyebrow {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          margin-bottom: 48px;
-        }
-        .fm-ey-line {
-          width: 56px;
-          height: 1px;
-          background: linear-gradient(to right, transparent, rgba(196,160,72,0.5));
-        }
-        .fm-ey-line.rev {
-          background: linear-gradient(to left, transparent, rgba(196,160,72,0.5));
-        }
-        .fm-ey-text {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-          color: #c4a048;
-        }
-
-        /* Swiper overrides */
-        .fm-swiper {
-          padding-bottom: 48px !important;
-        }
-        .fm-swiper .swiper-pagination-bullet {
-          background: rgba(196,160,72,0.3) !important;
-          width: 6px !important;
-          height: 6px !important;
-          opacity: 1 !important;
-          transition: all 0.2s !important;
-        }
-        .fm-swiper .swiper-pagination-bullet-active {
-          background: #c4a048 !important;
-          width: 22px !important;
-          border-radius: 3px !important;
-        }
-
-        /* Card */
-        .fm-card {
-          background: linear-gradient(145deg, #ffffff 0%, #edf4ff 100%);
-          border: 1px solid rgba(196,160,72,0.15);
-          border-radius: 4px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          box-shadow: 0 20px 56px rgba(0,0,0,0.45);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .fm-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 28px 72px rgba(0,0,0,0.5);
-        }
-        @media (min-width: 768px) {
-          .fm-card { flex-direction: row; min-height: 380px; }
-        }
-
-        /* Gold strip */
-        .fm-strip {
-          height: 3px;
-          background: linear-gradient(90deg, #c4a048, #e0c060, #c4a048);
-          flex-shrink: 0;
-        }
-        @media (min-width: 768px) {
-          .fm-strip {
-            height: auto;
-            width: 3px;
-            background: linear-gradient(180deg, #c4a048, #e0c060, #c4a048);
-          }
-        }
-
-        /* Image column */
-        .fm-img-col {
-          flex-shrink: 0;
-          width: 100%;
-          position: relative;
-          background: #f6f8fc;
-          min-height: 260px;
-        }
-        @media (min-width: 768px) {
-          .fm-img-col {
-            width: 300px;
-            min-height: unset;
-          }
-        }
-
-  @media (max-width: 768px) {
-          .fm-img-col {
-          position: relative;
-            height: fit-content;
-            min-height:70vw;
-            object-fit: contain;
-          }
-
-         .fm-img-col img {
-            object-fit: contain;
-          }
-
-        }
 
 
-        @media (min-width: 1024px) {
-          .fm-img-col { width: 340px; }
-        }
+.swiper {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
 
-        /* Dark gradient overlay on image */
-        .fm-img-col::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to right, transparent 60%, #ffffff);
-          z-index: 1;
-        }
-        @media (max-width: 767px) {
-          .fm-img-col::after {
-            background: linear-gradient(to top, #ffffff 0%, transparent 60%);
-          }
-        }
+.swiper-slide {
+  font-size: 18px;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 60px;
+}
 
-        /* Role badge */
-        .fm-role-badge {
-          position: absolute;
-          bottom: 16px;
-          left: 16px;
-          z-index: 2;
-          background: #c4a048;
-          color: #f6f8fc;
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          padding: 5px 12px;
-          border-radius: 2px;
-        }
-        @media (min-width: 768px) {
-          .fm-role-badge {
-            bottom: 20px;
-            left: 20px;
-          }
-        }
+.parallax-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 130%;
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
 
-        /* Content column */
-        .fm-content {
-          flex: 1;
-          padding: 32px 36px 36px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          position: relative;
-        }
-        @media (max-width: 600px) {
-          .fm-content { padding: 28px 24px 32px; }
-        }
+.swiper-slide .title {
+  font-size: 41px;
+  font-weight: 300;
+}
 
-        /* Open quote */
-        .fm-quote-mark {
-          font-family: 'Playfair Display', serif;
-          font-size: 96px;
-          line-height: 0.6;
-          color: rgba(196,160,72,0.12);
-          position: absolute;
-          top: 24px;
-          right: 28px;
-          user-select: none;
-          pointer-events: none;
-        }
+.swiper-slide .subtitle {
+  font-size: 21px;
+}
 
-        .fm-name {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(20px, 3vw, 26px);
-          font-weight: 700;
-          color: #10213a;
-          margin-bottom: 4px;
-        }
-        .fm-role {
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #c4a048;
-          margin-bottom: 20px;
-        }
+.swiper-slide .text {
+  font-size: 14px;
+  max-width: 400px;
+  line-height: 1.3;
+}
 
-        .fm-divider {
-          width: 40px;
-          height: 2px;
-          background: linear-gradient(90deg, #c4a048, transparent);
-          border-radius: 2px;
-          margin-bottom: 20px;
-        }
-
-        .fm-description {
-          font-size: 14.5px;
-          line-height: 1.85;
-          color: #5f7288;
-          margin-bottom: 28px;
-          display: -webkit-box;
-          -webkit-line-clamp: 6;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .fm-read-more {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          font-size: 12.5px;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #c4a048;
-          text-decoration: none;
-          border-bottom: 1px solid rgba(196,160,72,0.25);
-          padding-bottom: 3px;
-          width: fit-content;
-          transition: all 0.2s ease;
-        }
-        .fm-read-more:hover {
-          color: #e0c060;
-          border-color: #c4a048;
-          gap: 11px;
-        }
-
-        /* Skeleton */
-        .fm-skeleton {
-          max-width: 1160px;
-          margin: 0 auto;
-          height: 380px;
-          border-radius: 4px;
-          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
-          background-size: 200% 100%;
-          animation: fm-shimmer 1.5s infinite;
-        }
-        @keyframes fm-shimmer {
-          0%   { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
       `}</style>
 
-      <section className="fm-root">
+
+      <section className="w-screen h-auto ">
+        <>
+          <Swiper
+            style={{
+              '--swiper-navigation-color': '#fff',
+              '--swiper-pagination-color': '#fff',
+            }}
+            speed={600}
+            parallax={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Parallax, Pagination, Navigation]}
+            className="mySwiper"
+          >
+            <div
+              slot="container-start"
+              className="parallax-bg"
+              style={{
+                'background-image':
+                  'url(https://swiperjs.com/demos/images/abstract-1.jpg)',
+              }}
+              data-swiper-parallax="-23%"
+            ></div>
+
+            <SwiperSlide className=" flex flex-col sm:flex-row  items-center justify-center  bg-gray-800" >
+              <div className="flex flex-col items-center justify-center h-full ">
+                <div className="" data-swiper-parallax="-300">
+                  Slide 3
+                </div>
+                <div className="" data-swiper-parallax="-200">
+                  Subtitle
+                </div>
+                <div className="text" data-swiper-parallax="-100">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                    dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                    laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                    Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                    Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                    ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+                    tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+                  </p>
+                </div>
+              </div>
+
+
+              <div className="w-full mt-8 h-52 bg-amber-800">f</div>
+
+            </SwiperSlide>
+          </Swiper>
+        </>
+
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* <section className="fm-root">
         <div className="fm-inner">
 
           <div className="fm-eyebrow">
@@ -340,7 +184,7 @@ export default function FounderMessage() {
                 <div className="fm-card">
                   <div className="fm-strip" />
 
-                  {/* Image */}
+                 
                   {founder.Image && (
                     <div className="fm-img-col">
                       <Image
@@ -356,7 +200,7 @@ export default function FounderMessage() {
                     </div>
                   )}
 
-                  {/* Content */}
+             
                   <div className="fm-content">
                     <span className="fm-quote-mark">&quot;</span>
 
@@ -384,7 +228,7 @@ export default function FounderMessage() {
           </Swiper>
 
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
