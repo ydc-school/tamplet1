@@ -45,260 +45,61 @@ export default function AdmissionSection() {
   const mainTitle = match ? match[1].trim() : titleText;
   const yearTitle = match ? match[2] : "";
 
+
+
   return (
     <>
-      <style>{`
 
-        .adm-root {
-          width: 100%;
-          background: #f6f8fc;
-          padding: 72px 24px;
-          font-family: 'Source Sans 3', sans-serif;
-          position: relative;
-          overflow: hidden;
-        }
 
-        /* Background texture */
-        .adm-root::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image:
-            radial-gradient(ellipse 60% 40% at 50% 0%, rgba(196,160,72,0.07) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 30% at 20% 100%, rgba(15,32,68,0.8) 0%, transparent 60%);
-          pointer-events: none;
-        }
+      <section className="py-stack-lg bg-background">
+        <div className="max-w-container-max mx-auto px-gutter text-center">
+          <h2 className="font-headline-xl text-headline-xl text-on-surface mb-4"> {mainTitle}</h2>
 
-        /* Subtle grid lines */
-        .adm-root::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image: linear-gradient(rgba(196,160,72,0.03) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(196,160,72,0.03) 1px, transparent 1px);
-          background-size: 48px 48px;
-          pointer-events: none;
-        }
+          {admissionData.Message && (
+            <div
+              className="text-body-lg font-body-lg text-on-surface-variant max-w-4xl mx-auto mb-12"
+              dangerouslySetInnerHTML={{ __html: admissionData.Message }}
+            />
+          )}
 
-        .adm-inner {
-          max-width: 860px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 1;
-        }
+          <div className="relative group overflow-hidden rounded-xl shadow-xl mb-8">
+            <Image
+              src={`/uploads/${admissionData?.Image}`}
+              alt={admissionData?.Title || "Admission"}
+              fill
+              sizes="(max-width: 860px) 100vw, 860px"
+              className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+              priority
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end items-center pb-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Link href={admissionData.Read_More_Url} >
+                <button
+                  className="bg-heritage-gold text-white py-4 px-12 font-label-md text-label-md uppercase tracking-widest hover:bg-white hover:text-deep-maroon transition-colors shadow-2xl">
+                  Learn More
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        /* Section eyebrow label */
-        .adm-eyebrow {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          margin-bottom: 36px;
-        }
-        .adm-eyebrow-line {
-          width: 48px;
-          height: 1px;
-          background: linear-gradient(to right, transparent, #c4a048);
-        }
-        .adm-eyebrow-line.rev {
-          background: linear-gradient(to left, transparent, #c4a048);
-        }
-        .adm-eyebrow-text {
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.26em;
-          text-transform: uppercase;
-          color: #c4a048;
-        }
 
-        /* Card */
-        .adm-card {
-          background: linear-gradient(160deg, #ffffff 0%, #edf4ff 100%);
-          border: 1px solid rgba(196,160,72,0.18);
-          border-radius: 4px;
-          overflow: hidden;
-          box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(196,160,72,0.06);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .adm-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(196,160,72,0.12);
-        }
-
-        /* Gold top strip */
-        .adm-card-strip {
-          height: 3px;
-          background: linear-gradient(90deg, #c4a048, #e0c060, #c4a048);
-        }
-
-        /* Image area */
-        .adm-img-wrap {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-          background: #16324f;
-          min-height: 51vw;
-          height: auto;
-        }
-
-        */
-        .adm-img-wrap::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 50%;
-          background: linear-gradient(to top, #ffffff, transparent);
-          z-index: 1;
-        }
-       */
-
-        /* Badge overlay on image */
-        .adm-badge {
-          position: absolute;
-          top: 16px;
-          right: 16px;
-          z-index: 2;
-          background: #c4a048;
-          color: #f6f8fc;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          padding: 6px 14px;
-          border-radius: 2px;
-        }
-
-        /* Content */
-        .adm-content {
-          padding: 32px 40px 40px;
-        }
-        @media (max-width: 600px) {
-          .adm-content { padding: 24px 24px 32px; }
-        }
-
-        .adm-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(22px, 4vw, 34px);
-          font-weight: 700;
-          color: #10213a;
-          line-height: 1.25;
-          margin-bottom: 6px;
-          text-align: center;
-        }
-        .adm-title-year {
-          color: #c4a048;
-        }
-
-        .adm-divider {
-          width: 56px;
-          height: 2px;
-          background: linear-gradient(90deg, #c4a048, transparent);
-          margin: 16px auto 22px;
-          border-radius: 2px;
-        }
-
-        .adm-message {
-          font-size: 15px;
-          line-height: 1.8;
-          color: #5f7288;
-          text-align: center;
-          margin-bottom: 28px;
-        }
-
-        /* Strip the rich-text wrapper but keep content readable */
-        .adm-message h1, .adm-message h2, .adm-message h3 {
-          font-family: 'Playfair Display', serif;
-          color: #1d3557;
-          font-size: 17px;
-          margin-bottom: 8px;
-        }
-        .adm-message p { margin-bottom: 8px; }
-        .adm-message strong { color: #d4c090; }
-
-        .adm-cta-row {
-          display: flex;
-          justify-content: center;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .adm-cta-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #c4a048;
-          color: #f6f8fc;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          padding: 12px 28px;
-          text-decoration: none;
-          border-radius: 2px;
-          transition: all 0.25s ease;
-        }
-        .adm-cta-primary:hover {
-          background: #e0c060;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(196,160,72,0.35);
-        }
-        .adm-cta-arrow { transition: transform 0.2s; }
-        .adm-cta-primary:hover .adm-cta-arrow { transform: translateX(4px); }
-
-        .adm-cta-secondary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: transparent;
-          color: #c4a048;
-          font-size: 13px;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          padding: 12px 24px;
-          border: 1px solid rgba(196,160,72,0.3);
-          text-decoration: none;
-          border-radius: 2px;
-          transition: all 0.25s ease;
-        }
-        .adm-cta-secondary:hover {
-          border-color: #c4a048;
-          background: rgba(196,160,72,0.07);
-        }
-
-        /* Skeleton */
-        .adm-skeleton {
-          max-width: 860px;
-          margin: 0 auto;
-          height: 420px;
-          border-radius: 4px;
-          background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
-          background-size: 200% 100%;
-          animation: adm-shimmer 1.5s infinite;
-        }
-        @keyframes adm-shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-      `}</style>
-
-      <section className="adm-root">
+      {/* <section className="adm-root">
         <div className="adm-inner">
 
-          {/* Eyebrow */}
+         
           <div className="adm-eyebrow">
             <div className="adm-eyebrow-line" />
             <span className="adm-eyebrow-text">Admissions</span>
             <div className="adm-eyebrow-line rev" />
           </div>
 
-          {/* Card */}
+         
           <div className="adm-card">
             <div className="adm-card-strip" />
 
-            {/* Image */}
+          
             {admissionData.Image && (
               <div className="adm-img-wrap">
                 <Image
@@ -313,7 +114,7 @@ export default function AdmissionSection() {
               </div>
             )}
 
-            {/* Content */}
+           
             <div className="adm-content">
               <h2 className="adm-title">
                 {mainTitle}{" "}
@@ -346,7 +147,7 @@ export default function AdmissionSection() {
           </div>
 
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
