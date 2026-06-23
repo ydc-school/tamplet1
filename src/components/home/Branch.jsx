@@ -276,7 +276,7 @@ export default function Branch() {
                             <div className="aspect-video overflow-hidden">
                                 <img alt="Yaduvanshi Shiksha Niketan, Nangal Chaudhary"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    src="" />
+                                    src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197935464-abe1046539ebe47c.jpeg" />
                             </div>
                             <div className="p-4 border-t-4 border-heritage-navy">
                                 <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Nangal Chaudhary</p>
@@ -387,7 +387,7 @@ export default function Branch() {
                             <div className="aspect-video overflow-hidden">
                                 <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
+                                    src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
                             </div>
                             <div className="p-4 border-t-4 border-heritage-navy">
                                 <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)</p>
