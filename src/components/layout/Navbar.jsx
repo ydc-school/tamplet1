@@ -157,7 +157,7 @@ export default function Navbar() {
           </div>
         </div>
        
-        <nav className={`bg-[#004d40] text-white w-full transition-all duration-300 ${scrolled ? "fixed top-0 left-0 shadow-md z-50" : "relative"}`}>
+        <nav className={` bg-[#6d001d] text-white w-full transition-all duration-300 ${scrolled ? "fixed top-0 left-0 shadow-md z-50" : "relative"}`}>
           <div className="max-w-7xl mx-auto flex justify-between items-center w-full px-6">
             <ul className="hidden md:flex items-center flex-wrap gap-1 text-xs font-bold tracking-widest uppercase">
               <li>

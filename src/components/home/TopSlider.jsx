@@ -37,10 +37,11 @@ export default function TopSlider() {
 
 
 
-  return (
+ return (
     <>
-      <section className="relative w-full h-[600px] md:h-screen overflow-hidden bg-black">
-        {slides.length > 0 && (
+   
+      <section className="group relative w-full h-[600px] md:h-screen overflow-hidden bg-black">
+        {slides?.length > 0 && (
           <Swiper
             modules={[Navigation, Pagination, Autoplay, EffectFade]}
             effect="fade"
@@ -51,11 +52,11 @@ export default function TopSlider() {
             className="w-full h-full"
           >
             {slides.map((slide, index) => (
-              <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500}>
+              <SwiperSlide key={slide?.Id || index} data-swiper-autoplay={isPosterVideo(slide?.Image) ? 15000 : 4500}>
                 <div className="relative w-full h-full flex items-center justify-center bg-black">
                   <PosterMedia
                     slide={slide}
-                    alt={slide.Name || "Poster"}
+                    alt={slide?.Name || "Poster"}
                     className="w-full h-full object-cover"
                     priority={index === 0}
                   />
@@ -67,7 +68,7 @@ export default function TopSlider() {
                       <span className="text-xs font-bold tracking-widest uppercase">Affiliation no - 531034</span>
                     </div>
                     <h1 className="text-3xl md:text-6xl font-black mb-6 max-w-3xl leading-tight tracking-tight drop-shadow-md">
-                      {slide.Name || "Shaping Visionaries"} <br />for a <span className="text-amber-400">Better Tomorrow</span>
+                      {slide?.Name || "Shaping Visionaries"} <br />for a <span className="text-amber-400">Better Tomorrow</span>
                     </h1>
                     <button className="bg-[#6d001d] hover:bg-[#850325] py-3.5 px-8 text-white font-bold text-xs uppercase tracking-widest transition-all shadow-lg flex items-center gap-3 rounded-md active:scale-95">
                       Virtual Tour 360 <span className="material-symbols-outlined text-sm">explore</span>
@@ -79,14 +80,14 @@ export default function TopSlider() {
           </Swiper>
         )}
 
-        {slides.length > 1 && (
+        {slides?.length > 1 && (
           <>
-            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/30 hover:bg-[#6d001d] text-white flex items-center justify-center transition-colors border border-white/10 opacity-0 group-hover:opacity-100">
+            <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/30 hover:bg-[#6d001d] text-white flex items-center justify-center transition-all border border-white/10 opacity-0 group-hover:opacity-100">
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/30 hover:bg-[#6d001d] text-white flex items-center justify-center transition-colors border border-white/10 opacity-0 group-hover:opacity-100">
+            <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/30 hover:bg-[#6d001d] text-white flex items-center justify-center transition-all border border-white/10 opacity-0 group-hover:opacity-100">
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
