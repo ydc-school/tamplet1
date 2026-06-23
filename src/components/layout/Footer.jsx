@@ -113,7 +113,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-surface dark:bg-surface-dim full-width py-12 border-t border-outline-variant transition-opacity opacity-90 hover:opacity-100 font-body-md text-text-main">
+    <footer className="bg-heritage-navy dark:bg-primary text-on-primary dark:text-inverse-on-surface  full-width py-12 border-t border-outline-variant transition-opacity opacity-90 hover:opacity-100 font-body-md ">
       <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         
         {/* Brand & Logo Section */}
