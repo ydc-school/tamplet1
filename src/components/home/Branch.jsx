@@ -18,7 +18,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782195923309-9850066d31c04da9.jpeg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287672139-0ecb94c1300bd369.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.)</p>
@@ -119,7 +119,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Nahendergarh (D.El.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.)</p>
                                 </div>
                             </div>
                         </Link>
@@ -172,7 +172,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287745867-3fa63a265961e0df.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (B.Ed.)</p>
@@ -186,7 +186,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (4-Years Integrated)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287903468-dd95e08de4d9ee06.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (4-Years Integrated)</p>
@@ -256,7 +256,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://lh3.googleusercontent.com/aida/AP1WRLu1HcY5kndBhVN9aKo4LR_xAZYGg1R2yaVk1kQR_8V05d-6Gj0BLZHOtgN7z4wnIBpWvCkG7kYENsR7tZhnosKrfaQpfbHNnnTzqjx5VB1rfqFuzjRewfnHsqdO1iXkNo5XpGTanJLOecpyKLiEWZidxEk1UBeNA529E6kUpUIyWf2JsfGEtFAcmCdZAvW99bk-UJEmCuJ40uUk3FUPSaCdwZzvfQ9xKqbN73RAMXR2NjaeHFdhc8sqtg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287987675-8b82d028d8339bbb.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.)</p>
@@ -270,7 +270,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Sant Roshan Lal College of education (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782288085395-f6e33101c3b5f5cc.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (B.Ed.)</p>
