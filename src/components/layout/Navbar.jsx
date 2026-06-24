@@ -64,7 +64,7 @@ export default function Navbar() {
   return (
     <>
       <header className="w-full relative z-50" ref={menuRef}>
-        <nav className="bg-[#6d001d] text-white shadow-sm flex flex-col w-full text-xs">
+        <nav className="bg-deep-maroon text-white shadow-sm flex flex-col w-full text-xs">
           <div className="max-w-7xl mx-auto w-full px-6 py-2 flex justify-between items-center font-medium tracking-wide">
             <div className="flex gap-6 items-center">
               <Link href="#" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">

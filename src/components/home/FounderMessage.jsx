@@ -1,20 +1,18 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import { Parallax, Navigation } from 'swiper/modules';
 import axios from "axios";
 import Link from "next/link";
 
+// Swiper Imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
+import { EffectCoverflow } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import 'swiper/css/effect-coverflow';
 
-
-import 'swiper/css/navigation';
-
-
-// import required modules
 export default function FounderMessage() {
   const [founders, setFounders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,200 +33,180 @@ export default function FounderMessage() {
     fetchMessages();
   }, []);
 
+  // Skeleton Loader (Loading State)
   if (loading) {
     return (
-      <section className="fm-root">
-        <div className="fm-skeleton" />
+      <section className="w-full max-w-7xl mx-auto px-4 py-16">
+        <div className="h-8 w-48 bg-gray-200 rounded animate-pulse mb-8 mx-auto" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="h-96 bg-gray-100 rounded-2xl animate-pulse" />
+          ))}
+        </div>
       </section>
     );
   }
 
-  // if (founders.length === 0) return null;
+  if (founders.length === 0) return null;
 
   return (
+
+
+
+
+
+
+
+
+
+
+
+
     <>
 
-      <style>{`
 
 
+      <section className="w-full bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-16 md:px-8 overflow-hidden">
+        <div className="w-full mx-auto">
 
-.swiper {
-  width: 100%;
-  height: 100%;
-  background: #000;
-}
-
-.swiper-slide {
-  font-size: 18px;
-  color: #fff;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 40px 60px;
-}
-
-.parallax-bg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 130%;
-  height: 100%;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center;
-}
-
-.swiper-slide .title {
-  font-size: 41px;
-  font-weight: 300;
-}
-
-.swiper-slide .subtitle {
-  font-size: 21px;
-}
-
-.swiper-slide .text {
-  font-size: 14px;
-  max-width: 400px;
-  line-height: 1.3;
-}
-
-      `}</style>
-
-
-      <section className="w-screen h-auto ">
-        <>
-          <Swiper
-            style={{
-              '--swiper-navigation-color': '#fff',
-              '--swiper-pagination-color': '#fff',
-            }}
-            speed={600}
-            parallax={true}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Parallax, Pagination, Navigation]}
-            className="mySwiper"
-          >
-            <div
-              slot="container-start"
-              className="parallax-bg"
-              style={{
-                'background-image':
-                  'url(https://swiperjs.com/demos/images/abstract-1.jpg)',
-              }}
-              data-swiper-parallax="-23%"
-            ></div>
-
-            <SwiperSlide className=" flex flex-col sm:flex-row  items-center justify-center  bg-gray-800" >
-              <div className="flex flex-col items-center justify-center h-full ">
-                <div className="" data-swiper-parallax="-300">
-                  Slide 3
-                </div>
-                <div className="" data-swiper-parallax="-200">
-                  Subtitle
-                </div>
-                <div className="text" data-swiper-parallax="-100">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                    dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-                    laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-                    Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-                    Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-                    ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-                    tincidunt ut libero. Aenean feugiat non eros quis feugiat.
-                  </p>
-                </div>
-              </div>
-
-
-              <div className="w-full mt-8 h-52 bg-amber-800">f</div>
-
-            </SwiperSlide>
-          </Swiper>
-        </>
-
-      </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {/* <section className="fm-root">
-        <div className="fm-inner">
-
-          <div className="fm-eyebrow">
-            <div className="fm-ey-line" />
-            <span className="fm-ey-text">Message from Leadership</span>
-            <div className="fm-ey-line rev" />
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <span className="text-3xl font-semibold tracking-wider text-amber-600 uppercase">
+              Leadership Insights
+            </span>
+            <h2 className="text-6xl md:text-4xl font-bold text-gray-900 mt-2">
+              Message from our Founders
+            </h2>
+            <div className="w-24 h-1 bg-amber-500 mx-auto mt-4 rounded-full" />
           </div>
 
+          {/* Swiper Slider */}
           <Swiper
-            modules={[Pagination, Autoplay]}
+            modules={[Pagination, EffectCoverflow, Navigation, Autoplay]}
+            spaceBetween={250}
+            slidesPerView={1}
+            navigation={true}
+            loop={true}
+            effect="coverflow"
+            centeredSlides={true}
+
+
+            coverflowEffect={{
+              rotate: 0,            // स्लाइड को टेढ़ा (rotate) नहीं करेगा
+              stretch: 0,           // स्लाइड्स के बीच का खिंचाव
+              depth: 100,           // साइड वाली स्लाइड्स को पीछे धकेलेगा (जिससे सेंटर बड़ा दिखेगा)
+              modifier: 2.5,        // इफेक्ट का असर कितना मजबूत होगा (इसे बढ़ाकर सेंटर को और बड़ा कर सकते हैं)
+              slideShadows: false,  // साइड स्लाइड्स पर परछाईं (Shadow) बंद/चालू करने के लिए
+            }}
             pagination={{ clickable: true }}
-            autoplay={founders.length > 1 ? { delay: 6000, disableOnInteraction: false } : false}
-            loop={founders.length > 1}
-            className="fm-swiper"
+            // autoplay={{
+            //   delay: 1000,
+            //   disableOnInteraction: false,
+            // }}
+
+            speed={5000}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            allowTouchMove={true}
+            // Responsiveness: lg स्क्रीन पर 3 स्लाइड्स दिखेंगी
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className="founders-swiper !pb-14"
           >
             {founders.map((founder) => (
-              <SwiperSlide key={founder.Id}>
-                <div className="fm-card">
-                  <div className="fm-strip" />
+              <SwiperSlide key={founder.Id} className="h-full">
+                <div className="  transition-all duration-300 overflow-hidden gap-3 flex flex-col  group">
 
-                 
+                  {/* {founder.Name && <h3 className="fm-name">{founder.Name}</h3>}
+                  {founder.Roll && <p className="fm-role">{founder.Roll}</p>} */}
+
+                  <div className="fm-divider" />
+
+
+                  {founder.Roll && <h1 className="text-7xl w-1/2 font-bold font-medium text-gray-800 mb-4"><span className="h-full w-2 bg-blue-500"></span> {founder?.Roll}</h1>}
+
+
+                  {/* Image Section */}
                   {founder.Image && (
-                    <div className="fm-img-col">
+                    <div className="relative w-full bg-deep-maroon  border-7 border-[#6d001d]  min-h-[550px] overflow-hidden">
                       <Image
                         src={`/uploads/${founder.Image}`}
                         alt={founder.Name || "Leadership"}
                         fill
-                        sizes="(max-width: 767px) 100vw, 340px"
-                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
-                      {founder.Roll && (
-                        <span className="fm-role-badge">{founder.Roll}</span>
-                      )}
                     </div>
                   )}
 
-             
-                  <div className="fm-content">
-                    <span className="fm-quote-mark">&quot;</span>
 
-                    {founder.Name && <h3 className="fm-name">{founder.Name}</h3>}
-                    {founder.Roll && <p className="fm-role">{founder.Roll}</p>}
+                  {founder.Description && (
+                    <p className="text-gray-700 text-4xl py-6 font-headline-md leading-tight">
+                      {founder.Description}
+                    </p>
+                  )}
 
-                    <div className="fm-divider" />
 
-                    {founder.Description && (
-                      <p className="fm-description">{founder.Description}</p>
-                    )}
 
-                    {founder.Read_More_Url && (
-                      <Link href={founder.Read_More_Url} className="fm-read-more">
-                        Read Full Message
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </Link>
-                    )}
-                  </div>
+
+
+
+                  {founder.Read_More_Url && (
+
+                    <Link
+                      href={founder.Read_More_Url}
+                      className="mt-4 text-4xl inline-block text-amber-600 font-semibold hover:text-amber-800 transition-colors duration-300"
+                    >
+                      Read More &rarr;
+                    </Link>
+
+                  )}
+
+
+
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-
         </div>
-      </section> */}
+
+        {/* Navigation button styling customization via Global Stylesheet or CSS injection */}
+        <style jsx global>{`
+        .founders-swiper .swiper-button-next,
+        .founders-swiper .swiper-button-prev {
+          color: #d97706 !important;
+          background: white;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .founders-swiper .swiper-button-next:after,
+        .founders-swiper .swiper-button-prev:after {
+          font-size: 16px !important;
+          font-weight: bold;
+          font-family: 'Source Sans 3', sans-serif;
+        }
+        .founders-swiper .swiper-pagination-bullet-active {
+          background: #d97706 !important;
+        }
+      `}</style>
+
+
+
+
+      </section>
     </>
   );
 }
