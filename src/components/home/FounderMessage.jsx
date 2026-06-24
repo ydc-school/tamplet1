@@ -51,25 +51,95 @@ export default function FounderMessage() {
 
   return (
 
-
-
-
-
-
-
-
-
-
-
-
     <>
 
+      <section className="px-6 py-8 space-y-12">
+
+        <Swiper
+          modules={[Pagination, Navigation, Autoplay]}
+          slidesPerView={3}
+          centeredSlides={true}
+          loop={true}
+          spaceBetween={40}
+          navigation={true}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          
+         
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+          className="founders-swiper  !pb-14"
+        >
 
 
-      <section className="w-full bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-16 md:px-8 overflow-hidden">
+          <SwiperSlide className="h-full max-w-2xl">
+
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">Chairperson's Message</h2>
+              <div className="border-2 border-rps-navy p-1">
+                <img alt="Chairperson" className="w-full"
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLs7txoZUtjUs4fR55P1xxYyJxhgDkUomKLpAw_6-Ra_6tyEbx1EytdQDca7_rHOs5Dx-pqgk_WBlGhV1CZ6xI99l7wiitvf_lIiNNhgZVzNvONpG9Fdlhi8fgJ1mJFaUuiuqNieQMRX3qX5u1oy-CkrPQC_jgwWNRhRLGMOs2oNgNVWKTPwOTceHV1iWUVAHt3H5sGIXLH2neJsBSJySaE0Z9Ala0ixPc_o6ZfKB_TG9SRLANor9--TEwtT" />
+              </div>
+              <p className="text-sm text-gray-700 sm:text-xl italic">
+                "Education has always been regarded as the strongest foundation upon which the future is built. Schools,
+                therefore, must be sanctuaries of inspiration—spaces that ignite curiosity, nurture creativity..."
+              </p>
+              <a className="text-rps-light-blue font-bold text-sm" href="#">+ READ MORE</a>
+            </div>
+
+          </SwiperSlide>
+          <SwiperSlide className="h-full max-w-2xl">
+
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">Chairperson's Message</h2>
+              <div className="border-2 border-rps-navy p-1">
+                <img alt="Chairperson" className="w-full"
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLs7txoZUtjUs4fR55P1xxYyJxhgDkUomKLpAw_6-Ra_6tyEbx1EytdQDca7_rHOs5Dx-pqgk_WBlGhV1CZ6xI99l7wiitvf_lIiNNhgZVzNvONpG9Fdlhi8fgJ1mJFaUuiuqNieQMRX3qX5u1oy-CkrPQC_jgwWNRhRLGMOs2oNgNVWKTPwOTceHV1iWUVAHt3H5sGIXLH2neJsBSJySaE0Z9Ala0ixPc_o6ZfKB_TG9SRLANor9--TEwtT" />
+              </div>
+              <p className="text-sm text-gray-700 sm:text-xl italic">
+                "Education has always been regarded as the strongest foundation upon which the future is built. Schools,
+                therefore, must be sanctuaries of inspiration—spaces that ignite curiosity, nurture creativity..."
+              </p>
+              <a className="text-rps-light-blue font-bold text-sm" href="#">+ READ MORE</a>
+            </div>
+
+          </SwiperSlide>
+          <SwiperSlide className="h-full max-w-2xl">
+
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">Chairperson's Message</h2>
+              <div className="border-2 border-rps-navy p-1">
+                <img alt="Chairperson" className="w-full"
+                  src="https://lh3.googleusercontent.com/aida/AP1WRLs7txoZUtjUs4fR55P1xxYyJxhgDkUomKLpAw_6-Ra_6tyEbx1EytdQDca7_rHOs5Dx-pqgk_WBlGhV1CZ6xI99l7wiitvf_lIiNNhgZVzNvONpG9Fdlhi8fgJ1mJFaUuiuqNieQMRX3qX5u1oy-CkrPQC_jgwWNRhRLGMOs2oNgNVWKTPwOTceHV1iWUVAHt3H5sGIXLH2neJsBSJySaE0Z9Ala0ixPc_o6ZfKB_TG9SRLANor9--TEwtT" />
+              </div>
+              <p className="text-sm text-gray-700 sm:text-xl italic">
+                "Education has always been regarded as the strongest foundation upon which the future is built. Schools,
+                therefore, must be sanctuaries of inspiration—spaces that ignite curiosity, nurture creativity..."
+              </p>
+              <a className="text-rps-light-blue font-bold text-sm" href="#">+ READ MORE</a>
+            </div>
+
+          </SwiperSlide>
+
+        </Swiper>
+      </section >
+
+      {/* <section classNameName="w-full bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-16 md:px-8 overflow-hidden">
         <div className="w-full mx-auto">
 
-          {/* Section Header */}
+        
           <div className="text-center mb-12">
             <span className="text-3xl font-semibold tracking-wider text-amber-600 uppercase">
               Leadership Insights
@@ -80,7 +150,7 @@ export default function FounderMessage() {
             <div className="w-24 h-1 bg-amber-500 mx-auto mt-4 rounded-full" />
           </div>
 
-          {/* Swiper Slider */}
+        
           <Swiper
             modules={[Pagination, EffectCoverflow, Navigation, Autoplay]}
             slidesPerView={3}
@@ -115,19 +185,17 @@ export default function FounderMessage() {
             className="founders-swiper !pb-14"
           >
             {founders.map((founder) => (
-              <SwiperSlide key={founder.Id} className="h-full">
+            
                 <div className="  transition-all duration-300 overflow-hidden gap-3 flex flex-col  group">
 
-                  {/* {founder.Name && <h3 className="fm-name">{founder.Name}</h3>}
-                  {founder.Roll && <p className="fm-role">{founder.Roll}</p>} */}
-
+                 
                   <div className="fm-divider" />
 
 
                   {founder.Roll && <h1 className="text-7xl w-1/2 font-bold font-medium text-gray-800 mb-4"><span className="h-full w-2 bg-blue-500"></span> {founder?.Roll}</h1>}
 
 
-                  {/* Image Section */}
+             
                   {founder.Image && (
                     <div className="relative w-full bg-deep-maroon  border-7 border-[#6d001d]  min-h-[550px] overflow-hidden">
                       <Image
@@ -171,7 +239,7 @@ export default function FounderMessage() {
           </Swiper>
         </div>
 
-        {/* Navigation button styling customization via Global Stylesheet or CSS injection */}
+      
         <style jsx global>{`
   .founders-swiper {
     overflow: visible !important;
@@ -240,7 +308,7 @@ export default function FounderMessage() {
 
 
 
-      </section>
+      </section> */}
     </>
   );
 }

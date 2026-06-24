@@ -30,7 +30,7 @@ export default function StudentToppers() {
   if (!loading && toppers.length === 0) return null;
   return (
     <>
-      <div className="w-full h-screen bg-green-700 flex flex-col items-center justify-center gap-4">
+      <div className="w-screen h-[100vw] bg-green-700 flex flex-col items-center justify-center ">
         {loading ? (
           <div className="text-white text-xl font-semibold">Loading Toppers...</div>
         ) : (
@@ -44,12 +44,12 @@ export default function StudentToppers() {
             }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className="w-full h-96 rounded-lg flex items-center justify-start"
+            className="w-full h-full rounded-lg flex items-center  justify-start"
           >
             {toppers.map((topper) => (
-              <SwiperSlide key={topper.Id} className="w-full h-full flex flex-col items-center justify-center bg-[#6d001d] text-white p-4">
-                <div className="flex flex-col items-center gap-3 w-full h-full justify-center">
-                  <div className="relative w-32 h-32 rounded-full overflow-hidden fallback-bg-gray">
+              <SwiperSlide key={topper.Id} className="w-full  h-full flex flex-col items-center justify-center py-18 text-white">
+                <div className="flex flex-col items-center   w-full h-full gap-3 bg-blue-500 justify-start">
+                  <div className="relative w-full h-[80%]  rounded-full overflow-hidden fallback-bg-gray">
                     {topper.Image ? (
                       <Image
                         src={`/uploads/${topper.Image}`}
@@ -63,7 +63,7 @@ export default function StudentToppers() {
                       </div>
                     )}
                   </div>
-                  <div className="text-center">
+                  <div className="text-center py-4">
                     <h3 className="text-xl font-bold tracking-wide">
                       {topper.Student_Name || "No Name"}
                     </h3>
@@ -76,6 +76,7 @@ export default function StudentToppers() {
                   </div>
                 </div>
               </SwiperSlide>
+              
             ))}
           </Swiper>
         )}

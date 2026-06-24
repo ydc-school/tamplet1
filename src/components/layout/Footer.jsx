@@ -49,6 +49,9 @@ export default function Footer() {
   const latitude = schoolInfo?.Latitude ?? "28.2801";
   const longitude = schoolInfo?.Longitude ?? "76.1517";
 
+
+  
+
   return (
     <>
       <footer className="bg-deep-maroon text-on-primary border-t border-white/10 pt-16 pb-8">
