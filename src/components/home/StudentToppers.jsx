@@ -30,21 +30,33 @@ export default function StudentToppers() {
   if (!loading && toppers.length === 0) return null;
   return (
     <>
-      <div className="w-screen h-[100vw] bg-green-700 flex flex-col items-center justify-center ">
+      <div className="w-screen sm:h-[50vh] h-[100vw] sm:px-9 bg-green-700 flex flex-col items-center justify-center ">
         {loading ? (
           <div className="text-white text-xl font-semibold">Loading Toppers...</div>
         ) : (
           <Swiper
             onSwiper={setSwiperRef}
-            slidesPerView={2}
-            centeredSlides={true}
-            spaceBetween={50}
+            slidesPerView={3}
+            centeredSlides={false}
+            spaceBetween={20}
             pagination={{
               type: 'fraction',
             }}
+
+              breakpoints={{
+            0: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 9,
+            },
+          }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className="w-full h-full rounded-lg flex items-center  justify-start"
+            className="w-full h-full rounded-lg flex items-center   justify-start"
           >
             {toppers.map((topper) => (
               <SwiperSlide key={topper.Id} className="w-full  h-full flex flex-col items-center justify-center py-18 text-white">
