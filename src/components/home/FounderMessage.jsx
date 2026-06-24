@@ -83,36 +83,26 @@ export default function FounderMessage() {
           {/* Swiper Slider */}
           <Swiper
             modules={[Pagination, EffectCoverflow, Navigation, Autoplay]}
-            spaceBetween={250}
-            slidesPerView={1}
-            navigation={true}
-            loop={true}
-            effect="coverflow"
+            slidesPerView={3}
             centeredSlides={true}
-
-
-            coverflowEffect={{
-              rotate: 0,            // स्लाइड को टेढ़ा (rotate) नहीं करेगा
-              stretch: 0,           // स्लाइड्स के बीच का खिंचाव
-              depth: 100,           // साइड वाली स्लाइड्स को पीछे धकेलेगा (जिससे सेंटर बड़ा दिखेगा)
-              modifier: 2.5,        // इफेक्ट का असर कितना मजबूत होगा (इसे बढ़ाकर सेंटर को और बड़ा कर सकते हैं)
-              slideShadows: false,  // साइड स्लाइड्स पर परछाईं (Shadow) बंद/चालू करने के लिए
-            }}
+            loop={true}
+            navigation={true}
             pagination={{ clickable: true }}
-            // autoplay={{
-            //   delay: 1000,
-            //   disableOnInteraction: false,
-            // }}
-
-            speed={5000}
             autoplay={{
               delay: 2000,
               disableOnInteraction: false,
             }}
-            allowTouchMove={true}
-            // Responsiveness: lg स्क्रीन पर 3 स्लाइड्स दिखेंगी
+            effect="coverflow"
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 50,
+              modifier: 5,
+              slideShadows: false,
+              scale: 0.9,
+            }}
             breakpoints={{
-              640: {
+              0: {
                 slidesPerView: 1,
               },
               768: {
@@ -183,26 +173,70 @@ export default function FounderMessage() {
 
         {/* Navigation button styling customization via Global Stylesheet or CSS injection */}
         <style jsx global>{`
-        .founders-swiper .swiper-button-next,
-        .founders-swiper .swiper-button-prev {
-          color: #d97706 !important;
-          background: white;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
-        .founders-swiper .swiper-button-next:after,
-        .founders-swiper .swiper-button-prev:after {
-          font-size: 16px !important;
-          font-weight: bold;
-          font-family: 'Source Sans 3', sans-serif;
-        }
-        .founders-swiper .swiper-pagination-bullet-active {
-          background: #d97706 !important;
-        }
-      `}</style>
+  .founders-swiper {
+    overflow: visible !important;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
 
+  .founders-swiper .swiper-wrapper {
+    align-items: center;
+  }
+
+  .founders-swiper .swiper-slide {
+    transform: scale(0.8);
+    opacity: 0.5;
+    transition: all 0.5s ease;
+  }
+
+  .founders-swiper .swiper-slide-prev,
+  .founders-swiper .swiper-slide-next {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  .founders-swiper .swiper-slide-active {
+    transform: scale(1.15);
+    opacity: 1;
+    z-index: 20;
+  }
+
+  .founders-swiper .swiper-button-next,
+  .founders-swiper .swiper-button-prev {
+    color: #d97706 !important;
+    background: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .founders-swiper .swiper-button-next:after,
+  .founders-swiper .swiper-button-prev:after {
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+
+  .founders-swiper .swiper-pagination-bullet-active {
+    background: #d97706 !important;
+  }
+
+
+  .founders-swiper .swiper-slide {
+    transform: scale(0.8);
+    opacity: 0.5;
+    transition: all 0.5s ease;
+  }
+
+  .founders-swiper .swiper-slide-prev,
+  .founders-swiper .swiper-slide-next {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+
+
+`}</style>
 
 
 
