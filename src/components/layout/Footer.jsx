@@ -113,8 +113,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-heritage-navy dark:bg-primary text-on-primary dark:text-inverse-on-surface  full-width py-12 border-t border-outline-variant transition-opacity opacity-90 hover:opacity-100 font-body-md ">
-      <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-heritage-navy dark:bg-primary text-on-primary  dark:text-inverse-on-surface  full-width py-12 border-t border-outline-variant transition-opacity opacity-90 hover:opacity-100 font-body-md ">
+      <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 text-white md:grid-cols-4 gap-8 mb-8">
         
         {/* Brand & Logo Section */}
         <div className="flex flex-col gap-4">
@@ -138,7 +138,7 @@ export default function Footer() {
               {displayShortName}
             </p>
           </div>
-          <p className="text-body-md text-text-muted leading-relaxed">
+          <p className="text-body-md text-white leading-relaxed">
             {schoolMotto}
           </p>
         </div>
@@ -154,14 +154,14 @@ export default function Footer() {
                 <li key={link.id}>
                   <Link 
                     href={link.url} 
-                    className="font-body-md text-text-muted hover:text-academic-gold transition-colors duration-200 block"
+                    className="font-body-md  text-white hover:text-academic-gold transition-colors duration-200 block"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))
             ) : (
-              <li className="font-body-md text-text-muted italic">No links available</li>
+              <li className="font-body-md  text-white italic">No links available</li>
             )}
           </ul>
         </div>
@@ -177,14 +177,14 @@ export default function Footer() {
                 <li key={link.id}>
                   <Link 
                     href={link.url} 
-                    className="font-body-md text-text-muted hover:text-academic-gold transition-colors duration-200 block"
+                    className="font-body-md  text-white hover:text-academic-gold transition-colors duration-200 block"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))
             ) : (
-              <li className="font-body-md text-text-muted italic">No links available</li>
+              <li className="font-body-md  text-white italic">No links available</li>
             )}
           </ul>
         </div>
@@ -195,10 +195,10 @@ export default function Footer() {
             <h4 className="font-label-caps text-label-caps text-heritage-navy uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
               Contact Us
             </h4>
-            <p className="font-body-md text-text-muted leading-relaxed mb-3">
+            <p className="font-body-md  text-white leading-relaxed mb-3">
               {contactDetails.address}
             </p>
-            <div className="flex flex-col gap-1 text-body-md text-text-muted">
+            <div className="flex flex-col gap-1 text-body-md  text-white">
               {contactDetails.phones.map((phoneObj, idx) => (
                 <a key={idx} href={phoneObj.href} className="hover:text-academic-gold transition-colors">
                   Phone: {phoneObj.display}
@@ -248,7 +248,7 @@ export default function Footer() {
             {legalLinks.map((link, idx) => (
               <Link 
                 key={idx} 
-                className="font-body-md text-body-md text-text-muted hover:text-academic-gold transition-colors" 
+                className="font-body-md text-body-md  text-white hover:text-academic-gold transition-colors" 
                 href={link.href}
               >
                 {link.name}
@@ -257,7 +257,7 @@ export default function Footer() {
           </nav>
         </div>
         <div className="text-center md:text-right">
-          <p className="font-body-md text-body-md text-text-muted">
+          <p className="font-body-md text-body-md  text-white">
             Copyright @{currentYear} {displayFooterCopyright} Education Foundation
           </p>
         </div>
