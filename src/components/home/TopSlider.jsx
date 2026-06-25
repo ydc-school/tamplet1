@@ -12,6 +12,7 @@ import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
 export default function TopSlider() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     axios
@@ -19,10 +20,13 @@ export default function TopSlider() {
       .then((res) => {
         if (res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
-          setSlides(valid);
+          const sortedSlides = valid.sort((a, b) => {
+            return (a.Index_No || 0) - (b.Index_No || 0);
+          });
+          setSlides(sortedSlides);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
@@ -52,6 +56,14 @@ export default function TopSlider() {
           background-size: 200% 100%;
           animation: ts-shimmer 1.5s infinite;
         }
+        
+        /* Large screens (lg: min-width: 1024px) ke liye skeleton height update */
+        @media (min-width: 1024px) {
+          .ts-skel-inner {
+            height: 100vh;
+          }
+        }
+
         @keyframes ts-shimmer {
           0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }
@@ -77,6 +89,14 @@ export default function TopSlider() {
           display: block;
           background: #f6f8fc;
         }
+
+        /* --- LARGE SCREEN CHANGES (lg:h-screen) --- */
+        @media (min-width: 1024px) {
+          .ts-swiper {
+            height: 100vh !important;
+          }
+        }
+
         .ts-slide-img {
           position: absolute;
           inset: 0;
@@ -174,10 +194,12 @@ export default function TopSlider() {
           autoplay={{ delay: 4500, disableOnInteraction: false }}
           loop={slides.length > 1}
           className="ts-swiper"
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500}>
               <div style={{ position: "relative", background: "#f6f8fc", width: "100%", height: "100%" }}>
+                {/* Note: Agar full screen me images choti dikhein to 'object-contain' ko change karke 'object-cover' try kar sakte hain */}
                 <PosterMedia
                   slide={slide}
                   alt={slide.Name || "Poster"}
@@ -197,7 +219,9 @@ export default function TopSlider() {
 
         {slides.length > 1 && (
           <div className="ts-counter">
-            <span className="ts-counter-cur">01</span>
+            <span className="ts-counter-cur">
+              {String((slides[activeIndex]?.Index) || activeIndex + 1).padStart(2, "0")}
+            </span>
             <span> / {String(slides.length).padStart(2, "0")}</span>
           </div>
         )}
