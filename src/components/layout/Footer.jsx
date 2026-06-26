@@ -127,11 +127,11 @@ export default function Footer() {
               style={logoConfig.style} 
               onError={logoConfig.onError}
               unoptimized={logoConfig.unoptimized}
-              className="h-12 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
           </div>
           <div>
-            <h3 className="font-headline-md text-heritage-navy uppercase tracking-wider mb-1">
+            <h3 className="font-headline-md text-white uppercase tracking-wider mb-1">
               {displaySchoolName}
             </h3>
             <p className="font-label-caps text-label-caps text-academic-gold">
@@ -145,7 +145,7 @@ export default function Footer() {
 
         {/* Useful Links Section */}
         <div>
-          <h4 className="font-label-caps text-label-caps text-heritage-navy uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
+          <h4 className="font-label-caps text-label-caps text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
             Useful Links
           </h4>
           <ul className="flex flex-col gap-2">
@@ -168,7 +168,7 @@ export default function Footer() {
 
         {/* Quick Links Section */}
         <div>
-          <h4 className="font-label-caps text-label-caps text-heritage-navy uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
+          <h4 className="font-label-caps text-label-caps text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
             Quick Links
           </h4>
           <ul className="flex flex-col gap-2">
@@ -192,7 +192,7 @@ export default function Footer() {
         {/* Contact Info & Socials Section */}
         <div className="flex flex-col gap-4">
           <div>
-            <h4 className="font-label-caps text-label-caps text-heritage-navy uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
+            <h4 className="font-label-caps text-label-caps text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
               Contact Us
             </h4>
             <p className="font-body-md  text-white leading-relaxed mb-3">
@@ -223,7 +223,7 @@ export default function Footer() {
                     href={social.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="font-label-caps text-label-caps text-heritage-navy hover:text-academic-gold transition-colors duration-200"
+                    className="font-label-caps text-label-caps text-white hover:text-academic-gold transition-colors duration-200"
                   >
                     {social.title}
                   </a>
@@ -241,7 +241,7 @@ export default function Footer() {
       {/* Bottom Footer Copyright & Legal Section */}
       <div className="flex flex-col md:flex-row justify-between items-center px-gutter w-full max-w-container-max mx-auto gap-4">
         <div className="flex flex-col md:flex-row items-center gap-8">
-          <span className="font-label-caps text-label-caps text-heritage-navy tracking-wider">
+          <span className="font-label-caps text-label-caps text-white tracking-wider">
             {displayFooterCopyright.toUpperCase()}
           </span>
           <nav className="flex gap-6">
