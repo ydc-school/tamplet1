@@ -62,7 +62,7 @@ export default function Navbar() {
                 onError={handleLogoError}
               />
             </Link>
-            <h1  style={{}}  className="text-4xl  lg:hidden font-extrabold flex items-center gap-3">
+            <h1  style={{}}  className="text-2xl  lg:hidden font-extrabold flex items-center gap-3">
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ export default function Navbar() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-9 h-9 text-current" /* Aapki current text color ke sath match ho jayega */
+                className="w-6 h-6 text-current" /* Aapki current text color ke sath match ho jayega */
               >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
@@ -125,7 +125,7 @@ export default function Navbar() {
 
 
 
-          <h1 className="text-4xl lg:flex  font-extrabold hidden justify-center items-center gap-3">
+          <h1 className="text-2xl lg:flex  font-extrabold hidden justify-center items-center gap-3">
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +171,7 @@ export default function Navbar() {
           className={`${open ? "flex" : "hidden"} md:hidden bg-heritage-navy border-t border-academic-gold/20 flex-col p-4 gap-3`}
           id="mobile-menu"
         >
-          <Link onClick={handleMobileLink} className="font-label-caps text-label-caps text-academic-gold" href="/">Home</Link>
+          <Link onClick={handleMobileLink} className="font-label-caps text-label-caps1 text-academic-gold" href="/">Home</Link>
 
           {categories.map((cat) => (
             <div key={cat.Id} className="flex flex-col w-full">
@@ -180,7 +180,7 @@ export default function Navbar() {
               {cat.pages?.length > 0 ? (
                 <>
                   <button
-                    className="w-full text-left font-label-caps text-label-caps text-white flex justify-between items-center py-1"
+                    className="w-full text-left font-label-caps text-label-caps1 text-white flex justify-between items-center py-1"
                     onClick={() => setOpenCategory(openCategory === cat.Id ? null : cat.Id)}
                   >
                     <span>{cat.Name}</span>
@@ -196,7 +196,7 @@ export default function Navbar() {
                         key={page.Id}
                         href={`/pages/${slugify(page.Name)}/${page.Id}`}
                         onClick={handleMobileLink}
-                        className="font-label-caps text-xs text-gray-300 hover:text-academic-gold"
+                        className="font-label-caps text-2xs text-gray-300 hover:text-academic-gold"
                       >
                         {page.Name.replace(/-/g, " ")}
                       </Link>
