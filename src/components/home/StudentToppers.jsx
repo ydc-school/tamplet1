@@ -86,9 +86,9 @@ const carouselRef = useRef(null);
                
 
                 <blockquote className="font-serif text-[20px] flex flex-col text-center bg-academic-teal leading-[1.5] text-white  mb-3 relative z-10 italic pt-2">
-                       <h4>{item.Student_Name || "Topper"}</h4>
-                       <h4>{item.Student_Class}</h4>
-                       <h4>{item.Marks_Percentage}</h4>
+                       <h4>{item?.Student_Name || "Topper"}</h4>
+                       <h4>{item?.Student_Class}</h4>
+                       <h4>{item?.Marks_Percentage}</h4>
                 </blockquote>
 
                 <div className="flex items-center ">
