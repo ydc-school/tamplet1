@@ -145,7 +145,7 @@ export default function Footer() {
 
         {/* Useful Links Section */}
         <div>
-          <h4 className="font-label-caps text-label-caps text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
+          <h4 className="font-label-caps text-label-caps1 text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
             Useful Links
           </h4>
           <ul className="flex flex-col gap-2">
@@ -168,7 +168,7 @@ export default function Footer() {
 
         {/* Quick Links Section */}
         <div>
-          <h4 className="font-label-caps text-label-caps text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
+          <h4 className="font-label-caps text-label-caps1 text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
             Quick Links
           </h4>
           <ul className="flex flex-col gap-2">
@@ -192,7 +192,7 @@ export default function Footer() {
         {/* Contact Info & Socials Section */}
         <div className="flex flex-col gap-4">
           <div>
-            <h4 className="font-label-caps text-label-caps text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
+            <h4 className="font-label-caps text-label-caps1 text-white uppercase mb-4 pb-2 border-b-2 border-academic-gold/30 inline-block">
               Contact Us
             </h4>
             <p className="font-body-md  text-white leading-relaxed mb-3">
@@ -223,7 +223,7 @@ export default function Footer() {
                     href={social.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="font-label-caps text-label-caps text-white hover:text-academic-gold transition-colors duration-200"
+                    className="font-label-caps text-label-caps1 text-white hover:text-academic-gold transition-colors duration-200"
                   >
                     {social.title}
                   </a>
