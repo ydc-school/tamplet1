@@ -253,7 +253,13 @@ export default function TopSlider() {
     <div className="grid lg:grid-cols-5 grid-cols-1 gap-6">
 
       
-        <div>
+
+       
+
+
+
+<div className="col-span-2">
+
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
                 PG Courses
             </div>
@@ -262,7 +268,7 @@ export default function TopSlider() {
 
                 <div className="space-y-2">
 
-                    <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Tech (CSE)</div>
+                      <div className="bg-cyan-400 rounded-lg px-2 whitespace-nowrap text-center font-semibold">M.Tech (CSE)</div>
                     <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.Tech (ECE)</div>
                     <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Ed.</div>
                     <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.A. Hindi</div>
@@ -270,12 +276,12 @@ export default function TopSlider() {
                     <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.A. Sanskrit</div>
                     <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.A. History</div>
                     <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.A. Political Science</div>
-                    <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.A. Economics</div>
 
                 </div>
 
                 <div className="space-y-2">
 
+                 
                     <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Com</div>
                     <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.Sc Physics</div>
                     <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Sc Chemistry</div>
@@ -291,7 +297,7 @@ export default function TopSlider() {
 
         </div>
 
-       
+
 
         <div className="col-span-2">
 
@@ -349,7 +355,7 @@ export default function TopSlider() {
         <div>
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
-                Diploma Courses
+              UG Courses
             </div>
 
             <div className="space-y-2">
