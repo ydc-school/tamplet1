@@ -250,7 +250,7 @@ export default function TopSlider() {
           </div>
         </div>
 
-        <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
 
 
 
@@ -260,7 +260,7 @@ export default function TopSlider() {
           <div className="col-span-full md:col-span-2">
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
-              PG Courses
+              Post Graduate Courses
             </div>
 
             <div className="grid grid-cols-2 gap-2 w-full">
@@ -301,7 +301,7 @@ export default function TopSlider() {
           <div className="col-span-full md:col-span-3">
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
-              UG Courses
+              Under Graduate Courses
             </div>
 
             <div className="grid grid-cols-3 gap-2 w-full">
@@ -334,7 +334,7 @@ export default function TopSlider() {
 
               </div>
 
-              <div className="col-w-full span-1">
+              <div className="col-w-full space-y-2">
 
                 <div className="bg-yellow-400 rounded-lg p-2 text-center font-semibold">B.Sc Hons Maths</div>
                 <div className="bg-yellow-100 rounded-lg p-2 text-center font-semibold">B.Sc Hons Zoology</div>
@@ -384,7 +384,7 @@ export default function TopSlider() {
 
           <div className="col-span-full md:col-span-2">
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
-              Distance Courses
+              Distance Learning Courses
             </div>
 
             <div className="grid grid-cols-2 gap-2 w-full">
@@ -404,7 +404,7 @@ export default function TopSlider() {
             </div>
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mt-6 mb-4">
-              Diploma Courses
+              Distance Learning Diploma Courses
             </div>
 
             <div className="col-span-w-full space-y-2">
