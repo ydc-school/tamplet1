@@ -204,7 +204,7 @@ export default function Navbar() {
                   </div>
                 </>
               ) : (
-                <span className="font-label-caps text-label-caps text-white py-1">{cat.Name}</span>
+                <span className="font-label-caps text-label-caps1 text-white py-1">{cat.Name}</span>
               )}
             </div>
           ))}
