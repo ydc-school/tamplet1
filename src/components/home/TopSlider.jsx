@@ -257,7 +257,7 @@ export default function TopSlider() {
 
 
 
-          <div className="col-span-full">
+          <div className="col-span-full md:col-span-2">
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
               PG Courses
@@ -298,7 +298,7 @@ export default function TopSlider() {
 
 
 
-          <div className="col-span-full">
+          <div className="col-span-full md:col-span-3">
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
               UG Courses
@@ -352,7 +352,7 @@ export default function TopSlider() {
 
 
 
-          <div className="col-span-full">
+          <div className="col-span-full md:col-span-1">
 
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
               Diploma Courses
@@ -382,7 +382,7 @@ export default function TopSlider() {
 
           </div>
 
-          <div className="col-span-full">
+          <div className="col-span-full md:col-span-2">
             <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
               Distance Courses
             </div>
