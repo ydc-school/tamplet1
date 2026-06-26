@@ -383,38 +383,38 @@ export default function TopSlider() {
           </div>
 
           <div className="col-span-full md:col-span-2">
-            <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mb-4">
+            <div className="bg-[#00A650] text-white text-center py-2 rounded-xl font-bold mb-4">
               Distance Learning Courses
             </div>
 
             <div className="grid grid-cols-2 gap-2 w-full">
 
               <div className="col-span-w-full space-y-2">
-                <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">M.Com</div>
-                <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">M.Sc Maths</div>
-                <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">B.A.</div>
+                <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">M.Com</div>
+                <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">M.Sc Maths</div>
+                <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">B.A.</div>
               </div>
 
               <div className="col-span-w-full space-y-2">
-                <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">M.A. English</div>
-                <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">M.A. Hindi</div>
-                <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">B.Com</div>
+                <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">M.A. English</div>
+                <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">M.A. Hindi</div>
+                <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">B.Com</div>
               </div>
 
             </div>
 
-            <div className="bg-red-600 text-white text-center py-2 rounded-xl font-bold mt-6 mb-4">
+            <div className="bg-[#00A650] text-white text-center py-2 rounded-xl font-bold mt-6 mb-4">
               Distance Learning Diploma Courses
             </div>
 
             <div className="col-span-w-full space-y-2">
 
-              <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">Computer Applications & Data Science</div>
-              <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">Artificial Intelligence</div>
-              <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">Cyber Security</div>
-              <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">Business Analytics</div>
-              <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">Banking & Finance</div>
-              <div className="bg-yellow-300 rounded-lg p-2 text-center font-semibold">Financial Market</div>
+              <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">Computer Applications & Data Science</div>
+              <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">Artificial Intelligence</div>
+              <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">Cyber Security</div>
+              <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">Business Analytics</div>
+              <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">Banking & Finance</div>
+              <div className="bg-[#F47216] rounded-lg p-2 text-center font-semibold">Financial Market</div>
 
             </div>
 
