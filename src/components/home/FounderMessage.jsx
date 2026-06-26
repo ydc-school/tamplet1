@@ -67,8 +67,8 @@ export default function FounderMessage() {
             delay: 2000,
             disableOnInteraction: false,
           }}
-          
-         
+
+
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -77,64 +77,41 @@ export default function FounderMessage() {
               slidesPerView: 2,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 4,
             },
           }}
           className="founders-swiper  !pb-14"
         >
 
 
-          <SwiperSlide className="h-full max-w-2xl">
+          {founders.map((founder) => (
+            <SwiperSlide key={founder.Id} className="h-full  max-w-2xl">
 
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">Chairperson's Message</h2>
-              <div className="border-2 border-rps-navy p-1">
-                <img alt="Chairperson" className="w-full"
-                  src="https://lh3.googleusercontent.com/aida/AP1WRLs7txoZUtjUs4fR55P1xxYyJxhgDkUomKLpAw_6-Ra_6tyEbx1EytdQDca7_rHOs5Dx-pqgk_WBlGhV1CZ6xI99l7wiitvf_lIiNNhgZVzNvONpG9Fdlhi8fgJ1mJFaUuiuqNieQMRX3qX5u1oy-CkrPQC_jgwWNRhRLGMOs2oNgNVWKTPwOTceHV1iWUVAHt3H5sGIXLH2neJsBSJySaE0Z9Ala0ixPc_o6ZfKB_TG9SRLANor9--TEwtT" />
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">{founder?.Roll}</h2>
+                <div className="border-2 border-rps-navy p-1">
+                  <img alt="Chairperson" className="w-full"
+                    src={`/uploads/${founder.Image}`} />
+                </div>
+                <p className="text-sm text-gray-700 sm:text-xl italic">
+                 {founder.Description}
+                </p>
+                <Link className="text-rps-light-blue font-bold text-sm" href={founder.Read_More_Url}>+ READ MORE</Link>
               </div>
-              <p className="text-sm text-gray-700 sm:text-xl italic">
-                "Education has always been regarded as the strongest foundation upon which the future is built. Schools,
-                therefore, must be sanctuaries of inspiration—spaces that ignite curiosity, nurture creativity..."
-              </p>
-              <a className="text-rps-light-blue font-bold text-sm" href="#">+ READ MORE</a>
-            </div>
 
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-2xl">
-
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">Chairperson's Message</h2>
-              <div className="border-2 border-rps-navy p-1">
-                <img alt="Chairperson" className="w-full"
-                  src="https://lh3.googleusercontent.com/aida/AP1WRLs7txoZUtjUs4fR55P1xxYyJxhgDkUomKLpAw_6-Ra_6tyEbx1EytdQDca7_rHOs5Dx-pqgk_WBlGhV1CZ6xI99l7wiitvf_lIiNNhgZVzNvONpG9Fdlhi8fgJ1mJFaUuiuqNieQMRX3qX5u1oy-CkrPQC_jgwWNRhRLGMOs2oNgNVWKTPwOTceHV1iWUVAHt3H5sGIXLH2neJsBSJySaE0Z9Ala0ixPc_o6ZfKB_TG9SRLANor9--TEwtT" />
-              </div>
-              <p className="text-sm text-gray-700 sm:text-xl italic">
-                "Education has always been regarded as the strongest foundation upon which the future is built. Schools,
-                therefore, must be sanctuaries of inspiration—spaces that ignite curiosity, nurture creativity..."
-              </p>
-              <a className="text-rps-light-blue font-bold text-sm" href="#">+ READ MORE</a>
-            </div>
-
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-2xl">
-
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold border-l-4 border-rps-navy pl-3">Chairperson's Message</h2>
-              <div className="border-2 border-rps-navy p-1">
-                <img alt="Chairperson" className="w-full"
-                  src="https://lh3.googleusercontent.com/aida/AP1WRLs7txoZUtjUs4fR55P1xxYyJxhgDkUomKLpAw_6-Ra_6tyEbx1EytdQDca7_rHOs5Dx-pqgk_WBlGhV1CZ6xI99l7wiitvf_lIiNNhgZVzNvONpG9Fdlhi8fgJ1mJFaUuiuqNieQMRX3qX5u1oy-CkrPQC_jgwWNRhRLGMOs2oNgNVWKTPwOTceHV1iWUVAHt3H5sGIXLH2neJsBSJySaE0Z9Ala0ixPc_o6ZfKB_TG9SRLANor9--TEwtT" />
-              </div>
-              <p className="text-sm text-gray-700 sm:text-xl italic">
-                "Education has always been regarded as the strongest foundation upon which the future is built. Schools,
-                therefore, must be sanctuaries of inspiration—spaces that ignite curiosity, nurture creativity..."
-              </p>
-              <a className="text-rps-light-blue font-bold text-sm" href="#">+ READ MORE</a>
-            </div>
-
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
 
         </Swiper>
       </section >
+
+
+
+
+
+
+
+
 
       {/* <section classNameName="w-full bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-16 md:px-8 overflow-hidden">
         <div className="w-full mx-auto">

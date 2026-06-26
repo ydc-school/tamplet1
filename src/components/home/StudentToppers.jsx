@@ -1,22 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef} from "react";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import { Pagination, Navigation } from 'swiper/modules';
-
 
 
 export default function StudentToppers() {
   const [toppers, setToppers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [swiperRef, setSwiperRef] = useState(null);
 
   useEffect(() => {
     axios
@@ -27,72 +18,134 @@ export default function StudentToppers() {
       .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
+
   if (!loading && toppers.length === 0) return null;
+
+  // Sort by rank if available
+  const sorted = [...toppers].sort((a, b) => (parseInt(a.Rank) || 99) - (parseInt(b.Rank) || 99));
+  const top3 = sorted.slice(0, 3);
+  const rest = sorted.slice(3);
+
+  // Podium order: 2nd, 1st, 3rd
+  const podiumOrder = [top3[1], top3[0], top3[2]].filter(Boolean);
+
+  const medalColors = {
+    1: { bg: "#c4a048", text: "#f6f8fc", label: "Gold" },
+    2: { bg: "#94a3b8", text: "#f6f8fc", label: "Silver" },
+    3: { bg: "#b87333", text: "#fff", label: "Bronze" },
+  };
+
+
+
+
+
+
+
+const carouselRef = useRef(null);
+
+  const scrollCarousel = (direction) => {
+    if (carouselRef.current) {
+      const container = carouselRef.current;
+      const scrollAmount = container.offsetWidth * 0.8;
+      container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+
+
+
+
   return (
     <>
-      <div className="w-screen sm:h-[50vh] h-[100vw] sm:px-9 bg-green-700 flex flex-col items-center justify-center ">
-        {loading ? (
-          <div className="text-white text-xl font-semibold">Loading Toppers...</div>
-        ) : (
-          <Swiper
-            onSwiper={setSwiperRef}
-            slidesPerView={3}
-            centeredSlides={false}
-            spaceBetween={20}
-            pagination={{
-              type: 'fraction',
-            }}
+    
 
-              breakpoints={{
-            0: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 9,
-            },
-          }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="w-full h-full rounded-lg flex items-center   justify-start"
-          >
-            {toppers.map((topper) => (
-              <SwiperSlide key={topper.Id} className="w-full  h-full flex flex-col items-center justify-center py-18 text-white">
-                <div className="flex flex-col items-center   w-full h-full gap-3 bg-blue-500 justify-start">
-                  <div className="relative w-full h-[80%]  rounded-full overflow-hidden fallback-bg-gray">
-                    {topper.Image ? (
-                      <Image
-                        src={`/uploads/${topper.Image}`}
-                        alt={topper.Student_Name || "Topper"}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-amber-500 flex items-center justify-center text-2xl font-bold">
-                        {topper.Student_Name?.charAt(0)?.toUpperCase() || "S"}
-                      </div>
-                    )}
+
+
+ <section className="py-20 bg-white overflow-hidden">
+      <div className="max-w-[1200px]  mx-auto px-12 relative">
+        
+        {/* Carousel Container */}
+        <div
+          ref={carouselRef}
+          className="flex gap-6 w-screen overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          id="testimonialCarousel"
+        >
+          {toppers.map((item) => (
+            <div
+              key={item.id}
+              className="w-[250px] snap-center opacity-100 translate-y-0 transition-all duration-1000"
+            >
+              <div
+                className={`bg-[#fef8f6] text-white  bg-academic-teal flex flex-col-reverse  border border-[#34291e]/15 [box-shadow:0px_4px_20px_rgba(75,63,51,0.08)] transform ${item.rotateClass} -translate-y-2 transition-all duration-500 group relative [background-image:url('https://www.transparenttextures.com/patterns/natural-paper.png')]`}
+              >
+
+                {/* Custom SVG Quote Icon */}
+               
+
+                <blockquote className="font-serif text-[20px] flex flex-col text-center bg-academic-teal leading-[1.5] text-white  mb-3 relative z-10 italic pt-2">
+                       <h4>{item.Student_Name || "Topper"}</h4>
+                       <h4>{item.Student_Class}</h4>
+                       <h4>{item.Marks_Percentage}</h4>
+                </blockquote>
+
+                <div className="flex items-center ">
+                  <div className="w-full h-52 bg-[#4b3f33] overflow-hidden rounded-lg border border-[#34291e]/10 relative">
+                    <Image
+                      className="w-full h-full object-fill [filter:grayscale(1)_sepia(0.3)_contrast(1.1)]"
+                      src={`/uploads/${item?.Image}`}
+                      alt={item?.imgAlt}
+                      width={64}
+                      height={64}
+                    />
                   </div>
-                  <div className="text-center py-4">
-                    <h3 className="text-xl font-bold tracking-wide">
-                      {topper.Student_Name || "No Name"}
-                    </h3>
-                    <p className="text-sm opacity-90">
-                      S/O: {topper.Father_Name || "N/A"}
-                    </p>
-                    <span className="inline-block mt-1 px-3 py-1 bg-white/20 rounded-full text-xs font-semibold uppercase tracking-wider">
-                      Rank: #{topper.Rank || "-"}
-                    </span>
+                  <div>
+                   
                   </div>
                 </div>
-              </SwiperSlide>
-              
-            ))}
-          </Swiper>
-        )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Carousel Controls */}
+        <div className="flex justify-between items-center mt-12">
+          <div className="flex gap-3">
+            <button
+              className="w-12 h-12 flex items-center justify-center border border-[#34291e]/20 text-[#34291e] hover:bg-[#34291e] hover:text-white transition-all duration-300"
+              onClick={() => scrollCarousel(-1)}
+              aria-label="Previous testimonial"
+            >
+              {/* Back Arrow SVG */}
+              <svg className="w-6 h-6 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0 l7-7m-7 7h18" />
+              </svg>
+            </button>
+            <button
+              className="w-12 h-12 flex items-center justify-center border border-[#34291e]/20 text-[#34291e] hover:bg-[#34291e] hover:text-white transition-all duration-300"
+              onClick={() => scrollCarousel(1)}
+              aria-label="Next testimonial"
+            >
+              {/* Forward Arrow SVG */}
+              <svg className="w-6 h-6 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+          <div className="font-sans text-[12px] font-semibold tracking-widest text-[#7f756d] hidden md:block uppercase">
+            Navigation 01 — 03
+          </div>
+        </div>
+
       </div>
+    </section>
+
+
+
+
+     
     </>
   );
 }
