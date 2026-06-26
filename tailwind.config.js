@@ -67,7 +67,7 @@ module.exports = {
         "section-padding": "80px",
         "margin-mobile": "16px",
         "stack-sm": "8px",
-        "container-max": "1280px",
+        "container-max": "100vw",
         "stack-md": "16px",
         "gutter": "50px"
       },
