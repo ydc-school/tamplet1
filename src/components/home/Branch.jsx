@@ -5,11 +5,11 @@ export default function Branch() {
     return (
         <>
             <section className="py-section-padding bg-surface-container-low" id="schools">
-                <div className="max-w-container-max mx-auto px-gutter mb-8 flex flex-col items-center text-center mb-stack-lg">
+                <div className="max-w-screen mx-auto px-gutter mb-8 flex flex-col items-center text-center mb-stack-lg">
                     <h2 className="font-headline-lg text-headline-lg text-heritage-navy ">HIGHER EDUCATION CAMPUSES</h2>
                     <div className="w-48 h-1 bg-academic-gold"></div>
                 </div>
-                <div className="max-w-container-max mx-auto px-gutter">
+                <div className="max-w-screen mx-auto px-gutter">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
 
                         {/* 1. Yaduvanshi College of Engg. & Tech., Narnaul */}
@@ -21,7 +21,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287672139-0ecb94c1300bd369.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.) 8607052424</p>
                                 </div>
                             </div>
                         </Link>
@@ -35,7 +35,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782195923309-9850066d31c04da9.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Mahendergarh (UG, PG)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Mahendergarh (UG, PG) 8607062424</p>
                                 </div>
                             </div>
                         </Link>
@@ -49,7 +49,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLtku6SoK7BEK_XG9Y84QxQbk0lGL6XdMwbaMbMplVK-iUwZN5rjQv4ni-6YRlAOICQfWpVf1FD7lVI-Gm9KN2cT4GhiMhwf0Gtx9rGhOcu4WBiEBEAAHJpA6UE_SvG5Lctt51c2btkjOnSAb2lPg_KxOQU0RjSMWZgnTTKSB3YdREnQHNk8GjJYnhmS0Gbfyp1VIsqrdZILNFIp5Sgx0gOZzXzGYed3rJoC4ajmMfog5m4Rn3hnJNcz6A" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Narnaul (UG, PG)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Narnaul (UG, PG) 8607052424</p>
                                 </div>
                             </div>
                         </Link>
@@ -63,7 +63,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuV8GkQDIEmQw_rSOHMAbd5Du7b4wXj1J8oMXwcrobFuLZJCeuu3LVzQe1UZyKMXQ6tfl6-AxlC0u_K_TvKC2wedNt8J8c16cPK7cpSa5cqoJ-HjG9tfApYjsrK4TPdwHyj42gQQbVqk61HAuzUgU1_J0NALec3gVrkYEmC5HbZiDD-QGNQB6x6-3F64nR318dzh2XmuHkt6s4quS9F9QE-Fo-fV4fyAIQjfLDXm9DpjQgY2YrlK8qXb_4" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">RBS Degree College, Nangal Chaudhary</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">RBS Degree College, Nangal Chaudhary 8607052323</p>
                                 </div>
                             </div>
                         </Link>
@@ -77,7 +77,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLtrdK4T4kjAfzAKE3gYdmh0unXnwXPL2jdO5-1UDBp-zgRg9Ue9M_62nv4LU-iFIOZ_p7z-Bgn9zCMgvNno3Ac7ZUo_A3UlyRDzfy9JSYLMNwLe70xIdzpl7GaDw_xjiAEFLZk4OhEjkfxaS7FOblB5Pr4zk7pLmMkKrWFJZqNTyiJlUOgDyo-W0g0SNiMLAnEmZ-UYSrMe-_TIvFbV5wsVS9FvmZkYQaGF2sGkOwuEi4UI4Hz8kIt6tCs" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Sohali (Raj.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Sohali (Raj.) 9728396599</p>
                                 </div>
                             </div>
                         </Link>
@@ -91,7 +91,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLu-CCSbkK2rOiTQk_dYaYYeo_opJYK6A8zmLTnsbO_mZg155Atu5z8d01tGa5U6G7iwf--okhdbbbGimzgughFVED85qwa3gnyc8cODsu8u3uBEBLnGEUnOz4sAy_1CZe9Vf8Xsy8yAyaLi_CbrdRfXER3pjATQ1jtPnxXdCKIAGRj532XnBqzQruscbyQ_q-XojegUVlliTdeF6eMJ0mgC-fwm1sq4HzU71s5b5tvEhMGeoj07vQyhadU" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Mahendergargh (B.Ed., M.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Mahendergargh (B.Ed., M.Ed.) 7027720275</p>
                                 </div>
                             </div>
                         </Link>
@@ -105,7 +105,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Narnaul (B.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Narnaul (B.Ed.) 8222852523</p>
                                 </div>
                             </div>
                         </Link>
@@ -119,7 +119,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.) 7027720275</p>
                                 </div>
                             </div>
                         </Link>
@@ -133,7 +133,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.) 7027720275</p>
                                 </div>
                             </div>
                         </Link>
@@ -147,7 +147,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.El.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.El.Ed.) 8222852523</p>
                                 </div>
                             </div>
                         </Link>
@@ -161,7 +161,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.P.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.P.Ed.) 8222852523</p>
                                 </div>
                             </div>
                         </Link>
@@ -175,7 +175,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287745867-3fa63a265961e0df.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (B.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (B.Ed.) 9991904068</p>
                                 </div>
                             </div>
                         </Link>
@@ -189,7 +189,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287903468-dd95e08de4d9ee06.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (4-Years Integrated)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (4-Years Integrated) 9991904068</p>
                                 </div>
                             </div>
                         </Link>
@@ -203,7 +203,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (D.El.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (D.El.Ed.) 9991904068</p>
                                 </div>
                             </div>
                         </Link>
@@ -217,7 +217,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engineering & Technology, Sohali</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engineering & Technology, Sohali 9728396599</p>
                                 </div>
                             </div>
                         </Link>
@@ -231,7 +231,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Polytechnic, Sohali</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Polytechnic, Sohali 9728396599</p>
                                 </div>
                             </div>
                         </Link>
@@ -245,7 +245,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Pvt. ITI, Sohali</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Pvt. ITI, Sohali 9728396599</p>
                                 </div>
                             </div>
                         </Link>
@@ -259,7 +259,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287987675-8b82d028d8339bbb.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.) 7027135135</p>
                                 </div>
                             </div>
                         </Link>
@@ -273,7 +273,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782288085395-f6e33101c3b5f5cc.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (B.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (B.Ed.) 7027135135</p>
                                 </div>
                             </div>
                         </Link>
@@ -287,7 +287,7 @@ export default function Branch() {
                                         src="https://lh3.googleusercontent.com/aida/AP1WRLuX2iUaoWUVDx4MCECZ1zZ8eCbWqLIcouk_JK8jWgVZ7rz2srC4g7NZu5ufVJ_NOGjgsDzqCaZz8MiOgf9uPFz8jr-qsyA5MDvdLIPuzwKhGicwqFwCvM3SVhdeH2W34SJPiSO42ZgDAZNnBNFagDU8A2faTvDJuIfwN6pjRo-lu5349hfaNwVhKjdyHwhxrpaXllFNoVnSeBSzoUBbNk7ysgpzP2UV4ge5oL09GIIW7iMbbMdYpzupk-Y" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (D.El.Ed.)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (D.El.Ed.) 7027135135</p>
                                 </div>
                             </div>
                         </Link>
@@ -301,7 +301,7 @@ export default function Branch() {
                     <h2 className="font-headline-lg text-headline-lg text-heritage-navy ">SCHOOL CAMPUSES</h2>
                     <div className="w-48 h-1 bg-academic-gold"></div>
                 </div>
-                <div className="max-w-container-max mx-auto px-gutter">
+                <div className="max-w-screen mx-auto px-gutter">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
 
                         {/* 1. Yaduvanshi Shiksha Niketan, MahenderGarh */}
@@ -313,7 +313,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196595531-ed03fce9ad8d817e.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, MahenderGarh</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, MahenderGarh 9466341799</p>
                                 </div>
                             </div>
                         </Link>
@@ -327,7 +327,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196658975-60154148faf9770c.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Narnaul</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Narnaul 9468061387</p>
                                 </div>
                             </div>
                         </Link>
@@ -341,7 +341,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197935464-abe1046539ebe47c.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Nangal Chaudhary</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Nangal Chaudhary 9050784050</p>
                                 </div>
                             </div>
                         </Link>
@@ -355,7 +355,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196860315-7e01b30c0b6157e0.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Satnali</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Satnali 9812330666</p>
                                 </div>
                             </div>
                         </Link>
@@ -369,7 +369,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196903986-6f37a91ea40646af.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kanina</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kanina 9053048100</p>
                                 </div>
                             </div>
                         </Link>
@@ -383,7 +383,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196982829-2596b7d1b38ea274.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Rewari</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Rewari 8901167461</p>
                                 </div>
                             </div>
                         </Link>
@@ -397,7 +397,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197050002-2b8495d52b87ee98.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kosli</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kosli 9053002458</p>
                                 </div>
                             </div>
                         </Link>
@@ -411,7 +411,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197114404-418695cc18b74268.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-33</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-33 9053905381</p>
                                 </div>
                             </div>
                         </Link>
@@ -425,7 +425,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197147934-0581a80a28047452.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-92</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-92 9053905384</p>
                                 </div>
                             </div>
                         </Link>
@@ -439,7 +439,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782195923309-9850066d31c04da9.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Charkhi Dadri</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Charkhi Dadri 7027134134</p>
                                 </div>
                             </div>
                         </Link>
@@ -453,7 +453,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197223758-8f82ad88c8da3697.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Hansi</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Hansi 9053905366</p>
                                 </div>
                             </div>
                         </Link>
@@ -467,7 +467,7 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197281143-cd38ea07ac981a01.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Jind</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Jind 9053905361</p>
                                 </div>
                             </div>
                         </Link>
@@ -481,11 +481,36 @@ export default function Branch() {
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)</p>
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) 9813602411</p>
                                 </div>
                             </div>
                         </Link>
-
+                        {/* 13. Yaduvanshi Shiksha Niketan, Sohali, Jhunjhunu */}
+                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Sohali, Jhunjhumnu 9991217659</p>
+                                </div>
+                            </div>
+                        </Link>
+                        {/* 13. Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) */}
+                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) 9053533801</p>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </section>

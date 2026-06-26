@@ -423,56 +423,8 @@ export default function TopSlider() {
         </div>
 
 
-<div className="flex flex-col justify-center gap-5">
-
-<div className="flex flex ">
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </>
