@@ -11,6 +11,7 @@ import AchievementGallery from "@/components/home/Achievementgallery";
 import FacilitySection from "@/components/home/FacilitySection";
 import Branch from "@/components/home/Branch";
 import SchemaScript from "@/components/SchemaScript";
+import {BlinkButton} from "@/components/home/BlinkButton";
 import {
   breadcrumbSchema,
   buildMetadata,
@@ -76,6 +77,7 @@ export default async function Home() {
         <WelcomeSection />
         <AchievementsSection />
         <Branch/>
+        <BlinkButton />
         {/* <HistorySection />
         <AchievementGallery />
         <NoticeSection />
