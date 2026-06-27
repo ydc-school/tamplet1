@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSchool } from "@/context/SchoolContext";
 
@@ -8,8 +8,12 @@ export default function CareersForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const { schoolInfo } = useSchool();
+  const [branches, setBranches] = useState([]);
 
-  // Unified state matching required field IDs / attributes
+  // Hardcoded captcha code
+  const CAPTCHA_CODE = "F8B2X";
+
+  // Unified State
   const [formData, setFormData] = useState({
     apl_pst: "",
     ar_spec: "",
@@ -21,32 +25,83 @@ export default function CareersForm() {
     eml_id: "",
     mob_no: "",
     add: "",
-    has_experience: "", // handles 'yes' or 'no' checkbox
+    has_experience: "", // 'yes' or 'no'
     ex_org: "",
     ex_des: "",
     ex_dt_start: "",
     ex_dt_end: "",
     txtUploadResume: null,
     txtCaptcha: "",
+    branches: ''
   });
+
+  useEffect(() => {
+    const fetchBranches = async () => {
+      try {
+        const res = await axios.get("/api/admin/branch");
+        setBranches(res?.data?.data || []);
+      } catch (err) {
+        console.error("Error fetching branches:", err);
+      }
+    };
+    fetchBranches();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCheckboxChange = (id) => {
-    setFormData((prev) => ({ ...prev, has_experience: id }));
+  const handleExperienceChange = (value) => {
+    setFormData((prev) => ({
+      ...prev,
+      has_experience: value,
+      // Clear experience data if 'no' is selected
+      ...(value === "no" && {
+        ex_org: "",
+        ex_des: "",
+        ex_dt_start: "",
+        ex_dt_end: ""
+      })
+    }));
   };
 
   const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, txtUploadResume: e.target.files[0] }));
+    const file = e.target.files[0];
+    if (file && file.type !== "application/pdf") {
+      setError("Please upload PDF files only.");
+      e.target.value = null; // Reset input
+      return;
+    }
+    setError(null);
+    setFormData((prev) => ({ ...prev, txtUploadResume: file }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    // 1. Mobile Number Validation (10 digits)
+    if (formData.mob_no.length !== 10) {
+      setError("Please enter a valid 10-digit mobile number.");
+      setLoading(false);
+      return;
+    }
+
+    // 2. Experience Validation
+    if (!formData.has_experience) {
+      setError("Please select whether you have work experience or not.");
+      setLoading(false);
+      return;
+    }
+
+    // 3. Captcha Validation (Case-Insensitive)
+    if (formData.txtCaptcha.trim().toUpperCase() !== CAPTCHA_CODE.toUpperCase()) {
+      setError("Invalid Captcha code! Please try again.");
+      setLoading(false);
+      return;
+    }
 
     const data = new FormData();
     data.append("Post_Applied", formData.apl_pst);
@@ -59,7 +114,7 @@ export default function CareersForm() {
     data.append("Email_Id", formData.eml_id);
     data.append("Mobile_No", formData.mob_no);
     data.append("Address", formData.add);
-    data.append("Branch_Id", schoolInfo?.Branch_Id || "");
+    data.append("Branch_Id", formData.branches);
     data.append("Captcha", formData.txtCaptcha);
 
     if (formData.has_experience === "yes") {
@@ -81,26 +136,25 @@ export default function CareersForm() {
         },
       });
 
-      if (response.data.status === "success") {
+      if (response.data.status === "success" || response.data.code === 200) {
         setSuccess(true);
       } else {
         setError(response.data.message || "Registration failed.");
       }
     } catch (err) {
       console.error("API Error:", err);
-      setError(err.response?.data?.message || "Network error occurred. Please try again.");
+      setError(err.response?.data?.message || "A network error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Reusable input Tailwind styles to keep code dry
   const inputClass = "w-full bg-white border border-[#c4a048]/20 rounded-[2px] px-[14px] py-[10px] text-[14px] text-[#1d3557] outline-none transition duration-200 box-border focus:border-[#c4a048] focus:ring-3 focus:ring-[#c4a048]/10";
 
   return (
     <div className="relative min-h-screen bg-[#f6f8fc] px-6 py-10 font-sans before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_60%_35%_at_50%_0%,rgba(196,160,72,0.055)_0%,transparent_65%)] before:pointer-events-none">
       <div className="relative z-10 mx-auto max-w-[950px] overflow-hidden rounded-[4px] border border-[#c4a048]/15 bg-white shadow-[0_4px_20px_rgba(16,33,58,0.03)]">
-        
+
         {/* Header */}
         <div className="relative bg-gradient-to-br from-[#f3f7fc] to-[#f6f8fc] px-8 py-6 border-b border-[#c4a048]/12 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-gradient-to-r after:from-transparent after:via-[#c4a048] after:to-transparent">
           <h1 className="font-serif text-2xl font-extrabold text-[#10213a] mb-[6px]">Job Registration Form</h1>
@@ -110,7 +164,7 @@ export default function CareersForm() {
         {!success ? (
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div className="p-8">
-              
+
               {/* ── SECTION 1: Professional Profile ── */}
               <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px] first-of-type:mt-0">
                 1. Professional Profile
@@ -123,13 +177,35 @@ export default function CareersForm() {
                     <option value="PRT">PRT Teacher</option>
                     <option value="TGT">TGT Teacher</option>
                     <option value="PGT">PGT Teacher</option>
+                    <option value="PGT">OTHERS</option>
                     <option value="Admin">Administrative Staff</option>
                   </select>
                 </div>
+
+                <div className="flex flex-col gap-[6px] mb-[18px]">
+                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]"> Branch *</label>
+                  <select id="branch" name="branches" required className={inputClass} value={formData.branches} onChange={handleChange}>
+                    <option value="" disabled>Select a branch</option>
+                    {branches
+                      ?.filter(i => i.Name !== "main")
+                      ?.map((i) => (
+                        <option key={i.Id} value={i.Id}>
+                          {i.Name}
+                        </option>
+                      ))
+                    }
+                  </select>
+                </div>
+
                 <div className="flex flex-col gap-[6px] mb-[18px]">
                   <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Area of Specialization *</label>
                   <input type="text" id="ar_spec" name="ar_spec" required className={inputClass} placeholder="e.g. Mathematics, English" value={formData.ar_spec} onChange={handleChange} />
                 </div>
+              </div>
+
+              <div className="flex flex-col gap-[6px] mb-[18px]">
+                <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Designation *</label>
+                <input type="text" id="ex_des" name="ex_des" required={formData.has_experience === "yes"} className={inputClass} placeholder="e.g. Senior Teacher" value={formData.ex_des} onChange={handleChange} />
               </div>
 
               {/* ── SECTION 2: Professional & Contact Details ── */}
@@ -180,20 +256,20 @@ export default function CareersForm() {
                 </div>
                 <div className="flex flex-col gap-[6px] mb-[18px]">
                   <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Mobile No. *</label>
-                  <input 
-                    type="text" 
-                    id="mob_no" 
-                    name="mob_no" 
-                    required 
-                    pattern="[0-9]{10}" 
+                  <input
+                    type="tel"
+                    id="mob_no"
+                    name="mob_no"
+                    required
+                    pattern="[0-9]{10}"
                     title="Please enter a valid 10-digit mobile number"
-                    className={inputClass} 
-                    placeholder="10-digit number" 
-                    value={formData.mob_no} 
+                    className={inputClass}
+                    placeholder="10-digit number"
+                    value={formData.mob_no}
                     onChange={(e) => {
                       const val = e.target.value.replace(/\D/g, "");
                       setFormData(prev => ({ ...prev, mob_no: val.slice(0, 10) }));
-                    }} 
+                    }}
                   />
                 </div>
               </div>
@@ -211,11 +287,11 @@ export default function CareersForm() {
                 <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Do you have Work Experience? *</label>
                 <div className="flex gap-6 py-2">
                   <label className="flex items-center gap-2 text-[14px] text-[#1d3557] cursor-pointer">
-                    <input type="checkbox" id="yes" className="accent-[#c4a048] w-4 h-4" checked={formData.has_experience === "yes"} onChange={() => handleCheckboxChange("yes")} />
+                    <input type="radio" name="has_experience" id="yes" className="accent-[#c4a048] w-4 h-4" checked={formData.has_experience === "yes"} onChange={() => handleExperienceChange("yes")} />
                     Yes
                   </label>
                   <label className="flex items-center gap-2 text-[14px] text-[#1d3557] cursor-pointer">
-                    <input type="checkbox" id="no" className="accent-[#c4a048] w-4 h-4" checked={formData.has_experience === "no"} onChange={() => handleCheckboxChange("no")} />
+                    <input type="radio" name="has_experience" id="no" className="accent-[#c4a048] w-4 h-4" checked={formData.has_experience === "no"} onChange={() => handleExperienceChange("no")} />
                     No
                   </label>
                 </div>
@@ -226,21 +302,21 @@ export default function CareersForm() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="flex flex-col gap-[6px] mb-[18px]">
                       <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Organisation *</label>
-                      <input type="text" id="ex_org" name="ex_org" required className={inputClass} placeholder="Company / School Name" value={formData.ex_org} onChange={handleChange} />
+                      <input type="text" id="ex_org" name="ex_org" required={formData.has_experience === "yes"} className={inputClass} placeholder="Company / School Name" value={formData.ex_org} onChange={handleChange} />
                     </div>
                     <div className="flex flex-col gap-[6px] mb-[18px]">
                       <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Designation *</label>
-                      <input type="text" id="ex_des" name="ex_des" required className={inputClass} placeholder="e.g. Senior Teacher" value={formData.ex_des} onChange={handleChange} />
+                      <input type="text" id="ex_des" name="ex_des" required={formData.has_experience === "yes"} className={inputClass} placeholder="e.g. Senior Teacher" value={formData.ex_des} onChange={handleChange} />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="flex flex-col gap-[6px] mb-[18px]">
                       <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Service From *</label>
-                      <input type="date" id="ex_dt_start" name="ex_dt_start" required className={inputClass} value={formData.ex_dt_start} onChange={handleChange} />
+                      <input type="date" id="ex_dt_start" name="ex_dt_start" required={formData.has_experience === "yes"} className={inputClass} value={formData.ex_dt_start} onChange={handleChange} />
                     </div>
                     <div className="flex flex-col gap-[6px] mb-[18px]">
                       <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Service End *</label>
-                      <input type="date" id="ex_dt_end" name="ex_dt_end" required className={inputClass} value={formData.ex_dt_end} onChange={handleChange} />
+                      <input type="date" id="ex_dt_end" name="ex_dt_end" required={formData.has_experience === "yes"} className={inputClass} value={formData.ex_dt_end} onChange={handleChange} />
                     </div>
                   </div>
                 </div>
@@ -261,8 +337,8 @@ export default function CareersForm() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-end">
                 <div className="flex flex-col gap-[6px] mb-[18px]">
-                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Code Code Display</label>
-                  <div className="bg-[#f3f7fc] p-[10px] font-bold text-[18px] tracking-[4px] text-center border border-[#c4a048]/15 rounded-[2px] text-[#3a5a7a] select-none">F8B2X</div>
+                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Code Display</label>
+                  <div className="bg-[#f3f7fc] p-[10px] font-bold text-[18px] tracking-[4px] text-center border border-[#c4a048]/15 rounded-[2px] text-[#3a5a7a] select-none">{CAPTCHA_CODE}</div>
                 </div>
                 <div className="flex flex-col gap-[6px] mb-[18px]">
                   <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">Enter Captcha *</label>
@@ -285,7 +361,7 @@ export default function CareersForm() {
         ) : (
           /* Success State */
           <div className="text-center px-6 py-12 flex flex-col items-center gap-4">
-            <div className="w-14 height-14 bg-[#c4a048]/10 rounded-full flex items-center justify-center text-[#c4a048] p-3">
+            <div className="w-14 h-14 bg-[#c4a048]/10 rounded-full flex items-center justify-center text-[#c4a048] p-3">
               <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
