@@ -13,7 +13,6 @@ import Branch from "@/components/home/Branch";
 import SchemaScript from "@/components/SchemaScript";
 import { BlinkButton } from "@/components/home/BlinkButton";
 import { Courses } from "@/components/home/Courses"
-import PhonePoster from "@/components/home/PhonePoster"
 import isPhone from "@/utils/isphone"
 
 import {
