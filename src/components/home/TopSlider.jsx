@@ -33,7 +33,7 @@ export default function TopSlider() {
           setSlides(sortedSlides);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => {
         if (!ignore) setLoading(false);
       });
@@ -46,9 +46,8 @@ export default function TopSlider() {
   if (loading) {
     return (
       <div className="relative w-full bg-[#f6f8fc] border-b-3 border-[#c4a048]">
-        {/* Shimmer Effect Skeleton */}
-        <div className="w-full h-screen lg:h-screen bg-gradient-to-r from-white via-[#eef4ff] to-white bg-[length:200%_100%] animate-shimmer" 
-             style={{ animation: 'shimmer 1.5s infinite linear' }} />
+        <div className="w-full h-screen lg:h-screen bg-gradient-to-r from-white via-[#eef4ff] to-white bg-[length:200%_100%] animate-shimmer"
+          style={{ animation: 'shimmer 1.5s infinite linear' }} />
         <style>{`
           @keyframes shimmer {
             0% { background-position: 200% 0; }
@@ -73,25 +72,26 @@ export default function TopSlider() {
         pagination={{ clickable: true }}
         autoplay={{ delay: 4500, disableOnInteraction: false }}
         loop={slides.length > 1}
-        className="w-full w-screen h-screen lg:h-screen bg-[#f6f8fc]"
+        // Swiper core ko h-auto rakha hai jaisa aapne kaha
+        className="w-full h-auto bg-[#f6f8fc]"
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
         {slides.map((slide, index) => (
-          <SwiperSlide 
-            key={slide.Id || index} 
-            data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500} 
-            className="!h-full"
+          <SwiperSlide
+            key={slide.Id || index}
+            data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500}
+            className="!h-auto"
           >
-            {/* Slide Container: Mobile par w-screen h-screen */}
-            <div className="relative w-screen h-screen lg:w-full lg:h-full bg-[#f6f8fc] flex items-center justify-center overflow-hidden">
+            {/* Slide Box: Phone par strict w-screen h-screen, desktop par automatic custom aspect layout */}
+            <div className="relative w-screen h-screen lg:w-full lg:h-[clamp(200px,42vw,620px)] bg-[#f6f8fc] flex items-center justify-center overflow-hidden">
               <PosterMedia
                 slide={slide}
                 alt={slide.Name || "Poster"}
-                // Mobile par object-cover aur baki screens par object-contain jaisa pehle tha
+                // Mobile par w-screen h-screen aur object-cover, desktop par contain mode
                 className="absolute inset-0 w-screen h-screen lg:w-full lg:h-full object-cover lg:object-contain transition-transform duration-[8000ms] ease-out swiper-slide-active:scale-104"
                 priority={index === 0}
               />
-              
+
               {/* Slide Label */}
               {slide.Name && (
                 <div className="absolute bottom-5 left-6 z-10 flex items-center gap-2.5">
@@ -109,7 +109,7 @@ export default function TopSlider() {
       {/* Counter */}
       {slides.length > 1 && (
         <div className="absolute bottom-5 right-6 z-10 font-['Source_Sans_3',sans-serif] text-[12px] font-bold tracking-widest text-[rgba(196,160,72,0.7)]">
-          <span className="text-[#c4a048] text-e[16px]">
+          <span className="text-[#c4a048] text-[16px]">
             {String((slides[activeIndex]?.Index) || activeIndex + 1).padStart(2, "0")}
           </span>
           <span> / {String(slides.length).padStart(2, "0")}</span>
@@ -128,7 +128,7 @@ export default function TopSlider() {
         </svg>
       </button>
 
-      {/* Global Swiper Pagination Customization via Tailwind Utility Style */}
+      {/* Styles for Pagination Dots and Zoom effect */}
       <style>{`
         .swiper-pagination { bottom: 16px !important; }
         .swiper-pagination-bullet { width: 6px !important; height: 6px !important; background: rgba(255,255,255,0.35) !important; opacity: 1 !important; transition: all 0.25s !important; border-radius: 3px !important; }
