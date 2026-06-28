@@ -9,6 +9,7 @@ import FounderMessage from "@/components/home/FounderMessage";
 import BlogSection from "@/components/home/BlogSection";
 import AchievementGallery from "@/components/home/Achievementgallery";
 import FacilitySection from "@/components/home/FacilitySection";
+import StudentSwiper from "@/components/home/StudentSwiper";
 import SchemaScript from "@/components/SchemaScript";
 import {
   breadcrumbSchema,
@@ -79,6 +80,7 @@ export default async function Home() {
         <FounderMessage />
         <StudentToppers />
         <AchievementGallery />
+        <StudentSwiper />
         {/* <CourseSection /> */}
         <FacilitySection />
         <AdmissionSection />
