@@ -9,14 +9,14 @@ import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
 
-export default function TopSlider() {
+export default function PhonePoster() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     axios
-      .get("/api/client/poster")
+      .get("/api/client/poster?isPhone=true")
       .then((res) => {
         if (res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));

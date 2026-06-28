@@ -11,8 +11,11 @@ import AchievementGallery from "@/components/home/Achievementgallery";
 import FacilitySection from "@/components/home/FacilitySection";
 import Branch from "@/components/home/Branch";
 import SchemaScript from "@/components/SchemaScript";
-import {BlinkButton} from "@/components/home/BlinkButton";
-import {Courses} from "@/components/home/Courses"
+import { BlinkButton } from "@/components/home/BlinkButton";
+import { Courses } from "@/components/home/Courses"
+import PhonePoster from "@/components/home/PhonePoster"
+import isPhone from "@/utils/isphone"
+
 import {
   breadcrumbSchema,
   buildMetadata,
@@ -73,12 +76,12 @@ export default async function Home() {
     <>
       <SchemaScript schemaJson={schema} />
       <div className="w-full bg-white flex flex-col">
-        <TopSlider />
+         <TopSlider />
         <Courses />
         {/* <Hero /> */}
         <WelcomeSection />
         <AchievementsSection />
-        <Branch/>
+        <Branch />
         <BlinkButton />
         {/* <HistorySection />
         <AchievementGallery />

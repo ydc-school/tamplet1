@@ -8,17 +8,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
+import useIsPhone from "@/utils/isphone";
 
 export default function TopSlider() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+  const isPhone = useIsPhone();
 
   useEffect(() => {
+    let ignore = false;
+
+    setLoading(true);
+    setSlides([]);
+
     axios
-      .get("/api/client/poster")
+      .get(`/api/client/poster?isPhone=${isPhone ? "true" : "false"}`)
       .then((res) => {
-        if (res.data.status === "success") {
+        if (!ignore && res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
           const sortedSlides = valid.sort((a, b) => {
             return (a.Index_No || 0) - (b.Index_No || 0);
@@ -26,9 +33,18 @@ export default function TopSlider() {
           setSlides(sortedSlides);
         }
       })
-      .catch(() => { })
-      .finally(() => setLoading(false));
-  }, []);
+      .catch(() => {})
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+
+
+
+  }, [isPhone]);
 
   if (loading) {
     return (
@@ -51,7 +67,7 @@ export default function TopSlider() {
         }
         .ts-skel-inner {
           width: 100%;
-          height: clamp(200px, 42vw, 620px);
+          height: clamp(200px, 100vh, 620px);
           background: linear-gradient(90deg, #ffffff 25%, #eef4ff 50%, #ffffff 75%);
           background-size: 200% 100%;
           animation: ts-shimmer 1.5s infinite;
@@ -101,6 +117,9 @@ export default function TopSlider() {
           position: absolute;
           inset: 0;
           transition: transform 8s ease !important;
+          object-fit: contain;
+          width: 100% !important;
+          height: 100% !important;
         }
         .swiper-slide-active .ts-slide-img {
           transform: scale(1.04) !important;
@@ -197,8 +216,8 @@ export default function TopSlider() {
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         >
           {slides.map((slide, index) => (
-            <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500}>
-              <div style={{ position: "relative", background: "#f6f8fc", width: "100%", height: "100%" }}>
+            <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 4500} style={{ height: "auto" }}>
+              <div style={{ position: "relative", background: "#f6f8fc", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {/* Note: Agar full screen me images choti dikhein to 'object-contain' ko change karke 'object-cover' try kar sakte hain */}
                 <PosterMedia
                   slide={slide}
