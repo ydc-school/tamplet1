@@ -28,7 +28,7 @@ export const Tpopup = () => {
                 <Link href="/careers-form">
                     <div className='w-full h-full flex items-center justify-center p-2'>
                         <img
-                            src="./poster/pop/1.jpeg"
+                            src="./poster/pop/4.jpeg"
                             alt="Poster"
                             className='max-h-[80vh] w-full object-contain rounded-lg'
                         />
