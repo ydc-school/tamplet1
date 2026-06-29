@@ -48,19 +48,6 @@ export default function PosterMedia({
     );
   }
 
-  // Use regular img tag for local uploads to avoid Next.js Image validation issues
-  if (imageSrc.startsWith("/uploads/")) {
-    return (
-      <img
-        src={imageSrc}
-        alt={alt}
-        className={className}
-        style={{ width: "100%", height: "100%", objectFit: "contain" }}
-      />
-    );
-  }
-
-  // Use Next.js Image for external URLs
   return (
     <Image
       src={imageSrc}

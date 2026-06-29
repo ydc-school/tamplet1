@@ -9,12 +9,7 @@ import FounderMessage from "@/components/home/FounderMessage";
 import BlogSection from "@/components/home/BlogSection";
 import AchievementGallery from "@/components/home/Achievementgallery";
 import FacilitySection from "@/components/home/FacilitySection";
-import Branch from "@/components/home/Branch";
 import SchemaScript from "@/components/SchemaScript";
-import { BlinkButton } from "@/components/home/BlinkButton";
-import { Courses } from "@/components/home/Courses"
-import isPhone from "@/utils/isphone"
-
 import {
   breadcrumbSchema,
   buildMetadata,
@@ -75,22 +70,42 @@ export default async function Home() {
     <>
       <SchemaScript schemaJson={schema} />
       <div className="w-full bg-white flex flex-col">
-         <TopSlider />
-        <Courses />
+        <TopSlider />
         {/* <Hero /> */}
         <WelcomeSection />
+        <HistorySection />
         <AchievementsSection />
-        <Branch />
-        <BlinkButton />
-        {/* <HistorySection />
-        <AchievementGallery />
         <NoticeSection />
         <FounderMessage />
-        <StudentToppers /> */}
+        <StudentToppers />
+        <AchievementGallery />
         {/* <CourseSection /> */}
-        {/* <FacilitySection /> */}
-        {/* <AdmissionSection />
-        <BlogSection /> */}
+        <FacilitySection />
+        <AdmissionSection />
+        <BlogSection />
+        <section className="w-full bg-[#f6f8fc] px-6 py-16">
+          <div className="mx-auto max-w-5xl">
+            <p className="text-center text-[10px] font-bold uppercase tracking-[0.28em] text-[#c4a048]">
+              Help Center
+            </p>
+            <h2 className="mt-3 text-center font-[var(--font-playfair)] text-3xl font-bold text-[#10213a]">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {HOME_FAQS.map((item) => (
+                <article
+                  key={item.question}
+                  className="rounded border border-[rgba(196,160,72,0.14)] bg-white p-5"
+                >
+                  <h3 className="font-[var(--font-playfair)] text-lg font-bold text-[#10213a]">
+                    {item.question}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[#3a5a7a]">{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

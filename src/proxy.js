@@ -10,7 +10,6 @@ export default async function proxy(request) {
     const hostname = host.split(":")[0];
     const parts = hostname.split(".");
     const subdomain = parts.length >= 2 ? parts[0] : null;
-    
 
 
     if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/uploads/")) {
@@ -31,9 +30,6 @@ export default async function proxy(request) {
 
         if (subdomain) {
             reqHeaders.set("x-subdomain", subdomain);
-        } else {
-            reqHeaders.set("x-subdomain", "main");
-
         }
 
         return NextResponse.rewrite(url, {

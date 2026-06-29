@@ -1,4 +1,4 @@
-import { Hanken_Grotesk, Public_Sans } from 'next/font/google';
+import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import { headers } from "next/headers";
 
 import SchemaScript from "@/components/SchemaScript";
@@ -18,17 +18,18 @@ import { getSeoData } from "@/utils/getSeoData";
 
 import "./globals.css";
 
-export const hankenGrotesk = Hanken_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-hanken-grotesk', // CSS Variable name
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-playfair",
+  display: "swap",
 });
 
-// Public Sans Font setup
-export const publicSans = Public_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-public-sans', // CSS Variable name
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-source",
+  display: "swap",
 });
 
 const DEFAULT_METADATA = {
@@ -113,7 +114,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en-IN">
-      <body className={`${hankenGrotesk.variable} ${publicSans.variable} antialiased`}>
+      <body className={`${playfair.variable} ${sourceSans.variable} antialiased`}>
         <SchemaScript schemaJson={globalSchema} />
         <SchemaScript schemaJson={seo?.Schema_Json} />
         <SchoolProvider>{children}</SchoolProvider>

@@ -20,8 +20,6 @@ export default function NoticeSection() {
   const formatDate = (d) =>
     new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
-  if (!loading && notices?.length === 0) return null;
-
   return (
     <>
       <style>{`

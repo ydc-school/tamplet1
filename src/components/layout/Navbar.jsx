@@ -11,14 +11,17 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [openCategory, setOpenCategory] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
 
-  const { schoolInfo } = useSchool();
+  const { schoolInfo, loading } = useSchool();
   const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
     schoolInfo?.Logo_Url,
     "/logo/logo.png"
   );
 
+  const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
+  const shortName = schoolInfo?.Short_Name ?? "Degree College";
 
   useEffect(() => {
     const fetchPages = async () => {
@@ -35,11 +38,9 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handler = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleMobileLink = () => {
@@ -47,169 +48,523 @@ export default function Navbar() {
     setOpenCategory(null);
   };
 
+  useEffect(() => {
+    const handler = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <div ref={menuRef}>
-      <nav className="bg-heritage-navy dark:bg-primary text-on-primary dark:text-inverse-on-surface docked full-width top sticky z-50 border-b-2 border-academic-gold shadow-md transition-all duration-300 ease-in-out">
-        <div className="flex justify-between items-center px-gutter py-8 w-full max-w-container-max mx-auto">
+    <>
+      <style>{`
+        :root {
+          --nb-bg: #ffffff;
+          --nb-bg-scroll: rgba(255, 255, 255, 0.96);
+          --nb-border: rgba(196, 160, 72, 0.28);
+          --nb-gold: #c4a048;
+          --nb-gold-light: #e0c060;
+          --nb-text: #314155;
+          --nb-text-muted: rgba(49, 65, 85, 0.7);
+          --nb-dropdown-bg: #ffffff;
+          --nb-hover-bg: rgba(196, 160, 72, 0.08);
+          --nb-height: 60px;
+        }
 
-          {/* लोगो सेक्शन */}
-          <div className="flex items-center flex-col gap-4">
-            <Link href="/">
-              <img
-                alt="School Logo"
-                className="h-28 w-auto object-contain"
-                src={logoSrc}
-                onError={handleLogoError}
-              />
-            </Link>
-            <h1  style={{}}  className="text-2xl  lg:hidden font-extrabold flex items-center gap-3">
+        .nb-top-branding {
+          background: #ffffff;
+          border-bottom: 1px solid rgba(196, 160, 72, 0.15);
+        }
+        .nb-branding-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 10px 28px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
 
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-6 h-6 text-current" /* Aapki current text color ke sath match ho jayega */
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
+        .nb-admission-banner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .nb-admission-img {
+          object-fit: contain;
+          height: auto;
+          max-height: 55px; 
+          width: auto;
+        }
 
-              <span>+91-9729429766</span>
-            </h1>
-          </div>
+        .nb-wrap {
+          position: sticky;
+          top: 0;
+          z-index: 999;
+          width: 100%;
+          transition: background 0.3s ease, box-shadow 0.3s ease;
+          background: var(--nb-bg);
+          border-bottom: 1px solid var(--nb-border);
+          font-family: 'Source Sans 3', sans-serif;
+        }
+        .nb-wrap.scrolled {
+          background: var(--nb-bg-scroll);
+          backdrop-filter: blur(14px);
+          box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+        }
 
+        .nb-topbar {
+          background: var(--nb-gold);
+          height: 3px;
+          width: 100%;
+        }
 
-          <div className="hidden md:flex items-center gap-8">
-            <Link
-              className="font-label-caps text-label-caps text-academic-gold border-b-2 border-academic-gold pb-1 transition-all duration-300"
-              href="/"
-            >
-              Home
-            </Link>
+        .nb-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          height: var(--nb-height);
+          padding: 0 28px;
+          display: flex;
+          align-items: center;
+          gap: 0;
+        }
 
-            {categories.map((cat) => (
-              <div key={cat.Id} className="relative group py-2">
-                {cat.pages?.length > 0 ? (
-                  <>
+        .nb-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-decoration: none;
+          flex-shrink: 0;
+          height: 52px;
+        }
+        .nb-logo-img-wrap {
+          width: 194px;
+          height: 54px;
+          border-radius: 0%;
+          background: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 4px;
+          flex-shrink: 0;
+        }
+        .nb-logo-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .nb-logo-text { display: none; }
+        @media (min-width: 600px) { .nb-logo-text { display: block; } }
+        .nb-school-name {
+          font-family: 'Playfair Display', serif;
+          font-size: 17px;
+          font-weight: 700;
+          color: #10213a;
+          line-height: 1.15;
+        }
+        .nb-school-sub {
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--nb-gold);
+          margin-top: 2px;
+        }
 
-                    <button className="font-label-caps text-label-caps1 text-white hover:text-academic-gold transition-colors duration-200 flex items-center gap-1 focus:outline-none">
-                      {cat.Name}
-                      <svg className="h-3 w-3 transform transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+        .nb-links {
+          display: none;
+          flex: 1;
+          height: 100%;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          align-items: center;
+        }
+        @media (min-width: 960px) { .nb-links { display: flex; } }
 
-                    <div className="absolute left-0 mt-2 w-52 bg-heritage-navy border border-academic-gold/20 rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2">
-                      {cat.pages.map((page) => (
-                        <Link
-                          key={page.Id}
-                          href={`/pages/${slugify(page.Name)}/${page.Id}`}
-                          className="block font-label-caps text-2xs text-white hover:text-academic-gold px-3 py-2 transition-colors duration-150"
-                        >
-                          {page.Name.replace(/-/g, " ")}
-                        </Link>
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <button className="font-label-caps text-label-caps1 text-white hover:text-academic-gold transition-colors duration-200 focus:outline-none">
-                    {cat.Name}
-                  </button>
-                )}
+        .nb-item {
+          position: relative;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        .nb-btn {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 0 14px;
+          height: 100%;
+          font-family: 'Source Sans 3', sans-serif;
+          font-size: 13.5px;
+          font-weight: 500;
+          color: var(--nb-text);
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: color 0.2s;
+          position: relative;
+        }
+        .nb-btn::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 14px;
+          right: 14px;
+          height: 2px;
+          background: var(--nb-gold);
+          transform: scaleX(0);
+          transition: transform 0.25s ease;
+          transform-origin: center;
+        }
+        .nb-btn:hover, .nb-btn.active { color: #10213a; }
+        .nb-btn:hover::after, .nb-btn.active::after { transform: scaleX(1); }
+
+        .nb-chevron {
+          width: 10px;
+          height: 10px;
+          color: var(--nb-gold);
+          transition: transform 0.2s;
+        }
+        .nb-item:hover .nb-chevron { transform: rotate(180deg); }
+
+        .nb-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          min-width: 210px;
+          background: var(--nb-dropdown-bg);
+          border: 1px solid var(--nb-border);
+          border-top: 2px solid var(--nb-gold);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(8px);
+          transition: all 0.22s ease;
+          z-index: 200;
+        }
+        .nb-item:hover .nb-dropdown {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+        .nb-drop-item {
+          display: block;
+          padding: 10px 18px;
+          font-size: 13px;
+          color: var(--nb-text);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+          transition: all 0.15s;
+          text-transform: capitalize;
+        }
+        .nb-drop-item:last-child { border-bottom: none; }
+        .nb-drop-item:hover {
+          background: var(--nb-hover-bg);
+          color: var(--nb-gold-light);
+          padding-left: 24px;
+        }
+
+        .nb-cta-wrap {
+          margin-left: auto;
+          padding-left: 24px;
+          border-left: 1px solid var(--nb-border);
+          height: 40px;
+          display: none;
+          align-items: center;
+        }
+        @media (min-width: 960px) { .nb-cta-wrap { display: flex; } }
+
+        .nb-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: var(--nb-gold);
+          color: #16324f;
+          padding: 8px 18px;
+          font-family: 'Source Sans 3', sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          text-decoration: none;
+          border-radius: 2px;
+          transition: all 0.25s ease;
+          white-space: nowrap;
+        }
+        .nb-cta:hover {
+          background: var(--nb-gold-light);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 16px rgba(196, 160, 72, 0.35);
+        }
+        .nb-cta-arrow { transition: transform 0.2s; }
+        .nb-cta:hover .nb-cta-arrow { transform: translateX(3px); }
+
+        .nb-ham {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 42px;
+          height: 42px;
+          gap: 5px;
+          background: none;
+          border: 1px solid var(--nb-border);
+          border-radius: 3px;
+          cursor: pointer;
+          margin-left: auto;
+          transition: border-color 0.2s, background 0.2s;
+        }
+        .nb-ham:hover { border-color: var(--nb-gold); background: var(--nb-hover-bg); }
+        @media (min-width: 960px) { .nb-ham { display: none; } }
+        .nb-bar {
+          width: 18px;
+          height: 1.5px;
+          background: var(--nb-text);
+          transition: all 0.3s ease;
+          transform-origin: center;
+        }
+        .b1.open { transform: rotate(45deg) translate(4.5px, 4.5px); }
+        .b2.open { opacity: 0; transform: scaleX(0); }
+        .b3.open { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+        .nb-panel {
+          display: none;
+          position: fixed;
+          top: calc(var(--nb-height) + 4px);
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: #ffffff;
+          border-top: 1px solid var(--nb-border);
+          overflow-y: auto;
+          z-index: 998;
+          transform: translateX(100%);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nb-panel.open { transform: translateX(0); }
+        @media (max-width: 959px) { .nb-panel { display: block; } }
+
+        .nb-panel-inner { padding: 16px 24px 48px; }
+
+        .nb-panel-label {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--nb-gold);
+          padding: 12px 0 10px;
+          border-bottom: 1px solid var(--nb-border);
+          margin-bottom: 4px;
+        }
+
+        .nb-m-link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 14px 0;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--nb-text);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+          background: none;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          width: 100%;
+          text-align: left;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+        .nb-m-link:hover, .nb-m-link.active { color: var(--nb-gold); }
+
+        .nb-m-chevron {
+          width: 14px;
+          height: 14px;
+          color: var(--nb-gold);
+          transition: transform 0.2s;
+        }
+        .nb-m-chevron.r { transform: rotate(180deg); }
+
+        .nb-m-sub {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.3s ease;
+        }
+        .nb-m-sub.open { max-height: 500px; }
+
+        .nb-m-sub-item {
+          display: block;
+          padding: 10px 16px;
+          font-size: 13px;
+          color: var(--nb-text-muted);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+          text-transform: capitalize;
+          transition: all 0.15s;
+        }
+        .nb-m-sub-item:hover { color: var(--nb-gold); padding-left: 22px; }
+
+        .nb-m-cta {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          margin-top: 24px;
+          padding: 15px;
+          background: var(--nb-gold);
+          color: #16324f;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          text-decoration: none;
+          border-radius: 2px;
+          transition: background 0.2s;
+        }
+        .nb-m-cta:hover { background: var(--nb-gold-light); }
+      `}</style>
+
+      <div ref={menuRef}>
+        <div className="nb-topbar" />
+
+        {/* Branding Section (Logo + Admission Open Image) */}
+        <div className="nb-top-branding">
+          <div className="nb-branding-inner">
+            <Link href="/" className="nb-logo">
+              <div className="nb-logo-img-wrap bg-amber-800">
+                <Image
+                  src={logoSrc}
+                  alt={`${schoolName} logo`}
+                  width={120}
+                  height={52}
+                  className="nb-logo-img"
+                  onError={handleLogoError}
+                  unoptimized
+                  priority
+                />
               </div>
-            ))}
+              <div className="nb-logo-text">
+                <div className="nb-school-name">{loading ? "…" : schoolName}</div>
+                <div className="nb-school-sub">{loading ? "" : shortName}</div>
+              </div>
+            </Link>
+
+            {/* Note: Change the src string below to your real image path when ready */}
+            <div className="nb-admission-banner">
+              <Image
+                src="/poster/31y.png"
+                alt="Admission Open"
+                width={180}
+                height={55}
+                className="nb-admission-img"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Bar */}
+        <nav className={`nb-wrap${scrolled ? " scrolled" : ""}`}>
+          <div className="nb-inner">
+            <ul className="nb-links">
+              <li className="nb-item">
+                <Link href="/" className="nb-btn active">Home</Link>
+              </li>
+              <li className="nb-item">
+                <Link href="/achievements" className="nb-btn">Achievements</Link>
+              </li>
+
+              {categories.map((cat) => (
+                <li key={cat.Id} className="nb-item">
+                  {cat.pages?.length > 0 ? (
+                    <>
+                      <button className="nb-btn">
+                        {cat.Name}
+                        <svg className="nb-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div className="nb-dropdown">
+                        {cat.pages.map((page) => (
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}/${page.Id}`} className="nb-drop-item">
+                            {page.Name.replace(/-/g, " ")}
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <button className="nb-btn">{cat.Name}</button>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            <div className="nb-cta-wrap">
+              <Link href="/admission-form" className="nb-cta">
+                Student Admission
+                <svg className="nb-cta-arrow" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
+            <button className="nb-ham" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+              <span className={`nb-bar b1${open ? " open" : ""}`} />
+              <span className={`nb-bar b2${open ? " open" : ""}`} />
+              <span className={`nb-bar b3${open ? " open" : ""}`} />
+            </button>
           </div>
 
+          <div className={`nb-panel ${open ? " open" : ""}`}>
+            <div className="nb-panel-inner">
+              <div className="nb-panel-label">Navigation</div>
 
+              <Link href="/" onClick={handleMobileLink} className="nb-m-link active">Home</Link>
+              <Link href="/achievements" onClick={handleMobileLink} className="nb-m-link">Achievements</Link>
 
-          <h1 className="text-2xl lg:flex  font-extrabold hidden justify-center items-center gap-3">
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-9 h-9 text-current" /* Aapki current text color ke sath match ho jayega */
-            >
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-
-            <span>+91-9729429766</span>
-          </h1>
-
-
-
-
-
-
-
-
-
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-white hover:text-academic-gold focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              {open ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-
-        <div
-          className={`${open ? "flex" : "hidden"} md:hidden bg-heritage-navy border-t border-academic-gold/20 flex-col p-4 gap-3`}
-          id="mobile-menu"
-        >
-          <Link onClick={handleMobileLink} className="font-label-caps text-label-caps1 text-academic-gold" href="/">Home</Link>
-
-          {categories.map((cat) => (
-            <div key={cat.Id} className="flex flex-col w-full">
-              <hr className="border-academic-gold/10 my-1" />
-
-              {cat.pages?.length > 0 ? (
-                <>
-                  <button
-                    className="w-full text-left font-label-caps text-label-caps1 text-white flex justify-between items-center py-1"
-                    onClick={() => setOpenCategory(openCategory === cat.Id ? null : cat.Id)}
-                  >
-                    <span>{cat.Name}</span>
-                    <svg className={`h-4 w-4 transform transition-transform ${openCategory === cat.Id ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-
-
-                  <div className={`flex flex-col pl-4 gap-2 transition-all duration-200 overflow-hidden ${openCategory === cat.Id ? "max-h-60 mt-2 mb-1" : "max-h-0"}`}>
-                    {cat.pages.map((page) => (
-                      <Link
-                        key={page.Id}
-                        href={`/pages/${slugify(page.Name)}/${page.Id}`}
-                        onClick={handleMobileLink}
-                        className="font-label-caps text-2xs text-gray-300 hover:text-academic-gold"
+              {categories.map((cat) => (
+                <div key={cat.Id}>
+                  {cat.pages?.length > 0 ? (
+                    <>
+                      <button
+                        className="nb-m-link"
+                        onClick={() => setOpenCategory(openCategory === cat.Id ? null : cat.Id)}
                       >
-                        {page.Name.replace(/-/g, " ")}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <span className="font-label-caps text-label-caps1 text-white py-1">{cat.Name}</span>
-              )}
+                        {cat.Name}
+                        <svg className={`nb-m-chevron${openCategory === cat.Id ? " r" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div className={`nb-m-sub${openCategory === cat.Id ? " open" : ""}`}>
+                        {cat.pages.map((page) => (
+                          <Link key={page.Id} href={`/pages/${slugify(page.Name)}/${page.Id}`} onClick={handleMobileLink} className="nb-m-sub-item">
+                            {page.Name.replace(/-/g, " ")}
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <button className="nb-m-link">{cat.Name}</button>
+                  )}
+                </div>
+              ))}
+
+              <Link href="https://yaduvanshigroup.edu.in/admission-Form" onClick={handleMobileLink} className="nb-m-cta">
+                Student Admission
+                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
             </div>
-          ))}
-        </div>
-      </nav>
-    </div>
+          </div>
+        </nav>
+      </div>
+    </>
   );
 }
