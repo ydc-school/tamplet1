@@ -177,7 +177,7 @@ export default function CareersForm() {
                     <option value="PRT">PRT Teacher</option>
                     <option value="TGT">TGT Teacher</option>
                     <option value="PGT">PGT Teacher</option>
-                    <option value="PGT">OTHERS</option>
+                    <option value="others">OTHERS</option>
                     <option value="Admin">Administrative Staff</option>
                   </select>
                 </div>
