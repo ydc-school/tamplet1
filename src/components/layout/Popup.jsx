@@ -16,7 +16,7 @@ export default function Popup() {
 
   useEffect(() => {
     axios
-      .get("/api/client/poster?indexNo=100")
+      .get("/api/client/popup")
       .then((res) => {
         if (res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
