@@ -118,6 +118,7 @@ export default function CareersForm() {
     data.append("Captcha", formData.txtCaptcha);
 
     if (formData.has_experience === "yes") {
+      data.append("Has_Experience", formData.has_experience);
       data.append("Organisation", formData.ex_org);
       data.append("Designation", formData.ex_des);
       data.append("Service_From", formData.ex_dt_start);
