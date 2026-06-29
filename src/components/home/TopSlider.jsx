@@ -83,12 +83,12 @@ export default function TopSlider() {
             className="!h-auto"
           >
             {/* Slide Box: Phone par strict w-screen h-screen, desktop par automatic custom aspect layout */}
-            <div className="relative w-screen h-screen lg:w-full lg:h-[clamp(200px,42vw,620px)] bg-[#f6f8fc] flex items-center justify-center overflow-hidden">
+            <div className="relative w-screen h-screen lg:w-full xl:lg:h-[clamp(50vh,85vh,85vh)] lg:h-[clamp(200px,42vw,620px)] bg-[#f6f8fc] flex items-center justify-center overflow-hidden">
               <PosterMedia
                 slide={slide}
                 alt={slide.Name || "Poster"}
                 // Mobile par w-screen h-screen aur object-cover, desktop par contain mode
-                className="absolute inset-0 w-screen h-screen lg:w-full lg:h-full object-cover lg:object-contain transition-transform duration-[8000ms] ease-out swiper-slide-active:scale-104"
+                className="absolute inset-0 w-screen h-screen lg:w-full xl:h-s lg:h-full object-cover lg:object-contain transition-transform duration-[8000ms] ease-out swiper-slide-active:scale-104"
                 priority={index === 0}
               />
 
