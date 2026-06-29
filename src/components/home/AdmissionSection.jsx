@@ -45,6 +45,8 @@ export default function AdmissionSection() {
   const mainTitle = match ? match[1].trim() : titleText;
   const yearTitle = match ? match[2] : "";
 
+  
+
   return (
     <>
       <style>{`
