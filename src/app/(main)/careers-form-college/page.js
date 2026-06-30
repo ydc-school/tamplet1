@@ -130,7 +130,7 @@ export default function CareersForm() {
     }
 
     try {
-      const response = await axios.post("/api/client/career", data, {
+      const response = await axios.post("/api/client/branch?branchType=college", data, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
