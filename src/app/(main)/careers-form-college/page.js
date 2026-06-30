@@ -38,7 +38,7 @@ export default function CareersForm() {
   useEffect(() => {
     const fetchBranches = async () => {
       try {
-        const res = await axios.get("/api/client/branch?branchType=school");
+        const res = await axios.get("/api/client/branch?branchType=college");
         setBranches(res?.data?.data?.data || []);
       } catch (err) {
         console.error("Error fetching branches:", err);
