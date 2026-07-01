@@ -72,20 +72,19 @@ export default async function Home() {
       <SchemaScript schemaJson={schema} />
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
-        {/* <Hero /> */}
         <WelcomeSection />
-        <HistorySection />
+        {/* <HistorySection />
         <AchievementsSection />
         <NoticeSection />
         <FounderMessage />
         <StudentToppers />
         <AchievementGallery />
-        <StudentSwiper />
+        <StudentSwiper /> */}
         {/* <CourseSection /> */}
-        <FacilitySection />
-        <AdmissionSection />
+        {/* <FacilitySection /> */}
+        {/* <AdmissionSection />
         <BlogSection />
-        
+         */}
       </div>
     </>
   );

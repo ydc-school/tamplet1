@@ -41,7 +41,7 @@ export default function WelcomeSection() {
 
   return (
     <>
-       <section class="py-stack-lg bg-surface-container-lowest relative overflow-hidden">
+       <section className="py-stack-lg bg-surface-container-lowest relative overflow-hidden">
             <div className="max-w-4xl mx-auto px-gutter text-center relative z-10">
                 <div className="mb-10 flex flex-col items-center">
                     <span className="material-symbols-outlined text-heritage-gold text-5xl mb-4">format_quote</span>
