@@ -9,6 +9,9 @@ import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
 
+
+
+
 export default function TopSlider() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +28,7 @@ export default function TopSlider() {
       .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
-  if (!loading && slides.length === 0) return null;
+  if (loading && slides.length === 0) return null;
 
   if (loading) {
     return (
@@ -40,7 +43,7 @@ export default function TopSlider() {
   return (
     <>
 
-      <section className="group relative w-full h-[209px] md:h-screen overflow-hidden bg-black">
+   <section className="relative w-screen  overflow-hidden ">
         {slides?.length > 0 && (
           <Swiper
             modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -53,11 +56,11 @@ export default function TopSlider() {
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={slide?.Id || index} data-swiper-autoplay={isPosterVideo(slide?.Image) ? 15000 : 4500}>
-                <div className="relative w-full h-full flex items-center justify-center bg-black">
+                <div className="relative w-screen bg-academic-teal  min-h-[71vh] flex items-center justify-center">
                   <PosterMedia
-                    slide={slide}
+                    slide={slide} 
                     alt={slide?.Name || "Poster"}
-                    className="w-full h-full object-contain"
+                    className="min-w-screen h-full object-contain"
                     priority={index === 0}
                   />
 
@@ -87,6 +90,10 @@ export default function TopSlider() {
 
 
       </section>
+   
+
+
+
       <div className="z-30 bg-white/95 backdrop-blur-md py-3 border-t border-amber-500">
         <div className="max-w-7xl mx-auto px-6 flex items-center">
           <span className="bg-[#6d001d] text-white px-4 py-1 text-xs font-bold mr-4 shrink-0 rounded-sm">

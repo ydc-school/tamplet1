@@ -1,15 +1,15 @@
-import AchievementsSection from "@/components/home/AchievementsSection";
-import AdmissionSection from "@/components/home/AdmissionSection";
+// import AchievementsSection from "@/components/home/AchievementsSection";
+// import AdmissionSection from "@/components/home/AdmissionSection";
 import TopSlider from "@/components/home/TopSlider";
-import HistorySection from "@/components/home/HistorySection";
-import NoticeSection from "@/components/home/NoticeSection";
-import StudentToppers from "@/components/home/StudentToppers";
+// import HistorySection from "@/components/home/HistorySection";
+// import NoticeSection from "@/components/home/NoticeSection";
+// import StudentToppers from "@/components/home/StudentToppers";
 import WelcomeSection from "@/components/home/WelcomeSection";
-import FounderMessage from "@/components/home/FounderMessage";
-import BlogSection from "@/components/home/BlogSection";
-import AchievementGallery from "@/components/home/Achievementgallery";
-import FacilitySection from "@/components/home/FacilitySection";
-import StudentSwiper from "@/components/home/StudentSwiper";
+// import FounderMessage from "@/components/home/FounderMessage";
+// import BlogSection from "@/components/home/BlogSection";
+// import AchievementGallery from "@/components/home/Achievementgallery";
+// import FacilitySection from "@/components/home/FacilitySection";
+// import StudentSwiper from "@/components/home/StudentSwiper";
 import SchemaScript from "@/components/SchemaScript";
 import {
   breadcrumbSchema,
@@ -20,6 +20,7 @@ import {
   webPageSchema,
 } from "@/lib/seo";
 import { headers } from "next/headers";
+import { Hero } from "@/components/home/Hero";
 
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
@@ -74,17 +75,17 @@ export default async function Home() {
         <TopSlider />
         {/* <Hero /> */}
         <WelcomeSection />
-        <HistorySection />
+        {/* <HistorySection />
         <AchievementsSection />
         <NoticeSection />
         <FounderMessage />
         <StudentToppers />
         <AchievementGallery />
-        <StudentSwiper />
+        <StudentSwiper /> */}
         {/* <CourseSection /> */}
-        <FacilitySection />
+        {/* <FacilitySection />
         <AdmissionSection />
-        <BlogSection />
+        <BlogSection /> */}
         
       </div>
     </>
