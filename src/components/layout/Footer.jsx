@@ -44,13 +44,13 @@ export default function Footer() {
   const phone = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
   const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
   const website = schoolInfo?.Website ?? "www.ydu.com";
-  
+
   // Latitude aur Longitude nikaalna fallback values ke sath (Mahendergarh ke coordinates fallback hain)
   const latitude = schoolInfo?.Latitude ?? "28.2801";
   const longitude = schoolInfo?.Longitude ?? "76.1517";
 
 
-  
+
 
   return (
     <>
@@ -61,15 +61,17 @@ export default function Footer() {
           {/* Column 1: Logo */}
           <div className="col-span-1">
             <div className="bg-white p-4 rounded-sm mb-6 inline-block">
-              <Image
-                src={logoSrc}
-                alt={`${schoolName} Logo`}
-                width={500}
-                height={50}
-                style={{ objectFit: "contain" }}
-                onError={handleLogoError}
-                unoptimized
-              />
+              <Link href="/">
+                <Image
+                  src={logoSrc}
+                  alt={`${schoolName} Logo`}
+                  width={500}
+                  height={50}
+                  style={{ objectFit: "contain" }}
+                  onError={handleLogoError}
+                  unoptimized
+                />
+              </Link>
             </div>
             <p className="font-label-sm text-label-sm tracking-wide opacity-80 leading-relaxed mb-4">
               Affiliation no - 531034<br />
@@ -151,7 +153,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Icons & Copyright */}
-        <div className="border-y border-white/10 py-6">
+        {/* <div className="border-y border-white/10 py-6">
           <div className="max-w-container-max mx-auto px-gutter flex justify-center gap-10">
             <span className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">camera</span>
             <span className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">face_nod</span>
@@ -159,7 +161,7 @@ export default function Footer() {
             <span className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">work</span>
             <span className="material-symbols-outlined cursor-pointer hover:text-heritage-gold transition-all hover:scale-125">video_library</span>
           </div>
-        </div>
+        </div> */}
 
         <div className="pt-8 text-center px-gutter">
           <p className="text-label-sm font-label-sm opacity-60">
