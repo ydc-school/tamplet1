@@ -10,23 +10,47 @@ import PosterMedia, { hasPosterMedia } from "./PosterMedia";
 
 import Gallery1 from "@/components/ui/Gallery1";
 import Banner from "../ui/Banner";
+import IsPhone from "@/utils/IsPhone";
+
+
+
+
+
+
+
 
 export default function TopSlider() {
+  const isPhone = IsPhone();
+
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let ignore = false;
+
+    setLoading(true);
+    setSlides([]);
+
     axios
-      .get("/api/client/poster")
+      .get(`/api/client/poster?isPhone=${isPhone ? "true" : "false"}`)
       .then((res) => {
-        if (res.data.status === "success") {
+        if (!ignore && res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
-          setSlides(valid);
+          const sortedSlides = valid.sort((a, b) => {
+            return (a.Index_No || 0) - (b.Index_No || 0);
+          });
+          setSlides(sortedSlides);
         }
       })
       .catch(() => { })
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [isPhone]);
 
   if (loading && slides.length === 0) return null;
 
@@ -43,9 +67,9 @@ export default function TopSlider() {
       <section className="relative w-screen overflow-hidden group">
         {slides?.length > 0 && (
           <Swiper
-            modules={[Navigation, Pagination, Autoplay, ]}
-          
-        
+            modules={[Navigation, Pagination, Autoplay,]}
+
+
             slidesPerView="auto"
             navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
             pagination={{ clickable: true, modifierClass: "custom-swiper-pagination-" }}

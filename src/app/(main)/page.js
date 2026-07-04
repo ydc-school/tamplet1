@@ -7,7 +7,7 @@ import StudentToppers from "@/components/home/StudentToppers";
 import WelcomeSection from "@/components/home/WelcomeSection";
 // import FounderMessage from "@/components/home/FounderMessage";
 // import BlogSection from "@/components/home/BlogSection";
-// import AchievementGallery from "@/components/home/Achievementgallery";
+import AchievementGallery from "@/components/home/Achievementgallery";
 // import FacilitySection from "@/components/home/FacilitySection";
 // import StudentSwiper from "@/components/home/StudentSwiper";
 import PhotoGallery from "@/components/home/PhotoGallery";
@@ -75,9 +75,11 @@ export default async function Home() {
       <SchemaScript schemaJson={schema} />
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
+        <WelcomeSection />
         <StudentToppers />
-        <PhotoGallery />
-        <ScollCard  />
+        {/* <PhotoGallery /> */}
+        {/* <ScollCard /> */}
+        <AchievementGallery />
         {/* <Hero /> */}
         {/* <WelcomeSection />
         <HistorySection />
@@ -90,7 +92,7 @@ export default async function Home() {
         {/* <FacilitySection />
         <AdmissionSection />
         <BlogSection /> */}
-        
+
       </div>
     </>
   );
