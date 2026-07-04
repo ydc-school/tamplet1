@@ -54,23 +54,23 @@ export default function BlogSection() {
     );
   }
 
-  // if (blogs.length === 0) return null;
+  if (blogs.length === 0) return null;
 
-  // // Format date
-  // const formatDate = (dateStr) => {
-  //   if (!dateStr) return "";
-  //   const d = new Date(dateStr);
-  //   return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
-  // };
+  // Format date
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "";
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+  };
 
-  // // Strip HTML for plain text preview
-  // const stripHtml = (html) => {
-  //   if (!html) return "";
-  //   return html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
-  // };
+  // Strip HTML for plain text preview
+  const stripHtml = (html) => {
+    if (!html) return "";
+    return html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  };
 
-  // const featured = blogs[0];
-  // const rest = blogs.slice(1);
+  const featured = blogs[0];
+  const rest = blogs.slice(1);
 
   return (
     <>
