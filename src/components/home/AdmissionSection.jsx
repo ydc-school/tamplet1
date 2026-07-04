@@ -22,7 +22,7 @@ export default function AdmissionSection() {
           setAdmissionData(finalData);
         }
       } catch (error) {
-        console.error("Error fetching admission data:", error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -32,8 +32,12 @@ export default function AdmissionSection() {
 
   if (loading) {
     return (
-      <section className="adm-root">
-        <div className="adm-skeleton" />
+      <section className="py-20 bg-neutral-50 animate-pulse">
+        <div className="max-w-6xl mx-auto px-6 space-y-6">
+          <div className="h-10 bg-neutral-200 rounded w-1/3 mx-auto" />
+          <div className="h-6 bg-neutral-200 rounded w-2/3 mx-auto" />
+          <div className="h-[450px] bg-neutral-200 rounded-2xl w-full" />
+        </div>
       </section>
     );
   }
@@ -45,109 +49,65 @@ export default function AdmissionSection() {
   const mainTitle = match ? match[1].trim() : titleText;
   const yearTitle = match ? match[2] : "";
 
-
-
   return (
-    <>
-
-
-      <section className="py-stack-lg bg-background">
-        <div className="max-w-container-max mx-auto px-gutter text-center">
-          <h2 className="font-headline-xl text-headline-xl text-on-surface mb-4"> {mainTitle}</h2>
-
+    <section className="py-20 bg-neutral-50">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight mb-4">
+            {mainTitle} {yearTitle && <span className="text-amber-600 block md:inline mt-1 md:mt-0">{yearTitle}</span>}
+          </h2>
+          
           {admissionData.Message && (
             <div
-              className="text-body-lg font-body-lg text-on-surface-variant max-w-4xl mx-auto mb-12"
+              className="text-lg text-neutral-600 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: admissionData.Message }}
             />
           )}
+        </div>
 
-          <div className="relative group overflow-hidden rounded-xl shadow-xl mb-8">
+        <div className="grid md:grid-cols-12 gap-8 items-center bg-white border border-neutral-200 rounded-2xl overflow-hidden">
+          
+          <div className="md:col-span-7 relative h-[350px] md:h-[500px] w-full bg-neutral-100">
             <Image
-              src={`/uploads/${admissionData?.Image}`}
-              alt={admissionData?.Title || "Admission"}
+              src={`/uploads/${admissionData.Image}`}
+              alt={admissionData.Title || "Admission"}
               fill
-              sizes="(max-width: 860px) 100vw, 860px"
-              className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
               priority
             />
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end items-center pb-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Link href={admissionData.Read_More_Url} >
-                <button
-                  className="bg-heritage-gold text-white py-4 px-12 font-label-md text-label-md uppercase tracking-widest hover:bg-white hover:text-deep-maroon transition-colors shadow-2xl">
-                  Learn More
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* <section className="adm-root">
-        <div className="adm-inner">
-
-         
-          <div className="adm-eyebrow">
-            <div className="adm-eyebrow-line" />
-            <span className="adm-eyebrow-text">Admissions</span>
-            <div className="adm-eyebrow-line rev" />
           </div>
 
-         
-          <div className="adm-card">
-            <div className="adm-card-strip" />
-
-          
-            {admissionData.Image && (
-              <div className="adm-img-wrap">
-                <Image
-                  src={`/uploads/${admissionData.Image}`}
-                  alt={admissionData.Title || "Admission"}
-                  fill
-                  sizes="(max-width: 860px) 100vw, 860px"
-                  className="object-cover"
-                  priority
-                />
-                <span className="adm-badge">Now Open</span>
-              </div>
-            )}
-
-           
-            <div className="adm-content">
-              <h2 className="adm-title">
-                {mainTitle}{" "}
-                {yearTitle && <span className="adm-title-year">{yearTitle}</span>}
-              </h2>
-
-              <div className="adm-divider" />
-
-              {admissionData.Message && (
-                <div
-                  className="adm-message"
-                  dangerouslySetInnerHTML={{ __html: admissionData.Message }}
-                />
-              )}
-
-              <div className="adm-cta-row">
-                {admissionData.Read_More_Url && (
-                  <Link href="https://yaduvanshigroup.edu.in/admission-Form" className="adm-cta-primary">
-                    Apply Now
-                    <svg className="adm-cta-arrow" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                )}
-                <Link href={admissionData.Read_More_Url} className="adm-cta-secondary">
-                  Learn More
+          <div className="md:col-span-5 p-8 md:p-12 flex flex-col justify-center">
+            <h3 className="text-2xl font-bold text-neutral-900 mb-4">
+              Secure Your Future Today
+            </h3>
+            <p className="text-neutral-600 mb-8 leading-relaxed">
+              Join our vibrant academic community. Applications are currently being reviewed for the upcoming term. Explore programs and requirements.
+            </p>
+            
+            <div className="flex flex-col justify-center sm:flex-row gap-4">
+              {admissionData.Read_More_Url && (
+                <Link 
+                  href="http://main.localhost:3001/admission-form" 
+                  className="  border-2 border-deep-maroon text-deep-maroon hover:bg-deep-maroon hover:text-white transition-all py-3 px-8 font-label-md text-label-md uppercase tracking-widest"
+                >
+                  Apply Now
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
                 </Link>
-              </div>
+              )}
+              
             </div>
           </div>
 
         </div>
-      </section> */}
-    </>
+
+      </div>
+    </section>
   );
 }
