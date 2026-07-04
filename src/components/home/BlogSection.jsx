@@ -80,7 +80,7 @@ export default function BlogSection() {
 
       <section className="py-stack-lg bg-surface-container-low">
         <div className="max-w-container-max mx-auto px-gutter text-center">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-2">Google Reviews</h2>
+          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-2">Blogs </h2>
           <div className="flex justify-center gap-1 mb-10">
             <span className="material-symbols-outlined text-heritage-gold">star</span>
             <span className="material-symbols-outlined text-heritage-gold">star</span>
