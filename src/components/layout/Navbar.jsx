@@ -245,8 +245,8 @@ export default function Navbar() {
             </ul>
 
             <div className="hidden lg:flex items-center gap-6 text-xs font-bold uppercase tracking-widest py-3.5 ml-auto">
-              <Link href="#" className="hover:text-amber-400 transition-colors">Gallery</Link>
-              <Link href="#" className="hover:text-amber-400 transition-colors">Careers</Link>
+              <Link href="/gallery" className="hover:text-amber-400 transition-colors">Gallery</Link>
+              <Link href="https://yaduvanshigroup.edu.in/careers-form" className="hover:text-amber-400 transition-colors">Careers</Link>
               <Link href="https://yaduvanshigroup.edu.in/careers-form" className="hover:text-amber-400 transition-colors">Alumni</Link>
             </div>
           </div>
