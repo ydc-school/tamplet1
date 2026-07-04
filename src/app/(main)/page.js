@@ -10,6 +10,7 @@ import WelcomeSection from "@/components/home/WelcomeSection";
 // import AchievementGallery from "@/components/home/Achievementgallery";
 // import FacilitySection from "@/components/home/FacilitySection";
 // import StudentSwiper from "@/components/home/StudentSwiper";
+import PhotoGallery from "@/components/home/PhotoGallery";
 import SchemaScript from "@/components/SchemaScript";
 import {
   breadcrumbSchema,
@@ -74,6 +75,7 @@ export default async function Home() {
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
         <StudentToppers />
+        <PhotoGallery />
         {/* <Hero /> */}
         {/* <WelcomeSection />
         <HistorySection />

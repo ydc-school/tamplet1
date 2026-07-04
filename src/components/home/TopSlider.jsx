@@ -10,7 +10,8 @@ import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
 
 
-
+import Gallery1 from "@/components/ui/Gallery1"
+import Banner from "../ui/Banner";
 
 export default function TopSlider() {
   const [slides, setSlides] = useState([]);
@@ -43,7 +44,14 @@ export default function TopSlider() {
   return (
     <>
 
-   <section className="relative w-screen  overflow-hidden ">
+
+
+      <Banner />
+      <Gallery1 />
+
+
+
+      <section className="relative w-screen  overflow-hidden ">
         {slides?.length > 0 && (
           <Swiper
             modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -58,7 +66,7 @@ export default function TopSlider() {
               <SwiperSlide key={slide?.Id || index} data-swiper-autoplay={isPosterVideo(slide?.Image) ? 15000 : 4500}>
                 <div className="relative w-screen bg-academic-teal  min-h-[71vh] flex items-center justify-center">
                   <PosterMedia
-                    slide={slide} 
+                    slide={slide}
                     alt={slide?.Name || "Poster"}
                     className="min-w-screen h-full object-contain"
                     priority={index === 0}
@@ -90,7 +98,7 @@ export default function TopSlider() {
 
 
       </section>
-   
+
 
 
 

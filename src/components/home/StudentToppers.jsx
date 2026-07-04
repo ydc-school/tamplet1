@@ -49,7 +49,7 @@ export default function StudentToppers() {
     );
   }
 
-  if (!toppers.length === 0) return null;
+  if (toppers.length === 0) return null;
 
   // Data ko display karne se pehle Rank wise sort kar rahe hain
   const sortedToppers = [...toppers].sort(
@@ -73,7 +73,7 @@ export default function StudentToppers() {
 
 
 
-     
+
       <section className="py-12 px-6 bg-academic-teal w-full">
         {/* Optional: Section Title */}
         <div className="max-w-7xl mx-auto mb-8">
