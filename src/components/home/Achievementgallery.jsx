@@ -12,7 +12,6 @@ export default function AchievementGallery() {
     axios
       .get("/api/client/achievements")
       .then((res) => {
-        console.log(res.data.data)
         if (res.data.status === "success") setAchievements(res.data.data);
       })
       .catch(() => { })
@@ -80,7 +79,7 @@ export default function AchievementGallery() {
                   <img src={`/uploads/${card?.Image}`} alt="card" className="w-full h-full object-fill" />
                   <div className="flex items-center justify-center px-4 opacity-0 group-hover:opacity-100 transition-all duration-300 absolute bottom-0 backdrop-blur-md left-0 w-full h-full bg-black/20">
                     <p className="text-white text-lg font-semibold text-center">
-                      {card.Name}
+                      {card?.Name}
                     </p>
                   </div>
                 </div>

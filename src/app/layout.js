@@ -19,7 +19,7 @@ import { getSeoData } from "@/utils/getSeoData";
 import "./globals.css";
 
 
-export const dynamic = 'force-dynamic';
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
