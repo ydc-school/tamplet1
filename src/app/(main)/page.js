@@ -1,15 +1,16 @@
-import AchievementsSection from "@/components/home/AchievementsSection";
-import AdmissionSection from "@/components/home/AdmissionSection";
+// import AchievementsSection from "@/components/home/AchievementsSection";
+// import AdmissionSection from "@/components/home/AdmissionSection";
 import TopSlider from "@/components/home/TopSlider";
-import HistorySection from "@/components/home/HistorySection";
-import NoticeSection from "@/components/home/NoticeSection";
+// import HistorySection from "@/components/home/HistorySection";
+// import NoticeSection from "@/components/home/NoticeSection";
 import StudentToppers from "@/components/home/StudentToppers";
 import WelcomeSection from "@/components/home/WelcomeSection";
-import FounderMessage from "@/components/home/FounderMessage";
-import BlogSection from "@/components/home/BlogSection";
+// import FounderMessage from "@/components/home/FounderMessage";
+// import BlogSection from "@/components/home/BlogSection";
 import AchievementGallery from "@/components/home/Achievementgallery";
-import FacilitySection from "@/components/home/FacilitySection";
-import StudentSwiper from "@/components/home/StudentSwiper";
+// import FacilitySection from "@/components/home/FacilitySection";
+// import StudentSwiper from "@/components/home/StudentSwiper";
+import PhotoGallery from "@/components/home/PhotoGallery";
 import SchemaScript from "@/components/SchemaScript";
 import {
   breadcrumbSchema,
@@ -20,6 +21,8 @@ import {
   webPageSchema,
 } from "@/lib/seo";
 import { headers } from "next/headers";
+import { Hero } from "@/components/home/Hero";
+import { ScollCard } from "@/components/ui/ScollCard";
 
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
@@ -72,20 +75,24 @@ export default async function Home() {
       <SchemaScript schemaJson={schema} />
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
-        {/* <Hero /> */}
         <WelcomeSection />
+        <StudentToppers />
+        {/* <PhotoGallery /> */}
+        {/* <ScollCard /> */}
+        <AchievementGallery />
+        {/* <Hero /> */}
+        {/* <WelcomeSection />
         <HistorySection />
         <AchievementsSection />
         <NoticeSection />
         <FounderMessage />
-        <StudentToppers />
         <AchievementGallery />
-        <StudentSwiper />
+        <StudentSwiper /> */}
         {/* <CourseSection /> */}
-        <FacilitySection />
+        {/* <FacilitySection />
         <AdmissionSection />
-        <BlogSection />
-        
+        <BlogSection /> */}
+
       </div>
     </>
   );

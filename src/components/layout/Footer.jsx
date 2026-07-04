@@ -163,7 +163,7 @@ export default function Footer() {
 
         <div className="pt-8 text-center px-gutter">
           <p className="text-label-sm font-label-sm opacity-60">
-            © Copyright 2018-2025 By Lotus Valley Gurgaon | Accelerating By Entab Infotech
+            © Copyright 2018-2025 By yaduvanshigroup  | Accelerating By Entab Infotech
           </p>
         </div>
       </footer>

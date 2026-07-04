@@ -3,29 +3,56 @@ import React, { useState, useEffect } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, FreeMode } from "swiper/modules";
 import axios from "axios";
-import PosterMedia, { hasPosterMedia, isPosterVideo } from "./PosterMedia";
+import PosterMedia, { hasPosterMedia } from "./PosterMedia";
+
+import Gallery1 from "@/components/ui/Gallery1";
+import Banner from "../ui/Banner";
+import IsPhone from "@/utils/IsPhone";
+
+
+
+
+
+
+
 
 export default function TopSlider() {
+  const isPhone = IsPhone();
+
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let ignore = false;
+
+    setLoading(true);
+    setSlides([]);
+
     axios
-      .get("/api/client/poster")
+      .get(`/api/client/poster?isPhone=${isPhone ? "true" : "false"}`)
       .then((res) => {
-        if (res.data.status === "success") {
+        if (!ignore && res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
-          setSlides(valid);
+          const sortedSlides = valid.sort((a, b) => {
+            return (a.Index_No || 0) - (b.Index_No || 0);
+          });
+          setSlides(sortedSlides);
         }
       })
       .catch(() => { })
-      .finally(() => setLoading(false));
-  }, []);
-  if (!loading && slides.length === 0) return null;
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [isPhone]);
+
+  if (loading && slides.length === 0) return null;
 
   if (loading) {
     return (
@@ -35,35 +62,31 @@ export default function TopSlider() {
     );
   }
 
-
-
   return (
     <>
-
-      <section className="group relative w-full h-[209px] md:h-screen overflow-hidden bg-black">
+      <section className="relative w-screen overflow-hidden group">
         {slides?.length > 0 && (
           <Swiper
-            modules={[Navigation, Pagination, Autoplay, EffectFade]}
-            effect="fade"
+            modules={[Navigation, Pagination, Autoplay,]}
+
+
+            slidesPerView="auto"
             navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
             pagination={{ clickable: true, modifierClass: "custom-swiper-pagination-" }}
-            autoplay={{ delay: 4500, disableOnInteraction: false }}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
             loop={slides.length > 1}
-            className="w-full h-full"
+            className="w-full  h-full"
           >
             {slides.map((slide, index) => (
-              <SwiperSlide key={slide?.Id || index} data-swiper-autoplay={isPosterVideo(slide?.Image) ? 15000 : 4500}>
-                <div className="relative w-full h-full flex items-center justify-center bg-black">
+              <SwiperSlide key={slide?.Id || index} className="!w-full flex items-center justify-center">
+                <div className="relative w-full min-h-[73vh] flex items-center justify-center">
                   <PosterMedia
                     slide={slide}
                     alt={slide?.Name || "Poster"}
-                    className="w-full h-full object-contain"
+                    className="max-w-full max-h-[73vh] object-contain mx-auto"
                     priority={index === 0}
                   />
-
-                  <div className="absolute inset-0  z-10" />
-
-
+                  <div className="absolute inset-0 z-10" />
                 </div>
               </SwiperSlide>
             ))}
@@ -84,9 +107,8 @@ export default function TopSlider() {
             </button>
           </>
         )}
-
-
       </section>
+
       <div className="z-30 bg-white/95 backdrop-blur-md py-3 border-t border-amber-500">
         <div className="max-w-7xl mx-auto px-6 flex items-center">
           <span className="bg-[#6d001d] text-white px-4 py-1 text-xs font-bold mr-4 shrink-0 rounded-sm">

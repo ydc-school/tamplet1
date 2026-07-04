@@ -1,19 +1,21 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay, FreeMode } from 'swiper/modules';
 
 export default function StudentToppers() {
   const [toppers, setToppers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const carouselRef = useRef(null);
 
   useEffect(() => {
     axios
       .get("/api/client/toper")
       .then((res) => {
         if (res.data.status === "success") {
-          // Response data check aur ranking logic safe execution ke liye
           const fetchedData = res.data.data?.data || res.data.data || [];
           setToppers(fetchedData);
         }
@@ -34,103 +36,68 @@ export default function StudentToppers() {
 
   if (toppers.length === 0) return null;
 
-  // Data ko display karne se pehle Rank wise sort kar rahe hain
   const sortedToppers = [...toppers].sort(
     (a, b) => (parseInt(a.Rank) || 99) - (parseInt(b.Rank) || 99)
   );
 
-  const scrollCarousel = (direction) => {
-    if (carouselRef.current) {
-      const container = carouselRef.current;
-      const scrollAmount = container.offsetWidth * 0.8;
-      container.scrollBy({
-        left: direction * scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
-    <section className="py-20 bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12 relative">
-        
-        {/* Carousel Container */}
-        <div
-          ref={carouselRef}
-          className="flex gap-6 w-full overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          id="testimonialCarousel"
+    <>
+      <section className="py-12 px-6 bg-academic-teal w-full">
+        <div className="max-w-7xl mx-auto mb-8">
+          <h2 className="text-headline-lg font-bold text-white">Our Top Performers</h2>
+          <p className="text-label-sm text-white">Proud moments of our brilliant students</p>
+        </div>
+
+        <Swiper
+          modules={[Pagination, Autoplay, FreeMode]}
+          spaceBetween={24}
+          slidesPerView={'auto'}
+          centeredSlides={false}
+          grabCursor={true}
+          loop={sortedToppers.length > 2}
+          freeMode={true}
+          speed={4000}
+          autoplay={{ delay: 0, disableOnInteraction: false }}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          className="mySwiper !pb-12 [&>.swiper-wrapper]:!ease-linear"
         >
           {sortedToppers.map((item) => (
-            <div
-              key={item.Id || item._id}
-              className="w-[250px] shrink-0 snap-center opacity-100 translate-y-0 transition-all duration-1000"
-            >
-              <div
-                className={`bg-[#fef8f6] text-white flex flex-col-reverse border border-[#34291e]/15 [box-shadow:0px_4px_20px_rgba(75,63,51,0.08)] transform ${
-                  item.rotateClass || ""
-                } -translate-y-2 transition-all duration-500 group relative [background-image:url('https://www.transparenttextures.com/patterns/natural-paper.png')]`}
-              >
-                {/* Topper Details */}
-                <blockquote className="font-serif text-[18px] flex flex-col text-center bg-academic-teal leading-[1.5] text-white mb-3 relative z-10 italic pt-2 px-3">
-                  <h4 className="font-bold">{item?.Student_Name || "Topper"}</h4>
-                  <h4 className="text-sm opacity-90">{item?.Student_Class}</h4>
-                  <h4 className="text-lg font-semibold mt-1 text-yellow-400">
-                    {item?.Marks_Percentage}
-                  </h4>
-                </blockquote>
-
-                {/* Topper Image Container */}
-                <div className="flex items-center p-3">
-                  <div className="w-full h-52 bg-[#4b3f33] overflow-hidden rounded-lg border border-[#34291e]/10 relative">
-                    {item?.Image ? (
-                      <Image
-                        className="object-cover [filter:grayscale(1)_sepia(0.3)_contrast(1.1)]"
-                        src={`/uploads/${item.Image}`}
-                        alt={item?.imgAlt || item?.Student_Name || "Topper Image"}
-                        fill
-                        sizes="250px"
-                        priority={false}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
-                        No Image
-                      </div>
-                    )}
+            <SwiperSlide key={item.Id || item._id} className="!w-[200px]">
+              <div className="bg-white overflow-hidden h-[380px] flex flex-col border border-gray-100">
+                <div className="w-full h-[60%] flex items-center justify-center text-slate-400 text-sm font-medium relative">
+                  {item?.Image ? (
+                    <Image
+                      className="object-cover"
+                      src={`/uploads/${item.Image}`}
+                      alt={item?.imgAlt || item?.Student_Name || "Topper Image"}
+                      fill
+                      sizes="250px"
+                      priority={false}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                      No Image
+                    </div>
+                  )}
+                  <span className="absolute top-3 right-3 bg-indigo-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                    Rank {item?.Rank || "1"}
+                  </span>
+                </div>
+                <div className="p-5 flex flex-col justify-between flex-grow text-center">
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-800 truncate">{item?.Student_Name || "Topper"}</h3>
+                    <p className="text-xs text-slate-500 mt-0.5">S/O {item?.Father_name}</p>
+                  </div>
+                  <div className="py-2 mt-2">
+                    <span className="text-xs font-semibold text-indigo-600 block uppercase tracking-wider">Score</span>
+                    <h2 className="text-2xl font-extrabold text-indigo-700">{item?.Marks_Percentage}</h2>
                   </div>
                 </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
-
-        {/* Carousel Controls */}
-        <div className="flex justify-between items-center mt-12">
-          <div className="flex gap-3">
-            <button
-              className="w-12 h-12 flex items-center justify-center border border-[#34291e]/20 text-[#34291e] hover:bg-[#34291e] hover:text-white transition-all duration-300 rounded-full"
-              onClick={() => scrollCarousel(-1)}
-              aria-label="Previous topper"
-            >
-              <svg className="w-6 h-6 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0 l7-7m-7 7h18" />
-              </svg>
-            </button>
-            <button
-              className="w-12 h-12 flex items-center justify-center border border-[#34291e]/20 text-[#34291e] hover:bg-[#34291e] hover:text-white transition-all duration-300 rounded-full"
-              onClick={() => scrollCarousel(1)}
-              aria-label="Next topper"
-            >
-              <svg className="w-6 h-6 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
-          </div>
-          <div className="font-sans text-[12px] font-semibold tracking-widest text-[#7f756d] hidden md:block uppercase">
-            Toppers Gallery
-          </div>
-        </div>
-
-      </div>
-    </section>
+        </Swiper>
+      </section>
+    </>
   );
 }
