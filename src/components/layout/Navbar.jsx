@@ -106,7 +106,7 @@ export default function Navbar() {
             <div className="flex gap-6   items-center">
 
 
-             
+
               <div className="flex gap-4 ml-4 border-l px-8 border-white/20 pl-4 items-center text-white w-screen sm:w-auto justify-between sm:justify-center ">
                 {/* Facebook */}
                 <a href={twitterUrl} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400  transition-colors">
@@ -115,7 +115,7 @@ export default function Navbar() {
                   </svg>
                 </a>
 
-             
+
 
                 {/* Instagram */}
                 <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">
@@ -245,9 +245,9 @@ export default function Navbar() {
             </ul>
 
             <div className="hidden lg:flex items-center gap-6 text-xs font-bold uppercase tracking-widest py-3.5 ml-auto">
-              <Link href="#" className="hover:text-amber-400 transition-colors">Gallery</Link>
-              <Link href="#" className="hover:text-amber-400 transition-colors">Careers</Link>
-              <Link href="https://yaduvanshigroup.edu.in/careers-form" className="hover:text-amber-400 transition-colors">Alumni</Link>
+              <Link href="/gallery" className="hover:text-amber-400 transition-colors">Gallery</Link>
+              <Link href="https://yaduvanshigroup.edu.in/careers-form" className="hover:text-amber-400 transition-colors">Careers</Link>
+              <Link href="https://yaduvanshigroup.edu.in/achievement-form" className="hover:text-amber-400 transition-colors">Alumni</Link>
             </div>
           </div>
         </nav>
