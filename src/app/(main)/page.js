@@ -6,7 +6,7 @@ import TopSlider from "@/components/home/TopSlider";
 import StudentToppers from "@/components/home/StudentToppers";
 import WelcomeSection from "@/components/home/WelcomeSection";
 // import FounderMessage from "@/components/home/FounderMessage";
-// import BlogSection from "@/components/home/BlogSection";
+import BlogSection from "@/components/home/BlogSection";
 import AchievementGallery from "@/components/home/Achievementgallery";
 // import FacilitySection from "@/components/home/FacilitySection";
 // import StudentSwiper from "@/components/home/StudentSwiper";
@@ -79,8 +79,9 @@ export default async function Home() {
         <StudentToppers />
         {/* <PhotoGallery /> */}
         {/* <ScollCard /> */}
-         <AdmissionSection />
+        <AdmissionSection />
         <AchievementGallery />
+        <BlogSection />
         {/* <Hero /> */}
         {/* <WelcomeSection />
         <HistorySection />
