@@ -167,6 +167,7 @@ export default function Navbar() {
                   src="/poster/31y.png"
                   alt="Admission Open"
                   fill
+                  sizes="1000px"
                   className="object-contain"
                   priority
                 />

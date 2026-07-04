@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { useSchool } from "@/context/SchoolContext";
-export const dynamic = 'force-dynamic';
+
 export default function WelcomeSection() {
   const [welcomeData, setWelcomeData] = useState(null);
   const [loading, setLoading] = useState(true);
