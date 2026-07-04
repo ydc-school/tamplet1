@@ -7,6 +7,7 @@ export default function AchievementGallery() {
   const [achievements, setAchievements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
+  const [stopScroll, setStopScroll] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,8 +27,6 @@ export default function AchievementGallery() {
     return isNaN(d) ? y : d.getFullYear();
   };
 
-
-  const [stopScroll, setStopScroll] = useState(false);
   const cardData = [
     {
       title: "Unlock Your Creative Flow",
