@@ -8,7 +8,7 @@ export default function MainLayout({ children }) {
   return (
     <>
      <Popup />
-     {/* <Tpopup /> */}
+     <Tpopup />
       <main className="overflow-hidden">
       
         <Navbar />
