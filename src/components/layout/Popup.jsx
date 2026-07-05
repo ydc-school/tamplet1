@@ -8,6 +8,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "../home/PosterMedia";
+import { X } from 'lucide-react';
+
+
+
 
 export default function Popup() {
   const [slides, setSlides] = useState([]);
@@ -24,46 +28,47 @@ export default function Popup() {
           if (valid.length > 0) setIsOpen(true);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
   if (loading || !isOpen || slides.length === 0) return null;
 
   return (
-    <div 
-      className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-10" 
-      onClick={() => setIsOpen(false)}
+    <div
+      className="fixed inset-0 z-[2000] backdrop-blur-3xl flex items-center justify-center  p-4 md:p-10"
+
     >
-      <div 
-        className="relative w-full max-w-5xl bg-surface-dim dark:bg-surface-dim border border-outline-variant shadow-2xl rounded-xl overflow-hidden animate-in fade-in zoom-in duration-300" 
+      <div
+        className="relative w-full max-w-5xl  overflow-hidden animate-in fade-in zoom-in duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button aligned with template style */}
-        <button 
+
+        <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 z-[2010] bg-heritage-navy/80 hover:bg-heritage-navy text-white hover:text-academic-gold p-2 rounded-full transition-all duration-300 flex items-center justify-center border border-outline-variant shadow-lg"
+          className="absolute top-4 right-4 z-[2010] text-white hover:text-academic-gold p-2 rounded-full transition-all duration-300 flex items-center justify-center border border-outline-variant"
         >
-          <span className="material-symbols-outlined text-xl">close</span>
+          <X className="w-5 h-5" />
         </button>
 
         <section className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay, EffectFade]}
-            effect="fade"
+            modules={[Navigation, Autoplay, Pagination]}
+
             navigation={{ nextEl: ".ts-next", prevEl: ".ts-prev" }}
             pagination={{
               clickable: true,
               bulletClass: "swiper-pagination-bullet !bg-white/60 !w-3 !h-3 transition-all duration-300 mx-1",
               bulletActiveClass: "swiper-pagination-bullet-active !bg-academic-gold !w-6 !rounded-full !opacity-100"
             }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            autoplay={{ delay: 0, disableOnInteraction: false }}
             loop={slides.length > 1}
             className="h-full w-full"
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 5000}>
-                <div className="relative w-full h-full flex items-center justify-center bg-black/40">
+                <div className="relative w-full h-full flex items-center justify-center ">
                   <PosterMedia
                     slide={slide}
                     alt={slide.Name || "Poster"}

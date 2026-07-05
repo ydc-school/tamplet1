@@ -10,7 +10,7 @@ export const Tpopup = () => {
     if (!isOpen) return null;
 
     return (
-        <div className='fixed inset-0 z-[1000] w-screen h-screen flex justify-center items-center bg-black/70 backdrop-blur-sm p-4'>
+        <div className='fixed inset-0 z-[1000]  w-screen h-screen flex justify-center items-center bg-black/70 backdrop-blur-sm p-4'>
 
             {/* Main Popup Container */}
             <div className='relative max-h-[85vh] w-full max-w-4xl  rounded-xl overflow-hidden shadow-2xl flex flex-col items-center justify-center'>
