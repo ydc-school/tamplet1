@@ -5,22 +5,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "../home/PosterMedia";
-import { X } from 'lucide-react';
-
+import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import useIsPhone from "@/utils/isphone";
-
 
 export default function Popup() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const isPhone = useIsPhone();
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     let ignore = false;
-
     setLoading(true);
     setSlides([]);
 
@@ -45,20 +43,12 @@ export default function Popup() {
     };
   }, [isPhone]);
 
-
-  if (loading || !isPhone || slides.length === 0) return null;
+  if (!isOpen || loading || !isPhone || slides.length === 0) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-[2000] backdrop-blur-3xl flex items-center justify-center  p-4 md:p-10"
-
-    >
-      <div
-        className="relative w-full max-w-5xl  overflow-hidden animate-in fade-in zoom-in duration-300"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button aligned with template style */}
-
+    <div className="fixed inset-0 z-[2000] backdrop-blur-3xl flex items-center justify-center p-4 md:p-10">
+      <div className="relative w-full max-w-5xl overflow-hidden animate-in fade-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
+        
         <button
           onClick={() => setIsOpen(false)}
           className="absolute top-4 right-4 z-[2010] text-white hover:text-academic-gold p-2 rounded-full transition-all duration-300 flex items-center justify-center border border-outline-variant"
@@ -69,7 +59,6 @@ export default function Popup() {
         <section className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
           <Swiper
             modules={[Navigation, Autoplay, Pagination]}
-
             navigation={{ nextEl: ".ts-next", prevEl: ".ts-prev" }}
             pagination={{
               clickable: true,
@@ -82,7 +71,7 @@ export default function Popup() {
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 5000}>
-                <div className="relative w-full h-full flex items-center justify-center ">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <PosterMedia
                     slide={slide}
                     alt={slide.Name || "Poster"}
@@ -94,17 +83,15 @@ export default function Popup() {
             ))}
           </Swiper>
 
-          {/* Navigation Controls using Design.html classes */}
           <button className="ts-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-heritage-navy/40 hover:bg-heritage-navy text-white hover:text-academic-gold flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-white/10">
-            <span className="material-symbols-outlined">arrow_back</span>
+            <ArrowLeft className="w-5 h-5" />
           </button>
           <button className="ts-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-heritage-navy/40 hover:bg-heritage-navy text-white hover:text-academic-gold flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-white/10">
-            <span className="material-symbols-outlined">arrow_forward</span>
+            <ArrowRight className="w-5 h-5" />
           </button>
 
-          {/* Slide Indicator formatted using font-label-caps & brand colors */}
           {slides.length > 1 && (
-            <div className="absolute bottom-6 left-6 z-10 text-white font-label-caps bg-heritage-navy/60 px-4 py-2 rounded-md border border-white/10 backdrop-blur-sm shadow-md flex items-baseline gap-1">
+            <div className="absolute bottom-6 left-6 z-10 text-white font-label-caps bg-heritage-navy/60 px-4 py-2 rounded-md border border-white/10 backdrop-blur-sm flex items-baseline gap-1">
               <span className="text-sm tracking-wider opacity-80">Slide</span>
               <span className="text-xl font-bold text-academic-gold">/</span>
               <span className="text-sm font-semibold text-academic-gold">{String(slides.length).padStart(2, "0")}</span>
