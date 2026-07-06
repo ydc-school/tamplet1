@@ -23,7 +23,7 @@ export default function Popup() {
     setSlides([]);
 
     axios
-      .get(`/api/client/poster?isPhone=${isPhone ? "true" : "false"}`)
+      .get(`/api/client/popup?isPhone=${isPhone ? "true" : "false"}`)
       .then((res) => {
         if (!ignore && res.data.status === "success") {
           const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
