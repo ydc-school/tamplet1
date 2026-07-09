@@ -73,11 +73,11 @@ export default function Footer() {
                 />
               </Link>
             </div>
-            <p className="font-label-sm text-label-sm tracking-wide opacity-80 leading-relaxed mb-4">
+            <p className="font-label-sm  hidden text-label-sm tracking-wide opacity-80 leading-relaxed mb-4">
               Affiliation no - 531034<br />
               School Code - 40991
             </p>
-            <div className="flex gap-4">
+            <div className="flex hidden gap-4">
               <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-heritage-gold transition-colors" href="#">
                 <span className="material-symbols-outlined text-[20px]">public</span>
               </a>
@@ -165,7 +165,7 @@ export default function Footer() {
 
         <div className="pt-8 text-center px-gutter">
           <p className="text-label-sm font-label-sm opacity-60">
-            © Copyright 2018-2025 By yaduvanshigroup  | Accelerating By Entab Infotech
+            © Copyright 2018-2026 By yaduvanshi group of institutions
           </p>
         </div>
       </footer>
