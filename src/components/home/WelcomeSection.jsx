@@ -50,7 +50,7 @@ export default function WelcomeSection() {
             </h2>
           </div>
           <div
-            className="space-y-6 text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto border-t border-outline-variant pt-10">
+            className="space-y-6 text-on-surface-variant font-body-lg text-body-lg max-w-7xl mx-auto border-t border-outline-variant pt-10">
             {welcomeData.Message && (
               <div
                 className="wc-message"
