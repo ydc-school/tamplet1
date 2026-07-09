@@ -29,6 +29,11 @@ export default function FounderMessage() {
     fetchMessages();
   }, []);
 
+
+ if (founders.length == 0) return null;
+
+
+
   if (loading) {
     return (
       <section className="w-full max-w-7xl mx-auto px-6 py-20">
