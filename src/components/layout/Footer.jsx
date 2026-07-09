@@ -125,10 +125,8 @@ export default function Footer() {
                 <div>
                   <p className="opacity-80">
                     <a href={`mailto:${email}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{email}</a>
-                  </p>
-                  <p className="opacity-80">
-                    <a href="mailto:ydcmgh@gmail.com" className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">ydcmgh@gmail.com</a>
-                  </p>
+                  </p>  
+                 
                 </div>
               </div>
             </div>
