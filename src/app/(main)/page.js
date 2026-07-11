@@ -23,6 +23,7 @@ import {
 import { headers } from "next/headers";
 import { Hero } from "@/components/home/Hero";
 import { ScollCard } from "@/components/ui/ScollCard";
+import { CollegetoperScoll } from "@/components/home/CollegetoperScoll";
 
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
@@ -78,11 +79,13 @@ export default async function Home() {
         <WelcomeSection />
         <FounderMessage />
         <StudentToppers />
+        <CollegetoperScoll />
         {/* <PhotoGallery /> */}
         {/* <ScollCard /> */}
         <AdmissionSection />
         <AchievementGallery />
         <BlogSection />
+
         {/* <Hero /> */}
         {/* <WelcomeSection />
         <HistorySection />

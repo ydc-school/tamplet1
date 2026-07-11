@@ -3,6 +3,12 @@ module.exports = {
 
   theme: {
     extend: {
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
       "colors": {
         "surface-container-lowest": "#ffffff",
         "surface-container-low": "#f6f3f2",
