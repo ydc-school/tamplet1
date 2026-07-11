@@ -3,10 +3,13 @@ module.exports = {
 
   theme: {
     extend: {
+      animation: {
+        scroll: 'scroll 20s linear forwards',
+      },
       keyframes: {
         scroll: {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(calc(-100% + 100vw))' },
         },
       },
       "colors": {

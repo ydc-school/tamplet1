@@ -1,51 +1,71 @@
 "use client";
+
 import { useSchool } from "@/context/SchoolContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
+import "swiper/css";
 
 export const CollegetoperScoll = () => {
     const { schoolInfo } = useSchool();
-    const [branchType, setBranchType] = useState([]);
+    const [branchType, setBranchType] = useState("");
 
     useEffect(() => {
-        axios
-            .get(`/api/client/branch/${schoolInfo?.Branch_Id}`)
-            .then((res) => {
+        if (!schoolInfo?.Branch_Id) return;
 
+        axios
+            .get(`/api/client/branch/${schoolInfo.Branch_Id}`)
+            .then((res) => {
                 if (res.data.status === "success") {
-                    setBranchType(res?.data?.data?.Branch_Type);
+                    setBranchType(res.data.data.Branch_Type);
                 }
             })
-            .catch(() => { })
-           
+            .catch(() => {});
     }, [schoolInfo]);
 
-    if (branchType !== "college") return null;
+    if (branchType === "college") return null;
+
+    const toppers = [
+        "https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-1.png",
+        "https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-2.png",
+        "https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-3.png",
+        "https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-4.png",
+        "https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-5.png",
+    ];
+
     return (
-        <div className="w-screen h-76 flex flex-row items-center bg-white overflow-hidden relative">
-            <h2 className="text-headline-lg font-bold text-black">Our Top Performers</h2>
-
-            <div className="flex flex-row w-max animate-[scroll_20s_linear_infinite]">
-
-                <div className="w-auto  bg-white rounded-2xl p-3 h-62 flex-shrink-0">
-                    <img className="w-auto h-full object-contain" src="https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-1.png" alt="" />
-                </div>
-                <div className="w-auto  bg-white rounded-2xl p-3 h-62 flex-shrink-0">
-                    <img className="w-auto h-full object-contain" src="https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-2.png" alt="" />
-                </div>
-                <div className="w-auto  bg-white rounded-2xl p-3 h-62 flex-shrink-0">
-                    <img className="w-auto h-full object-contain" src="https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-3.png" alt="" />
-                </div>
-                <div className="w-auto  bg-white rounded-2xl p-3 h-62 flex-shrink-0">
-                    <img className="w-auto h-full object-contain" src="https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-4.png" alt="" />
-                </div>
-
-                <div className="w-auto  bg-white rounded-2xl p-3 h-62 flex-shrink-0">
-                    <img className="w-auto h-full object-contain" src="https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-5.png" alt="" />
-                </div>
-            </div>
+        <div className="w-full bg-white py-4">
+            <Swiper
+                modules={[Autoplay]}
+                loop={true}
+                speed={7000}
+                autoplay={{
+                    delay: 0,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                }}
+                allowTouchMove={true}
+                spaceBetween={20}
+                slidesPerView={"auto"}
+            >
+                {toppers.map((src, index) => (
+                    <SwiperSlide
+                        key={index}
+                        className="!w-auto"
+                    >
+                        <div className="h-64 rounded-2xl p-3 bg-white">
+                            <img
+                                src={src}
+                                alt={`Topper ${index + 1}`}
+                                className="h-full w-auto object-contain"
+                            />
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </div>
-    )
-}
+    );
+};
