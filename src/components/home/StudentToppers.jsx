@@ -62,37 +62,56 @@ export default function StudentToppers() {
           className="mySwiper !pb-12 [&>.swiper-wrapper]:!ease-linear"
         >
           {sortedToppers.map((item) => (
-            <SwiperSlide key={item.Id || item._id} className="!w-[200px]">
-              <div className="bg-white overflow-hidden h-[380px] flex flex-col border border-gray-100">
-                <div className="w-full h-[60%] flex items-center justify-center text-slate-400 text-sm font-medium relative">
+            <SwiperSlide key={item.Id || item._id} className="!w-[240px]">
+              <div className="bg-white  p-1 rounded-xl overflow-hidden shadow-sm">
+
+                {/* Percentage */}
+                <div className="bg-red-500 h-16 flex mx-4 rounded-xl items-center justify-center">
+                  <h2 className="text-white font-extrabold  leading-none">
+                    <span className="text-5xl">
+                      {item?.Marks_Percentage || "95.00"}
+                    </span>
+                    <span className="text-4xl">%</span>
+                  </h2>
+                </div>
+
+                {/* Image */}
+                <div className="relative h-[320px] bg-gray-200 rounded-xl overflow-hidden">
                   {item?.Image ? (
                     <Image
-                      className="object-cover"
                       src={`/uploads/${item.Image}`}
-                      alt={item?.imgAlt || item?.Student_Name || "Topper Image"}
                       fill
-                      sizes="250px"
-                      priority={false}
+                      className="object-cover"
+                      alt={item?.Student_Name}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                    <div className="h-full flex items-center justify-center">
                       No Image
                     </div>
                   )}
-                  <span className="absolute top-3 right-3 bg-indigo-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-                    Rank {item?.Rank || "1"}
-                  </span>
                 </div>
-                <div className="p-5 flex flex-col justify-between flex-grow text-center">
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-800 truncate">{item?.Student_Name || "Topper"}</h3>
-                    <p className="text-xs text-slate-500 mt-0.5">S/O {item?.Father_name}</p>
-                  </div>
-                  <div className="py-2 mt-2">
-                    <span className="text-xs font-semibold text-indigo-600 block uppercase tracking-wider">Score</span>
-                    <h2 className="text-2xl font-extrabold text-indigo-700">{item?.Marks_Percentage}</h2>
-                  </div>
+
+                {/* Details */}
+                <div className="py-2 px-4 text-center">
+
+                  <h2 className="text-3xl font-black uppercase tracking-wide text-gray-900">
+                    {item?.Student_Name}
+                  </h2>
+
+                  <p className="text-lg font-semibold text-gray-600 ">
+                    {item?.Student_Class || "5th Sem."}
+                  </p>
+
+                  <h3 className="text-2xl font-extrabold text-red-500">
+                    RANK - {item?.Rank}
+                  </h3>
+
+                  <h4 className="text-xl font-light text-gray-800">
+                    Topper-{item?.Year || "2020"}
+                  </h4>
+
                 </div>
+
               </div>
             </SwiperSlide>
           ))}
