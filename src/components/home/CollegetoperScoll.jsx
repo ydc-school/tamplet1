@@ -26,7 +26,7 @@ export const CollegetoperScoll = () => {
             .catch(() => {});
     }, [schoolInfo]);
 
-    if (branchType === "college") return null;
+    if (branchType !== "college") return null;
 
     const toppers = [
         "https://admin.yaduvanshigroup.edu.in/uploads/college-top/topper-1.png",
