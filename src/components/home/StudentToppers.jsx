@@ -106,7 +106,7 @@ export default function StudentToppers() {
                       <span className="text-5xl tracking-tighter">
                         {item?.Marks_Percentage || "95.00"}
                       </span>
-                      <span className="text-3xl ml-0.5">%</span>
+                      {/* <span className="text-3xl ml-0.5"></span> */}
                     </h2>
                   </div>
 
