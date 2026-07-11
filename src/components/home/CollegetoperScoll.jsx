@@ -6,19 +6,20 @@ import axios from "axios";
 
 
 export const CollegetoperScoll = () => {
-    const { schoolInfo, loading, setLoading } = useSchool();
+    const { schoolInfo } = useSchool();
     const [branchType, setBranchType] = useState([]);
 
     useEffect(() => {
         axios
-            .get(`/api/client/branch/${schoolInfo.Branch_Id}`)
+            .get(`/api/client/branch/${schoolInfo?.Branch_Id}`)
             .then((res) => {
+
                 if (res.data.status === "success") {
                     setBranchType(res?.data?.data?.Branch_Type);
                 }
             })
             .catch(() => { })
-            .finally(() => setLoading(false));
+           
     }, []);
 
     if (branchType !== "college") return null;

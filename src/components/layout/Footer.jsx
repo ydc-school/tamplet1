@@ -17,6 +17,7 @@ export default function Footer() {
 
   // Fetch Quick Links
   useEffect(() => {
+     
     axios.get("/api/client/quick-link")
       .then((res) => {
         setQuickLinks(res?.data?.data?.data || []);
