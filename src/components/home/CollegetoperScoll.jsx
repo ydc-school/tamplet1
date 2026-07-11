@@ -20,7 +20,7 @@ export const CollegetoperScoll = () => {
             })
             .catch(() => { })
            
-    }, []);
+    }, [schoolInfo]);
 
     if (branchType !== "college") return null;
     return (
