@@ -18,7 +18,7 @@ export default function FounderMessage() {
       try {
         const response = await axios.get("https://yaduvanshigroup.edu.in/api/client/messages");
         if (response.data.status === "success") {
-          setFounders(response.data.data.data);
+          setFounders(response?.data?.data?.data);
         }
       } catch (error) {
         console.error("Error fetching founder messages:", error);
@@ -84,13 +84,13 @@ export default function FounderMessage() {
         className="founders-swiper !pb-16"
       >
         {founders.map((founder) => (
-          <SwiperSlide key={founder.Id} className="h-auto">
+          <SwiperSlide key={founder?.Id} className="h-auto">
             <div className="flex flex-col h-full bg-white border border-gray-100 rounded-3xl p-6 transition-all duration-300 hover:border-rps-navy/30">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gray-100 mb-6">
                 <img
                   alt={founder?.Roll || "Founder"}
                   className="w-full h-full object-cover object-center"
-                  src={`/uploads/${founder.Image}`}
+                  src={`/uploads/${founder?.Image}`}
                 />
               </div>
 
@@ -101,14 +101,14 @@ export default function FounderMessage() {
                 
                 <div className="relative flex-grow">
                   <p className="text-gray-600 leading-relaxed italic text-base line-clamp-4">
-                    "{founder.Description}"
+                    "{founder?.Description}"
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-gray-100 mt-auto">
                   <Link 
                     className="inline-flex items-center gap-2 text-rps-navy font-bold text-sm tracking-wider uppercase group hover:text-rps-light-blue transition-colors duration-200" 
-                    href={founder.Read_More_Url}
+                    href={founder?.Read_More_Url}
                   >
                     Read Full Message 
                     <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
