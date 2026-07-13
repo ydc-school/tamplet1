@@ -9,7 +9,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import axios from "axios";
 import PosterMedia, { hasPosterMedia, isPosterVideo } from "../home/PosterMedia";
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
-import useIsPhone from "@/utils/isphone";
+import useIsPhone from "@/utils/IsPhone";
 
 export default function Popup() {
   const [slides, setSlides] = useState([]);
