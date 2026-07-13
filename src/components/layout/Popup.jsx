@@ -26,7 +26,7 @@ export default function Popup() {
       .get(`/api/client/popup?isPhone=${isPhone ? "true" : "false"}`)
       .then((res) => {
         if (!ignore && res.data.status === "success") {
-          const valid = res.data.data.data.filter((s) => hasPosterMedia(s));
+          const valid = res?.data?.data?.data?.filter((s) => hasPosterMedia(s));
           const sortedSlides = valid.sort((a, b) => {
             return (a.Index_No || 0) - (b.Index_No || 0);
           });
@@ -43,7 +43,7 @@ export default function Popup() {
     };
   }, [isPhone]);
 
-  if (!isOpen || loading || !isPhone || slides.length === 0) return null;
+  if (!isOpen || loading  || slides.length === 0) return null;
 
   return (
     <div className="fixed inset-0 z-[2000] backdrop-blur-3xl flex items-center justify-center p-4 md:p-10">
