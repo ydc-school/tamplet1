@@ -92,7 +92,7 @@ export default function AdmissionSection() {
             <div className="flex flex-col justify-center sm:flex-row gap-4">
               {admissionData.Read_More_Url && (
                 <Link 
-                  href="http://main.localhost:3001/admission-form" 
+                  href="/admission-form" 
                   className="  border-2 border-deep-maroon text-deep-maroon hover:bg-deep-maroon hover:text-white transition-all py-3 px-8 font-label-md text-label-md uppercase tracking-widest"
                 >
                   Apply Now
