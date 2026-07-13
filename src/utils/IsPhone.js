@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-function IsPhone() {
+function useIsPhone() {
     // Shuruat me false rakhenge taaki server-side error na aaye
     const [isPhone, setIsPhone] = useState(false);
 
@@ -26,4 +26,4 @@ function IsPhone() {
     return isPhone;
 }
 
-export default IsPhone;
+export default useIsPhone;
