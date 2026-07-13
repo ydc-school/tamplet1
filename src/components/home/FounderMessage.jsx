@@ -18,7 +18,12 @@ export default function FounderMessage() {
       try {
         const response = await axios.get("https://yaduvanshigroup.edu.in/api/client/messages");
         if (response.data.status === "success") {
-          setFounders(response?.data?.data?.data);
+          const valid = response?.data?.data?.data;
+           const sortedMessages = valid.sort((a, b) => {
+            return (a.Index_No || 0) - (b.Index_No || 0);
+          });
+        
+          setFounders(sortedMessages);
         }
       } catch (error) {
         console.error("Error fetching founder messages:", error);
@@ -83,7 +88,7 @@ export default function FounderMessage() {
         }}
         className="founders-swiper !pb-16"
       >
-        {founders.map((founder) => (
+        {founders?.map((founder) => (
           <SwiperSlide key={founder?.Id} className="h-auto">
             <div className="flex flex-col h-full bg-white border border-gray-100 rounded-3xl p-6 transition-all duration-300 hover:border-rps-navy/30">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gray-100 mb-6">
