@@ -115,16 +115,16 @@ export default function Footer() {
   return (
     <footer className="bg-heritage-navy dark:bg-primary text-on-primary  dark:text-inverse-on-surface  full-width py-12 border-t border-outline-variant transition-opacity opacity-90 hover:opacity-100 font-body-md ">
       <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 text-white md:grid-cols-4 gap-8 mb-8">
-        
+
         {/* Brand & Logo Section */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-4">
-            <Image 
-              src={logoConfig.src} 
-              alt={logoConfig.alt} 
-              width={logoConfig.width} 
-              height={logoConfig.height} 
-              style={logoConfig.style} 
+            <Image
+              src={logoConfig.src}
+              alt={logoConfig.alt}
+              width={logoConfig.width}
+              height={logoConfig.height}
+              style={logoConfig.style}
               onError={logoConfig.onError}
               unoptimized={logoConfig.unoptimized}
               className="h-20 w-auto object-contain"
@@ -152,8 +152,8 @@ export default function Footer() {
             {structuredUsefulLinks.length > 0 ? (
               structuredUsefulLinks.map((link) => (
                 <li key={link.id}>
-                  <Link 
-                    href={link.url} 
+                  <Link
+                    href={link.url}
                     className="font-body-md  text-white hover:text-academic-gold transition-colors duration-200 block"
                   >
                     {link.name}
@@ -175,8 +175,8 @@ export default function Footer() {
             {structuredQuickLinks.length > 0 ? (
               structuredQuickLinks.map((link) => (
                 <li key={link.id}>
-                  <Link 
-                    href={link.url} 
+                  <Link
+                    href={link.url}
                     className="font-body-md  text-white hover:text-academic-gold transition-colors duration-200 block"
                   >
                     {link.name}
@@ -214,7 +214,7 @@ export default function Footer() {
           </div>
 
           {/* Social Links Sub-section */}
-          <div className="pt-2">
+          {/* <div className="pt-2">
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 social.url !== "#" && (
@@ -230,7 +230,43 @@ export default function Footer() {
                 )
               ))}
             </div>
+          </div> */}
+
+
+          <div class="flex items-center justify-center">
+            <div class="flex items-center gap-5   backdrop-blur-md ">
+
+             
+              <a href="https://www.facebook.com/yaduvanshigroup/" class="group flex items-center justify-center w-12 h-12 rounded-full text-slate-50 bg-white/5 border border-white/10 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] -translate-y-0 hover:-translate-y-1 hover:bg-[#1877f2] hover:border-[#1877f2]" aria-label="Facebook">
+                <svg class="w-6 h-6 stroke-current stroke-2 fill-none stroke-linecap-round stroke-linejoin-round" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+
+          
+              <a href="https://www.instagram.com/yaduvanshi_grp_of_institutions/" class="group flex items-center justify-center w-12 h-12 rounded-full text-slate-50 bg-white/5 border border-white/10 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] -translate-y-0 hover:-translate-y-1 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent" aria-label="Instagram">
+                <svg class="w-6 h-6 stroke-current stroke-2 fill-none stroke-linecap-round stroke-linejoin-round" viewBox="0 0 24 24">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+
+      
+              <a href="https://www.youtube.com/channel/UCNXv7DakSohb4XYGXwpoLKg?view_as=subscriber" class="group flex items-center justify-center w-12 h-12 rounded-full text-slate-50 bg-white/5 border border-white/10 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] -translate-y-0 hover:-translate-y-1 hover:bg-[#ff0000] hover:border-[#ff0000]" aria-label="YouTube">
+                <svg class="w-6 h-6 stroke-current stroke-2 fill-none stroke-linecap-round stroke-linejoin-round" viewBox="0 0 24 24">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg>
+              </a>
+
+            </div>
           </div>
+
+
+
+
+
         </div>
 
       </div>
@@ -246,9 +282,9 @@ export default function Footer() {
           </span>
           <nav className="flex gap-6">
             {legalLinks.map((link, idx) => (
-              <Link 
-                key={idx} 
-                className="font-body-md text-body-md  text-white hover:text-academic-gold transition-colors" 
+              <Link
+                key={idx}
+                className="font-body-md text-body-md  text-white hover:text-academic-gold transition-colors"
                 href={link.href}
               >
                 {link.name}
