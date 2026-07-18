@@ -400,6 +400,27 @@ export default function CollegetoperScoll() {
                 </div>
                 <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent" />
             </div>
+
+               <section className='w-screen h-screen flex gallery-body'>
+
+
+        <div className="gallery">
+          <img src="https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005133806-1acfdabf6058a25e.jpg&w=1280&q=75" alt='' />
+            <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777004035235-1f1f6a290ded343d.jpg&w=1280&q=75' alt='' />
+              <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777002909368-54fdcbe1c3b9f8a0.jpg&w=1280&q=75' alt='' />
+                <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777004123635-7d19877a25514506.jpg&w=1280&q=75' alt='' />
+                  <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777004809345-c694e73ffe7d2eda.jpg&w=1280&q=75' alt='' />
+                    <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777004220370-4cac205454fe85a5.jpg&w=1280&q=75' alt='' />
+                      <img src='http://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-cd2b348bddc0c88c.jpg&w=1280&q=75' alt='' />
+                        <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-248a201ac03080f5.jpg&w=1280&q=75' alt='' />
+                          <img src='http://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-cd2b348bddc0c88c.jpg&w=1280&q=75' alt='' />
+                            <img src='http://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-cd2b348bddc0c88c.jpg&w=1280&q=75' alt='' />
+                            </div>
+
+
+
+                          </section>
+
         </>
     );
 }
