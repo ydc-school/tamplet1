@@ -207,9 +207,9 @@ export default function Footer() {
               <a href={contactDetails.email.href} className="hover:text-academic-gold transition-colors break-all">
                 Email: {contactDetails.email.display}
               </a>
-              <a href={contactDetails.website.href} target="_blank" rel="noopener noreferrer" className="hover:text-academic-gold transition-colors">
+              {/* <a href={contactDetails.website.href} target="_blank" rel="noopener noreferrer" className="hover:text-academic-gold transition-colors">
                 Web: {contactDetails.website.display}
-              </a>
+              </a> */}
             </div>
           </div>
 
