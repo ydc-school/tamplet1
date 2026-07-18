@@ -85,10 +85,10 @@ export default function Navbar() {
         <nav className="bg-deep-maroon text-white shadow-sm flex flex-col w-full text-xs">
           <div className="max-w-7xl flex-col sm:flex-row gap-4  py-8  mx-auto w-full px-6 sm:px-6  sm:py-2 flex sm:justify-center justify-between items-center font-medium tracking-wide">
             <div className="flex gap-0.5 sm:gap-6 items-center">
-              <Link href="#" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">
+              {/* <Link href="#" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">
                 <span className="material-symbols-outlined text-[18px]">badge</span>
                 chairman's Window
-              </Link>
+              </Link> */}
               <Link href="#" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">
                 <span className="material-symbols-outlined text-[18px]">info</span>
                 Public Disclosure
