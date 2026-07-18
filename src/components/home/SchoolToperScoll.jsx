@@ -102,7 +102,7 @@ const cardData = [
                             {cardData?.map((card, index) => (
                                 <div key={index} className="w-72 mx-4 h-[20rem] relative group hover:scale-95 flex-shrink-0 transition-transform duration-500 ease-in-out [transform-style:preserve-3d] hover:[transform:rotateY(360deg)] ">
                                     <img src={`${card?.image}`} alt="card" className="w-full h-full object-contain" />
-                                    <div className="flex items-center justify-center px-4 opacity-0 group-hover:opacity-100 transition-all duration-300 absolute bottom-0 backdrop-blur-[1px] left-0 w-full h-full bg-black/20">
+                                    <div className="flex items-center justify-center px-4 opacity-0 group-hover:opacity-100 transition-all duration-300 absolute bottom-0  left-0 w-full h-full bg-black/20">
                                         <p className="text-white text-lg font-semibold text-center">
                                             {card?.Name}
                                         </p>
