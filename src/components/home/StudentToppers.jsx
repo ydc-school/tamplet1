@@ -59,7 +59,7 @@ export default function StudentToppers() {
           speed={4000}
           autoplay={{ delay: 0, disableOnInteraction: false }}
           pagination={{ clickable: true, dynamicBullets: true }}
-          className="mySwiper !pb-12 [&>.swiper-wrapper]:!ease-linear"
+          className="mySwiper max-w-7xl !pb-12 [&>.swiper-wrapper]:!ease-linear"
         >
           {sortedToppers.map((item) => (
             <SwiperSlide
