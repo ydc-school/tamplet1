@@ -3,29 +3,43 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
 
+import { useSchool } from "@/context/SchoolContext";
+
+
+
 export default function CollegetoperScoll() {
     const [achievements, setAchievements] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState(null);
     const [stopScroll, setStopScroll] = useState(false);
 
-    useEffect(() => {
+    
+    const { schoolInfo } = useSchool();
+    const [branchType, setBranchType] = useState("");
+  if (!loading && achievements?.length === 0) return null;
+
+
+
+
+
+      useEffect(() => {
+        if (!schoolInfo?.Branch_Id) return;
+  const formatYear = (y) => {
+    if (!y) return "";
+    const d = new Date(y);
+    return isNaN(d) ? y : d.getFullYear();
+  };
+
         axios
-            .get("/api/client/achievements")
+            .get(`/api/client/branch/${schoolInfo.Branch_Id}`)
             .then((res) => {
-                if (res.data.status === "success") setAchievements(res.data.data);
+                if (res.data.status === "success") {
+                    setBranchType(res.data.data.Branch_Type);
+                }
             })
-            .catch(() => { })
-            .finally(() => setLoading(false));
-    }, []);
+            .catch(() => {});
+    }, [schoolInfo]);
 
-    if (!loading && achievements?.length === 0) return null;
-
-    const formatYear = (y) => {
-        if (!y) return "";
-        const d = new Date(y);
-        return isNaN(d) ? y : d.getFullYear();
-    };
 
 const cardData = [
     {
@@ -335,6 +349,10 @@ const cardData = [
         image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/51.png"
     }
 ];
+
+
+
+  if (branchType !== "college") return null;
 
     return (
         <>
