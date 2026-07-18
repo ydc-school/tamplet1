@@ -162,7 +162,7 @@ export default function DynamicPage({ params: paramsPromise }) {
 
         /* ── Content area ── */
         .dp-content-wrap {
-          max-width: 860px;
+          max-width: 100%;
           margin: 0 auto;
           padding: 52px 24px 80px;
           position: relative;
