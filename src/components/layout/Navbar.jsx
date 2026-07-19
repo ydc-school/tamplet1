@@ -89,10 +89,10 @@ export default function Navbar() {
                 <span className="material-symbols-outlined text-[18px]">badge</span>
                 chairman's Window
               </Link> */}
-              <Link href="#" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">
+              {/* <Link href="#" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">
                 <span className="material-symbols-outlined text-[18px]">info</span>
                 Public Disclosure
-              </Link>
+              </Link> */}
               <Link href="https://www.yaduvanshigroup.org/admin/Login?enc=CWrkKdUP48BT4TdWEV9w9w==" className="flex items-center gap-2 hover:bg-white/10 transition-colors py-1 px-2 rounded">
                 <span className="material-symbols-outlined text-[18px]">menu_book</span>
                 CLOUD9 APP
