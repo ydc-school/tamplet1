@@ -411,8 +411,8 @@ export default function CollegetoperScoll() {
                     <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777004220370-4cac205454fe85a5.jpg&w=1280&q=75' alt='' />
                     <img src='http://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-cd2b348bddc0c88c.jpg&w=1280&q=75' alt='' />
                     <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-248a201ac03080f5.jpg&w=1280&q=75' alt='' />
-                    <img src='http://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-cd2b348bddc0c88c.jpg&w=1280&q=75' alt='' />
-                    <img src='http://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-cd2b348bddc0c88c.jpg&w=1280&q=75' alt='' />
+                    <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777002978819-1b8fc495396a1715.jpg&w=1280&q=75' alt='' />
+                    <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-346b8fb6b2f4e6e6.jpg&w=1280&q=75' alt='' />
                 </div>
             </div>
 
