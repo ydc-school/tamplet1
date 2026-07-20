@@ -134,7 +134,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4 & 5: Google Map Embed using Latitude & Longitude */}
-          {/* <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-2">
             <h4 className="font-headline-md text-headline-md mb-8">Our Location</h4>
             <div className="w-full h-[220px] rounded-md overflow-hidden border border-white/10 shadow-lg">
               <iframe
@@ -144,10 +144,10 @@ export default function Footer() {
                 style={{ border: 0 }}
                 loading="lazy"
                 allowFullScreen
-                src={`https://maps.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
+                src={website}
               ></iframe>
             </div>
-          </div> */}
+          </div>
 
         </div>
 
