@@ -24,6 +24,7 @@ import {
   webPageSchema,
 } from "@/lib/seo";
 import { headers } from "next/headers";
+import { WhatsappPOP } from "@/components/layout/WhatsappPOP";
 
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
@@ -74,8 +75,12 @@ export default async function Home() {
   return (
     <>
       <SchemaScript schemaJson={schema} />
-      <div className="w-full bg-white flex flex-col">
-         <TopSlider />
+      <div className="w-full relative bg-white flex flex-col">
+
+        <WhatsappPOP />
+
+
+        <TopSlider />
         <Courses />
         {/* <Hero /> */}
         <WelcomeSection />
