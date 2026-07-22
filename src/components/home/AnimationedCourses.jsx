@@ -1,8 +1,7 @@
 "use client"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Matter from "matter-js"
-import { BookOpen, GraduationCap, Award, Book, Cpu, Code, Briefcase, Sparkles, Shield, Database, Brain, Landmark, BarChart } from "lucide-react"
-
+import { BookOpen, GraduationCap, Award, Book, Cpu, Code, Briefcase, Sparkles, Shield, Database, Brain, Landmark, BarChart, Magnet } from "lucide-react"
 
 const ALL_COURSES = [
   { name: "M.Tech (CSE)", code: "Post Graduate", bg: "#2563EB", border: "#60A5FA", text: "#FFFFFF", Icon: Code },
@@ -102,6 +101,22 @@ function makeWalls(bounding, world, opts) {
   return walls
 }
 
+const COMPONENT_DEFAULTS = {
+  courses: ALL_COURSES,
+  gravY: 1,
+  gravX: 0,
+  wallOptions: {
+    top: true,
+    bottom: true,
+    left: true,
+    right: true,
+  },
+  friction: 1,
+  mouseEnable: true,
+  mouseStiffness: 0.991,
+  mouseAngularStiffness: 0,
+}
+
 export default function AnimationedCourses(props) {
   props = { ...COMPONENT_DEFAULTS, ...props }
   const {
@@ -118,12 +133,59 @@ export default function AnimationedCourses(props) {
 
   const containerRef = useRef(null)
   const rafRef = useRef(0)
+  const madeRef = useRef([])
+  const magnetBodyRef = useRef(null)
+  const [activeMagnet, setActiveMagnet] = useState(null)
+  const [activeGlowIndex, setActiveGlowIndex] = useState(null)
+  const [activeBounceIndex, setActiveBounceIndex] = useState(null)
 
   const getCardDimensions = (item) => {
     const textLength = item.name.length
     const width = Math.max(130, Math.min(320, textLength * 9.5 + 65))
     const height = 68
     return { width, height }
+  }
+
+  const handleCardClick = (index) => {
+    const targetBody = madeRef.current[index]
+    if (!targetBody) return
+
+    setActiveBounceIndex(index)
+    setActiveGlowIndex(index)
+
+    setTimeout(() => {
+      setActiveBounceIndex(null)
+    }, 200)
+
+    setTimeout(() => {
+      setActiveGlowIndex(null)
+    }, 1000)
+
+    madeRef.current.forEach((other) => {
+      if (other === targetBody) return
+
+      const dx = other.position.x - targetBody.position.x
+      const dy = other.position.y - targetBody.position.y
+      const dist = Math.sqrt(dx * dx + dy * dy)
+
+      if (dist < 250 && dist > 0) {
+        M.Body.applyForce(other, other.position, {
+          x: (dx / dist) * 0.08,
+          y: (dy / dist) * 0.08,
+        })
+      }
+    })
+  }
+
+  const handleCardDoubleClick = (index) => {
+    const clickedBody = madeRef.current[index]
+    if (magnetBodyRef.current === clickedBody) {
+      magnetBodyRef.current = null
+      setActiveMagnet(null)
+    } else {
+      magnetBodyRef.current = clickedBody
+      setActiveMagnet(index)
+    }
   }
 
   const depKey = JSON.stringify({
@@ -190,6 +252,7 @@ export default function AnimationedCourses(props) {
       const body = M.Bodies.rectangle(x, y, width, height, bodyOpts)
       made.push(body)
     }
+    madeRef.current = made
     M.Composite.add(engine.world, made)
 
     const els = Array.from(
@@ -198,6 +261,24 @@ export default function AnimationedCourses(props) {
 
     const update = () => {
       rafRef.current = requestAnimationFrame(update)
+
+      if (magnetBodyRef.current) {
+        made.forEach((body) => {
+          if (body === magnetBodyRef.current) return
+
+          const dx = magnetBodyRef.current.position.x - body.position.x
+          const dy = magnetBodyRef.current.position.y - body.position.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+
+          if (dist > 5) {
+            M.Body.applyForce(body, body.position, {
+              x: dx * 0.00003,
+              y: dy * 0.00003,
+            })
+          }
+        })
+      }
+
       for (let i = 0; i < made.length; i++) {
         const el = els[i]
         if (!el) continue
@@ -205,7 +286,10 @@ export default function AnimationedCourses(props) {
         el.style.visibility = "visible"
         el.style.left = `${position.x}px`
         el.style.top = `${position.y}px`
-        el.style.transform = `translate(-50%, -50%) rotate(${angle}rad)`
+        
+        const isBouncing = el.getAttribute("data-bouncing") === "true"
+        const scaleStr = isBouncing ? "scale(1.15)" : "scale(1)"
+        el.style.transform = `translate(-50%, -50%) rotate(${angle}rad) ${scaleStr}`
       }
       M.Engine.update(engine)
     }
@@ -237,10 +321,17 @@ export default function AnimationedCourses(props) {
         {courses.map((item, i) => {
           const { width, height } = getCardDimensions(item)
           const Icon = item.Icon || BookOpen
+          const isMagnet = activeMagnet === i
+          const isGlowing = activeGlowIndex === i
+          const isBouncing = activeBounceIndex === i
+
           return (
             <div
               key={i}
               data-physics-body=""
+              data-bouncing={isBouncing ? "true" : "false"}
+              onClick={() => handleCardClick(i)}
+              onDoubleClick={() => handleCardDoubleClick(i)}
               style={{
                 position: "absolute",
                 visibility: "hidden",
@@ -248,9 +339,9 @@ export default function AnimationedCourses(props) {
                 height: `${height}px`,
                 borderRadius: "14px",
                 overflow: "hidden",
-                backgroundColor: item.bg,
-                border: `2px solid ${item.border}`,
-                color: item.text,
+                backgroundColor: isMagnet ? "#000000" : isGlowing ? "#FFFFFF" : item.bg,
+                border: isMagnet ? "2px solid #EF4444" : isGlowing ? "2px solid #FFFFFF" : `2px solid ${item.border}`,
+                color: isGlowing ? "#000000" : item.text,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -260,11 +351,17 @@ export default function AnimationedCourses(props) {
                 userSelect: "none",
                 cursor: "grab",
                 whiteSpace: "nowrap",
-                zIndex: 10,
+                zIndex: isMagnet ? 20 : isGlowing ? 15 : 10,
+                transition: "background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.15s ease",
+                filter: isGlowing ? "brightness(1.4)" : "brightness(1)",
               }}
               draggable={false}
             >
-              <Icon size={18} style={{ flexShrink: 0 }} />
+              {isMagnet ? (
+                <Magnet size={18} style={{ flexShrink: 0, color: "#EF4444" }} />
+              ) : (
+                <Icon size={18} style={{ flexShrink: 0 }} />
+              )}
               <div style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
                 <span style={{ fontWeight: "700", fontSize: "12px", lineHeight: "1.2" }}>
                   {item.name}
@@ -281,22 +378,6 @@ export default function AnimationedCourses(props) {
       </div>
     </div>
   )
-}
-
-const COMPONENT_DEFAULTS = {
-  courses: ALL_COURSES,
-  gravY: 1,
-  gravX: 0,
-  wallOptions: {
-    top: true,
-    bottom: true,
-    left: true,
-    right: true,
-  },
-  friction: 1,
-  mouseEnable: true,
-  mouseStiffness: 0.991,
-  mouseAngularStiffness: 0,
 }
 
 AnimationedCourses.displayName = "Physics"
