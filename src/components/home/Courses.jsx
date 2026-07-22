@@ -6,7 +6,7 @@ export const Courses = () => {
 
 
 
- <div className="max-w-screen p-8">
+ <div className="max-w-screen hidden p-8">
 
         <div className="flex justify-center mb-8">
           <div className="bg-blue-800 text-white px-12 py-3 rounded-xl text-3xl font-bold shadow-lg">

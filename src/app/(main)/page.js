@@ -25,6 +25,7 @@ import {
 } from "@/lib/seo";
 import { headers } from "next/headers";
 import { WhatsappPOP } from "@/components/layout/WhatsappPOP";
+import AnimationedCourses from "@/components/home/AnimationedCourses";
 
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
@@ -78,6 +79,7 @@ export default async function Home() {
       <div className="w-full relative bg-white flex flex-col">
 
         <WhatsappPOP />
+        <BlinkButton />
 
 
         <TopSlider />
@@ -86,7 +88,7 @@ export default async function Home() {
         <WelcomeSection />
         <AchievementsSection />
         <Branch />
-        <BlinkButton />
+        <AnimationedCourses />
         {/* <HistorySection />
         <AchievementGallery />
         <NoticeSection />
