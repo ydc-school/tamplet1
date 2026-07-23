@@ -1,301 +1,459 @@
-"use client"
-import { useEffect, useRef } from "react"
-import Matter from "matter-js"
-import { BookOpen, GraduationCap, Award, Book, Cpu, Code, Briefcase, Sparkles, Shield, Database, Brain, Landmark, BarChart } from "lucide-react"
+"use client";
 
-const ALL_COURSES = [
-  { name: "M.Tech (CSE)", code: "Post Graduate", bg: "#2563EB", border: "#60A5FA", text: "#FFFFFF", Icon: Code },
-  { name: "M.Tech (ECE)", code: "Post Graduate", bg: "#059669", border: "#34D399", text: "#FFFFFF", Icon: Cpu },
-  { name: "M.Ed.", code: "Post Graduate", bg: "#7C3AED", border: "#A78BFA", text: "#FFFFFF", Icon: GraduationCap },
-  { name: "M.A. Hindi", code: "Post Graduate", bg: "#E11D48", border: "#FB7185", text: "#FFFFFF", Icon: Book },
-  { name: "M.A. English", code: "Post Graduate", bg: "#D97706", border: "#FBBF24", text: "#FFFFFF", Icon: BookOpen },
-  { name: "M.A. Sanskrit", code: "Post Graduate", bg: "#0D9488", border: "#2DD4BF", text: "#FFFFFF", Icon: Book },
-  { name: "M.A. History", code: "Post Graduate", bg: "#EA580C", border: "#FB923C", text: "#FFFFFF", Icon: Award },
-  { name: "M.A. Political Science", code: "Post Graduate", bg: "#DB2777", border: "#F472B6", text: "#FFFFFF", Icon: Landmark },
-  { name: "M.Com", code: "Post Graduate", bg: "#4B5563", border: "#9CA3AF", text: "#FFFFFF", Icon: Briefcase },
-  { name: "M.Sc Physics", code: "Post Graduate", bg: "#047857", border: "#6EE7B7", text: "#FFFFFF", Icon: Sparkles },
-  { name: "M.Sc Chemistry", code: "Post Graduate", bg: "#DC2626", border: "#FCA5A5", text: "#FFFFFF", Icon: Sparkles },
-  { name: "M.Sc Maths", code: "Post Graduate", bg: "#4F46E5", border: "#818CF8", text: "#FFFFFF", Icon: Award },
-  { name: "M.Sc Zoology", code: "Post Graduate", bg: "#16A34A", border: "#4ADE80", text: "#FFFFFF", Icon: BookOpen },
-  { name: "M.Sc Botany", code: "Post Graduate", bg: "#15803D", border: "#86EFAC", text: "#FFFFFF", Icon: BookOpen },
-  { name: "M.Sc Computer Sci.", code: "Post Graduate", bg: "#0284C7", border: "#38BDF8", text: "#FFFFFF", Icon: Cpu },
-  { name: "M.Sc Geography", code: "Post Graduate", bg: "#B45309", border: "#FCD34D", text: "#FFFFFF", Icon: Book },
+import { useEffect, useMemo, useRef } from "react";
+import * as THREE from "three";
 
-  { name: "B.Tech (CSE)", code: "Under Graduate", bg: "#1D4ED8", border: "#93C5FD", text: "#FFFFFF", Icon: Code },
-  { name: "B.Tech (CE)", code: "Under Graduate", bg: "#C2410C", border: "#FFEDD5", text: "#FFFFFF", Icon: Briefcase },
-  { name: "B.Tech (ME)", code: "Under Graduate", bg: "#374151", border: "#D1D5DB", text: "#FFFFFF", Icon: Cpu },
-  { name: "B.Tech (ECE)", code: "Under Graduate", bg: "#15803D", border: "#BBF7D0", text: "#FFFFFF", Icon: Cpu },
-  { name: "B.Tech (EE)", code: "Under Graduate", bg: "#CA8A04", border: "#FEF08A", text: "#FFFFFF", Icon: Sparkles },
-  { name: "B.Ed.", code: "Under Graduate", bg: "#6D28D9", border: "#DDD6FE", text: "#FFFFFF", Icon: GraduationCap },
-  { name: "B.A.-B.Ed.", code: "Under Graduate", bg: "#BE185D", border: "#FBCFE8", text: "#FFFFFF", Icon: GraduationCap },
-  { name: "B.Sc.-B.Ed.", code: "Under Graduate", bg: "#047857", border: "#A7F3D0", text: "#FFFFFF", Icon: GraduationCap },
-  { name: "B.P.Ed.", code: "Under Graduate", bg: "#BE123C", border: "#FECDD3", text: "#FFFFFF", Icon: Award },
-  { name: "B.A.", code: "Under Graduate", bg: "#B45309", border: "#FDE68A", text: "#FFFFFF", Icon: BookOpen },
-  { name: "B.A. Yoga", code: "Under Graduate", bg: "#0F766E", border: "#99F6E4", text: "#FFFFFF", Icon: Sparkles },
-  { name: "B.A. Hons English", code: "Under Graduate", bg: "#4338CA", border: "#C7D2FE", text: "#FFFFFF", Icon: Book },
-  { name: "B.Com", code: "Under Graduate", bg: "#1F2937", border: "#E5E7EB", text: "#FFFFFF", Icon: Briefcase },
-  { name: "B.Com Hons", code: "Under Graduate", bg: "#92400E", border: "#FDE68A", text: "#FFFFFF", Icon: Briefcase },
-  { name: "B.Sc Medical", code: "Under Graduate", bg: "#065F46", border: "#D1FAE5", text: "#FFFFFF", Icon: BookOpen },
-  { name: "B.Sc Non Medical", code: "Under Graduate", bg: "#0369A1", border: "#BAE6FD", text: "#FFFFFF", Icon: BookOpen },
-  { name: "B.Sc Hons Physics", code: "Under Graduate", bg: "#1E3A8A", border: "#DBEAFE", text: "#FFFFFF", Icon: Sparkles },
-  { name: "B.Sc Hons Chemistry", code: "Under Graduate", bg: "#991B1B", border: "#FEE2E2", text: "#FFFFFF", Icon: Sparkles },
-  { name: "B.Sc Hons Maths", code: "Under Graduate", bg: "#312E81", border: "#E0E7FF", text: "#FFFFFF", Icon: Award },
-  { name: "B.Sc Hons Zoology", code: "Under Graduate", bg: "#14532D", border: "#DCFCE7", text: "#FFFFFF", Icon: BookOpen },
-  { name: "B.Sc Hons Botany", code: "Under Graduate", bg: "#064E3B", border: "#A7F3D0", text: "#FFFFFF", Icon: BookOpen },
-  { name: "B.Sc Computer Sci.", code: "Under Graduate", bg: "#134E4A", border: "#99F6E4", text: "#FFFFFF", Icon: Code },
-  { name: "BBA", code: "Under Graduate", bg: "#9A3412", border: "#FFEDD5", text: "#FFFFFF", Icon: Briefcase },
-  { name: "BCA", code: "Under Graduate", bg: "#581C87", border: "#E9D5FF", text: "#FFFFFF", Icon: Code },
+const DEFAULT_IMAGES = [
 
-  { name: "Polytechnic (ME)", code: "Diploma", bg: "#374151", border: "#9CA3AF", text: "#FFFFFF", Icon: Cpu },
-  { name: "Polytechnic (ECE)", code: "Diploma", bg: "#166534", border: "#86EFAC", text: "#FFFFFF", Icon: Cpu },
-  { name: "Polytechnic (EE)", code: "Diploma", bg: "#854D0E", border: "#FEF08A", text: "#FFFFFF", Icon: Sparkles },
-  { name: "Polytechnic (CE)", code: "Diploma", bg: "#9A3412", border: "#FFEDD5", text: "#FFFFFF", Icon: Briefcase },
-  { name: "ITI (Electrician)", code: "Diploma", bg: "#A16207", border: "#FEF08A", text: "#FFFFFF", Icon: Sparkles },
-  { name: "ITI (Fitter)", code: "Diploma", bg: "#111827", border: "#9CA3AF", text: "#FFFFFF", Icon: Cpu },
-  { name: "ITI (Draughtsman)", code: "Diploma", bg: "#115E59", border: "#99F6E4", text: "#FFFFFF", Icon: Book },
-  { name: "D.El.Ed.", code: "Diploma", bg: "#6B21A8", border: "#E9D5FF", text: "#FFFFFF", Icon: GraduationCap },
-  { name: "D.P.Ed.", code: "Diploma", bg: "#9F1239", border: "#FECDD3", text: "#FFFFFF", Icon: Award },
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0003.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0004.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0005.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0006.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0007.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0008.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0009.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0010.jpg",
+  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0012.jpg"
 
-  { name: "M.Com", code: "Distance Learning", bg: "#1F2937", border: "#9CA3AF", text: "#FFFFFF", Icon: Briefcase },
-  { name: "M.Sc Maths", code: "Distance Learning", bg: "#3730A3", border: "#C7D2FE", text: "#FFFFFF", Icon: Award },
-  { name: "B.A.", code: "Distance Learning", bg: "#92400E", border: "#FDE68A", text: "#FFFFFF", Icon: BookOpen },
-  { name: "M.A. English", code: "Distance Learning", bg: "#1D4ED8", border: "#BFDBFE", text: "#FFFFFF", Icon: BookOpen },
-  { name: "M.A. Hindi", code: "Distance Learning", bg: "#9F1239", border: "#FECDD3", text: "#FFFFFF", Icon: Book },
-  { name: "B.Com", code: "Distance Learning", bg: "#374151", border: "#D1D5DB", text: "#FFFFFF", Icon: Briefcase },
+];
 
-  { name: "Computer Applications & Data Science", code: "Distance Diploma", bg: "#0369A1", border: "#7DD3FC", text: "#FFFFFF", Icon: Database },
-  { name: "Artificial Intelligence", code: "Distance Diploma", bg: "#6B21A8", border: "#D8B4FE", text: "#FFFFFF", Icon: Brain },
-  { name: "Cyber Security", code: "Distance Diploma", bg: "#991B1B", border: "#FCA5A5", text: "#FFFFFF", Icon: Shield },
-  { name: "Business Analytics", code: "Distance Diploma", bg: "#047857", border: "#6EE7B7", text: "#FFFFFF", Icon: BarChart },
-  { name: "Banking & Finance", code: "Distance Diploma", bg: "#78350F", border: "#FCD34D", text: "#FFFFFF", Icon: Landmark },
-  { name: "Financial Market", code: "Distance Diploma", bg: "#C2410C", border: "#FFEDD5", text: "#FFFFFF", Icon: Briefcase },
-]
+const DEFAULTS = {
+  background: "#000000",
+  lineColor: "#B0B0B0",
+  lineOpacity: 50,
+  colors: ["#FF6A00", "#AB54F7", "#EA3737", "#0072E3", "#00AA3C", "#FFB200"],
+  grid: 4,
+  speed: 100,
+  boost: 100,
+  fade: 100,
+  label: true,
+  labelText: "Press to Start",
+  labelFill: "#FFFFFF",
+  labelColor: "#000000",
+  labelFont: { fontFamily: "Inter", fontSize: 14, fontWeight: 500 },
+};
 
-const M = Matter
+const TUNNEL_WIDTH = 2;
+const TUNNEL_HEIGHT = 1.8;
+const SEGMENT_DEPTH = 1;
+const NUM_SEGMENTS = 15;
+const LINE_RADIUS = 0.003;
+const SCROLL_TO_Z = 0.05;
+const CAMERA_CHASE = 0.1;
+const FADE_IN = 1;
 
-function makeWalls(bounding, world, opts) {
-  const { width: w, height: h } = bounding
-  const t = 200
-  const walls = []
-  if (opts.top)
-    walls.push(
-      M.Bodies.rectangle(w / 2, -t / 2, w + 2 * t, t, { isStatic: true })
-    )
-  if (opts.bottom)
-    walls.push(
-      M.Bodies.rectangle(w / 2, h + t / 2, w + 2 * t, t, {
-        isStatic: true,
-      })
-    )
-  if (opts.left)
-    walls.push(
-      M.Bodies.rectangle(-t / 2, h / 2, t, h + 2 * t, { isStatic: true })
-    )
-  if (opts.right)
-    walls.push(
-      M.Bodies.rectangle(w + t / 2, h / 2, t, h + 2 * t, {
-        isStatic: true,
-      })
-    )
-  M.Composite.add(world, walls)
-  return walls
-}
+const FOG_FAR = NUM_SEGMENTS * SEGMENT_DEPTH * 0.95;
 
-export default function Physics(props) {
-  props = { ...COMPONENT_DEFAULTS, ...props }
+const srcOf = (image) =>
+  typeof image === "string" ? image : (image?.src ?? "");
+
+export default function ImageBox(props = {}) {
   const {
-    courses = ALL_COURSES,
-    friction = 1,
-    mouseEnable = true,
-    mouseStiffness = 0.991,
-    mouseAngularStiffness = 0,
-    gravX = 0,
-    gravY = 1,
-    wallOptions = { top: true, bottom: true, right: true, left: true },
+    images,
+    colors,
+    background = DEFAULTS.background,
+    lineColor = DEFAULTS.lineColor,
+    lineOpacity = DEFAULTS.lineOpacity,
+    grid = DEFAULTS.grid,
+    speed = DEFAULTS.speed,
+    boost = DEFAULTS.boost,
+    fade = DEFAULTS.fade,
+    label = DEFAULTS.label,
+    labelText = DEFAULTS.labelText,
+    labelFill = DEFAULTS.labelFill,
+    labelColor = DEFAULTS.labelColor,
+    labelFont = DEFAULTS.labelFont,
     style,
-  } = props
+  } = props;
 
-  const containerRef = useRef(null)
-  const rafRef = useRef(0)
+  const frameRef = useRef(null);
+  const canvasRef = useRef(null);
+  const cursorRef = useRef(null);
 
-  const getCardDimensions = (item) => {
-    const textLength = item.name.length
-    const width = Math.max(130, Math.min(320, textLength * 9.5 + 65))
-    const height = 68
-    return { width, height }
-  }
+  const urls = useMemo(() => {
+    const list = (images ?? []).map(srcOf).filter(Boolean);
+    return list.length ? list : DEFAULT_IMAGES;
+  }, [images]);
 
-  const depKey = JSON.stringify({
-    coursesLength: courses.length,
-    gravX,
-    gravY,
-    wallOptions,
-    friction,
-    mouseEnable,
-    mouseStiffness,
-    mouseAngularStiffness,
-  })
+  const palette = useMemo(() => {
+    const list = (colors ?? []).filter(Boolean);
+    return list.length ? list : DEFAULTS.colors;
+  }, [colors]);
+
+  const cfgRef = useRef({ speed: 1, boost: 1 });
+  cfgRef.current = {
+    speed: Math.max(0, speed) / 100,
+    boost: Math.max(0, boost) / 10,
+  };
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const frame = frameRef.current;
+    const canvas = canvasRef.current;
+    if (!frame || !canvas) return;
 
-    const engine = M.Engine.create({
-      enableSleeping: false,
-      gravity: { x: gravX, y: gravY },
-    })
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(background);
 
-    const bounding = container.getBoundingClientRect()
-    makeWalls(bounding, engine.world, wallOptions)
+    const fogNear = Math.min(
+      FOG_FAR * (1 - Math.min(100, Math.max(0, fade)) / 100),
+      FOG_FAR - 0.01
+    );
+    scene.fog = new THREE.Fog(new THREE.Color(background), fogNear, FOG_FAR);
 
-    let mouseConstraint = null
-    const onLeave = () =>
-      mouseConstraint?.mouse?.mouseup(new Event("mouseup"))
-    if (mouseEnable) {
-      const mouse = M.Mouse.create(container)
-      mouseConstraint = M.MouseConstraint.create(engine, {
-        mouse,
-        constraint: {
-          angularStiffness: mouseAngularStiffness,
-          stiffness: mouseStiffness,
+    const camera = new THREE.PerspectiveCamera(45, 1, 1, 1000);
+    camera.position.set(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: false,
+      powerPreference: "high-performance",
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    const lineMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(lineColor),
+      transparent: true,
+      opacity: Math.min(100, Math.max(0, lineOpacity)) / 100,
+    });
+
+    const loader = new THREE.TextureLoader();
+    loader.setCrossOrigin("anonymous");
+    const fading = [];
+
+    let imageIndex = 0;
+    let colorIndex = 0;
+    let populateIndex = 0;
+    let scrollPos = 0;
+    let raf = 0;
+    let last = 0;
+    let pressed = false;
+    let alive = true;
+
+    const hw = TUNNEL_WIDTH / 2;
+    const hh = TUNNEL_HEIGHT / 2;
+
+    const cols = Math.max(1, Math.round(grid));
+    const rows = Math.max(1, Math.round(grid));
+    const colW = TUNNEL_WIDTH / cols;
+    const rowH = TUNNEL_HEIGHT / rows;
+
+    const geoFloor = new THREE.PlaneGeometry(colW, SEGMENT_DEPTH);
+    const geoWall = new THREE.PlaneGeometry(SEGMENT_DEPTH, rowH);
+
+    const geoTubeZ = new THREE.TubeGeometry(
+      new THREE.LineCurve3(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 0, -SEGMENT_DEPTH)
+      ),
+      1,
+      LINE_RADIUS,
+      8
+    );
+    const geoTubeX = new THREE.TubeGeometry(
+      new THREE.LineCurve3(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(TUNNEL_WIDTH, 0, 0)
+      ),
+      1,
+      LINE_RADIUS,
+      8
+    );
+    const geoTubeY = new THREE.TubeGeometry(
+      new THREE.LineCurve3(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, TUNNEL_HEIGHT, 0)
+      ),
+      1,
+      LINE_RADIUS,
+      8
+    );
+
+    const colorMats = palette.map(
+      (hex) =>
+        new THREE.MeshBasicMaterial({
+          color: new THREE.Color(hex),
+          side: THREE.DoubleSide,
+        })
+    );
+
+    const imageMats = urls.map((url) => {
+      const mat = new THREE.MeshBasicMaterial({
+        transparent: true,
+        opacity: 0,
+        side: THREE.DoubleSide,
+      });
+      loader.load(
+        url,
+        (tex) => {
+          if (!alive) {
+            tex.dispose();
+            return;
+          }
+          tex.minFilter = THREE.LinearFilter;
+          tex.generateMipmaps = false;
+          tex.colorSpace = THREE.SRGBColorSpace;
+          mat.map = tex;
+          mat.needsUpdate = true;
+          fading.push(mat);
         },
-      })
-      M.Composite.add(engine.world, mouseConstraint)
-      const el = mouseConstraint.mouse.element
-      el.removeEventListener(
-        "mousewheel",
-        mouseConstraint.mouse.mousewheel
-      )
-      el.removeEventListener(
-        "DOMMouseScroll",
-        mouseConstraint.mouse.mousewheel
-      )
-      container.addEventListener("mouseleave", onLeave)
-    }
+        undefined,
+        () => { }
+      );
+      return mat;
+    });
 
-    const bodyOpts = {
-      friction: Math.max(1, Math.min(10, friction)) / 10,
-      frictionAir: 0.02,
-      chamfer: { radius: 12 },
-    }
+    const tube = (geo, x, y, z = 0) => {
+      const m = new THREE.Mesh(geo, lineMaterial);
+      m.position.set(x, y, z);
+      return m;
+    };
 
-    const made = []
-    const total = courses.length
-    for (let i = 0; i < total; i++) {
-      const item = courses[i]
-      const { width, height } = getCardDimensions(item)
-      const x = ((i % 10 + 0.5) / 10) * bounding.width
-      const y = height / 2 + Math.floor(i / 10) * 45
-      const body = M.Bodies.rectangle(x, y, width, height, bodyOpts)
-      made.push(body)
-    }
-    M.Composite.add(engine.world, made)
-
-    const els = Array.from(
-      container.querySelectorAll("[data-physics-body]")
-    )
-
-    const update = () => {
-      rafRef.current = requestAnimationFrame(update)
-      for (let i = 0; i < made.length; i++) {
-        const el = els[i]
-        if (!el) continue
-        const { position, angle } = made[i]
-        el.style.visibility = "visible"
-        el.style.left = `${position.x}px`
-        el.style.top = `${position.y}px`
-        el.style.transform = `translate(-50%, -50%) rotate(${angle}rad)`
+    const SLOTS = [];
+    {
+      const z = -SEGMENT_DEPTH / 2;
+      for (let i = 0; i < cols; i++) {
+        const x = -hw + i * colW + colW / 2;
+        SLOTS.push({
+          geo: geoFloor,
+          pos: new THREE.Vector3(x, -hh, z),
+          rot: new THREE.Euler(-Math.PI / 2, 0, 0),
+        });
+        SLOTS.push({
+          geo: geoFloor,
+          pos: new THREE.Vector3(x, hh, z),
+          rot: new THREE.Euler(Math.PI / 2, 0, 0),
+        });
       }
-      M.Engine.update(engine)
+      for (let i = 0; i < rows; i++) {
+        const y = -hh + i * rowH + rowH / 2;
+        SLOTS.push({
+          geo: geoWall,
+          pos: new THREE.Vector3(-hw, y, z),
+          rot: new THREE.Euler(0, Math.PI / 2, 0),
+        });
+        SLOTS.push({
+          geo: geoWall,
+          pos: new THREE.Vector3(hw, y, z),
+          rot: new THREE.Euler(0, -Math.PI / 2, 0),
+        });
+      }
     }
-    update()
+
+    function populate(group) {
+      const takesSlabs = populateIndex % 2 === 0;
+      populateIndex++;
+      const slabs = group.userData.slabs;
+
+      for (const slab of slabs) {
+        if (!takesSlabs || Math.random() > 0.5) {
+          slab.visible = false;
+          continue;
+        }
+        slab.visible = true;
+        if (Math.random() > 0.5) {
+          slab.material =
+            colorMats[(5 * colorIndex) % colorMats.length];
+          colorIndex++;
+        } else {
+          slab.material =
+            imageMats[(3 * imageIndex) % imageMats.length];
+          imageIndex++;
+        }
+      }
+    }
+
+    function createSegment(z) {
+      const group = new THREE.Group();
+      group.position.z = z;
+
+      for (let i = 0; i <= cols; i++) {
+        const x = -hw + i * colW;
+        group.add(tube(geoTubeZ, x, -hh));
+        group.add(tube(geoTubeZ, x, hh));
+      }
+      for (let i = 1; i < rows; i++) {
+        const y = -hh + i * rowH;
+        group.add(tube(geoTubeZ, -hw, y));
+        group.add(tube(geoTubeZ, hw, y));
+      }
+      group.add(tube(geoTubeX, -hw, -hh));
+      group.add(tube(geoTubeX, -hw, hh));
+      group.add(tube(geoTubeY, -hw, -hh));
+      group.add(tube(geoTubeY, hw, -hh));
+
+      const slabs = SLOTS.map((slot) => {
+        const m = new THREE.Mesh(slot.geo, colorMats[0]);
+        m.position.copy(slot.pos);
+        m.rotation.copy(slot.rot);
+        m.visible = false;
+        group.add(m);
+        return m;
+      });
+      group.userData.slabs = slabs;
+
+      populate(group);
+      return group;
+    }
+
+    const segments = [];
+    for (let i = 0; i < NUM_SEGMENTS; i++) {
+      const g = createSegment(-i * SEGMENT_DEPTH);
+      scene.add(g);
+      segments.push(g);
+    }
+
+    const resize = () => {
+      const w = Math.max(1, frame.clientWidth);
+      const h = Math.max(1, frame.clientHeight);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+    };
+    const ro = new ResizeObserver(resize);
+    ro.observe(frame);
+    resize();
+
+    const animate = (now) => {
+      if (!alive) return;
+      raf = requestAnimationFrame(animate);
+      const dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
+      last = now;
+
+      const cfg = cfgRef.current;
+      scrollPos += pressed ? cfg.boost : cfg.speed;
+
+      const want = -SCROLL_TO_Z * scrollPos;
+      camera.position.z += CAMERA_CHASE * (want - camera.position.z);
+
+      const span = NUM_SEGMENTS * SEGMENT_DEPTH;
+      const z = camera.position.z;
+      for (const seg of segments) {
+        if (seg.position.z > z + SEGMENT_DEPTH) {
+          let min = 0;
+          for (const s of segments) min = Math.min(min, s.position.z);
+          seg.position.z = min - SEGMENT_DEPTH;
+          populate(seg);
+        } else if (seg.position.z < z - span - SEGMENT_DEPTH) {
+          let max = -999999;
+          for (const s of segments) max = Math.max(max, s.position.z);
+          seg.position.z = max + SEGMENT_DEPTH;
+          populate(seg);
+        }
+      }
+
+      for (let i = fading.length - 1; i >= 0; i--) {
+        const m = fading[i];
+        m.opacity = Math.min(1, m.opacity + dt / FADE_IN);
+        if (m.opacity >= 1) fading.splice(i, 1);
+      }
+
+      renderer.render(scene, camera);
+    };
+    raf = requestAnimationFrame(animate);
+
+    const onMove = (e) => {
+      const el = cursorRef.current;
+      if (!el) return;
+      const rect = frame.getBoundingClientRect();
+      const sx = rect.width > 0 ? frame.clientWidth / rect.width : 1;
+      const sy = rect.height > 0 ? frame.clientHeight / rect.height : 1;
+      el.style.left = `${(e.clientX - rect.left) * sx}px`;
+      el.style.top = `${(e.clientY - rect.top) * sy}px`;
+    };
+    const onEnter = () => {
+      const el = cursorRef.current;
+      if (el) el.style.opacity = "1";
+    };
+    const onLeave = () => {
+      pressed = false;
+      const el = cursorRef.current;
+      if (el) {
+        el.style.opacity = "0";
+        el.style.transform = "translate(0%, -100%) scale(1)";
+      }
+    };
+    const onDown = () => {
+      pressed = true;
+      const el = cursorRef.current;
+      if (el) el.style.transform = "translate(0%, -100%) scale(0.85)";
+    };
+    const onUp = () => {
+      pressed = false;
+      const el = cursorRef.current;
+      if (el) el.style.transform = "translate(0%, -100%) scale(1)";
+    };
+
+    frame.addEventListener("pointermove", onMove);
+    frame.addEventListener("pointerenter", onEnter);
+    frame.addEventListener("pointerleave", onLeave);
+    frame.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
 
     return () => {
-      cancelAnimationFrame(rafRef.current)
-      if (mouseEnable)
-        container.removeEventListener("mouseleave", onLeave)
-      M.World.clear(engine.world, false)
-      M.Engine.clear(engine)
-    }
-  }, [depKey])
+      alive = false;
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      frame.removeEventListener("pointermove", onMove);
+      frame.removeEventListener("pointerenter", onEnter);
+      frame.removeEventListener("pointerleave", onLeave);
+      frame.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+
+      geoFloor.dispose();
+      geoWall.dispose();
+      geoTubeZ.dispose();
+      geoTubeX.dispose();
+      geoTubeY.dispose();
+      for (const m of colorMats) m.dispose();
+      for (const m of imageMats) {
+        m.map?.dispose();
+        m.dispose();
+      }
+      lineMaterial.dispose();
+      renderer.dispose();
+    };
+  }, [urls, palette, background, lineColor, lineOpacity, grid, fade]);
 
   return (
-    <div className="w-full h-screen min-h-[600px] relative overflow-hidden">
-      <div
-        ref={containerRef}
-        style={{
-          ...style,
-          position: "relative",
-          height: "100%",
-          width: "100%",
-          overflow: "hidden",
-        }}
-        draggable={false}
-        onDragStart={(e) => e.preventDefault()}
-      >
-        {courses.map((item, i) => {
-          const { width, height } = getCardDimensions(item)
-          const Icon = item.Icon || BookOpen
-          return (
-            <div
-              key={i}
-              data-physics-body=""
-              style={{
-                position: "absolute",
-                visibility: "hidden",
-                width: `${width}px`,
-                height: `${height}px`,
-                borderRadius: "14px",
-                overflow: "hidden",
-                backgroundColor: item.bg,
-                border: `2px solid ${item.border}`,
-                color: item.text,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-                padding: "8px 12px",
-                textAlign: "left",
-                userSelect: "none",
-                cursor: "grab",
-                whiteSpace: "nowrap",
-                zIndex: 10,
-              }}
-              draggable={false}
-            >
-              <Icon size={18} style={{ flexShrink: 0 }} />
-              <div style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                <span style={{ fontWeight: "700", fontSize: "12px", lineHeight: "1.2" }}>
-                  {item.name}
-                </span>
-                {item.code && (
-                  <span style={{ fontSize: "10px", opacity: 0.9, marginTop: "2px" }}>
-                    {item.code}
-                  </span>
-                )}
-              </div>
-            </div>
-          )
-        })}
-      </div>
+    <div
+      ref={frameRef}
+      style={{
+        ...style,
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+        cursor: label ? "none" : "default",
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        style={{ display: "block", width: "100%", height: "100%" }}
+      />
+      {label && (
+        <div
+          ref={cursorRef}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            transform: "translate(0%, -100%) scale(1)",
+            pointerEvents: "none",
+            opacity: 0,
+            background: labelFill,
+            borderRadius: 9999,
+            padding: "10px 20px",
+            transition: "transform 0.1s ease, opacity 0.2s ease",
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            ...labelFont,
+            color: labelColor,
+          }}
+        >
+          {labelText}
+        </div>
+      )}
     </div>
-  )
+  );
 }
-
-const COMPONENT_DEFAULTS = {
-  courses: ALL_COURSES,
-  gravY: 1,
-  gravX: 0,
-  wallOptions: {
-    top: true,
-    bottom: true,
-    left: true,
-    right: true,
-  },
-  friction: 1,
-  mouseEnable: true,
-  mouseStiffness: 0.991,
-  mouseAngularStiffness: 0,
-}
-
-Physics.displayName = "Physics"
