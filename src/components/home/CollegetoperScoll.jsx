@@ -44,319 +44,321 @@ export default function CollegetoperScoll() {
 
 
     const cardData = [
-        {
-            name: "TAMANNA",
-            rank: "1",
-            class: "B.Sc. (PS)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/1.png"
-        },
-        {
-            name: "ANKITA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/2.png"
-        },
-        {
-            name: "ANTIM",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/3.png"
-        },
-        {
-            name: "KAJAL",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/4.png"
-        },
-        {
-            name: "SUPRIYA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/5.png"
-        },
-        {
-            name: "SONAM",
-            rank: "1",
-            class: "B.Sc. (CH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/6.png"
-        },
-        {
-            name: "PRIYA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/7.png"
-        },
-        {
-            name: "HEENA",
-            rank: "1",
-            class: "B.Sc. (NM)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/heena.png"
-        },
-        {
-            name: "SHIWANI",
-            rank: "1",
-            class: "B.Sc. (CH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/9.png"
-        },
-        {
-            name: "KIRAN",
-            rank: "1",
-            class: "B.A",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/10.png"
-        },
-        {
-            name: "NISHA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/11.png"
-        },
-        {
-            name: "MANJU",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/12.png"
-        },
-        {
-            name: "SAKSHI",
-            rank: "1",
-            class: "B.Sc. (NM)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/13.png"
-        },
-        {
-            name: "AMBIKA",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/14.png"
-        },
-        {
-            name: "PRIYA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/15.png"
-        },
-        {
-            name: "ALKA",
-            rank: "1",
-            class: "B.Sc. (Med.)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/16.png"
-        },
-        {
-            name: "POOJA",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/17.png"
-        },
-        {
-            name: "ANMOL",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/18.png"
-        },
-        {
-            name: "LATIKA",
-            rank: "1",
-            class: "B.Sc. (Med.)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/19.png"
-        },
-        {
-            name: "RINKI",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/20.png"
-        },
-        {
-            name: "NIKITA",
-            rank: "1",
-            class: "B.Sc. (CH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/21.png"
-        },
-        {
-            name: "ABHISHEK",
-            rank: "1",
-            class: "B.Sc. (CH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/22.png"
-        },
-        {
-            name: "PRATHAM",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/23.png"
-        },
-        {
-            name: "SANGEETA",
-            rank: "1",
-            class: "B.Sc. (PH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/24.png"
-        },
-        {
-            name: "MAMTA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/25.png"
-        },
-        {
-            name: "EKTA",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/26.png"
-        },
-        {
-            name: "SUDHA",
-            rank: "1",
-            class: "B.COM.(Hons.)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/27.png"
-        },
-        {
-            name: "TANISHA",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/28.png"
-        },
-        {
-            name: "POOJA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/29.png"
-        },
-        {
-            name: "MONIKA",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/30.png"
-        },
-        {
-            name: "ANNU",
-            rank: "1",
-            class: "B.Sc. (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/31.png"
-        },
-        {
-            name: "ALPA",
-            rank: "1",
-            class: "B.Sc. (NM)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/32.png"
-        },
-        {
-            name: "MUSKNAN",
-            rank: "1",
-            class: "Β.Α.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/33.png"
-        },
-        {
-            name: "PRITI",
-            rank: "1",
-            class: "B.Sc. (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/34.png"
-        },
-        {
-            name: "DIKSHIKA",
-            rank: "1",
-            class: "B.Sc. (CH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/35.png"
-        },
-        {
-            name: "TINKESH",
-            rank: "1",
-            class: "B.Sc (NM)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/36.png"
-        },
-        {
-            name: "SUDHA",
-            rank: "1",
-            class: "B.Com. (H)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/37.png"
-        },
-        {
-            name: "SHEETAL",
-            rank: "1",
-            class: "B.Com.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/38.png"
-        },
-        {
-            name: "PAYAL",
-            rank: "1",
-            class: "B.Sc. (PH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/39.png"
-        },
-        {
-            name: "NEHA",
-            rank: "1",
-            class: "B.Com.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/40.png"
-        },
-        {
-            name: "AARTI",
-            rank: "1",
-            class: "B.Com.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/41.png"
-        },
-        {
-            name: "MUSKAN YADAV",
-            rank: "1",
-            class: "B.COM.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/42.png"
-        },
-        {
-            name: "HARSHITA",
-            rank: "1",
-            class: "B.A",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/43.png"
-        },
-        {
-            name: "SNEHA",
-            rank: "1",
-            class: "B.TECH",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/44.png"
-        },
-        {
-            name: "PRIYA",
-            rank: "1",
-            class: "B.Sc (ZH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/45.png"
-        },
-        {
-            name: "EKTA",
-            rank: "1",
-            class: "B.Sc (MH)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/46.png"
-        },
-        {
-            name: "MANISHA",
-            rank: "1",
-            class: "B.COM. (Hons.)",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/47.png"
-        },
-        {
-            name: "MAHAK",
-            rank: "1",
-            class: "B.A",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/48.png"
-        },
-        {
-            name: "PREETI",
-            rank: "1",
-            class: "B.Com.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/49.png"
-        },
-        {
-            name: "NISHA",
-            rank: "1",
-            class: "B.Com.",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/50.png"
-        },
-        {
-            name: "ASHA",
-            rank: "1",
-            class: "B.A",
-            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/51.png"
-        }
+        [
+            {
+                "name": "TAMANNA",
+                "rank": 1,
+                "class": "B.Sc. (PS)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/1.png"
+            },
+            {
+                "name": "ANKITA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/2.png"
+            },
+            {
+                "name": "ANTIM",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/3.png"
+            },
+            {
+                "name": "KAJAL",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/4.png"
+            },
+            {
+                "name": "SUPRIYA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/5.png"
+            },
+            {
+                "name": "SONAM",
+                "rank": 1,
+                "class": "B.Sc. (CH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/6.png"
+            },
+            {
+                "name": "PRIYA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/7.png"
+            },
+            {
+                "name": "HEENA",
+                "rank": 1,
+                "class": "B.Sc. (NM)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/heena.png"
+            },
+            {
+                "name": "SHIWANI",
+                "rank": 1,
+                "class": "B.Sc. (CH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/9.png"
+            },
+            {
+                "name": "KIRAN",
+                "rank": 1,
+                "class": "B.A",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/10.png"
+            },
+            {
+                "name": "NISHA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/11.png"
+            },
+            {
+                "name": "MANJU",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/12.png"
+            },
+            {
+                "name": "SAKSHI",
+                "rank": 1,
+                "class": "B.Sc. (NM)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/13.png"
+            },
+            {
+                "name": "ALKA",
+                "rank": 1,
+                "class": "B.Sc. (Med.)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/14.png"
+            },
+            {
+                "name": "POOJA",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/15.png"
+            },
+            {
+                "name": "ANMOL",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/16.png"
+            },
+            {
+                "name": "RINKI",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/17.png"
+            },
+            {
+                "name": "NIKITA",
+                "rank": 1,
+                "class": "B.Sc. (CH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/18.png"
+            },
+            {
+                "name": "ABHISHEK",
+                "rank": 1,
+                "class": "B.Sc. (CH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/19.png"
+            },
+            {
+                "name": "PRATHAM",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/20.png"
+            },
+            {
+                "name": "SANGEETA",
+                "rank": 1,
+                "class": "B.Sc. (PH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/21.png"
+            },
+            {
+                "name": "MAMTA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/22.png"
+            },
+            {
+                "name": "AMBIKA",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/23.png"
+            },
+            {
+                "name": "PRIYA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/24.png"
+            },
+            {
+                "name": "LATIKA",
+                "rank": 1,
+                "class": "B.Sc. (Med.)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/25.png"
+            },
+            {
+                "name": "EKTA",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/26.png"
+            },
+            {
+                "name": "SUDHA",
+                "rank": 1,
+                "class": "B.Com. (Hons.)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/27.png"
+            },
+            {
+                "name": "TANISHA",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/28.png"
+            },
+            {
+                "name": "POOJA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/29.png"
+            },
+            {
+                "name": "MONIKA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/30.png"
+            },
+            {
+                "name": "ANNU",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/31.png"
+            },
+            {
+                "name": "ALPA",
+                "rank": 1,
+                "class": "B.Sc. (NM)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/32.png"
+            },
+            {
+                "name": "MUSKNAN",
+                "rank": 1,
+                "class": "B.A",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/33.png"
+            },
+            {
+                "name": "PRITI",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/34.png"
+            },
+            {
+                "name": "DIKSHIKA",
+                "rank": 1,
+                "class": "B.Sc. (CH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/35.png"
+            },
+            {
+                "name": "TINKESH",
+                "rank": 1,
+                "class": "B.Sc. (NM)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/36.png"
+            },
+            {
+                "name": "SUDHA",
+                "rank": 1,
+                "class": "B.Com. (H)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/37.png"
+            },
+            {
+                "name": "SHEETAL",
+                "rank": 1,
+                "class": "B.Com.",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/38.png"
+            },
+            {
+                "name": "PAYAL",
+                "rank": 1,
+                "class": "B.Sc. (PH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/39.png"
+            },
+            {
+                "name": "NEHA",
+                "rank": 1,
+                "class": "B.Com.",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/40.png"
+            },
+            {
+                "name": "AARTI",
+                "rank": 1,
+                "class": "B.Com.",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/41.png"
+            },
+            {
+                "name": "PREETI",
+                "rank": 1,
+                "class": "B.Com.",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/42.png"
+            },
+            {
+                "name": "NISHA",
+                "rank": 1,
+                "class": "B.Com.",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/43.png"
+            },
+            {
+                "name": "ASHA",
+                "rank": 1,
+                "class": "B.A",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/44.png"
+            },
+            {
+                "name": "MUSKAN YADAV",
+                "rank": 1,
+                "class": "B.Com.",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/45.png"
+            },
+            {
+                "name": "HARSHITA",
+                "rank": 1,
+                "class": "B.A",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/46.png"
+            },
+            {
+                "name": "SNEHA",
+                "rank": 1,
+                "class": "B.TECH",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/47.png"
+            },
+            {
+                "name": "PRIYA",
+                "rank": 1,
+                "class": "B.Sc. (ZH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/48.png"
+            },
+            {
+                "name": "EKTA",
+                "rank": 1,
+                "class": "B.Sc. (MH)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/49.png"
+            },
+            {
+                "name": "MANISHA",
+                "rank": 1,
+                "class": "B.COM. (Hons.)",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/50.png"
+            },
+            {
+                "name": "MAHAK",
+                "rank": 1,
+                "class": "B.A",
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/51.png"
+            }
+        ]
     ];
 
 
 
     if (branchType !== "college") return null;
 
-   
+
 
     return (
         <>
