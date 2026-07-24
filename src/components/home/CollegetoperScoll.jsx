@@ -86,12 +86,12 @@ export default function CollegetoperScoll() {
             class: "B.Sc. (ZH)",
             image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/7.png"
         },
-        // {
-        //     name: "HEENA",
-        //     rank: "1",
-        //     class: "B.Sc. (NM)",
-        //     image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/8.png"
-        // },
+        {
+            name: "HEENA",
+            rank: "1",
+            class: "B.Sc. (NM)",
+            image: "https://admin.yaduvanshigroup.edu.in/uploads/college-top/heena.png"
+        },
         {
             name: "SHIWANI",
             rank: "1",
