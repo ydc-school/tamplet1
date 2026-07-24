@@ -44,7 +44,7 @@ export default function CollegetoperScoll() {
 
 
     const cardData = [
-        [
+        
             {
                 "name": "TAMANNA",
                 "rank": 1,
@@ -351,7 +351,7 @@ export default function CollegetoperScoll() {
                 "class": "B.A",
                 "image": "https://admin.yaduvanshigroup.edu.in/uploads/college-top/51.png"
             }
-        ]
+        
     ];
 
 
