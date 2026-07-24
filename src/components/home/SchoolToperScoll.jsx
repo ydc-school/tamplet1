@@ -42,7 +42,7 @@ export default function SchoolToperScoll() {
 
 
     const cardData = [
-        [
+        
             {
                 "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet1.jpeg"
             },
@@ -79,7 +79,7 @@ export default function SchoolToperScoll() {
             {
                 "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet9.jpeg"
             }
-        ]
+        
     ];
 
 
