@@ -41,35 +41,46 @@ export default function SchoolToperScoll() {
     }, [schoolInfo]);
 
 
-const cardData = [
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0003.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0004.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0005.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0006.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0007.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0008.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0009.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0010.jpg"
-    },
-    {
-        image: "https://admin.yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0012.jpg"
-    }
-];
+    const cardData = [
+        [
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet1.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet10.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet11.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet12.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet2.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet3.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet4.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet5.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet6.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet7.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet8.jpeg"
+            },
+            {
+                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet9.jpeg"
+            }
+        ]
+    ];
 
 
 
