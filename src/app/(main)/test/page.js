@@ -4,18 +4,17 @@ import { useEffect, useRef } from "react";
 
 const DEFAULT_IMAGES = [
 
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0003.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0004.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0005.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0006.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0007.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0008.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0009.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0010.jpg",
-  "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0012.jpg"
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0003.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0004.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0005.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0006.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0007.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0008.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0009.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0010.jpg", },
+  { src: "https://yaduvanshigroup.edu.in/uploads/Neet-poster/IMG-20260718-WA0012.jpg" },
 
 ];
-
 export default function RoundCarousel({
   images = DEFAULT_IMAGES,
   imageWidth = 300,
