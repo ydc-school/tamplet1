@@ -1,5 +1,10 @@
+'use client';
 import Link from "next/link";
+import { motion } from "motion/react";
+import { fadeUp } from "@/utils/animtion";
+
 import React from 'react'
+
 
 export default function Branch() {
     return (
@@ -13,8 +18,8 @@ export default function Branch() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
 
                         {/* 1. Yaduvanshi College of Engg. & Tech., Narnaul */}
-                        <Link href="https://ycetnnl.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycetnnl.yaduvanshigroup.edu.in/">
+                            <motion.div   {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -23,12 +28,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.) 8607052424</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 2. Yaduvanshi Degree College, Mahendergarh */}
-                        <Link href="https://ydcmgh.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ydcmgh.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvandhi Degree College, Mahendergarh (UG, PG)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -37,12 +42,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Mahendergarh (UG, PG) 8607062424</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 3. Yaduvanshi Degree College, Narnaul */}
-                        <Link href="https://ydcnnl.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ydcnnl.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvandhi Degree College, Narnaul (UG, PG)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -51,12 +56,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Narnaul (UG, PG) 8607052424</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 4. RBS Degree College, Nangal Chaudhary */}
-                        <Link href="https://rbsdcths.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://rbsdcths.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="RBS Degree College, Nangal Chaudhary"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -65,12 +70,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">RBS Degree College, Nangal Chaudhary 8607052323</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 5. Yaduvanshi College of Engg. & Tech., Sohali */}
-                        <Link href="https://ycetsohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycetsohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Sohali (Raj.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -79,12 +84,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Sohali (Raj.) 9728396599</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 6. Yaduvanshi College of Education, Mahendergarh */}
-                        <Link href="https://ycemgh.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycemgh.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Mahendergargh (B.Ed., M.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -93,12 +98,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Mahendergargh (B.Ed., M.Ed.) 7027720275</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 7. Yaduvanshi College of Education, Narnaul */}
-                        <Link href="https://ycennl.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycennl.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Narnaul (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -107,12 +112,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Narnaul (B.Ed.) 8222852523</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 8. Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.) */}
-                        <Link href="https://yiemgh.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://yiemgh.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Nahendergarh (D.El.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -121,12 +126,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.) 7027720275</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 9. Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.) */}
-                        <Link href="https://yioemgh.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://yioemgh.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -135,12 +140,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.) 7027720275</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 10. Yaduvanshi Institute of Education, Narnaul (D.El.Ed.) */}
-                        <Link href="https://yiennl.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://yiennl.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Narnaul (D.El.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -149,12 +154,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.El.Ed.) 8222852523</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 11. Yaduvanshi Institute of Education, Narnaul (D.P.Ed.) */}
-                        <Link href="https://yioennl.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://yioennl.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Narnaul (D.P.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -163,12 +168,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.P.Ed.) 8222852523</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 12. Yaduvanshi College of Education, Sohali (B.Ed.) */}
-                        <Link href="https://ycesohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycesohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -177,12 +182,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (B.Ed.) 9991904068</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 13. Yaduvanshi College of Education, Sohali (4-Years Integrated) */}
-                        <Link href="https://ycoesohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycoesohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (4-Years Integrated)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -191,12 +196,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (4-Years Integrated) 9991904068</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 14. Yaduvanshi Institute of Education, Sohali (D.El.Ed.) */}
-                        <Link href="https://yiesohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://yiesohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (D.El.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -205,12 +210,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (D.El.Ed.) 9991904068</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 15. Yaduvanshi College of Engineering & Technology, Sohali */}
-                        <Link href="https://ycetsohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ycetsohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engineering & Technology, Sohali"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -219,12 +224,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engineering & Technology, Sohali 9728396599</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 16. Yaduvanshi Polytechnic, Sohali */}
-                        <Link href="https://ypsohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ypsohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Polytechnic, Sohali"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -233,12 +238,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Polytechnic, Sohali 9728396599</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 17. Yaduvanshi Pvt. ITI, Sohali */}
-                        <Link href="https://yitisohali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://yitisohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Pvt. ITI, Sohali"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -247,12 +252,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Pvt. ITI, Sohali 9728396599</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 18. Hitkari College of Education, Ch. Dadri */}
-                        <Link href="https://hce.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://hce.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -261,12 +266,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.) 7027135135</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 19. Sant Roshan Lal College of Education (B.Ed.) */}
-                        <Link href="https://srlcoe.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://srlcoe.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Sant Roshan Lal College of education (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -275,23 +280,23 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (B.Ed.) 7027135135</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 20. Sant Roshan Lal College of Education (D.El.Ed.) */}
-                        <Link href="https://srlce.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://srlce.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Sant Roshan Lal College of education (D.El.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/MANDOLA%20SCHOOL%20YSN.jpg" />
-                                        
+
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (D.El.Ed.) 7027135135</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                     </div>
                 </div>
@@ -306,8 +311,8 @@ export default function Branch() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
 
                         {/* 1. Yaduvanshi Shiksha Niketan, MahenderGarh */}
-                        <Link href="https://ysnmgh.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnmgh.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, MahenderGarh"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -316,12 +321,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, MahenderGarh 9466341799</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 2. Yaduvanshi Shiksha Niketan, Narnaul */}
-                        <Link href="https://ysnnnl.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnnnl.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Narnaul"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -330,12 +335,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Narnaul 9468061387</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 3. Yaduvanshi Shiksha Niketan, Nangal Chaudhary */}
-                        <Link href="https://ysnnch.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnnch.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Nangal Chaudhary"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -344,12 +349,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Nangal Chaudhary 9050784050</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 4. Yaduvanshi Shiksha Niketan, Satnali */}
-                        <Link href="https://ysnsatnali.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnsatnali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Satnali"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -358,12 +363,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Satnali 9812330666</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 5. Yaduvanshi Shiksha Niketan, Kanina */}
-                        <Link href="https://ysnkanina.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnkanina.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Kanina"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -372,12 +377,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kanina 9053048100</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 6. Yaduvanshi Shiksha Niketan, Rewari */}
-                        <Link href="https://ysnrewari.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnrewari.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Rewari"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -386,12 +391,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Rewari 8901167461</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 7. Yaduvanshi Shiksha Niketan, Kosli */}
-                        <Link href="https://ysnkosli.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnkosli.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Kosli"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -400,12 +405,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kosli 9053002458</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 8. Yaduvanshi Shiksha Niketan, Gurugram Sec-33 */}
-                        <Link href="https://ysngurugramsec33.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysngurugramsec33.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Gurugram Sec-33"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -414,12 +419,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-33 9053905381</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 9. Yaduvanshi Shiksha Niketan, Gurugram Sec-92 */}
-                        <Link href="https://ysngurugramsec92.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysngurugramsec92.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Gurugram Sec-92"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -428,12 +433,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-92 9053905384</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 10. Yaduvanshi Shiksha Niketan, Charkhi Dadri */}
-                        <Link href="https://hvmmandola.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://hvmmandola.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Charkhi Dadri"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -442,12 +447,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Charkhi Dadri 7027134134</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 11. Yaduvanshi Shiksha Niketan, Hansi */}
-                        <Link href="https://ysnhansi.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnhansi.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Hansi"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -456,12 +461,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Hansi 9053905366</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 12. Yaduvanshi Shiksha Niketan, Jind */}
-                        <Link href="https://ysnjind.yaduvanshigroup.edu.in">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://ysnjind.yaduvanshigroup.edu.in">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Jind"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -470,12 +475,12 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Jind 9053905361</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
 
                         {/* 13. Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) */}
-                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -484,11 +489,11 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) 9813602411</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
                         {/* 13. Yaduvanshi Shiksha Niketan, Sohali, Jhunjhunu */}
-                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -497,11 +502,11 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Sohali, Jhunjhumnu 9991217659</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
                         {/* 13. Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) */}
-                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
-                            <div className="bg-white group overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 h-full">
+                        <Link  href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -510,8 +515,8 @@ export default function Branch() {
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) 9053533801</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </motion.div>
+                      </Link >
                     </div>
                 </div>
             </section>
