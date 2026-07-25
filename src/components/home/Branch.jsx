@@ -18,7 +18,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/YADUVANSHI%20ENGG.%20COLLEGE%20NARNAUL.jpg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/Yaduvanshi%20Institute%20of%20Education%2C%20Narnaul%20(D.El.Ed.).jpg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.) 8607052424</p>
@@ -46,7 +46,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvandhi Degree College, Narnaul (UG, PG)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/1782287672139-0ecb94c1300bd369.jpeg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/Yaduvanshi%20College%20of%20Education%2C%20Narnaul%20(B.Ed.).jpg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Narnaul (UG, PG) 8607052424</p>
@@ -102,7 +102,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Narnaul (B.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/YADUVANSHI%20ENGG.%20COLLEGE%20NARNAUL.jpg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/Yaduvanshi%20College%20of%20Engg.%20%26%20Tech.%2C%20Narnaul%20(B.Tech.%2C%20M.Tech.).jpg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Narnaul (B.Ed.) 8222852523</p>
@@ -116,7 +116,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Nahendergarh (D.El.Ed.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/YADUVANSHI%20COLLEGE%20MAHENDERGARH.jpg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/Yaduvanshi%20Institute%20of%20Education%2C%20Narnaul%20(D.El.Ed.).jpg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.) 7027720275</p>
