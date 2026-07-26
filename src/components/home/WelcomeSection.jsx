@@ -4,6 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { useSchool } from "@/context/SchoolContext";
+import { motion } from "motion/react";
+import { fadeUp } from "@/utils/animtion";
+
+
 
 export default function WelcomeSection() {
   const [welcomeData, setWelcomeData] = useState(null);
@@ -45,11 +49,11 @@ export default function WelcomeSection() {
         <div className="max-w-4xl mx-auto px-gutter text-center relative z-10">
           <div className="mb-10 flex flex-col items-center">
             <span className="material-symbols-outlined text-heritage-gold text-5xl mb-4">format_quote</span>
-            <h2 className="font-headline-lg text-headline-lg text-on-surface italic leading-relaxed">
+            <motion.h2 {...fadeUp} className="font-headline-lg text-headline-lg text-on-surface italic leading-relaxed">
               {welcomeData?.Title}
-            </h2>
+            </motion.h2>
           </div>
-          <div
+          <motion.div {...fadeUp}
             className="space-y-6 text-on-surface-variant font-body-lg text-body-lg max-w-5xl mx-auto border-t border-outline-variant pt-10">
             {welcomeData.Message && (
               <div
@@ -60,18 +64,18 @@ export default function WelcomeSection() {
 
 
             {welcomeData.Read_More_Url && (
-              <Link href={welcomeData.Read_More_Url}  className="pt-6">
+              <Link href={welcomeData.Read_More_Url} className="pt-6">
                 <button
                   className="border-2 border-deep-maroon text-deep-maroon hover:bg-deep-maroon hover:text-white transition-all py-3 px-8 font-label-md text-label-md uppercase tracking-widest">
                   Explore More
                 </button>
               </Link>
             )}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-    
+
     </>
   );
 }

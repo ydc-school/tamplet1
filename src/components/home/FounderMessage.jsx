@@ -8,10 +8,18 @@ import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { motion } from "motion/react";
+import { fadeUp } from "@/utils/animtion";
+
+
+
+
 
 export default function FounderMessage() {
   const [founders, setFounders] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -19,10 +27,10 @@ export default function FounderMessage() {
         const response = await axios.get("https://yaduvanshigroup.edu.in/api/client/messages");
         if (response.data.status === "success") {
           const valid = response?.data?.data?.data;
-           const sortedMessages = valid.sort((a, b) => {
+          const sortedMessages = valid.sort((a, b) => {
             return (a.Index_No || 0) - (b.Index_No || 0);
           });
-        
+
           setFounders(sortedMessages);
         }
       } catch (error) {
@@ -35,7 +43,7 @@ export default function FounderMessage() {
   }, []);
 
 
- if (founders.length == 0) return null;
+  if (founders.length == 0) return null;
 
 
 
@@ -90,7 +98,7 @@ export default function FounderMessage() {
       >
         {founders?.map((founder) => (
           <SwiperSlide key={founder?.Id} className="h-auto">
-            <div className="flex flex-col h-full bg-white border border-gray-100 rounded-3xl p-6 transition-all duration-300 hover:border-rps-navy/30">
+            <motion.div {...fadeUp} className="flex flex-col h-full bg-white border border-gray-100 rounded-3xl p-6 transition-all duration-300 hover:border-rps-navy/30">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gray-100 mb-6">
                 <img
                   alt={founder?.Roll || "Founder"}
@@ -103,7 +111,7 @@ export default function FounderMessage() {
                 <h3 className="text-xl font-bold text-gray-950 tracking-tight line-clamp-1">
                   {founder?.Roll}
                 </h3>
-                
+
                 <div className="relative flex-grow">
                   <p className="text-gray-600 leading-relaxed italic text-base line-clamp-4">
                     "{founder?.Description}"
@@ -111,16 +119,16 @@ export default function FounderMessage() {
                 </div>
 
                 <div className="pt-4 border-t border-gray-100 mt-auto">
-                  <Link 
-                    className="inline-flex items-center gap-2 text-rps-navy font-bold text-sm tracking-wider uppercase group hover:text-rps-light-blue transition-colors duration-200" 
+                  <Link
+                    className="inline-flex items-center gap-2 text-rps-navy font-bold text-sm tracking-wider uppercase group hover:text-rps-light-blue transition-colors duration-200"
                     href={founder?.Read_More_Url}
                   >
-                    Read Full Message 
+                    Read Full Message
                     <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
