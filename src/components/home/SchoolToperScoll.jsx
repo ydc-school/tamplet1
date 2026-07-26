@@ -129,7 +129,7 @@ export default function SchoolToperScoll() {
 
             <div className="w-full h-screen relative ">
 
-                <RoundCarousel images={cardData} />
+                <RoundCarousel  />
 
             </div>
         </>
