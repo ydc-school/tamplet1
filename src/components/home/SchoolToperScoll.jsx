@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 
 import { useSchool } from "@/context/SchoolContext";
+import RoundCarousel from "../ui/RoundCarousel";
 
 
 
@@ -129,7 +130,7 @@ export default function SchoolToperScoll() {
 
             <div className="w-full h-screen relative ">
 
-                <RoundCarousel  />
+                <RoundCarousel images={cardData} />
 
             </div>
         </>
