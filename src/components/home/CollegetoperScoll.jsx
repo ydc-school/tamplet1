@@ -423,11 +423,7 @@ export default function CollegetoperScoll() {
 
 
 
-            <div className="w-full h-screen relative ">
-
-                <RoundCarousel />
-
-            </div>
+            
 
         </>
     );

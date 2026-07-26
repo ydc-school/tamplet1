@@ -42,44 +42,44 @@ export default function SchoolToperScoll() {
 
 
     const cardData = [
-        
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet1.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet10.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet11.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet12.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet2.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet3.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet4.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet5.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet6.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet7.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet8.jpeg"
-            },
-            {
-                "image": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet9.jpeg"
-            }
-        
+
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet1.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet10.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet11.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet12.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet2.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet3.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet4.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet5.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet6.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet7.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet8.jpeg"
+        },
+        {
+            "src": "https://admin.yaduvanshigroup.edu.in/uploads/group-school-pop/schoolgroup-neet9.jpeg"
+        }
+
     ];
 
 
@@ -105,7 +105,7 @@ export default function SchoolToperScoll() {
         }
       `}</style>
 
-            <div className="overflow-hidden bg-academic-gold py-8 w-full relative max-w-6xl mx-auto" onMouseEnter={() => setStopScroll(true)} onMouseLeave={() => setStopScroll(false)}>
+            {/* <div className="overflow-hidden bg-academic-gold py-8 w-full relative max-w-6xl mx-auto" onMouseEnter={() => setStopScroll(true)} onMouseLeave={() => setStopScroll(false)}>
                 <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent" />
                 <div className="marquee-inner flex w-fit" style={{ animationPlayState: stopScroll ? "paused" : "running", animationDuration: cardData.length * 2500 + "ms" }}>
                     <div className="flex">
@@ -124,6 +124,13 @@ export default function SchoolToperScoll() {
                     </div>
                 </div>
                 <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent" />
+            </div> */}
+
+
+            <div className="w-full h-screen relative ">
+
+                <RoundCarousel images={cardData} />
+
             </div>
         </>
     );
