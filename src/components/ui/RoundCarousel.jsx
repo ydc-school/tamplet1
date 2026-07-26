@@ -20,7 +20,7 @@ export default function RoundCarousel({
   imageWidth = 300,
   imageHeight = 300,
   spacing = 3,
-  speed = 7,
+  speed = 2,
   direction = "right",
   drag = true,
   sensitivity = 5,
