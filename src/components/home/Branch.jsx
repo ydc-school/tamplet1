@@ -10,6 +10,225 @@ export default function Branch() {
     return (
         <>
             <section className="py-section-padding bg-surface-container-low" id="schools">
+                <div className="max-w-container-max mx-auto px-gutter mb-8 flex flex-col items-center text-center mb-stack-lg">
+                    <h2 className="font-headline-lg text-headline-lg text-heritage-navy ">SCHOOL CAMPUSES</h2>
+                    <div className="w-48 h-1 bg-academic-gold"></div>
+                </div>
+                <div className="max-w-screen mx-auto px-gutter">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
+
+                        {/* 1. Yaduvanshi Shiksha Niketan, MahenderGarh */}
+                        <Link href="https://ysnmgh.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, MahenderGarh"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196595531-ed03fce9ad8d817e.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, MahenderGarh 9466341799</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 2. Yaduvanshi Shiksha Niketan, Narnaul */}
+                        <Link href="https://ysnnnl.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Narnaul"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196658975-60154148faf9770c.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Narnaul 9468061387</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 3. Yaduvanshi Shiksha Niketan, Nangal Chaudhary */}
+                        <Link href="https://ysnnch.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Nangal Chaudhary"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/THANWAS%20NANGAL%20CHOUDHARY%20CAMPUS.jpg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Nangal Chaudhary 9050784050</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 4. Yaduvanshi Shiksha Niketan, Satnali */}
+                        <Link href="https://ysnsatnali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Satnali"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196860315-7e01b30c0b6157e0.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Satnali 9812330666</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 5. Yaduvanshi Shiksha Niketan, Kanina */}
+                        <Link href="https://ysnkanina.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Kanina"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196903986-6f37a91ea40646af.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kanina 9053048100</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 6. Yaduvanshi Shiksha Niketan, Rewari */}
+                        <Link href="https://ysnrewari.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Rewari"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196982829-2596b7d1b38ea274.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Rewari 8901167461</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 7. Yaduvanshi Shiksha Niketan, Kosli */}
+                        <Link href="https://ysnkosli.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Kosli"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197050002-2b8495d52b87ee98.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kosli 9053002458</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 8. Yaduvanshi Shiksha Niketan, Gurugram Sec-33 */}
+                        <Link href="https://ysngurugramsec33.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Gurugram Sec-33"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197114404-418695cc18b74268.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-33 9053905381</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 9. Yaduvanshi Shiksha Niketan, Gurugram Sec-92 */}
+                        <Link href="https://ysngurugramsec92.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Gurugram Sec-92"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197147934-0581a80a28047452.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-92 9053905384</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 10. Yaduvanshi Shiksha Niketan, Charkhi Dadri */}
+                        <Link href="https://hvmmandola.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Charkhi Dadri"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197935464-abe1046539ebe47c.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Charkhi Dadri 7027134134</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 11. Yaduvanshi Shiksha Niketan, Hansi */}
+                        <Link href="https://ysnhansi.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Hansi"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197223758-8f82ad88c8da3697.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Hansi 9053905366</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 12. Yaduvanshi Shiksha Niketan, Jind */}
+                        <Link href="https://ysnjind.yaduvanshigroup.edu.in">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Jind"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197281143-cd38ea07ac981a01.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Jind 9053905361</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+
+                        {/* 13. Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) */}
+                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/BHIWANI%20CAMPUS.jpg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) 9813602411</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+                        {/* 13. Yaduvanshi Shiksha Niketan, Sohali, Jhunjhunu */}
+                        <Link href="https://ysnsohali.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Sohali, Jhunjhumnu 9991217659</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+                        {/* 13. Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) */}
+                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
+                                <div className="aspect-video overflow-hidden">
+                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197877604-b3d67efa8cda0482.jpeg" />
+                                </div>
+                                <div className="p-4 border-t-4 border-heritage-navy">
+                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) 9053533801</p>
+                                </div>
+                            </motion.div>
+                        </Link >
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-section-padding bg-surface-container-low" id="schools">
                 <div className="max-w-screen mx-auto px-gutter mb-8 flex flex-col items-center text-center mb-stack-lg">
                     <h2 className="font-headline-lg text-headline-lg text-heritage-navy ">HIGHER EDUCATION CAMPUSES</h2>
                     <div className="w-48 h-1 bg-academic-gold"></div>
@@ -18,7 +237,7 @@ export default function Branch() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
 
                         {/* 1. Yaduvanshi College of Engg. & Tech., Narnaul */}
-                        <Link  href="https://ycetnnl.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycetnnl.yaduvanshigroup.edu.in/">
                             <motion.div   {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.)"
@@ -29,10 +248,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Narnaul (B.Tech., M.Tech.) 8607052424</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 2. Yaduvanshi Degree College, Mahendergarh */}
-                        <Link  href="https://ydcmgh.yaduvanshigroup.edu.in/">
+                        <Link href="https://ydcmgh.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvandhi Degree College, Mahendergarh (UG, PG)"
@@ -43,10 +262,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Mahendergarh (UG, PG) 8607062424</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 3. Yaduvanshi Degree College, Narnaul */}
-                        <Link  href="https://ydcnnl.yaduvanshigroup.edu.in/">
+                        <Link href="https://ydcnnl.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvandhi Degree College, Narnaul (UG, PG)"
@@ -57,10 +276,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvandhi Degree College, Narnaul (UG, PG) 8607052424</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 4. RBS Degree College, Nangal Chaudhary */}
-                        <Link  href="https://rbsdcths.yaduvanshigroup.edu.in/">
+                        <Link href="https://rbsdcths.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="RBS Degree College, Nangal Chaudhary"
@@ -71,10 +290,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">RBS Degree College, Nangal Chaudhary 8607052323</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 5. Yaduvanshi College of Engg. & Tech., Sohali */}
-                        <Link  href="https://ycetsohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycetsohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Sohali (Raj.)"
@@ -85,10 +304,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Sohali (Raj.) 9728396599</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 6. Yaduvanshi College of Education, Mahendergarh */}
-                        <Link  href="https://ycemgh.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycemgh.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Mahendergargh (B.Ed., M.Ed.)"
@@ -99,10 +318,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Mahendergargh (B.Ed., M.Ed.) 7027720275</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 7. Yaduvanshi College of Education, Narnaul */}
-                        <Link  href="https://ycennl.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycennl.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Narnaul (B.Ed.)"
@@ -113,10 +332,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Narnaul (B.Ed.) 8222852523</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 8. Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.) */}
-                        <Link  href="https://yiemgh.yaduvanshigroup.edu.in/">
+                        <Link href="https://yiemgh.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Nahendergarh (D.El.Ed.)"
@@ -127,10 +346,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (D.El.Ed.) 7027720275</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 9. Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.) */}
-                        <Link  href="https://yioemgh.yaduvanshigroup.edu.in/">
+                        <Link href="https://yioemgh.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.)"
@@ -141,10 +360,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Mahendergarh (B.P.Ed.) 7027720275</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 10. Yaduvanshi Institute of Education, Narnaul (D.El.Ed.) */}
-                        <Link  href="https://yiennl.yaduvanshigroup.edu.in/">
+                        <Link href="https://yiennl.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Narnaul (D.El.Ed.)"
@@ -155,10 +374,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.El.Ed.) 8222852523</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 11. Yaduvanshi Institute of Education, Narnaul (D.P.Ed.) */}
-                        <Link  href="https://yioennl.yaduvanshigroup.edu.in/">
+                        <Link href="https://yioennl.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Institute of Education, Narnaul (D.P.Ed.)"
@@ -169,10 +388,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Institute of Education, Narnaul (D.P.Ed.) 8222852523</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 12. Yaduvanshi College of Education, Sohali (B.Ed.) */}
-                        <Link  href="https://ycesohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycesohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (B.Ed.)"
@@ -183,10 +402,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (B.Ed.) 9991904068</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 13. Yaduvanshi College of Education, Sohali (4-Years Integrated) */}
-                        <Link  href="https://ycoesohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycoesohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (4-Years Integrated)"
@@ -197,10 +416,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (4-Years Integrated) 9991904068</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 14. Yaduvanshi Institute of Education, Sohali (D.El.Ed.) */}
-                        <Link  href="https://yiesohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://yiesohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Education, Sohali (D.El.Ed.)"
@@ -211,10 +430,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Education, Sohali (D.El.Ed.) 9991904068</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 15. Yaduvanshi College of Engineering & Technology, Sohali */}
-                        <Link  href="https://ycetsohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://ycetsohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engineering & Technology, Sohali"
@@ -225,10 +444,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engineering & Technology, Sohali 9728396599</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 16. Yaduvanshi Polytechnic, Sohali */}
-                        <Link  href="https://ypsohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://ypsohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Polytechnic, Sohali"
@@ -239,10 +458,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Polytechnic, Sohali 9728396599</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 17. Yaduvanshi Pvt. ITI, Sohali */}
-                        <Link  href="https://yitisohali.yaduvanshigroup.edu.in/">
+                        <Link href="https://yitisohali.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Pvt. ITI, Sohali"
@@ -253,10 +472,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Pvt. ITI, Sohali 9728396599</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 18. Hitkari College of Education, Ch. Dadri */}
-                        <Link  href="https://hce.yaduvanshigroup.edu.in/">
+                        <Link href="https://hce.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.)"
@@ -267,10 +486,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Hitkari College of Education, Mandola, Ch. Dadri (B.Ed.) 7027135135</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 19. Sant Roshan Lal College of Education (B.Ed.) */}
-                        <Link  href="https://srlcoe.yaduvanshigroup.edu.in/">
+                        <Link href="https://srlcoe.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Sant Roshan Lal College of education (B.Ed.)"
@@ -281,10 +500,10 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (B.Ed.) 7027135135</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                         {/* 20. Sant Roshan Lal College of Education (D.El.Ed.) */}
-                        <Link  href="https://srlce.yaduvanshigroup.edu.in/">
+                        <Link href="https://srlce.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Sant Roshan Lal College of education (D.El.Ed.)"
@@ -296,231 +515,11 @@ export default function Branch() {
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Sant Roshan Lal College of education (D.El.Ed.) 7027135135</p>
                                 </div>
                             </motion.div>
-                      </Link >
+                        </Link >
 
                     </div>
                 </div>
             </section>
-
-            <section className="py-section-padding bg-surface-container-low" id="schools">
-                <div className="max-w-container-max mx-auto px-gutter mb-8 flex flex-col items-center text-center mb-stack-lg">
-                    <h2 className="font-headline-lg text-headline-lg text-heritage-navy ">SCHOOL CAMPUSES</h2>
-                    <div className="w-48 h-1 bg-academic-gold"></div>
-                </div>
-                <div className="max-w-screen mx-auto px-gutter">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
-
-                        {/* 1. Yaduvanshi Shiksha Niketan, MahenderGarh */}
-                        <Link  href="https://ysnmgh.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, MahenderGarh"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196595531-ed03fce9ad8d817e.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, MahenderGarh 9466341799</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 2. Yaduvanshi Shiksha Niketan, Narnaul */}
-                        <Link  href="https://ysnnnl.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Narnaul"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196658975-60154148faf9770c.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Narnaul 9468061387</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 3. Yaduvanshi Shiksha Niketan, Nangal Chaudhary */}
-                        <Link  href="https://ysnnch.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Nangal Chaudhary"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/THANWAS%20NANGAL%20CHOUDHARY%20CAMPUS.jpg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Nangal Chaudhary 9050784050</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 4. Yaduvanshi Shiksha Niketan, Satnali */}
-                        <Link  href="https://ysnsatnali.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Satnali"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196860315-7e01b30c0b6157e0.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Satnali 9812330666</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 5. Yaduvanshi Shiksha Niketan, Kanina */}
-                        <Link  href="https://ysnkanina.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Kanina"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196903986-6f37a91ea40646af.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kanina 9053048100</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 6. Yaduvanshi Shiksha Niketan, Rewari */}
-                        <Link  href="https://ysnrewari.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Rewari"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782196982829-2596b7d1b38ea274.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Rewari 8901167461</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 7. Yaduvanshi Shiksha Niketan, Kosli */}
-                        <Link  href="https://ysnkosli.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Kosli"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197050002-2b8495d52b87ee98.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Kosli 9053002458</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 8. Yaduvanshi Shiksha Niketan, Gurugram Sec-33 */}
-                        <Link  href="https://ysngurugramsec33.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Gurugram Sec-33"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197114404-418695cc18b74268.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-33 9053905381</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 9. Yaduvanshi Shiksha Niketan, Gurugram Sec-92 */}
-                        <Link  href="https://ysngurugramsec92.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Gurugram Sec-92"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197147934-0581a80a28047452.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Gurugram Sec-92 9053905384</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 10. Yaduvanshi Shiksha Niketan, Charkhi Dadri */}
-                        <Link  href="https://hvmmandola.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Charkhi Dadri"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197935464-abe1046539ebe47c.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Charkhi Dadri 7027134134</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 11. Yaduvanshi Shiksha Niketan, Hansi */}
-                        <Link  href="https://ysnhansi.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Hansi"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197223758-8f82ad88c8da3697.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Hansi 9053905366</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 12. Yaduvanshi Shiksha Niketan, Jind */}
-                        <Link  href="https://ysnjind.yaduvanshigroup.edu.in">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Jind"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197281143-cd38ea07ac981a01.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Jind 9053905361</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-
-                        {/* 13. Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) */}
-                        <Link  href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/BHIWANI%20CAMPUS.jpg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani) 9813602411</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-                        {/* 13. Yaduvanshi Shiksha Niketan, Sohali, Jhunjhunu */}
-                        <Link  href="https://ysnsohali.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Sohali, Jhunjhumnu 9991217659</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-                        {/* 13. Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) */}
-                        <Link  href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
-                            <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
-                                <div className="aspect-video overflow-hidden">
-                                    <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782197877604-b3d67efa8cda0482.jpeg" />
-                                </div>
-                                <div className="p-4 border-t-4 border-heritage-navy">
-                                    <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) 9053533801</p>
-                                </div>
-                            </motion.div>
-                      </Link >
-                    </div>
-                </div>
-            </section>
-
         </>
     )
 }
