@@ -105,8 +105,8 @@ export default function Navbar() {
                     <div className="absolute left-0 mt-2 w-52 bg-heritage-navy border border-academic-gold/20 rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2">
                       {cat.pages.map((page) => (
                         <Link
-                          key={page.Id}
-                          href={`/pages/${slugify(page.Name)}/${page.Id}`}
+                          key={page.Slug}
+                          href={`/${slugify(cat.Slug)}/${page.Slug}`}
                           className="block font-label-caps text-2xs text-white hover:text-academic-gold px-3 py-2 transition-colors duration-150"
                         >
                           {page.Name.replace(/-/g, " ")}
