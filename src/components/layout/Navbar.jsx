@@ -229,7 +229,7 @@ export default function Navbar() {
                         {cat.pages.map((page) => (
                           <Link
                             key={page.Id}
-                            href={`/pages/${slugify(page.Name)}/${page.Id}`}
+                            href={`/${slugify(cat.Slug)}/${page.Slug}`}
                             className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
                           >
                             {page.Name.replace(/-/g, " ")}
