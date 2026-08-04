@@ -287,10 +287,9 @@ export default function Navbar() {
                     <div className={`flex flex-col pl-6 bg-gray-50/50 rounded-b-md overflow-hidden transition-all duration-300 ${openCategory === cat.Id ? "max-h-[500px] py-1 border-l-2 border-amber-400 ml-4" : "max-h-0"}`}>
                       {cat.pages.map((page) => (
                         <Link
-                          key={page.Id}
-                          href={`/pages/${slugify(page.Name)}/${page.Id}`}
-                          onClick={handleMobileLink}
-                          className="px-4 py-2 text-xs font-semibold text-gray-600 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
+                          key={page.Slug}
+                          href={`/${slugify(cat.Slug)}/${page.Slug}`}
+                          className="block font-label-caps text-2xs text-white hover:text-academic-gold px-3 py-2 transition-colors duration-150"
                         >
                           {page.Name.replace(/-/g, " ")}
                         </Link>
