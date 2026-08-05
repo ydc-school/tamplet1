@@ -72,9 +72,6 @@ export default function Navbar() {
 
 
 
-
-
-
   return (
     <>
       <header className="w-full relative z-50" ref={menuRef}>
@@ -134,15 +131,6 @@ export default function Navbar() {
             </div>
           </div>
         </nav>
-
-
-
-
-
-
-
-
-
 
         <div className="bg-white  border-b border-gray-100">
           <div className="max-w-7xl mx-auto  px-6 flex justify-between items-center gap-4">
