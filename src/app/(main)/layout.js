@@ -1,16 +1,15 @@
-import Footer from "@/components/layout/Footer";
-import Link from "next/link";
-import MainThemeLayout from "@/themes/main/layout";
 
+import Link from "next/link";
+import DefaultThemeLayout from "@/themes/default/layout";
+// import "../globals.css"
 
 export default function MainLayout({ children }) {
   return (
     <>
 
-      <MainThemeLayout>
+      <DefaultThemeLayout>
         {children}
-
-      </MainThemeLayout>
+      </DefaultThemeLayout>
 
     </>
 

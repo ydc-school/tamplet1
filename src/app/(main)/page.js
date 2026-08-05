@@ -1,6 +1,6 @@
 import React from 'react'
-import DefaultTheme from './DefaultTheme'
-import MainTheme from '@/themes/main/MainTheme'
+
+import MainTheme from '@/themes/default/DefualtTheme'
 
 
 export default function page() {

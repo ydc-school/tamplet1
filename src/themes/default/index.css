@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@config "./tailwind.config.js";
+
+
+
+
+
+
+@layer components {
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+}
+
+
+
+
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.quote-bg::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 120px;
+  font-family: 'Playfair Display';
+  color: rgba(142, 27, 49, 0.05);
+  line-height: 1;
+}
+
+
+
+/**
+ * Computes a CSS calc function that betweens a value from
+ * A to B over viewport-width A to viewport-width B.
+ * Requires a media query to cap the value at B.
+ */
+.gallery-body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2e8ed;
+  overflow: hidden;
+}
+
+.gallery-body .gallery {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  /* 10 images */
+  transition: all 0.3s cubic-bezier(0.5, 0.8, 0.5, 0.2);
+
+  border-radius: 10px;
+  cursor: zoom-in;
+
+}
+
+.gallery img {
+  width: 200px;
+  height: 200px;
+  transition: all 0.15s cubic-bezier(0.3, 0.1, 0.3, 0.85);
+  object-fit: contain;
+
+}
+
+
+.gallery img:hover {
+  scale: 2;
+  transition: all 0.3s cubic-bezier(0.3, 0.1, 0.3, 0.85);
+}
+
+
+
+@media (max-width: 600px) {
+  .gallery-body {
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #d3d9de;
+    overflow: hidden;
+  }
+
+  .gallery-body .gallery {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    /* 10 images */
+    transition: all 0.3s cubic-bezier(0.5, 0.8, 0.5, 0.2);
+
+    border-radius: 10px;
+    cursor: zoom-in;
+
+  }
+
+  .gallery img:hover {
+    scale: 7;
+    transition: all 0.3s cubic-bezier(0.3, 0.1, 0.3, 0.85);
+  }
+
+
+
+
+
+
+}
