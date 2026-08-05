@@ -12,11 +12,11 @@ module.exports = {
           '100%': { transform: 'translateX(calc(-100% + 100vw))' },
         },
         moving: {
-        '0%': { transform: 'rotate(0deg)' },
-        '100%': { transform: 'rotate(360deg)' },
-      }
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        }
       },
-      
+
       "colors": {
         "surface-container-lowest": "#ffffff",
         "surface-container-low": "#f6f3f2",
@@ -29,6 +29,7 @@ module.exports = {
         "secondary": "#096a5e",
         "on-secondary-fixed": "#00201b",
         "primary": "#6d001d",
+        "primary-main": "#001e40",
         "surface": "#fcf9f8",
         "on-secondary-container": "#167164",
         "surface-container-highest": "#e5e2e1",
@@ -91,6 +92,11 @@ module.exports = {
         "body-md": ["--font-montserrat"],
         "label-mdo": ["--font-montserrat"],
         "headline-md": ["--font-playfair"],
+
+        "headline-lg-main": ['var(--font-hanken-grotesk)'],
+        "display-lg-mobile-main": ['var(--font-hanken-grotesk)'],
+        "stat-number-main": ['var(--font-hanken-grotesk)'],
+
         "headline-lg": ["--font-playfair"],
         "headline-xl": ["--font-playfair"],
         "headline-lg-mobile": ["--font-playfair"]

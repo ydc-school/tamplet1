@@ -1,21 +1,20 @@
 import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
-import { Mainconfig } from "@/themes/main/Mainconfig";
-
-
-
 import Link from "next/link";
+import MainThemeLayout from "@/themes/main/layout";
 
 
 export default function MainLayout({ children }) {
-  return true ? (
+  return (
     <>
 
-      {children}
+      <MainThemeLayout>
+        {children}
 
-    </>)
-    : (
-      <Mainconfig />
-    )
+      </MainThemeLayout>
+
+    </>
+
+
+  )
 
 }

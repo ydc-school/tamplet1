@@ -16,7 +16,6 @@ import {
 } from "@/lib/seo";
 import { getSeoData } from "@/utils/getSeoData";
 
-import "./globals.css";
 
 // ─── Fonts ─────────────────────────────────
 const montserrat = Montserrat({

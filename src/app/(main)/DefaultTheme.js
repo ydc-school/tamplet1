@@ -31,6 +31,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 
+
+
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
     "Explore academics, admissions, facilities, achievements, notices, student toppers, galleries, and latest updates from Yaduvanshi Group of Institutions.";
