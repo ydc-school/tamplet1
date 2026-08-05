@@ -209,11 +209,6 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link href="/achievements" className="inline-block px-4 py-3.5 hover:text-amber-400 transition-colors border-b-2 border-transparent hover:border-amber-400">
-                  Achievements
-                </Link>
-              </li>
 
               {categories.map((cat) => (
                 <li key={cat.Id} className="relative group py-3.5 px-4 cursor-pointer">
