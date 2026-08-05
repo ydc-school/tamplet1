@@ -1,13 +1,13 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import Popup from "@/components/layout/Popup";
+
 import Link from "next/link";
 
 
 export default function MainLayout({ children }) {
   return (
     <>
-      <Popup />
+      
       <main className="overflow-hidden">
 
         <Navbar />

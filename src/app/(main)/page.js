@@ -25,6 +25,7 @@ import { Hero } from "@/components/home/Hero";
 import { ScollCard } from "@/components/ui/ScollCard";
 import  CollegetoperScoll  from "@/components/home/CollegetoperScoll";
 import SchoolToperScoll from "@/components/home/SchoolToperScoll";
+import Popup from "@/components/layout/Popup";
 
 const HOME_TITLE = "Yaduvanshi Group of Institutions | Quality Education";
 const HOME_DESCRIPTION =
@@ -75,6 +76,7 @@ export default async function Home() {
   return (
     <>
       <SchemaScript schemaJson={schema} />
+      <Popup />
       <div className="w-full bg-white flex flex-col">
         <TopSlider />
         <WelcomeSection />
