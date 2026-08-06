@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import slugify from "@/utils/slugify";
 import { headers } from "next/headers";
-import { getSubdomain } from "@/utils/getSubdomain";
+
 
 // ─── Helper: HTML entity decode ─────────────────────────────
 function decodeHtmlEntities(text) {
@@ -48,12 +48,11 @@ function formatReadableName(name) {
     .trim();
 }
 
-// ─── Data Fetching ──────────────────────────────────────────
-async function getPageData(categorySlug, pageSlug) {
-  const headerList = await headers();
-  const subdomain = getSubdomain(headerList);
 
+export async function getPageData(categorySlug, pageSlug) {
   try {
+    const headersList = await headers();
+    const subdomain = headersList.get('x-subdomain');
     const baseUrl =
       process.env.NEXT_PUBLIC_SITE_URL ||
       process.env.NEXT_PUBLIC_API_BASE_URL ||
@@ -64,7 +63,7 @@ async function getPageData(categorySlug, pageSlug) {
       {
         cache: "no-store",
         headers: {
-          "x-subdomain": subdomain ? subdomain : "main",
+          "x-subdomain": subdomain,
         },
       }
     );

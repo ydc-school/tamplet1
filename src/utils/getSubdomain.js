@@ -1,17 +1,32 @@
 
+export function getSubdomain(host) {
+  if (!host) return null;
 
-export function getSubdomain(hostdata) {
-  const host = hostdata.get("host") || "";
+  const hostname = host.split(":")[0].toLowerCase();
+  const rootDomain =
+    process.env.NEXT_PUBLIC_ROOT_DOMAIN || "yaduvanshigroup.edu.in";
 
-  // example: school1.example.com
-  const hostname = host.split(":")[0]; // port hata diya
-  const parts = hostname.split(".");
-
-  let subdomain = null;
-
-  if (parts.length >= 2) {
-    subdomain = parts[0]; // school1
+ 
+  if (hostname.endsWith(".localhost")) {
+    return hostname.replace(".localhost", "") || null;
   }
 
-  return subdomain;
+  // Root domain (yaduvanshigroup.edu.in)
+  if (hostname === rootDomain || hostname === `www.${rootDomain}`) {
+    return null;
+  }
+
+  // Subdomain (ydcmgh.yaduvanshigroup.edu.in)
+  if (hostname.endsWith(`.${rootDomain}`)) {
+    return hostname.replace(`.${rootDomain}`, "") || null;
+  }
+
+  // Generic domains (api.example.com)
+  const parts = hostname.split(".");
+  if (parts.length > 2 && parts[0] !== "www") {
+    return parts.slice(0, -2).join(".");
+  }
+
+  return null;
 }
+

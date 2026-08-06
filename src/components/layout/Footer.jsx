@@ -44,7 +44,7 @@ export default function Footer() {
   const email = schoolInfo?.Email ?? "ydcmgh@gmail.com";
   const phone = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
   const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
-  const website = schoolInfo?.Website ?? "www.ydu.com";
+  const website = schoolInfo?.Website ?? "https://yaduvanshigroup.edu.in/";
 
   // Latitude aur Longitude nikaalna fallback values ke sath (Mahendergarh ke coordinates fallback hain)
   const latitude = schoolInfo?.Latitude ?? "28.2801";

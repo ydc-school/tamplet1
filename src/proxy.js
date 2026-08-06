@@ -1,49 +1,52 @@
-// src/proxy.js
-
 import { NextResponse } from "next/server";
+import { getSubdomain } from "./utils/getSubdomain";
+
+
 
 export default async function proxy(request) {
+  const host = request.headers.get("host") || "yaduvanshigroup.edu.in";
+  const url = request.nextUrl;
 
-    const host = request.headers.get("host") || "";
-    const url = request.nextUrl;
+  let subdomain = getSubdomain(host) || "main";
 
-    const hostname = host.split(":")[0];
-    const parts = hostname.split(".");
-    const subdomain = parts.length >= 2 ? parts[0] : null;
+  console.log(subdomain)
 
+  const reqHeaders = new Headers(request.headers);
 
-    if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/uploads/")) {
+  reqHeaders.set("x-subdomain", subdomain);
 
-        const backendUrl = process.env.BACKEND_URL || "http://localhost:3000";
-        const target = new URL(backendUrl);
+  if (host) {
+    reqHeaders.set("x-original-host", host);
+    reqHeaders.set("x-forwarded-host", host);
+  }
 
-        url.hostname = target.hostname;
-        url.port = target.port || "3000";
-        url.protocol = target.protocol;
+  if (
+    url.pathname.startsWith("/api/") ||
+    url.pathname.startsWith("/uploads/")
+  ) {
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:3000";
+    const target = new URL(backendUrl);
 
-        const reqHeaders = new Headers(request.headers);
+    url.hostname = target.hostname;
+    url.port = target.port || "3000";
+    url.protocol = target.protocol;
 
-        if (host) {
-            reqHeaders.set("x-original-host", host);
-            reqHeaders.set("x-forwarded-host", host);
-        }
+    return NextResponse.rewrite(url, {
+      request: {
+        headers: reqHeaders,
+      },
+    });
+  }
 
-        if (subdomain) {
-            reqHeaders.set("x-subdomain", subdomain);
-        }else{
-            reqHeaders.set("x-subdomain", "main");
-        }
-
-        return NextResponse.rewrite(url, {
-            request: {
-                headers: reqHeaders,
-            },
-        });
-    }
-
-    return NextResponse.next();
+  return NextResponse.next({
+    request: {
+      headers: reqHeaders,
+    },
+  });
 }
 
 export const config = {
-    matcher: ["/api/:path*", "/uploads/:path*", "/pages/:path*"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|logo|poster|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js)$).*)",
+  ],
 };

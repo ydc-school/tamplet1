@@ -1,8 +1,8 @@
-import { getSubdomain } from "./getSubdomain";
+
 
 export async function getSeoData(headers) {
   try {
-    const subdomain = getSubdomain(headers);
+        const subdomain = headers.get('x-subdomain');
 
     const res = await fetch(
       `${process.env.BACKEND_URL}/api/client/seo`,
