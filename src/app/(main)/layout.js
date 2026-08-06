@@ -1,20 +1,16 @@
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
-import Popup from "@/components/layout/Popup";
+import Link from "next/link";
+import { headers } from "next/headers";
+import DefaultThemeLayout from "@/themes/default/layout";
+import MainThemeLayout from "@/themes/main/layout";
+import { getSubdomain } from "@/utils/getSubdomain";
 
+export default async function MainLayout({ children }) {
+  const headerList = await headers();
+  const subdomain = getSubdomain(headerList);
 
-export default function MainLayout({ children }) {
-  return (
-    <>
-     <Popup />
-      <main className="overflow-hidden">
-      
-        <Navbar />
-        <div className="w-full ">
-          {children}
-        </div>
-        <Footer />
-      </main>
-    </>
-  );
+  if (subdomain) {
+    return <DefaultThemeLayout>{children}</DefaultThemeLayout>;
+  }
+
+  return <MainThemeLayout>{children}</MainThemeLayout>;
 }

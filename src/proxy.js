@@ -30,6 +30,8 @@ export default async function proxy(request) {
 
         if (subdomain) {
             reqHeaders.set("x-subdomain", subdomain);
+        }else{
+            reqHeaders.set("x-subdomain", "main");
         }
 
         return NextResponse.rewrite(url, {
