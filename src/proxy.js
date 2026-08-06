@@ -9,7 +9,6 @@ export default async function proxy(request) {
 
   let subdomain = getSubdomain(host) || "main";
 
-  console.log(subdomain)
 
   const reqHeaders = new Headers(request.headers);
 
