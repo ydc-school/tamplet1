@@ -4,7 +4,6 @@ import AdmissionSection from "./components/home/AdmissionSection";
 import BlogSection from "./components/home/BlogSection";
 import CollegetoperScoll from "./components/home/CollegetoperScoll";
 import FounderMessage from "./components/home/FounderMessage";
-import SchoolToperScoll from "./components/home/SchoolToperScoll";
 import StudentToppers from "./components/home/StudentToppers";
 import WelcomeSection from "./components/home/WelcomeSection";
 
@@ -19,7 +18,6 @@ export default function DefualtTheme() {
             <FounderMessage />
             <StudentToppers />
             <CollegetoperScoll />
-            <SchoolToperScoll />
             <AdmissionSection />
             <AchievementGallery />
             <BlogSection />

@@ -1,22 +1,22 @@
 import React from 'react'
-import { Hanken_Grotesk, Public_Sans } from 'next/font/google';
+import { Montserrat, Playfair_Display } from "next/font/google";
 import Navbar from "./components/layout/Navbar"
 import Footer from "./components/layout/Footer"
 import Popup from '@/components/layout/Popup';
 import "./index.css";
-export const hankenGrotesk = Hanken_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-hanken-grotesk', // CSS Variable name
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap", // 🆕 Prevent FOIT (Flash of Invisible Text)
 });
 
-// Public Sans Font setup
-export const publicSans = Public_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-public-sans', // CSS Variable name
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-playfair",
+  display: "swap",
 });
-
 
 
 

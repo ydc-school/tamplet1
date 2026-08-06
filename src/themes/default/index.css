@@ -2,19 +2,11 @@
 @config "./tailwind.config.js";
 
 
-
-
-
-
 @layer components {
   .swiper-wrapper {
     transition-timing-function: linear !important;
   }
 }
-
-
-
-
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
