@@ -8,7 +8,7 @@ import StudentToppers from "./components/home/StudentToppers";
 import WelcomeSection from "./components/home/WelcomeSection";
 
 
-export default function DefualtTheme() {
+export default function Home() {
   return (
     <>
 

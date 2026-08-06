@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
 
 
 
-export default function MainThemeLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <>
       <Popup />
