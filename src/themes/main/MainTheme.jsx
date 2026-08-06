@@ -15,16 +15,17 @@ import TopSlider from "./componests/home/TopSlider";
 export default function MainTheme() {
   return (
     <>
-       
-            <div className="w-full relative bg-white flex flex-col">
-            <WhatsappPOP />
-            <BlinkButton />
-            <TopSlider />
-            <WelcomeSection />
-            <Branch />
-            <AnimationedCourses />
-          </div>
-        
+
+      <div className="w-full relative bg-white flex flex-col">
+        <Popup />
+        <WhatsappPOP />
+        <BlinkButton />
+        <TopSlider />
+        <WelcomeSection />
+        <Branch />
+        <AnimationedCourses />
+      </div>
+
     </>
   );
 }

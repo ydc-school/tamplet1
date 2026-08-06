@@ -2,7 +2,6 @@ import React from 'react'
 import { Montserrat, Playfair_Display } from "next/font/google";
 import Navbar from "./components/layout/Navbar"
 import Footer from "./components/layout/Footer"
-import Popup from '@/components/layout/Popup';
 import "./index.css";
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,7 +22,7 @@ const playfair = Playfair_Display({
 export default function Layout({ children }) {
   return (
     <>
-      <Popup />
+    
       <main className="overflow-hidden">
         <Navbar />
         <div className="w-full">
