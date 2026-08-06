@@ -9,8 +9,8 @@ export default async function MainLayout({ children }) {
   const subdomain = getSubdomain(headerList);
 
   if (subdomain) {
-    return <DefaultThemeLayout>{children}</DefaultThemeLayout>;
+    return <DefaultThemeLayout>{subdomain}{children}</DefaultThemeLayout>;
   }
 
-  return <MainThemeLayout>{children}</MainThemeLayout>;
+  return <MainThemeLayout>{subdomain}{children}</MainThemeLayout>;
 }
