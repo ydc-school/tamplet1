@@ -112,13 +112,13 @@ export default function FounderMessage() {
                   {founder?.Roll}
                 </h3>
 
-                <div className="relative flex-grow">
+                {founder?.Description && <div className="relative flex-grow">
                   <p className="text-gray-600 leading-relaxed italic text-base line-clamp-4">
                     "{founder?.Description}"
                   </p>
-                </div>
+                </div>}
 
-                <div className="pt-4 border-t border-gray-100 mt-auto">
+                {founder?.Read_More_Url && <div className="pt-4 border-t border-gray-100 mt-auto">
                   <Link
                     className="inline-flex items-center gap-2 text-rps-navy font-bold text-sm tracking-wider uppercase group hover:text-rps-light-blue transition-colors duration-200"
                     href={founder?.Read_More_Url}
@@ -126,7 +126,7 @@ export default function FounderMessage() {
                     Read Full Message
                     <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
-                </div>
+                </div>}
               </div>
             </motion.div>
           </SwiperSlide>
