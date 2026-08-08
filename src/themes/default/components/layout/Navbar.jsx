@@ -272,9 +272,9 @@ export default function Navbar() {
                         <Link
                           key={page.Slug}
                           href={`/${slugify(cat.Slug)}/${page.Slug}`}
-                          className="block font-label-caps text-2xs text-white hover:text-academic-gold px-3 py-2 transition-colors duration-150"
+                          className="block font-label-caps text-2xs text-black hover:text-[#6d001d] px-3 py-2 transition-colors duration-150"
                         >
-                          {page.Name.replace(/-/g, " ")}
+                          {page.Name.replace(/-/g, " ")} 
                         </Link>
                       ))}
                     </div>
