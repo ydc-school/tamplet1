@@ -62,7 +62,7 @@ export default function Navbar() {
                 onError={handleLogoError}
               />
             </Link>
-            <h1  style={{}}  className="text-2xl  lg:hidden font-extrabold flex items-center gap-3">
+            <h1 style={{}} className="text-2xl  lg:hidden font-extrabold flex items-center gap-3">
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -190,11 +190,11 @@ export default function Navbar() {
                   </button>
 
 
-                  <div className={`flex flex-col pl-4 gap-2 transition-all duration-200 overflow-hidden ${openCategory === cat.Id ? "max-h-60 mt-2 mb-1" : "max-h-0"}`}>
+                  <div className={`flex flex-col pl-4 gap-2 transition-all duration-200 overflow-hidden ${openCategory === cat.Id ? "max-h-auto mt-2 mb-1" : "max-h-0"}`}>
                     {cat.pages.map((page) => (
                       <Link
                         key={page.Id}
-                        href={`/pages/${slugify(page.Name)}/${page.Id}`}
+                        href={`/${slugify(cat.Slug)}/${page.Slug}`}
                         onClick={handleMobileLink}
                         className="font-label-caps text-2xs text-gray-300 hover:text-academic-gold"
                       >
