@@ -307,12 +307,12 @@ export default async function Page({ params }) {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-            <Link
+            {/* <Link
               href={`/${cleanCategory}`}
               className="hover:text-[#171717] transition-colors uppercase tracking-wider"
             >
               {categoryName}
-            </Link>
+            </Link> */}
             <svg
               className="h-3 w-3 text-[#a3a3a3]"
               fill="none"
