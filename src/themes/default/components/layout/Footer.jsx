@@ -45,6 +45,7 @@ export default function Footer() {
   const phone = schoolInfo?.Alternate_Phone ?? "+91 8607062323";
   const phone2 = schoolInfo?.Contact_Person_Phone ?? "8607062323";
   const website = schoolInfo?.Website ?? "https://yaduvanshigroup.edu.in/";
+  const map = schoolInfo?.Location_Link 
 
   // Latitude aur Longitude nikaalna fallback values ke sath (Mahendergarh ke coordinates fallback hain)
   const latitude = schoolInfo?.Latitude ?? "28.2801";
@@ -144,7 +145,7 @@ export default function Footer() {
                 style={{ border: 0 }}
                 loading="lazy"
                 allowFullScreen
-                src={website}
+                src={map}
               ></iframe>
             </div>
           </div>
