@@ -44,8 +44,21 @@ export default async function proxy(request) {
   });
 }
 
+// export const config = {
+//   matcher: [
+//     "/((?!_next/static|_next/image|favicon.ico|logo|poster|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js)$).*)",
+//   ],
+// };
+
+
+
+// export const config = {
+//     matcher: ["/api/:path*", "/uploads/:path*", "/pages/:path*"],
+// };
+
+
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|logo|poster|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
 };
