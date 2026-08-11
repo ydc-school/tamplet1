@@ -106,7 +106,7 @@ export default function SchoolToperScoll() {
         }
       `}</style>
 
-            {/* <div className="overflow-hidden bg-academic-gold py-8 w-full relative max-w-6xl mx-auto" onMouseEnter={() => setStopScroll(true)} onMouseLeave={() => setStopScroll(false)}>
+            <div className="overflow-hidden bg-academic-gold py-8 w-full relative max-w-6xl mx-auto" onMouseEnter={() => setStopScroll(true)} onMouseLeave={() => setStopScroll(false)}>
                 <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent" />
                 <div className="marquee-inner flex w-fit" style={{ animationPlayState: stopScroll ? "paused" : "running", animationDuration: cardData.length * 2500 + "ms" }}>
                     <div className="flex">
@@ -125,14 +125,14 @@ export default function SchoolToperScoll() {
                     </div>
                 </div>
                 <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent" />
-            </div> */}
+            </div>
 
 
-            <div className="w-full h-screen relative ">
+            {/* <div className="w-full h-screen relative ">
 
                 <RoundCarousel images={cardData} />
 
-            </div>
+            </div> */}
         </>
     );
 }

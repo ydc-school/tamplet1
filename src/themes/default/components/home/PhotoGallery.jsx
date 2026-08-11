@@ -3,7 +3,7 @@ import GalleryImgage from '../ui/GalleryImgage'
 
 const PhotoGallery = () => {
     return (
-        <div className='w-full h-full'>
+        <div className='w-full h-full '>
             <GalleryImgage />
         </div>
     )

@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { useSchool } from "@/context/SchoolContext";
 import RoundCarousel from "../ui/RoundCarousel";
+import { ScollCardX } from "../ui/ScollCardX";
 
 
 
@@ -357,10 +358,26 @@ export default function CollegetoperScoll() {
 
 
 
+    const cardDataX = [
+        {
+            title: "Unlock Your Creative Flow",
+            image: "https://admin.yaduvanshigroup.edu.in/uploads/1777002978818-1d7491d32e19afa8.jpg",
+        },
+        {
+            title: "Design Your Digital Future",
+            image: "https://images.unsplash.com/photo-1529254479751-faeedc59e78f?w=1200&auto=format&fit=crop&q=60",
+        },
+        {
+            title: "Build with Passion, Ship with Pride",
+            image: "https://images.unsplash.com/photo-1618327907215-4e514efabd41?w=1200&auto=format&fit=crop&q=60",
+        },
+        {
+            title: "Think Big, Code Smart",
+            image: "https://images.unsplash.com/photo-1583407723467-9b2d22504831?w=1200&auto=format&fit=crop&q=60",
+        },
+    ];
+
     if (branchType !== "college") return null;
-
-
-
     return (
         <>
             <style>{`
@@ -377,8 +394,8 @@ export default function CollegetoperScoll() {
             }
         }
       `}</style>
-
-            <div className="overflow-hidden bg-academic-gold py-8 w-full relative max-w-6xl mx-auto" onMouseEnter={() => setStopScroll(true)} onMouseLeave={() => setStopScroll(false)}>
+            <h2 className="text-7xl px-2 py-3">Merit Holders</h2>
+            <div className="overflow-hidden  py-8 w-full relative max-w-6xl mx-auto" onMouseEnter={() => setStopScroll(true)} onMouseLeave={() => setStopScroll(false)}>
                 <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent" />
                 <div className="marquee-inner flex w-fit" style={{ animationPlayState: stopScroll ? "paused" : "running", animationDuration: cardData.length * 2500 + "ms" }}>
                     <div className="flex">
@@ -406,7 +423,7 @@ export default function CollegetoperScoll() {
                 <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent" />
             </div>
 
-            <div className='gallery-body'>
+            {/* <div className='gallery-body'>
                 <div className="gallery max-w-8xl">
                     <img src="https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005133806-1acfdabf6058a25e.jpg&w=1280&q=75" alt='' />
                     <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777004035235-1f1f6a290ded343d.jpg&w=1280&q=75' alt='' />
@@ -419,11 +436,15 @@ export default function CollegetoperScoll() {
                     <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777002978819-1b8fc495396a1715.jpg&w=1280&q=75' alt='' />
                     <img src='https://ydcmgh.yaduvanshigroup.edu.in/_next/image?url=%2Fuploads%2F1777005305834-346b8fb6b2f4e6e6.jpg&w=1280&q=75' alt='' />
                 </div>
+            </div> */}
+
+            hello
+
+            <div className="w-full h-screen flex flex-col justify-center items-center">
+                <ScollCardX cardData={cardDataX} />
+
             </div>
 
-
-
-            
 
         </>
     );
