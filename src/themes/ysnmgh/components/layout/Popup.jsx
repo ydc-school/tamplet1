@@ -1,0 +1,104 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import axios from "axios";
+import PosterMedia, { hasPosterMedia, isPosterVideo } from "../home/PosterMedia";
+import { X, ArrowLeft, ArrowRight } from 'lucide-react';
+import useIsPhone from "@/utils/IsPhone";
+
+export default function Popup() {
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const isPhone = useIsPhone();
+  const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    let ignore = false;
+    setLoading(true);
+    setSlides([]);
+
+    axios
+      .get(`/api/client/popup?isPhone=${isPhone ? "true" : "false"}`)
+      .then((res) => {
+        if (!ignore && res.data.status === "success") {
+          const valid = res?.data?.data?.data?.filter((s) => hasPosterMedia(s));
+          const sortedSlides = valid.sort((a, b) => {
+            return (a.Index_No || 0) - (b.Index_No || 0);
+          });
+          setSlides(sortedSlides);
+        }
+      })
+      .catch(() => { })
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [isPhone]);
+
+  if (!isOpen || loading  || slides.length === 0) return null;
+
+  return (
+    <div className="fixed inset-0 z-[2000] backdrop-blur-3xl flex items-center justify-center p-4 md:p-10">
+      <div className="relative w-full max-w-5xl overflow-hidden animate-in fade-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
+        
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-4 right-4 z-[2010] text-white hover:text-academic-gold p-2 rounded-full transition-all duration-300 flex items-center justify-center border border-outline-variant"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <section className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
+          <Swiper
+            modules={[Navigation, Autoplay, Pagination]}
+            navigation={{ nextEl: ".ts-next", prevEl: ".ts-prev" }}
+            pagination={{
+              clickable: true,
+              bulletClass: "swiper-pagination-bullet !bg-white/60 !w-3 !h-3 transition-all duration-300 mx-1",
+              bulletActiveClass: "swiper-pagination-bullet-active !bg-academic-gold !w-6 !rounded-full !opacity-100"
+            }}
+            autoplay={{ delay: 0, disableOnInteraction: false }}
+            loop={slides.length > 1}
+            className="h-full w-full"
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide key={slide.Id || index} data-swiper-autoplay={isPosterVideo(slide.Image) ? 15000 : 5000}>
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <PosterMedia
+                    slide={slide}
+                    alt={slide.Name || "Poster"}
+                    className="w-full h-full object-contain"
+                    priority={index === 0}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <button className="ts-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-heritage-navy/40 hover:bg-heritage-navy text-white hover:text-academic-gold flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-white/10">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <button className="ts-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-heritage-navy/40 hover:bg-heritage-navy text-white hover:text-academic-gold flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-white/10">
+            <ArrowRight className="w-5 h-5" />
+          </button>
+
+          {slides.length > 1 && (
+            <div className="absolute bottom-6 left-6 z-10 text-white font-label-caps bg-heritage-navy/60 px-4 py-2 rounded-md border border-white/10 backdrop-blur-sm flex items-baseline gap-1">
+              <span className="text-sm tracking-wider opacity-80">Slide</span>
+              <span className="text-xl font-bold text-academic-gold">/</span>
+              <span className="text-sm font-semibold text-academic-gold">{String(slides.length).padStart(2, "0")}</span>
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
+  );
+}
