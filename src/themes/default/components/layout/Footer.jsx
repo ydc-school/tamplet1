@@ -122,7 +122,7 @@ export default function Footer() {
                   <a href={`tel:${phone2}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{phone2}</a>
                 </p>
               </div>
-              <div className="flex gap-4">
+              <div className="flex bg-amber-50 w-3xs gap-4">
                 <span className="material-symbols-outlined text-heritage-gold shrink-0">mail</span>
                 <div>
                   <p className="opacity-80">
