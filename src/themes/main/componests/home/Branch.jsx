@@ -204,7 +204,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/1782198233612-5ad706d345c3335d.jpeg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/SOHALI%20CAMPUS.jpg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi Shiksha Niketan, Sohali, Jhunjhumnu 9991217659</p>
