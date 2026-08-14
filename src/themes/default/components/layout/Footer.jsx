@@ -126,7 +126,7 @@ export default function Footer() {
                 <span className="material-symbols-outlined text-heritage-gold shrink-0">mail</span>
                 <div>
                   <p className="opacity-80">
-                    <a href={`mailto:${email}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{email}</a>
+                    <a href={`mailto:${email}`} className="hover:text-heritage-gold text-blue-800 transition-colors underline-offset-4 hover:underline">{email}</a>
                   </p>  
                  
                 </div>
