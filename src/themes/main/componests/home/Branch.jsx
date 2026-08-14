@@ -212,7 +212,7 @@ export default function Branch() {
                             </motion.div>
                         </Link >
                         {/* 13. Yaduvanshi Shiksha Niketan, Tapukara (Bhiwadi) */}
-                        <Link href="https://srlvmdhanimahu.yaduvanshigroup.edu.in/">
+                        <Link href="https://ysntapukara.yaduvanshigroup.edu.in/">
                             <motion.div {...fadeUp} className="bg-white group overflow-hidden transition-shadow duration-300 h-full">
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi Shiksha Niketan, Dhani Mahu (Bhiwani)"
