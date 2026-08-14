@@ -298,7 +298,7 @@ export default function Branch() {
                                 <div className="aspect-video overflow-hidden">
                                     <img alt="Yaduvanshi College of Engg. & Tech., Sohali (Raj.)"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/SOHALI%20CAMPUS.jpg" />
+                                        src="https://admin.yaduvanshigroup.edu.in/uploads/branchs/college/ycesohali.jpg" />
                                 </div>
                                 <div className="p-4 border-t-4 border-heritage-navy">
                                     <p className="font-label-caps text-label-caps text-heritage-navy">Yaduvanshi College of Engg. & Tech., Sohali (Raj.) 9728396599</p>
