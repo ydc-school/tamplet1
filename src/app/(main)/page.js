@@ -5,11 +5,12 @@ import { headers } from "next/headers";
 import { getSubdomain } from "@/utils/getSubdomain";
 
 export default async function Page() {
-    const headersList = await headers();
+  const headersList = await headers();
   const subdomain = headersList.get('x-subdomain');
 
   switch (subdomain) {
-
+    case "main":
+      return <Main />;
     default:
       return <Default />;
   }
