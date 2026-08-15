@@ -12,7 +12,7 @@ import SchemaScript from "@/components/SchemaScript";
 import WelcomeSection from "./componests/home/WelcomeSection";
 import TopSlider from "./componests/home/TopSlider";
 
-export default function MainTheme() {
+export default function Page() {
   return (
     <>
 

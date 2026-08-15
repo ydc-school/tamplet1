@@ -19,7 +19,7 @@ export const publicSans = Public_Sans({
 
 
 
-export default function MainThemeLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <>
      
