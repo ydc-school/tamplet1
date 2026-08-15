@@ -22,13 +22,14 @@ const playfair = Playfair_Display({
 export default function Layout({ children }) {
   return (
     <>
-    
+
       <main className="overflow-hidden">
+        ysnsohali
         <Navbar />
         <div className="w-full">
           {children}
         </div>
-        <Footer/>
+        <Footer />
       </main>
     </>
   )
