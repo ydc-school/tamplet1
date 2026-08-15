@@ -7,6 +7,7 @@ import FounderMessage from "./components/home/FounderMessage";
 import StudentToppers from "./components/home/StudentToppers";
 import WelcomeSection from "./components/home/WelcomeSection";
 import Popup from "@/components/layout/Popup";
+import HeroSection from "./components/home/Hero";
 
 
 export default function Home() {
@@ -14,7 +15,8 @@ export default function Home() {
     <>
 
       <div className="w-full bg-white flex flex-col">
-        <Popup />
+        <HeroSection />
+        {/* <Popup />
         <TopSlider />
         <WelcomeSection />
         <FounderMessage />
@@ -22,7 +24,7 @@ export default function Home() {
         <CollegetoperScoll />
         <AdmissionSection />
         <AchievementGallery />
-        <BlogSection />
+        <BlogSection /> */}
       </div>
     </>
   );
