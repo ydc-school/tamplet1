@@ -361,7 +361,7 @@ export default async function Page({ params }) {
         {/* Main Content */}
         <main className="mx-auto max-w-4xl px-6 pb-24">
           <article
-            className="text-[16px] leading-[1.8] text-[#404040]
+           className="text-[16px] leading-[1.8] text-[#404040]
             [&_h1]:font-serif [&_h1]:text-2xl [&_h1]:font-semibold [&_h1]:text-[#171717] [&_h1]:mt-10 [&_h1]:mb-4
             [&_h2]:font-serif [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-[#171717] [&_h2]:mt-10 [&_h2]:mb-4
             [&_h3]:font-serif [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-[#171717] [&_h3]:mt-8 [&_h3]:mb-3
@@ -375,9 +375,11 @@ export default async function Page({ params }) {
             [&_li]:mb-2
             [&_blockquote]:my-8 [&_blockquote]:border-l-2 [&_blockquote]:border-[#171717] [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-[#525252]
             [&_hr]:my-10 [&_hr]:border-0 [&_hr]:border-t [&_hr]:border-[#e5e5e5]
-            [&_table]:mb-6 [&_table]:w-full [&_table]:border-collapse
-            [&_th]:border-b [&_th]:border-[#e5e5e5] [&_th]:pb-3 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-wider [&_th]:text-[#171717]
-            [&_td]:border-b [&_td]:border-[#f5f5f5] [&_td]:py-3 [&_td]:text-sm [&_td]:text-[#404040]
+            [&_table]:mb-6 [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-[#e5e5e5] [&_table]:rounded-md [&_table]:overflow-hidden
+            [&_thead]:bg-[#f9f9f9]
+            [&_th]:border-2 [&_th]:border-[#0c0c0c] [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-wider [&_th]:text-[#171717]
+            [&_td]:border-2 [&_td]:border-[#0c0c0c] [&_td]:px-4 [&_td]:py-3 [&_td]:text-sm [&_td]:text-[#404040]
+            [&_tr:nth-child(even)]:bg-[#fafafa]
             [&_img]:my-8 [&_img]:max-w-full [&_img]:rounded-md"
             dangerouslySetInnerHTML={{ __html: pageData.Page_Data }}
           />
