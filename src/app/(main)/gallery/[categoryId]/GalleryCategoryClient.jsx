@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function GalleryCategoryPage({
   categoryId: categoryIdProp,
@@ -265,9 +266,24 @@ export default function GalleryCategoryPage({
                   <div className="gcat-strip" />
                   <div className="gcat-thumb">
                     <div className="gcat-thumb-bg" />
-                    <svg className="gcat-thumb-icon" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+
+                    {gal.Image ? (
+
+                      <Image
+                        src={`/uploads/${gal.Image}`}
+                        alt={gal.Name || "Gallery"}
+                        fill
+                        sizes="(max-width: 540px) 100vw, (max-width: 860px) 50vw, (max-width: 1100px) 33vw, 25vw"
+                        className="object-cover"
+                      />
+                    ) : (
+
+
+
+                      <svg className="gcat-thumb-icon" width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    )}
                     <div className="gcat-thumb-arrow">
                       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -291,7 +307,7 @@ export default function GalleryCategoryPage({
             </div>
           )}
         </div>
-      </div>
+      </div >
     </>
   );
 }
