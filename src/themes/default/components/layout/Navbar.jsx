@@ -250,9 +250,7 @@ export default function Navbar() {
             <Link href="/" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
               Home
             </Link>
-            <Link href="/achievements" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
-              Achievements
-            </Link>
+
 
             {categories.map((cat) => (
               <div key={cat.Id} className="flex flex-col">
@@ -272,12 +270,14 @@ export default function Navbar() {
                         <Link
                           key={page.Slug}
                           href={`/${slugify(cat.Slug)}/${page.Slug}`}
+                          onClick={handleMobileLink}
                           className="block font-label-caps text-2xs text-black hover:text-[#6d001d] px-3 py-2 transition-colors duration-150"
                         >
-                          {page.Name.replace(/-/g, " ")} 
+                          {page.Name.replace(/-/g, " ")}
                         </Link>
                       ))}
                     </div>
+
                   </>
                 ) : (
                   <button className="w-full text-left px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 transition-colors border-l-4 border-transparent">
@@ -286,6 +286,15 @@ export default function Navbar() {
                 )}
               </div>
             ))}
+            <Link href="/gallery" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
+              Gallery
+            </Link>
+            <Link href="https://yaduvanshigroup.edu.in/careers-form" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
+              Careers
+            </Link>
+            <Link href="https://yaduvanshigroup.edu.in/alumni-form" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
+              Alumni
+            </Link>
           </div>
 
           <div className="p-6 border-t border-gray-100 bg-gray-50 flex flex-col gap-4">
