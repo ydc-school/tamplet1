@@ -282,8 +282,8 @@ export default async function Page({ params }) {
 
       <div className="min-h-screen bg-[#fafafa] font-sans text-[#1a1a1a]">
         {/* Header Section */}
-        <header className="mx-auto max-w-4xl px-6 pt-16 pb-12">
-          {/* Breadcrumb Navigation */}
+        <header className="mx-auto hidden max-w-4xl px-6 pt-16 pb-12">
+       
           <nav
             className="mb-6 flex items-center gap-2 text-xs font-medium text-[#737373]"
             aria-label="Breadcrumb"
@@ -352,7 +352,7 @@ export default async function Page({ params }) {
             Home
           </Link>
 
-          {/* Page Title — H1 */}
+         
           <h1 className="font-serif text-3xl font-medium capitalize tracking-tight text-[#171717] sm:text-4xl md:text-5xl">
             {readableName}
           </h1>
