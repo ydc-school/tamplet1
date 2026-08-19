@@ -231,7 +231,7 @@ export default function Navbar() {
               <Link href="/gallery" className="hover:text-amber-400 transition-colors">Gallery</Link>
               <Link href="https://yaduvanshigroup.edu.in/careers-form" className="hover:text-amber-400 transition-colors">Careers</Link>
               <Link href="https://yaduvanshigroup.edu.in/alumni-form" className="hover:text-amber-400 transition-colors">Alumni</Link>
-              <Link href="https://yaduvanshigroup.edu.in/contact-us" className="hover:text-amber-400 whitespace-nowrap transition-colors">contact-us</Link>
+              <Link href="/contact-us" className="hover:text-amber-400 whitespace-nowrap transition-colors">contact-us</Link>
             </div>
           </div>
         </nav>
@@ -296,7 +296,7 @@ export default function Navbar() {
             <Link href="https://yaduvanshigroup.edu.in/alumni-form" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
               Alumni
             </Link>
-            <Link href="https://yaduvanshigroup.edu.in/contact-us" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
+            <Link href="/contact-us" onClick={handleMobileLink} className="px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 hover:text-[#6d001d] transition-colors border-l-4 border-transparent">
               contact-us
             </Link>
           </div>
