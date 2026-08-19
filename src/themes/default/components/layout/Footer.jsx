@@ -17,7 +17,7 @@ export default function Footer() {
 
   // Fetch Quick Links
   useEffect(() => {
-     
+
     axios.get("/api/client/quick-link")
       .then((res) => {
         setQuickLinks(res?.data?.data?.data || []);
@@ -117,9 +117,25 @@ export default function Footer() {
               <div className="flex gap-4">
                 <span className="material-symbols-outlined text-heritage-gold shrink-0">call</span>
                 <p className="opacity-80">
-                  <a href={`tel:${phone}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{phone}</a>
-                  <br />or<br />
-                  <a href={`tel:${phone2}`} className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline">{phone2}</a>
+                  {phone && (
+                    <a
+                      href={`tel:${phone}`}
+                      className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                      aria-label={`Call ${phone}`}
+                    >
+                      {phone}
+                    </a>
+                  )}
+                  {phone && phone2 && <><br />or<br /></>}
+                  {phone2 && (
+                    <a
+                      href={`tel:${phone2}`}
+                      className="hover:text-heritage-gold transition-colors underline-offset-4 hover:underline"
+                      aria-label={`Call ${phone2}`}
+                    >
+                      {phone2}
+                    </a>
+                  )}
                 </p>
               </div>
               <div className="flex bg-amber-50 w-3xs gap-4">
@@ -127,8 +143,8 @@ export default function Footer() {
                 <div>
                   <p className="opacity-80">
                     <a href={`mailto:${email}`} className="hover:text-heritage-gold text-blue-800 transition-colors underline-offset-4 hover:underline">{email}</a>
-                  </p>  
-                 
+                  </p>
+
                 </div>
               </div>
             </div>
