@@ -328,6 +328,18 @@ export default () => {
 
         ]
     }
+
+
+    const cardStyles = {
+        card: "bg-white border border-[#e5e5e5] rounded-md overflow-hidden text-center transition-all duration-200 ease-in-out hover:-translate-y-1 hover:border-[#a3a3a3]",
+        imageWrapper: "overflow-hidden w-full h-[190px] bg-[#f0f0f0]",
+        image: "w-full h-full object-contain block transition-transform duration-200 ease-in-out group-hover:scale-105",
+        content: "p-3",
+        title: "text-sm font-medium text-[#1a1a1a] mb-1 whitespace-nowrap overflow-hidden text-ellipsis",
+        subtitle: "text-[11px] text-[#666666] whitespace-nowrap overflow-hidden text-ellipsis",
+        boldText: "font-semibold text-black",
+    };
+
     return (
         <div className="w-full">
             <div className="imported-block my-2">

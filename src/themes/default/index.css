@@ -102,3 +102,28 @@
 
 
 }
+
+
+@layer components {
+    .student-card {
+        @apply bg-white border border-[#e5e5e5] rounded-md overflow-hidden text-center transition-all duration-200 ease-in-out hover:-translate-y-1 hover:border-[#a3a3a3];
+    }
+    .student-img-container {
+        @apply overflow-hidden w-full h-[190px] bg-[#f0f0f0];
+    }
+    .student-img {
+        @apply w-full h-full object-contain block transition-transform duration-200 ease-in-out group-hover:scale-105;
+    }
+    .student-info {
+        @apply p-3;
+    }
+    .student-name {
+        @apply text-sm font-medium text-[#1a1a1a] mb-1 whitespace-nowrap overflow-hidden text-ellipsis;
+    }
+    .student-meta {
+        @apply text-[11px] text-[#666666] whitespace-nowrap overflow-hidden text-ellipsis;
+    }
+    .student-highlight {
+        @apply font-semibold text-black;
+    }
+}

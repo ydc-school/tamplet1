@@ -3,6 +3,7 @@ import { Montserrat, Playfair_Display } from "next/font/google";
 import Navbar from "./components/layout/Navbar"
 import Footer from "./components/layout/Footer"
 import "./index.css";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
