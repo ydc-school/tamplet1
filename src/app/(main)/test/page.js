@@ -349,26 +349,23 @@ export default () => {
 
                 <main className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 max-w-[1400px] mx-auto">
                     {json.students.map((student, index) => (
-                        <div
-                            key={student.scan_index || index}
-                            className="bg-white border border-[#e5e5e5] rounded-md overflow-hidden text-center transition-all duration-200 ease-in-out hover:-translate-y-1 hover:border-[#a3a3a3]"
-                        >
-                            <div className="overflow-hidden w-full h-[190px] bg-[#f0f0f0]">
+                        <div key={student.scan_index || index} className="student-card">
+                            <div className="student-img-container">
                                 <img
-                                    className="w-full h-full object-contain block transition-transform duration-200 ease-in-out group-hover:scale-105"
+                                    className="student-img"
                                     src={"https://admin.yaduvanshigroup.edu.in/uploads/college-top/top-10-ug/" + student.scan_index + ".jpg"}
                                     alt={student.name}
                                 />
                             </div>
-                            <div className="p-3">
-                                <div className="text-sm font-medium text-[#1a1a1a] mb-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                            <div className="student-info">
+                                <div className="student-name">
                                     {student.name}
                                 </div>
-                                <div className="text-[11px] text-[#666666] whitespace-nowrap overflow-hidden text-ellipsis">
-                                    RANK: <span class="font-semibold text-black">{student.rank}</span>
+                                <div className="student-meta">
+                                    RANK: <span className="student-highlight">{student.rank}</span>
                                 </div>
-                                <div className="text-[11px] text-[#666666] whitespace-nowrap overflow-hidden text-ellipsis">
-                                    Class: <span class="font-semibold text-black">{student.class}</span>
+                                <div className="student-meta">
+                                    Class: <span className="student-highlight">{student.class}</span>
                                 </div>
                             </div>
                         </div>

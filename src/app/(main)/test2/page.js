@@ -107,7 +107,7 @@ export default () => {
                             <div className="student-img-container">
                                 <img
                                     className="student-img"
-                                    src={"https://admin.yaduvanshigroup.edu.in/uploads/college-top/top-10-ug/" + student.scan_index + ".jpg"}
+                                    src={"https://admin.yaduvanshigroup.edu.in/uploads/college-top/top-10-pg/" + student.scan_index + ".jpg"}
                                     alt={student.name}
                                 />
                             </div>
