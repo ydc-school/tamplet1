@@ -215,7 +215,7 @@ export default function Navbar() {
                             href={`/${slugify(cat.Slug)}/${page.Slug}`}
                             className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
                           >
-                            {page.Name.replace(/-/g, " ")}
+                            {page.Name}
                           </Link>
                         ))}
                       </div>
@@ -274,7 +274,7 @@ export default function Navbar() {
                           onClick={handleMobileLink}
                           className="block font-label-caps text-2xs text-black hover:text-[#6d001d] px-3 py-2 transition-colors duration-150"
                         >
-                          {page.Name.replace(/-/g, " ")}
+                          {page.Name}
                         </Link>
                       ))}
                     </div>
