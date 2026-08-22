@@ -1,110 +1,32 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
 
 export default function IsolatedContent({ htmlContent }) {
-  const containerRef = useRef(null);
+  return (
+    <div
+      className="
+        w-full flow-root isolate
+        
+        /* Table Styles */
+        [&_table]:w-full [&_table]:mb-6 [&_table]:border-collapse [&_table]:border [&_table]:border-[#e5e5e5] [&_table]:rounded-md [&_table]:overflow-hidden
+        [&_thead]:bg-[#f9f9f9]
+        [&_th]:border-2 [&_th]:border-[#0c0c0c] [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-wider [&_th]:text-[#171717]
+        [&_td]:border-2 [&_td]:border-[#0c0c0c] [&_td]:px-4 [&_td]:py-3 [&_td]:text-sm [&_td]:text-[#404040]
+        [&_tr:nth-child(even)]:bg-[#fafafa]
 
-  useEffect(() => {
-    if (containerRef.current) {
-      if (!containerRef.current.shadowRoot) {
-        containerRef.current.attachShadow({ mode: 'open' });
-      }
+        /* Student Card Styles */
+        [&_.student-card]:bg-white [&_.student-card]:border [&_.student-card]:border-[#e5e5e5] [&_.student-card]:rounded-md [&_.student-card]:overflow-hidden [&_.student-card]:text-center [&_.student-card]:transition-all [&_.student-card]:duration-200 [&_.student-card]:ease-in-out [&_.student-card:hover]:-translate-y-1 [&_.student-card:hover]:border-[#a3a3a3]
 
-      const styles = `
-        <style>
-          :host {
-            display: block;
-            width: 100%;
-          }
-          table {
-            width: 100%;
-            margin-bottom: 1.5rem;
-            border-collapse: collapse;
-            border: 1px solid #e5e5e5;
-            border-radius: 0.375rem;
-            overflow: hidden;
-          }
-          thead {
-            background-color: #f9f9f9;
-          }
-          th {
-            border: 2px solid #0c0c0c;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #171717;
-          }
-          td {
-            border: 2px solid #0c0c0c;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
-            color: #404040;
-          }
-          tr:nth-child(even) {
-            background-color: #fafafa;
-          }
+        /* Student Image Styles */
+        [&_.student-img-container]:overflow-hidden [&_.student-img-container]:w-full [&_.student-img-container]:h-[190px] [&_.student-img-container]:bg-[#f0f0f0]
+        [&_.student-img]:w-full [&_.student-img]:h-full [&_.student-img]:object-contain [&_.student-img]:block [&_.student-img]:transition-transform [&_.student-img]:duration-200 [&_.student-img]:ease-in-out
+        [&_.student-card:hover_.student-img]:scale-105
 
-          .student-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e5e5;
-            border-radius: 0.375rem;
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
-          }
-          .student-card:hover {
-            transform: translateY(-0.25rem);
-            border-color: #a3a3a3;
-          }
-          .student-img-container {
-            overflow: hidden;
-            width: 100%;
-            height: 190px;
-            background-color: #f0f0f0;
-          }
-          .student-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            transition: transform 0.2s ease-in-out;
-          }
-          .student-card:hover .student-img {
-            transform: scale(1.05);
-          }
-          .student-info {
-            padding: 0.75rem;
-          }
-          .student-name {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #1a1a1a;
-            margin-bottom: 0.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          .student-meta {
-            font-size: 11px;
-            color: #666666;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          .student-highlight {
-            font-weight: 600;
-            color: #000000;
-          }
-        </style>
-      `;
-
-      containerRef.current.shadowRoot.innerHTML = `${styles}${htmlContent || ''}`;
-    }
-  }, [htmlContent]);
-
-  return <div ref={containerRef} className="w-full flow-root" />;
+        /* Student Details Styles */
+        [&_.student-info]:p-3
+        [&_.student-name]:text-sm [&_.student-name]:font-medium [&_.student-name]:text-[#1a1a1a] [&_.student-name]:mb-1 [&_.student-name]:whitespace-nowrap [&_.student-name]:overflow-hidden [&_.student-name]:text-ellipsis
+        [&_.student-meta]:text-[11px] [&_.student-meta]:text-[#666666] [&_.student-meta]:whitespace-nowrap [&_.student-meta]:overflow-hidden [&_.student-meta]:text-ellipsis
+        [&_.student-highlight]:font-semibold [&_.student-highlight]:text-black
+      "
+      dangerouslySetInnerHTML={{ __html: htmlContent || '' }}
+    />
+  );
 }
