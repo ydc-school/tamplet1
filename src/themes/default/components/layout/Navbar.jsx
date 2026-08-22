@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSchool } from "@/context/SchoolContext";
 import { useFallbackImage } from "@/hooks/useFallbackImage";
 import slugify from "@/utils/slugify";
+import { sortByIndex } from "@/utils/sort";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -28,7 +29,18 @@ export default function Navbar() {
       try {
         const response = await axios.get("/api/client/pages");
         if (response.data.status === "success") {
-          setCategories(response.data.data);
+
+          const sortedCategories = sortByIndex(response.data.data);
+
+
+          const sorted = sortedCategories.map((category) => {
+            return {
+              ...category,
+              pages: sortByIndex(category.pages || [])
+            };
+          });
+
+          setCategories(sorted);
         }
       } catch (error) {
         console.error("Error fetching pages:", error);
@@ -75,10 +87,6 @@ export default function Navbar() {
   return (
     <>
       <header className="w-full relative z-50" ref={menuRef}>
-
-
-
-
         <nav className="bg-deep-maroon text-white shadow-sm flex flex-col w-full text-xs">
           <div className="max-w-7xl flex-col sm:flex-row gap-4  py-8  mx-auto w-full px-6 sm:px-6  sm:py-2 flex sm:justify-center justify-between items-center font-medium tracking-wide">
             <div className="flex gap-0.5 sm:gap-6 items-center">

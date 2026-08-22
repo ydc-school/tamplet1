@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useFallbackImage } from "@/hooks/useFallbackImage";
+import { sortByIndex } from "@/utils/sort";
 
 export default function Footer() {
   const { schoolInfo, loading } = useSchool();
@@ -20,7 +21,8 @@ export default function Footer() {
 
     axios.get("/api/client/quick-link")
       .then((res) => {
-        setQuickLinks(res?.data?.data?.data || []);
+        const sort = sortByIndex(res?.data?.data?.data);
+        setQuickLinks(sort || []);
       })
       .catch((err) => {
         console.error("Failed to fetch quick links:", err);
@@ -31,7 +33,8 @@ export default function Footer() {
   useEffect(() => {
     axios.get("/api/client/useful-link")
       .then((res) => {
-        setUseFullLinks(res?.data?.data?.data || []);
+        const sort = sortByIndex(res?.data?.data?.data)
+        setUseFullLinks(sort || []);
       })
       .catch((err) => {
         console.error("Failed to fetch useful links:", err);
