@@ -28,7 +28,18 @@ export default function Navbar() {
       try {
         const response = await axios.get("/api/client/pages");
         if (response.data.status === "success") {
-          setCategories(response.data.data);
+
+          const sortedCategories = sortByIndex(response.data.data);
+
+
+          const sorted = sortedCategories.map((category) => {
+            return {
+              ...category,
+              pages: sortByIndex(category.pages || [])
+            };
+          });
+
+          setCategories(sorted);
         }
       } catch (error) {
         console.error("Error fetching pages:", error);
