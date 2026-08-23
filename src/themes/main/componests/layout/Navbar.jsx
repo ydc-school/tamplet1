@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSchool } from "@/context/SchoolContext";
 import { useFallbackImage } from "@/hooks/useFallbackImage";
 import slugify from "@/utils/slugify";
+import { sortByIndex } from "@/utils/sort";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
