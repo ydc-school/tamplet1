@@ -36,7 +36,6 @@ export default function GalleryDetailPage({
       .finally(() => setLoading(false));
   }, [galleryId, initialLoaded]);
 
-  // Keyboard nav
   const handleKey = useCallback((e) => {
     if (lightbox === null) return;
     if (e.key === "ArrowRight") setLightbox(i => (i + 1) % images.length);
@@ -55,6 +54,19 @@ export default function GalleryDetailPage({
   }, [lightbox]);
 
   const stripHtml = (html) => html?.replace(/<[^>]+>/g, " ").trim() ?? "";
+
+  const isVideoFile = (item) => {
+    if (!item) return false;
+    if (item.Type === "video" || item.type === "video" || item.isVideo) return true;
+    const filePath = item.Image || item.File || item.url || (typeof item === "string" ? item : "");
+    return /\.(mp4|webm|ogg|mov|m4v|mkv)$/i.test(filePath);
+  };
+
+  const getItemSrc = (item) => {
+    if (!item) return "";
+    const name = item.Image || item.File || item.url || (typeof item === "string" ? item : "");
+    return name.startsWith("http") || name.startsWith("/") ? name : `/uploads/${name}`;
+  };
 
   return (
     <>
@@ -81,7 +93,6 @@ export default function GalleryDetailPage({
           pointer-events: none;
         }
 
-        /* Hero */
         .gd-hero {
           background: linear-gradient(160deg, #f3f7fc 0%, #f6f8fc 100%);
           border-bottom: 1px solid rgba(196,160,72,0.12);
@@ -130,14 +141,12 @@ export default function GalleryDetailPage({
         }
         .gd-count-num { color: #c4a048; font-size: 15px; }
 
-        /* Body */
         .gd-body {
           max-width: 1200px; margin: 0 auto;
           padding: 48px 24px 80px;
           position: relative; z-index: 1;
         }
 
-        /* Grid */
         .gd-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -147,7 +156,6 @@ export default function GalleryDetailPage({
         @media (min-width: 960px) { .gd-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 1200px) { .gd-grid { grid-template-columns: repeat(5, 1fr); } }
 
-        /* Tile */
         .gd-tile {
           position: relative;
           aspect-ratio: 1/1;
@@ -156,12 +164,11 @@ export default function GalleryDetailPage({
           border-radius: 3px;
           overflow: hidden;
           cursor: pointer;
-          transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+          transition: transform 0.3s, border-color 0.3s;
           animation: gd-fadein 0.4s ease both;
         }
         .gd-tile:hover {
           transform: scale(1.04);
-          box-shadow: 0 12px 36px rgba(0,0,0,0.5);
           border-color: rgba(196,160,72,0.3);
           z-index: 2;
         }
@@ -169,19 +176,9 @@ export default function GalleryDetailPage({
           from { opacity: 0; transform: scale(0.95); }
           to   { opacity: 1; transform: scale(1); }
         }
-        .gd-tile:nth-child(1){animation-delay:0s}
-        .gd-tile:nth-child(2){animation-delay:.04s}
-        .gd-tile:nth-child(3){animation-delay:.08s}
-        .gd-tile:nth-child(4){animation-delay:.12s}
-        .gd-tile:nth-child(5){animation-delay:.16s}
-        .gd-tile:nth-child(6){animation-delay:.20s}
-        .gd-tile:nth-child(7){animation-delay:.24s}
-        .gd-tile:nth-child(8){animation-delay:.28s}
-        .gd-tile:nth-child(9){animation-delay:.32s}
-        .gd-tile:nth-child(10){animation-delay:.36s}
 
-        .gd-tile img { transition: transform 0.4s ease !important; }
-        .gd-tile:hover img { transform: scale(1.08) !important; }
+        .gd-tile img, .gd-tile video { transition: transform 0.4s ease !important; object-fit: cover; }
+        .gd-tile:hover img, .gd-tile:hover video { transform: scale(1.08) !important; }
 
         .gd-overlay {
           position: absolute; inset: 0;
@@ -198,7 +195,14 @@ export default function GalleryDetailPage({
         }
         .gd-tile:hover .gd-zoom { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 
-        /* Empty / skeleton */
+        .gd-media-badge {
+          position: absolute; top: 8px; right: 8px; z-index: 3;
+          background: rgba(7,16,32,0.7); color: #c4a048;
+          padding: 4px; border-radius: 3px;
+          display: flex; align-items: center; justify-content: center;
+          border: 1px solid rgba(196,160,72,0.3);
+        }
+
         .gd-empty { text-align: center; padding: 80px 24px; color: #3a5a7a; }
         .gd-empty-title {
           font-family: 'Playfair Display', serif;
@@ -214,11 +218,9 @@ export default function GalleryDetailPage({
           0%{background-position:200% 0} 100%{background-position:-200% 0}
         }
 
-        /* ── Lightbox ── */
         .lb-wrap {
           position: fixed; inset: 0; z-index: 1100;
           background: rgba(0,0,0,0.93);
-          backdrop-filter: blur(10px);
           display: flex; align-items: center; justify-content: center;
           animation: lb-in 0.2s ease;
         }
@@ -228,6 +230,16 @@ export default function GalleryDetailPage({
           position: relative;
           width: min(92vw, 960px);
           height: min(82vh, 720px);
+          display: flex; align-items: center; justify-content: center;
+        }
+
+        .lb-video-elem {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          outline: none;
+          border-radius: 4px;
         }
 
         .lb-close {
@@ -274,10 +286,10 @@ export default function GalleryDetailPage({
             </button>
             <div className="gd-eyebrow">
               <span className="gd-ey-dot" />
-              <span className="gd-ey-text">Photos</span>
+              <span className="gd-ey-text">Media</span>
             </div>
             <h1 className="gd-title">
-              {loading ? "Loading…" : gallery?.Name || "Photo Album"}
+              {loading ? "Loading…" : gallery?.Name || "Album"}
             </h1>
             {gallery?.Description && (
               <p className="gd-desc">{stripHtml(gallery.Description)}</p>
@@ -285,7 +297,7 @@ export default function GalleryDetailPage({
             {!loading && (
               <div className="gd-count">
                 <span className="gd-count-num">{images.length}</span>
-                Photo{images.length !== 1 ? "s" : ""}
+                Item{images.length !== 1 ? "s" : ""}
               </div>
             )}
           </div>
@@ -301,45 +313,83 @@ export default function GalleryDetailPage({
               <svg style={{ margin:"0 auto", display:"block", color:"rgba(196,160,72,0.12)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <div className="gd-empty-title">No photos in this album yet</div>
+              <div className="gd-empty-title">No items in this album yet</div>
               <p style={{ fontSize:14 }}>Check back soon.</p>
             </div>
           ) : (
             <div className="gd-grid">
-              {images.map((img, idx) => (
-                <div key={img.Id} className="gd-tile" onClick={() => setLightbox(idx)}>
-                  <Image
-                    src={`/uploads/${img.Image}`}
-                    alt={`${gallery?.Name || "Gallery"} photo ${idx + 1}`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
-                    className="object-cover"
-                  />
-                  <div className="gd-overlay" />
-                  <div className="gd-zoom">
-                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6" />
-                    </svg>
+              {images.map((item, idx) => {
+                const isVideo = isVideoFile(item);
+                const itemSrc = getItemSrc(item);
+                
+                return (
+                  <div key={item.Id || idx} className="gd-tile" onClick={() => setLightbox(idx)}>
+                    {isVideo ? (
+                      <video
+                        src={itemSrc}
+                        className="w-full h-full object-cover"
+                        muted
+                        playsInline
+                        preload="metadata"
+                      />
+                    ) : (
+                      <Image
+                        src={itemSrc}
+                        alt={`${gallery?.Name || "Gallery"} item ${idx + 1}`}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
+                        className="object-cover"
+                      />
+                    )}
+                    
+                    {isVideo && (
+                      <div className="gd-media-badge">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    )}
+
+                    <div className="gd-overlay" />
+                    <div className="gd-zoom">
+                      {isVideo ? (
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      ) : (
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6" />
+                        </svg>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
       </div>
 
-      {/* Lightbox */}
       {lightbox !== null && images[lightbox] && (
         <div className="lb-wrap" onClick={() => setLightbox(null)}>
           <div className="lb-img" onClick={e => e.stopPropagation()}>
-            <Image
-              src={`/uploads/${images[lightbox].Image}`}
-              alt={`${gallery?.Name || "Gallery"} photo ${lightbox + 1}`}
-              fill
-              sizes="92vw"
-              className="object-contain"
-              priority
-            />
+            {isVideoFile(images[lightbox]) ? (
+              <video
+                src={getItemSrc(images[lightbox])}
+                controls
+                autoPlay
+                className="lb-video-elem"
+              />
+            ) : (
+              <Image
+                src={getItemSrc(images[lightbox])}
+                alt={`${gallery?.Name || "Gallery"} item ${lightbox + 1}`}
+                fill
+                sizes="92vw"
+                className="object-contain"
+                priority
+              />
+            )}
           </div>
 
           <button className="lb-close" onClick={() => setLightbox(null)}>
