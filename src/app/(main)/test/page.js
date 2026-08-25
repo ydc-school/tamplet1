@@ -1,377 +1,486 @@
-import React from 'react'
+// Draggable Grid — Originkit
+// Originkit preset `variant-2` — props baked into the default export.
+"use client";
 
+import { motion, useMotionValue, animate } from "framer-motion";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import axios from "axios";
 
+// Default placeholder items (will be replaced by API data)
+const defaultItems = [
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/612d1402-0ad9-4135-3bbc-a30a6a252b00/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/6d2ad64a-102d-4eab-0efe-31479e34b500/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/be854dd1-37aa-4fc7-f569-fdb948109300/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/51984031-9176-484b-f5e0-4af9a8e9ed00/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/34ce1842-4b7a-4d52-0302-38582c341700/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/88369c6d-00cc-4ac9-74ca-0f0965e06300/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/aeaa0756-9647-4f6c-d900-204bd25e4a00/w=800",
+        },
+        alt: "",
+    },
+    {
+        image: {
+            src: "https://imagedelivery.net/IEUjvl3YUlxY-MrTpOAWDQ/316d1761-fd79-4ca9-b8d4-f2bb20521a00/w=800",
+        },
+        alt: "",
+    },
+];
 
+// Distinct visible color per tile (golden-angle hue rotation) so the grid is
+// always visible even when images don't load.
+function getItemColor(index) {
+    const hue = (index * 137.508) % 360;
+    return `hsl(${hue}, 55%, 55%)`;
+}
 
+// Deterministic PRNG (mulberry32) so the shuffle is stable across renders
+// once seeded — no flicker on every re-render.
+function mulberry32(seed) {
+    let a = seed >>> 0;
+    return () => {
+        a = (a + 0x6d2b79f5) >>> 0;
+        let t = a;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
 
-export default () => {
-
-    const json = {
-        "total_students": 317,
-        "students": [
-            { "scan_index": 1, "name": "TAMANNA", "rank": "1", "class": "B.Sc. (PS)" },
-            { "scan_index": 2, "name": "ANKITA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 3, "name": "ANTIM", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 4, "name": "KAJAL", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 5, "name": "SUPRIYA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 6, "name": "SONAM", "rank": "1", "class": "B.Sc. (CH)" },
-            { "scan_index": 7, "name": "PRIYA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 8, "name": "HEENA", "rank": "1", "class": "B.Sc. (NM)" },
-            { "scan_index": 9, "name": "SHIWANI", "rank": "1", "class": "B.Sc. (CH)" },
-            { "scan_index": 10, "name": "KIRAN", "rank": "1", "class": "B.A" },
-            { "scan_index": 11, "name": "NISHA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 12, "name": "MANJU", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 13, "name": "SAKSHI", "rank": "1", "class": "B.Sc. (NM)" },
-            { "scan_index": 14, "name": "ALKA", "rank": "1", "class": "B.Sc. (Med.)" },
-            { "scan_index": 15, "name": "POOJA", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 16, "name": "ANMOL", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 17, "name": "RINKI", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 18, "name": "NIKITA", "rank": "1", "class": "B.Sc. (CH)" },
-            { "scan_index": 19, "name": "ABHISHEK", "rank": "1", "class": "B.Sc. (CH)" },
-            { "scan_index": 20, "name": "PRATHAM", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 21, "name": "SANGEETA", "rank": "1", "class": "B.Sc. (PH)" },
-            { "scan_index": 22, "name": "MAMTA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 23, "name": "AMBIKA", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 24, "name": "PRIYA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 25, "name": "LATIKA", "rank": "1", "class": "B.Sc. (Med.)" },
-            { "scan_index": 26, "name": "EKTA", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 27, "name": "SUDHA", "rank": "1", "class": "B.COM.(Hons.)" },
-            { "scan_index": 28, "name": "TANISHA", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 29, "name": "POOJA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 30, "name": "MONIKA", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 31, "name": "ANNU", "rank": "1", "class": "B.Sc. (ZH)" },
-            { "scan_index": 32, "name": "ALPA", "rank": "1", "class": "B.Sc. (NM)" },
-            { "scan_index": 33, "name": "MUSKNAN", "rank": "1", "class": "B.A." },
-            { "scan_index": 34, "name": "PRITI", "rank": "1", "class": "B.Sc. (MH)" },
-            { "scan_index": 35, "name": "DIKSHIKA", "rank": "1", "class": "B.Sc. (CH)" },
-            { "scan_index": 36, "name": "TINKESH", "rank": "1", "class": "B.Sc. (NM)" },
-            { "scan_index": 37, "name": "SUDHA", "rank": "1", "class": "B.Com. (H)" },
-            { "scan_index": 38, "name": "SHEETAL", "rank": "1", "class": "B.Com." },
-            { "scan_index": 39, "name": "PAYAL", "rank": "1", "class": "B.Sc. (PH)" },
-            { "scan_index": 40, "name": "NEHA", "rank": "1", "class": "B.Com." },
-            { "scan_index": 41, "name": "AARTI", "rank": "1", "class": "B.Com." },
-            { "scan_index": 42, "name": "PREETI", "rank": "1", "class": "B.Com." },
-            { "scan_index": 43, "name": "NISHA", "rank": "1", "class": "B.Com." },
-            { "scan_index": 44, "name": "ASHA", "rank": "1", "class": "B.A" },
-            { "scan_index": 45, "name": "MUSKAN YADAV", "rank": "1", "class": "B.COM." },
-            { "scan_index": 46, "name": "HARSHITA", "rank": "1", "class": "B.A" },
-            { "scan_index": 47, "name": "SNEHA", "rank": "1", "class": "B.TECH" },
-            { "scan_index": 48, "name": "PRIYA", "rank": "1", "class": "B.Sc (ZH)" },
-            { "scan_index": 49, "name": "EKTA", "rank": "1", "class": "B.Sc (MH)" },
-            { "scan_index": 50, "name": "MANISHA", "rank": "1", "class": "B.COM.(Hons.)" },
-            { "scan_index": 51, "name": "MAHAK", "rank": "1", "class": "B.A" },
-            { "scan_index": 52, "name": "PREETI", "rank": "2", "class": "B.Sc. (MH)" },
-            { "scan_index": 53, "name": "KASHISH", "rank": "2", "class": "B.Sc (MH)" },
-            { "scan_index": 54, "name": "AHANA", "rank": "2", "class": "B.COM" },
-            { "scan_index": 55, "name": "SAPNA", "rank": "2", "class": "B.Sc (CH)" },
-            { "scan_index": 56, "name": "KAJAL", "rank": "2", "class": "BCA" },
-            { "scan_index": 57, "name": "PRIYA", "rank": "2", "class": "B.Sc. (ZH)" },
-            { "scan_index": 58, "name": "SAPNA", "rank": "2", "class": "B.Sc. (ZH)" },
-            { "scan_index": 59, "name": "RAVINA", "rank": "2", "class": "B.Sc. Life Sci." },
-            { "scan_index": 60, "name": "SANJANA", "rank": "2", "class": "B.Sc. (MATHS)" },
-            { "scan_index": 61, "name": "ASHA", "rank": "2", "class": "ARTS" },
-            { "scan_index": 62, "name": "GARGI", "rank": "2", "class": "B.A" },
-            { "scan_index": 63, "name": "JYOTI", "rank": "2", "class": "B.Sc. (Med.)" },
-            { "scan_index": 64, "name": "MONIKA", "rank": "2", "class": "B.Sc. (PH)" },
-            { "scan_index": 65, "name": "EKTA", "rank": "2", "class": "B.Sc. (ZH)" },
-            { "scan_index": 66, "name": "PRIYANKA", "rank": "2", "class": "B.A." },
-            { "scan_index": 67, "name": "SUBHLATA", "rank": "2", "class": "B.Sc. (ZH)" },
-            { "scan_index": 68, "name": "NISHITA", "rank": "2", "class": "B.Sc. (NM)" },
-            { "scan_index": 69, "name": "NANCY", "rank": "2", "class": "B.Sc. (CH)" },
-            { "scan_index": 70, "name": "YOGESH", "rank": "2", "class": "B.Sc. (NM)" },
-            { "scan_index": 71, "name": "DEEPIKA", "rank": "2", "class": "B.Sc. (MH)" },
-            { "scan_index": 72, "name": "NISHA", "rank": "2", "class": "B.Com" },
-            { "scan_index": 73, "name": "PREETI", "rank": "2", "class": "B.A." },
-            { "scan_index": 74, "name": "PREETI", "rank": "2", "class": "B.Sc. (CH)" },
-            { "scan_index": 75, "name": "ANJALI", "rank": "2", "class": "B.TECH" },
-            { "scan_index": 76, "name": "SHIKSHA", "rank": "2", "class": "B.Sc. (NM)" },
-            { "scan_index": 77, "name": "DIKSHA", "rank": "2", "class": "B.Sc. (NM)" },
-            { "scan_index": 78, "name": "ANUPRIYA", "rank": "2", "class": "B.Sc. (ZH)" },
-            { "scan_index": 79, "name": "APURVA", "rank": "2", "class": "B.Sc. (CH)" },
-            { "scan_index": 80, "name": "DEEPIKA", "rank": "2", "class": "B.Sc. (MH)" },
-            { "scan_index": 81, "name": "PRIYA", "rank": "2", "class": "B.Com. (H)" },
-            { "scan_index": 82, "name": "RAKHI", "rank": "2", "class": "BBA" },
-            { "scan_index": 83, "name": "NANCY", "rank": "2", "class": "B.Com. (H)" },
-            { "scan_index": 84, "name": "KHUSHI", "rank": "2", "class": "B.Sc. Life Science" },
-            { "scan_index": 85, "name": "MUSKAN", "rank": "2", "class": "B.COM.(Hons.)" },
-            { "scan_index": 86, "name": "RAKHI", "rank": "2", "class": "BBA" },
-            { "scan_index": 87, "name": "ANNU", "rank": "2", "class": "B.Sc. (PH)" },
-            { "scan_index": 88, "name": "BHUMI ARORA", "rank": "3", "class": "B.Sc. Life Science" },
-            { "scan_index": 89, "name": "LALIT KUMARI", "rank": "3", "class": "B.Sc. (PHY.SCI.)" },
-            { "scan_index": 90, "name": "KHUSHBOO", "rank": "3", "class": "B.Com." },
-            { "scan_index": 91, "name": "MAYANK", "rank": "3", "class": "B.COM" },
-            { "scan_index": 92, "name": "KAJAL", "rank": "3", "class": "BCA" },
-            { "scan_index": 93, "name": "RENU", "rank": "3", "class": "B.Sc. Life Science" },
-            { "scan_index": 94, "name": "PRIYA", "rank": "3", "class": "B.Sc. (MH)" },
-            { "scan_index": 95, "name": "NIDHI GUPTA", "rank": "3", "class": "BCA" },
-            { "scan_index": 96, "name": "GARIMA", "rank": "3", "class": "B.Sc. (Med.)" },
-            { "scan_index": 97, "name": "HARSHITA", "rank": "3", "class": "B.A." },
-            { "scan_index": 98, "name": "ANKITA", "rank": "3", "class": "B.Sc. (NM)" },
-            { "scan_index": 99, "name": "LUCKY", "rank": "3", "class": "B.Sc. (Med.)" },
-            { "scan_index": 100, "name": "NISHA", "rank": "3", "class": "B.Sc. (CH)" },
-            { "scan_index": 101, "name": "BHARTI", "rank": "3", "class": "B.Sc. (Med.)" },
-            { "scan_index": 102, "name": "PREETI", "rank": "3", "class": "B.Sc. (Med.)" },
-            { "scan_index": 103, "name": "ASHA", "rank": "3", "class": "B.Com." },
-            { "scan_index": 104, "name": "ANSHUM", "rank": "3", "class": "B.Sc. (ZH)" },
-            { "scan_index": 105, "name": "NISHA", "rank": "3", "class": "B.Sc. (ZH)" },
-            { "scan_index": 106, "name": "HEENA", "rank": "3", "class": "B.Com. (H)" },
-            { "scan_index": 107, "name": "PRIYA", "rank": "3", "class": "B.Com." },
-            { "scan_index": 108, "name": "MUSKAN", "rank": "3", "class": "B.Com. (H)" },
-            { "scan_index": 109, "name": "NEHA", "rank": "3", "class": "B.Sc. (MH)" },
-            { "scan_index": 110, "name": "NAVNEETA", "rank": "3", "class": "BCA" },
-            { "scan_index": 111, "name": "CHETNA", "rank": "3", "class": "B.Sc. (MH)" },
-            { "scan_index": 112, "name": "PRIYANKA", "rank": "3", "class": "B.Sc. (Med.)" },
-            { "scan_index": 113, "name": "NIKITA", "rank": "3", "class": "B.Sc. (MH)" },
-            { "scan_index": 114, "name": "SAKSHI", "rank": "3", "class": "ARTS (YOGA)" },
-            { "scan_index": 115, "name": "ISHA", "rank": "3", "class": "B.A." },
-            { "scan_index": 116, "name": "MONIKA", "rank": "3", "class": "B.Sc. (ZH)" },
-            { "scan_index": 117, "name": "NAVEEN", "rank": "3", "class": "B.Sc. (ZH)" },
-            { "scan_index": 118, "name": "SAPNA", "rank": "3", "class": "B.Sc. (CH)" },
-            { "scan_index": 119, "name": "MANISHA", "rank": "3", "class": "B.Sc. (CH)" },
-            { "scan_index": 120, "name": "RITIK", "rank": "3", "class": "B.Sc. (Med.)" },
-            { "scan_index": 121, "name": "PRIYA", "rank": "3", "class": "B.Com." },
-            { "scan_index": 122, "name": "TAMANNA", "rank": "3", "class": "B.Sc(PS)" },
-            { "scan_index": 123, "name": "POONAM", "rank": "3", "class": "B.Sc. (PH)" },
-            { "scan_index": 124, "name": "ADITYA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 125, "name": "DEEPIKA", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 126, "name": "RAHUL", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 127, "name": "PRIYA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 128, "name": "NEHA", "rank": "4", "class": "B.Sc. (CH)" },
-            { "scan_index": 129, "name": "ANSHU", "rank": "4", "class": "B.COM.(Hons.)" },
-            { "scan_index": 130, "name": "TAMANNA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 131, "name": "VANSHIKA", "rank": "4", "class": "BCA" },
-            { "scan_index": 132, "name": "ARUNA", "rank": "4", "class": "B.Sc. (CH)" },
-            { "scan_index": 133, "name": "ANAMIKA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 134, "name": "RIYA", "rank": "4", "class": "B.Sc. (PH)" },
-            { "scan_index": 135, "name": "SAKSHI", "rank": "4", "class": "B.TECH" },
-            { "scan_index": 136, "name": "MANISH", "rank": "4", "class": "BCA" },
-            { "scan_index": 137, "name": "VISHAKHA", "rank": "4", "class": "B.Com." },
-            { "scan_index": 138, "name": "PARTIMA", "rank": "4", "class": "B.Com." },
-            { "scan_index": 139, "name": "ANSHU", "rank": "4", "class": "B.Com. (H)" },
-            { "scan_index": 140, "name": "NEHA", "rank": "4", "class": "ARTS" },
-            { "scan_index": 141, "name": "KHUSHI", "rank": "4", "class": "B.Sc. (Life Sci.)" },
-            { "scan_index": 142, "name": "TANISHA", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 143, "name": "TANNU", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 144, "name": "PRIYANKA", "rank": "4", "class": "B.Sc. (Med.)" },
-            { "scan_index": 145, "name": "SUSHMA", "rank": "4", "class": "B.Sc. (Med.)" },
-            { "scan_index": 146, "name": "KHUSHI", "rank": "4", "class": "B.Sc.(Phy Sci.)" },
-            { "scan_index": 147, "name": "ANITA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 148, "name": "PREETI", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 149, "name": "TAMANNA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 150, "name": "ANJALI", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 151, "name": "SONIYA", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 152, "name": "SANEH", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 153, "name": "SANDHYA", "rank": "4", "class": "B.Sc. (NM)" },
-            { "scan_index": 154, "name": "KASHISH", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 155, "name": "KHUSHBU", "rank": "4", "class": "B.Sc. (CH)" },
-            { "scan_index": 156, "name": "ISHU", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 157, "name": "PINKI", "rank": "4", "class": "B.Sc. (NM)" },
-            { "scan_index": 158, "name": "MANISHA", "rank": "4", "class": "B.Sc. (MH)" },
-            { "scan_index": 159, "name": "JYOTI", "rank": "4", "class": "B.A." },
-            { "scan_index": 160, "name": "RITIKA", "rank": "4", "class": "B.Sc. (ZH)" },
-            { "scan_index": 161, "name": "TAMANA YADAV", "rank": "5", "class": "ZOO.(Hons.)" },
-            { "scan_index": 162, "name": "SANGAM", "rank": "5", "class": "B.Sc. (CH)" },
-            { "scan_index": 163, "name": "KHUSHI", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 164, "name": "JYOTI", "rank": "5", "class": "ARTS(YOGA)" },
-            { "scan_index": 165, "name": "SHIWANI", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 166, "name": "NEHA", "rank": "5", "class": "B.Sc. (Medi.)" },
-            { "scan_index": 167, "name": "SHIWANI", "rank": "5", "class": "B.Sc. (Med.)" },
-            { "scan_index": 168, "name": "TANISHA", "rank": "5", "class": "B.Sc. (CH)" },
-            { "scan_index": 169, "name": "NISHA", "rank": "5", "class": "B.Sc. (MH)" },
-            { "scan_index": 170, "name": "DEEPIKA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 171, "name": "PREETI", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 172, "name": "EKTA", "rank": "5", "class": "B.A." },
-            { "scan_index": 173, "name": "TAMANNA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 174, "name": "MAHIMA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 175, "name": "NEHA", "rank": "5", "class": "B.Sc. (MH)" },
-            { "scan_index": 176, "name": "VANSHIKA", "rank": "5", "class": "BCA" },
-            { "scan_index": 177, "name": "RITU", "rank": "5", "class": "B.Sc. (NM)" },
-            { "scan_index": 178, "name": "SANJANA", "rank": "5", "class": "B.Sc. (MH)" },
-            { "scan_index": 179, "name": "ANKITA", "rank": "5", "class": "B.Sc. (NM)" },
-            { "scan_index": 180, "name": "MAMTA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 181, "name": "SONAM", "rank": "5", "class": "B.Sc. (PH)" },
-            { "scan_index": 182, "name": "SARGAM", "rank": "5", "class": "B.Sc. (PH)" },
-            { "scan_index": 183, "name": "ANKITA", "rank": "5", "class": "B.Sc. (MH)" },
-            { "scan_index": 184, "name": "TANNU", "rank": "5", "class": "B.Sc.(Phy.Sci.)" },
-            { "scan_index": 185, "name": "TANISHA", "rank": "5", "class": "B.COM" },
-            { "scan_index": 186, "name": "LAXMI", "rank": "5", "class": "B.Com." },
-            { "scan_index": 187, "name": "POONAM", "rank": "5", "class": "B.Com." },
-            { "scan_index": 188, "name": "SHIWANI", "rank": "5", "class": "B.Com." },
-            { "scan_index": 189, "name": "PRIYANKA", "rank": "5", "class": "B.Com." },
-            { "scan_index": 190, "name": "CHANCHAL", "rank": "5", "class": "B.Sc. (MH)" },
-            { "scan_index": 191, "name": "SNEHA", "rank": "5", "class": "B.Com. (H)" },
-            { "scan_index": 192, "name": "SUNITA", "rank": "5", "class": "B.Sc. (CH)" },
-            { "scan_index": 193, "name": "ANJALI", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 194, "name": "PRIYA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 195, "name": "PRIYAKA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 196, "name": "YACHANA", "rank": "5", "class": "B.Sc. (ZH)" },
-            { "scan_index": 197, "name": "SARITA", "rank": "6", "class": "B.Sc. (ZH)" },
-            { "scan_index": 198, "name": "TAMANNA", "rank": "6", "class": "B.COM" },
-            { "scan_index": 199, "name": "KHUSHI", "rank": "6", "class": "B.Sc. (Phy.Sci.)" },
-            { "scan_index": 200, "name": "ISHU", "rank": "6", "class": "B.A." },
-            { "scan_index": 201, "name": "NIKITA", "rank": "6", "class": "B.Sc (PH)" },
-            { "scan_index": 202, "name": "HITESH", "rank": "6", "class": "B.Sc (PH)" },
-            { "scan_index": 203, "name": "NEHA", "rank": "6", "class": "B.A" },
-
-
-            { "scan_index": 204, "name": "PREETI", "rank": "6", "class": "B.COM.(Hons.)" },
-            { "scan_index": 205, "name": "MONIKA", "rank": "6", "class": "B.Com." },
-            { "scan_index": 206, "name": "NISHA", "rank": "6", "class": "B.Sc. (Medi.)" },
-            { "scan_index": 207, "name": "POOJA", "rank": "6", "class": "B.Sc. (MH)" },
-            { "scan_index": 208, "name": "POOJA", "rank": "6", "class": "B.Sc. (NM)" },
-            { "scan_index": 209, "name": "ANJALI", "rank": "6", "class": "B.Sc. (ZH)" },
-            { "scan_index": 210, "name": "PRIYA", "rank": "6", "class": "B.COM" },
-            { "scan_index": 211, "name": "ARPANA", "rank": "6", "class": "BBA" },
-            { "scan_index": 212, "name": "MAMTA", "rank": "6", "class": "B.Sc. (ZH)" },
-            { "scan_index": 213, "name": "ANKITA", "rank": "6", "class": "B.Sc. (PH)" },
-            { "scan_index": 214, "name": "MUSKAN", "rank": "6", "class": "B.A" },
-            { "scan_index": 215, "name": "DIVYA", "rank": "6", "class": "B.Sc. (ZH)" },
-            { "scan_index": 216, "name": "REENA", "rank": "6", "class": "B.Sc. (ZH)" },
-            { "scan_index": 217, "name": "NEHA", "rank": "6", "class": "B.A." },
-            { "scan_index": 218, "name": "MONIKA", "rank": "6", "class": "B.Sc. (PH)" },
-            { "scan_index": 219, "name": "PRIYA", "rank": "6", "class": "B.Sc. (ZH)" },
-            { "scan_index": 220, "name": "KAVITA", "rank": "6", "class": "BCA" },
-            { "scan_index": 221, "name": "PRIYA", "rank": "6", "class": "B.Com." },
-            { "scan_index": 222, "name": "ANAMIKA", "rank": "7", "class": "B.Com." },
-            { "scan_index": 223, "name": "MANSI", "rank": "7", "class": "B.Sc. (MH)" },
-            { "scan_index": 224, "name": "KOMAL", "rank": "7", "class": "B.Sc. (CH)" },
-            { "scan_index": 225, "name": "KAVITA", "rank": "7", "class": "BCA" },
-            { "scan_index": 226, "name": "SANGAM", "rank": "7", "class": "B.Sc. (CH)" },
-            { "scan_index": 227, "name": "KUSUM", "rank": "7", "class": "B.Sc. (ZH)" },
-            { "scan_index": 228, "name": "PINKI", "rank": "7", "class": "B.Sc. (CH)" },
-            { "scan_index": 229, "name": "RIYA", "rank": "7", "class": "B.Sc. (MED.)" },
-            { "scan_index": 230, "name": "DIKSHA", "rank": "7", "class": "B.A" },
-            { "scan_index": 231, "name": "MANISHA", "rank": "7", "class": "B.A" },
-            { "scan_index": 232, "name": "SHIVATI", "rank": "7", "class": "B.A" },
-            { "scan_index": 233, "name": "MAHEK SHARMA", "rank": "7", "class": "BCA" },
-            { "scan_index": 234, "name": "KAVITA", "rank": "7", "class": "B.Sc. (NM)" },
-            { "scan_index": 235, "name": "SONIYA", "rank": "7", "class": "B.Sc. (CH)" },
-            { "scan_index": 236, "name": "KHUSHI", "rank": "7", "class": "B.Sc. (Med.)" },
-            { "scan_index": 237, "name": "NIKITA", "rank": "7", "class": "B.Sc. (CH)" },
-            { "scan_index": 238, "name": "NIDHI", "rank": "7", "class": "B.Sc. (Med.)" },
-            { "scan_index": 239, "name": "ANTIMA", "rank": "7", "class": "B.Sc. (ZH)" },
-            { "scan_index": 240, "name": "DEV", "rank": "7", "class": "BCA" },
-            { "scan_index": 241, "name": "KIRAN", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 242, "name": "ANSHU", "rank": "8", "class": "B.Sc. (MH)" },
-            { "scan_index": 243, "name": "SIMRAN", "rank": "8", "class": "BCA" },
-            { "scan_index": 244, "name": "GARIMA", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 245, "name": "HIMANSHU", "rank": "8", "class": "B.COM." },
-            { "scan_index": 246, "name": "PAYAL", "rank": "8", "class": "B.Sc(NM)" },
-            { "scan_index": 247, "name": "PRIYANKA", "rank": "8", "class": "B.A." },
-            { "scan_index": 248, "name": "NARESH", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 249, "name": "PALAK", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 250, "name": "MANISHA", "rank": "8", "class": "B.Sc. (CH)" },
-            { "scan_index": 251, "name": "KANCHAN", "rank": "8", "class": "B.Sc. (CH)" },
-            { "scan_index": 252, "name": "PRIYA", "rank": "8", "class": "B.Sc. (Med.)" },
-            { "scan_index": 253, "name": "PINKI", "rank": "8", "class": "B.Sc. (NM)" },
-            { "scan_index": 254, "name": "NEERU", "rank": "8", "class": "B.Sc. (Med.)" },
-            { "scan_index": 255, "name": "PRIYANKA", "rank": "8", "class": "B.Sc. (CH)" },
-            { "scan_index": 256, "name": "MEENU", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 257, "name": "SANIYA", "rank": "8", "class": "B.A" },
-            { "scan_index": 258, "name": "ANAMIKA", "rank": "8", "class": "B.COM" },
-            { "scan_index": 259, "name": "MANISH", "rank": "8", "class": "BCA" },
-            { "scan_index": 260, "name": "ANUSHKA", "rank": "8", "class": "B.Sc. Life Sci." },
-            { "scan_index": 261, "name": "TAMANNA", "rank": "8", "class": "B.Sc. (Phy.Sci)" },
-            { "scan_index": 262, "name": "RITIKA", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 263, "name": "KAVITA", "rank": "8", "class": "BCA" },
-            { "scan_index": 264, "name": "PREETI", "rank": "8", "class": "B.Sc. Maths" },
-            { "scan_index": 265, "name": "ANTIMA", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 266, "name": "CHETAN", "rank": "8", "class": "B.Com. (H)" },
-            { "scan_index": 267, "name": "YASHIKA", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 268, "name": "NEHA", "rank": "8", "class": "B.Sc. (ZH)" },
-            { "scan_index": 269, "name": "PRIYA", "rank": "9", "class": "B.Sc. (CH)" },
-            { "scan_index": 270, "name": "KIRTI", "rank": "9", "class": "B.Sc. (ZH)" },
-            { "scan_index": 271, "name": "DEEPIKA", "rank": "9", "class": "B.Sc. (ZH)" },
-            { "scan_index": 272, "name": "PRIYA", "rank": "9", "class": "B.Sc. (CH)" },
-            { "scan_index": 273, "name": "NISHU", "rank": "9", "class": "B.Sc. (Med.)" },
-            { "scan_index": 274, "name": "VARSHA", "rank": "9", "class": "B.Sc. (Med.)" },
-            { "scan_index": 275, "name": "KIRAN", "rank": "9", "class": "ARTS" },
-            { "scan_index": 276, "name": "SHEETAL", "rank": "9", "class": "B.Sc. (NM)" },
-            { "scan_index": 277, "name": "DIVYA", "rank": "9", "class": "B.COM" },
-            { "scan_index": 278, "name": "SANIYA", "rank": "9", "class": "B.Sc. (PH)" },
-            { "scan_index": 279, "name": "VISHA", "rank": "9", "class": "B.Sc. (PH)" },
-            { "scan_index": 280, "name": "DIVYA", "rank": "9", "class": "B.Sc. (CH)" },
-            { "scan_index": 281, "name": "NISHA", "rank": "9", "class": "B.A." },
-            { "scan_index": 282, "name": "SIMRAN", "rank": "9", "class": "BCA" },
-            { "scan_index": 283, "name": "TAMANNA", "rank": "9", "class": "B.Sc. (Life Sci.)" },
-            { "scan_index": 284, "name": "AMITA", "rank": "9", "class": "B.Sc. (MH)" },
-            { "scan_index": 285, "name": "PREETI", "rank": "9", "class": "B.Sc. (NM)" },
-            { "scan_index": 286, "name": "TAMANNA", "rank": "9", "class": "ARTS" },
-            { "scan_index": 287, "name": "ANUP", "rank": "9", "class": "B.Sc. (ZH)" },
-            { "scan_index": 288, "name": "RIYA", "rank": "9", "class": "B.Com." },
-            { "scan_index": 289, "name": "MUSKAN", "rank": "9", "class": "B.Sc. (CH)" },
-            { "scan_index": 290, "name": "MANISHA", "rank": "9", "class": "B.Sc. (MH)" },
-            { "scan_index": 291, "name": "RAJBALA", "rank": "9", "class": "B.Sc. (MH)" },
-            { "scan_index": 292, "name": "ANJALI", "rank": "9", "class": "B.Sc(NM)" },
-            { "scan_index": 293, "name": "PAYAL", "rank": "9", "class": "B.COM.(Hons.)" },
-            { "scan_index": 294, "name": "PRIYA", "rank": "9", "class": "B.Sc (NM)" },
-            { "scan_index": 295, "name": "JYOTI", "rank": "10", "class": "ARTS" },
-            { "scan_index": 296, "name": "RACHANA", "rank": "10", "class": "B.Sc. (ZH)" },
-            { "scan_index": 297, "name": "ANSHU", "rank": "10", "class": "B.Sc(NM)" },
-            { "scan_index": 298, "name": "PREETI", "rank": "10", "class": "B.Sc.(Med.)" },
-            { "scan_index": 299, "name": "KOMAL", "rank": "10", "class": "B.Sc. (CH)" },
-            { "scan_index": 300, "name": "SHIKSHA", "rank": "10", "class": "B.Sc. (ZH)" },
-            { "scan_index": 301, "name": "PRIYA", "rank": "10", "class": "B.Sc (NM)" },
-            { "scan_index": 302, "name": "MONIKA", "rank": "10", "class": "B.Sc. (NM)" },
-            { "scan_index": 303, "name": "RITU", "rank": "10", "class": "B.Sc. (CH)" },
-            { "scan_index": 304, "name": "NISHA", "rank": "10", "class": "B.Sc. (MH)" },
-            { "scan_index": 305, "name": "LUCKY", "rank": "10", "class": "B.Sc. Med." },
-            { "scan_index": 306, "name": "JYOTI", "rank": "10", "class": "B.Com." },
-            { "scan_index": 307, "name": "HEENA", "rank": "10", "class": "B.Com." },
-            { "scan_index": 308, "name": "BHUMIKA", "rank": "10", "class": "B.A" },
-            { "scan_index": 309, "name": "MANISHA", "rank": "10", "class": "B.A" },
-            { "scan_index": 310, "name": "MUSKAN", "rank": "10", "class": "B.Sc. (PH)" },
-            { "scan_index": 311, "name": "SUDHA", "rank": "10", "class": "B.Sc. (ZH)" },
-            { "scan_index": 312, "name": "AHANA", "rank": "10", "class": "B.Sc. (ZH)" },
-            { "scan_index": 313, "name": "ANJALI", "rank": "10", "class": "B.Sc. (Medi.)" },
-            { "scan_index": 314, "name": "FATEH SINGH", "rank": "10", "class": "B.Sc. (MH)" }
-
-        ]
+// Fill a target length by repeating items, shuffled so neighbours don't
+// duplicate the same source item where possible.
+function fillAndShuffle(items, target, seed) {
+    if (items.length === 0) return [];
+    const rand = mulberry32(seed);
+    const out = [];
+    // Build a pool: one shuffled copy of items, refilled when exhausted.
+    const refill = () => {
+        const pool = items.slice();
+        for (let i = pool.length - 1; i > 0; i--) {
+            const j = Math.floor(rand() * (i + 1));
+            [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+        return pool;
+    };
+    let pool = refill();
+    while (out.length < target) {
+        if (pool.length === 0) pool = refill();
+        const next = pool.pop();
+        // Try to avoid placing the same item immediately after itself.
+        if (out.length > 0 && next === out[out.length - 1] && pool.length > 0) {
+            const swap = pool.pop();
+            out.push(swap);
+            pool.push(next);
+        } else {
+            out.push(next);
+        }
     }
+    return out;
+}
 
+/**
+ * @framerSupportedLayoutWidth any
+ * @framerSupportedLayoutHeight any
+ * @framerIntrinsicWidth 600
+ * @framerIntrinsicHeight 600
+ */
+function __OriginkitBase_DraggableGrid(props) {
+    props = { ...COMPONENT_DEFAULTS, ...props };
+    const {
+        items,
+        columns,
+        imageWidth,
+        imageHeight,
+        rounded,
+        gap,
+        enableWheel,
+        placeholderColor,
+        onItemClick,
+        style,
+        apiUrl, // New prop for API URL
+    } = props;
 
-    const cardStyles = {
-        card: "bg-white border border-[#e5e5e5] rounded-md overflow-hidden text-center transition-all duration-200 ease-in-out hover:-translate-y-1 hover:border-[#a3a3a3]",
-        imageWrapper: "overflow-hidden w-full h-[190px] bg-[#f0f0f0]",
-        image: "w-full h-full object-contain block transition-transform duration-200 ease-in-out group-hover:scale-105",
-        content: "p-3",
-        title: "text-sm font-medium text-[#1a1a1a] mb-1 whitespace-nowrap overflow-hidden text-ellipsis",
-        subtitle: "text-[11px] text-[#666666] whitespace-nowrap overflow-hidden text-ellipsis",
-        boldText: "font-semibold text-black",
+    const containerRef = useRef(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const [containerSize, setContainerSize] = useState({ w: 800, h: 600 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [apiItems, setApiItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const initializedRef = useRef(false);
+
+    const pointerDownPos = useRef(null);
+    const wheelAnimX = useRef(null);
+    const wheelAnimY = useRef(null);
+    const failedImages = useRef(new Set());
+    const [, forceRender] = useState(0);
+
+    // Fetch images from API
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get("/api/client/gallery/random");
+
+                if (response.data.status === "success" && response.data.data) {
+                    // Transform API data to match GridItem format
+
+                    const transformedItems = response.data.data.map((item) => ({
+
+                        image: {
+                            src: `/uploads/${item.Image}`, // API returns image filename
+                            // You might need to prepend a base URL if the image path is relative
+                            // src: `https://your-image-base-url.com/${item.Image}`,
+                        },
+                        alt: `Image ${item.Id}`,
+                        id: item.Id,
+                    }));
+                    // console.log(transformedItems)
+                    setApiItems(transformedItems);
+                    setError(null);
+                } else {
+                    setError("Failed to fetch images");
+                    setApiItems([]);
+                }
+            } catch (err) {
+                console.error("Error fetching images:", err);
+                setError(err.message || "Failed to fetch images");
+                setApiItems([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchImages();
+    }, [apiUrl]);
+
+    const safeItems =
+        loading ? defaultItems : // Show default items while loading
+            apiItems.length > 0 ? apiItems :
+                (Array.isArray(items) && items.length > 0 ? items : defaultItems);
+
+    const safeColumns = Math.max(1, Math.min(20, Math.floor(columns || 5)));
+    // Image dimensions match CurveGallery (px, clamped 20–4000).
+    const safeImageWidth = Math.max(20, Math.min(4000, imageWidth ?? 150));
+    const safeImageHeight = Math.max(20, Math.min(4000, imageHeight ?? 210));
+    // Gap matches CurveGallery: control is 0–100, ×4 → px. Same value spaces
+    // tiles from each other AND the grid edge from the boundary (padding).
+    const safeGap = Math.max(0, Math.min(100, gap ?? 4)) * 4;
+    // Rounded matches CurveGallery: 0 = square … 20 = circle (on short side).
+    const r = Math.max(0, Math.min(20, rounded ?? 3));
+    const radius = (r / 20) * (Math.min(safeImageWidth, safeImageHeight) / 2);
+
+    // Square grid: rows === columns. Fill all cells by repeating items in a
+    // shuffled order, so a small source list still produces a full grid.
+    const rows = safeColumns;
+    const totalCells = safeColumns * rows;
+    const displayItems = useMemo(
+        () => fillAndShuffle(safeItems, totalCells, 0xc0ffee),
+        [safeItems, totalCells]
+    );
+
+    const gridW = safeColumns * safeImageWidth + (safeColumns - 1) * safeGap;
+    const gridH = rows * safeImageHeight + (rows - 1) * safeGap;
+
+    // Measure container with ResizeObserver
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const measure = () => {
+            const rect = el.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+                setContainerSize({ w: rect.width, h: rect.height });
+            }
+        };
+        measure();
+
+        const ro = new ResizeObserver(measure);
+        ro.observe(el);
+        return () => ro.disconnect();
+    }, []);
+
+    // Drag constraints: at either extreme the edge images stop exactly one
+    // gap from the container border — no overshoot into empty space.
+    // maxX/maxY: grid pinned `gap` from the top-left border.
+    // minX/minY: grid's far edge `gap` from the bottom-right border.
+    // When the grid is smaller than the container the range collapses to the
+    // top-left position (min clamped to max), so it can't drift.
+    const maxX = safeGap;
+    const minX = Math.min(maxX, containerSize.w - gridW - safeGap);
+    const maxY = safeGap;
+    const minY = Math.min(maxY, containerSize.h - gridH - safeGap);
+
+    const dragConstraints = {
+        left: minX,
+        right: maxX,
+        top: minY,
+        bottom: maxY,
     };
 
-    return (
-        <div className="w-full">
-            <div className="imported-block my-2">
-                <header className="mb-10 text-center">
-                    <h1 className="text-2xl font-normal tracking-tight mb-2">&nbsp;</h1>
-                </header>
+    // Pin the grid to the top-left corner so there are no centering margins —
+    // the only spacing is the configured gap between images. Set once; after
+    // that drag/wheel own the motion values.
+    useEffect(() => {
+        if (initializedRef.current) return;
+        if (containerSize.w === 0 || containerSize.h === 0) return;
 
-                <main className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 max-w-[1400px] mx-auto">
-                    {json.students.map((student, index) => (
-                        <div key={student.scan_index || index} className="student-card">
-                            <div className="student-img-container">
-                                <img
-                                    className="student-img"
-                                    src={"https://admin.yaduvanshigroup.edu.in/uploads/college-top/top-10-ug/" + student.scan_index + ".jpg"}
-                                    alt={student.name}
-                                />
-                            </div>
-                            <div className="student-info">
-                                <div className="student-name">
-                                    {student.name}
-                                </div>
-                                <div className="student-meta">
-                                    RANK: <span className="student-highlight">{student.rank}</span>
-                                </div>
-                                <div className="student-meta">
-                                    Class: <span className="student-highlight">{student.class}</span>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </main>
+        x.set(maxX);
+        y.set(maxY);
+        initializedRef.current = true;
+    }, [containerSize.w, containerSize.h, maxX, maxY, x, y]);
+
+    // Wheel scrolling
+    useEffect(() => {
+        if (!enableWheel) return;
+        const el = containerRef.current;
+        if (!el) return;
+
+        const clamp = (v, mn, mx) => Math.min(Math.max(v, mn), mx);
+
+        const onWheel = (e) => {
+            e.preventDefault();
+            const curX = x.get();
+            const curY = y.get();
+            const targetX = clamp(curX - e.deltaX, minX, maxX);
+            const targetY = clamp(curY - e.deltaY, minY, maxY);
+            if (wheelAnimX.current) wheelAnimX.current.stop();
+            if (wheelAnimY.current) wheelAnimY.current.stop();
+            wheelAnimX.current = animate(x, targetX, {
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+            });
+            wheelAnimY.current = animate(y, targetY, {
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+            });
+        };
+
+        el.addEventListener("wheel", onWheel, { passive: false });
+        return () => {
+            el.removeEventListener("wheel", onWheel);
+            if (wheelAnimX.current) wheelAnimX.current.stop();
+            if (wheelAnimY.current) wheelAnimY.current.stop();
+        };
+    }, [enableWheel, minX, maxX, minY, maxY, x, y]);
+
+    const handlePointerDown = useCallback((e) => {
+        pointerDownPos.current = { x: e.clientX, y: e.clientY, t: Date.now() };
+    }, []);
+
+    const handlePointerUp = useCallback(
+        (e, item, index) => {
+            const start = pointerDownPos.current;
+            pointerDownPos.current = null;
+            if (!start) return;
+            const dx = e.clientX - start.x;
+            const dy = e.clientY - start.y;
+            const moved = Math.hypot(dx, dy);
+            if (moved < 5) {
+                onItemClick?.(item, index);
+            }
+        },
+        [onItemClick]
+    );
+
+    const handleImageError = useCallback((index) => {
+        failedImages.current.add(index);
+        forceRender((n) => n + 1);
+    }, []);
+
+    const wrapperStyle = {
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        minWidth: 600,
+        minHeight: 600,
+        margin: 0,
+        boxSizing: "border-box",
+        overflow: "hidden",
+        touchAction: "none",
+        userSelect: "none",
+        cursor: isDragging ? "grabbing" : "grab",
+        ...style,
+    };
+
+    const gridStyle = {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: gridW,
+        height: gridH,
+        boxSizing: "border-box",
+        display: "grid",
+        gridTemplateColumns: `repeat(${safeColumns}, ${safeImageWidth}px)`,
+        gridAutoRows: `${safeImageHeight}px`,
+        gap: `${safeGap}px`,
+        willChange: "transform",
+    };
+
+    // Show loading state
+    if (loading) {
+        return (
+            <div style={wrapperStyle}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                    fontSize: "18px",
+                    color: "#666"
+                }}>
+                    Loading images...
+                </div>
             </div>
+        );
+    }
+
+    // Show error state
+    if (error) {
+        return (
+            <div style={wrapperStyle}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                    flexDirection: "column",
+                    gap: "10px"
+                }}>
+                    <div style={{ fontSize: "18px", color: "#e74c3c" }}>
+                        Error loading images
+                    </div>
+                    <div style={{ fontSize: "14px", color: "#666" }}>
+                        {error}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div ref={containerRef} style={wrapperStyle}>
+            <motion.div
+                style={{ ...gridStyle, x, y }}
+                drag
+                dragConstraints={dragConstraints}
+                dragElastic={0}
+                dragMomentum={true}
+                onDragStart={() => setIsDragging(true)}
+                onDragEnd={() => setIsDragging(false)}
+            >
+                {displayItems.map((item, index) => {
+                    const src = item?.image?.src;
+                    const alt = item?.alt ?? item?.image?.alt ?? "";
+                    const failed = failedImages.current.has(index);
+                    return (
+                        <div
+                            key={index}
+                            onPointerDown={handlePointerDown}
+                            onPointerUp={(e) => handlePointerUp(e, item, index)}
+                            style={{
+                                position: "relative",
+                                width: safeImageWidth,
+                                height: safeImageHeight,
+                                overflow: "hidden",
+                                borderRadius: radius,
+                                backgroundColor: getItemColor(index),
+                                color: "rgba(255,255,255,0.85)",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontFamily:
+                                    "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+                                fontSize: Math.max(
+                                    14,
+                                    Math.round(
+                                        Math.min(safeImageWidth, safeImageHeight) * 0.16
+                                    )
+                                ),
+                                fontWeight: 600,
+                                cursor: isDragging ? "grabbing" : "pointer",
+                            }}
+                        >
+                            <span style={{ position: "relative", zIndex: 0 }}>
+                                {index + 1}
+                            </span>
+                            {src && !failed ? (
+                                <img
+                                    src={src}
+                                    alt={alt}
+                                    draggable={false}
+                                    onError={() => handleImageError(index)}
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        pointerEvents: "none",
+                                        userSelect: "none",
+                                        display: "block",
+                                        zIndex: 1,
+                                    }}
+                                />
+                            ) : null}
+                        </div>
+                    );
+                })}
+            </motion.div>
         </div>
-    )
+    );
+}
+
+const COMPONENT_DEFAULTS = {
+    items: defaultItems,
+    columns: 15,
+    imageWidth: 200,
+    imageHeight: 200,
+    rounded: 3,
+    gap: 5,
+    enableWheel: false,
+    placeholderColor: "#1a1a1f",
+    apiUrl: "http://localhost:5173/api/client/gallery/random", // Default API URL
+};
+
+const __originkitPresetProps = {
+    rounded: 1,
+    gap: 1,
+};
+
+export default function DraggableGrid(props) {
+    return <__OriginkitBase_DraggableGrid {...__originkitPresetProps} {...props} />;
 }
