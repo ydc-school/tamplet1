@@ -3,7 +3,8 @@
 }
 
 .topper-student-shodow:hover {
-    transform: scale(1.05);
-    transition-duration: 1s;    
+    transform: scale(1.1);
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-duration: 5ms;    
     box-shadow: rgba(77, 69, 231, 0.25) 0px 54px 55px, rgba(196, 47, 212, 0.12) 0px -12px 30px, rgba(30, 219, 90, 0.478) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(75, 230, 8, 0.09) 0px -3px 5px;
 }
