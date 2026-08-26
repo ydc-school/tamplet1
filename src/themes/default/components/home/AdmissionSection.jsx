@@ -70,11 +70,11 @@ export default function AdmissionSection() {
 
         <div className="grid md:grid-cols-12 gap-8 items-center bg-white border border-neutral-200 rounded-2xl overflow-hidden">
 
-          {admissionData?.Image &&
+          {admissionData.Image != "" &&
             <div className="md:col-span-7 relative h-[350px] md:h-[500px] w-full bg-neutral-100">
               <Image
                 src={`/uploads/${admissionData.Image}`}
-                // alt={admissionData.Title || "Admission"}
+                alt={admissionData.Title || "Admission"}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
