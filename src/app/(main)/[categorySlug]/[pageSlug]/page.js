@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import slugify from "@/utils/slugify";
 import { headers } from "next/headers";
+import IsolatedContent from "@/utils/IsolatedContent";
 
 
 // ─── Helper: HTML entity decode ─────────────────────────────
@@ -360,14 +361,7 @@ export default async function Page({ params }) {
 
         {/* Main Content */}
         <main className="mx-auto max-w-4xl px-6 pb-24">
-          <article
-            className="[&_table]:mb-6 [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-[#e5e5e5] [&_table]:rounded-md [&_table]:overflow-hidden
-[&_thead]:bg-[#f9f9f9]
-[&_th]:border-2 [&_th]:border-[#0c0c0c] [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-wider [&_th]:text-[#171717]
-[&_td]:border-2 [&_td]:border-[#0c0c0c] [&_td]:px-4 [&_td]:py-3 [&_td]:text-sm [&_td]:text-[#404040]
-[&_tr:nth-child(even)]:bg-[#fafafa]"
-            dangerouslySetInnerHTML={{ __html: pageData.Page_Data }}
-          />
+          <IsolatedContent htmlContent={pageData.Page_Data} />
         </main>
       </div>
     </>
