@@ -188,7 +188,7 @@ export default function CareersForm() {
                                     <select id="branch" name="branches" required className={inputClass} value={formData.branches} onChange={handleChange}>
                                         <option value="" disabled>Select a branch</option>
                                         {branches
-                                            ?.filter(i => i.Name !== "main")
+                                            ?.filter(i => i.Name !== "main" && i.Branch_Type != "main")
                                             ?.map((i) => (
                                                 <option key={i.Id} value={i.Id}>
                                                     {i.Name}
