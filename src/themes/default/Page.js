@@ -7,6 +7,7 @@ import FounderMessage from "./components/home/FounderMessage";
 import StudentToppers from "./components/home/StudentToppers";
 import WelcomeSection from "./components/home/WelcomeSection";
 import Popup from "@/components/layout/Popup";
+import RandomGallery from "./components/home/RandomGallery";
 
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <CollegetoperScoll />
         <AdmissionSection />
         <AchievementGallery />
+        <RandomGallery />
         <BlogSection />
       </div>
     </>
