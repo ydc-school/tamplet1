@@ -468,7 +468,7 @@ function __OriginkitBase_DraggableGrid(props) {
 
             <button className="float-end  bg-primary text-white rounded-md my-5 px-3 p-1.5">
 
-                <Link herf="/gallery">MORE GALLRY</Link>
+                <Link href="/gallery">MORE GALLRY</Link>
             </button>
 
         </div>
