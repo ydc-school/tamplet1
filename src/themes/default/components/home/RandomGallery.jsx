@@ -5,7 +5,7 @@
 import { motion, useMotionValue, animate } from "framer-motion";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import axios from "axios";
-
+import Link from "next/link";
 // Default placeholder items (will be replaced by API data)
 const defaultItems = [
     {
@@ -392,74 +392,85 @@ function __OriginkitBase_DraggableGrid(props) {
     }
 
     return (
-        <div ref={containerRef} style={wrapperStyle}>
-            <motion.div
-                style={{ ...gridStyle, x, y }}
-                drag
-                dragConstraints={dragConstraints}
-                dragElastic={0}
-                dragMomentum={true}
-                onDragStart={() => setIsDragging(true)}
-                onDragEnd={() => setIsDragging(false)}
-            >
-                {displayItems.map((item, index) => {
-                    const src = item?.image?.src;
-                    const alt = item?.alt ?? item?.image?.alt ?? "";
-                    const failed = failedImages.current.has(index);
-                    return (
-                        <div
-                            key={index}
-                            onPointerDown={handlePointerDown}
-                            onPointerUp={(e) => handlePointerUp(e, item, index)}
-                            style={{
-                                position: "relative",
-                                width: safeImageWidth,
-                                height: safeImageHeight,
-                                overflow: "hidden",
-                                borderRadius: radius,
-                                backgroundColor: getItemColor(index),
-                                color: "rgba(255,255,255,0.85)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontFamily:
-                                    "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
-                                fontSize: Math.max(
-                                    14,
-                                    Math.round(
-                                        Math.min(safeImageWidth, safeImageHeight) * 0.16
-                                    )
-                                ),
-                                fontWeight: 600,
-                                cursor: isDragging ? "grabbing" : "pointer",
-                            }}
-                        >
-                            <span style={{ position: "relative", zIndex: 0 }}>
-                                {index + 1}
-                            </span>
-                            {src && !failed ? (
-                                <img
-                                    src={src}
-                                    alt={alt}
-                                    draggable={false}
-                                    onError={() => handleImageError(index)}
-                                    style={{
-                                        position: "absolute",
-                                        inset: 0,
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        pointerEvents: "none",
-                                        userSelect: "none",
-                                        display: "block",
-                                        zIndex: 1,
-                                    }}
-                                />
-                            ) : null}
-                        </div>
-                    );
-                })}
-            </motion.div>
+        < div className="p-7">
+
+            <h1 className="text-3xl py-3">Random gallery </h1>
+            <div className=" rounded-xl bg-academic-teal " ref={containerRef} style={wrapperStyle}>
+
+                <motion.div
+                    style={{ ...gridStyle, x, y }}
+                    drag
+                    dragConstraints={dragConstraints}
+                    dragElastic={0}
+                    dragMomentum={true}
+                    onDragStart={() => setIsDragging(true)}
+                    onDragEnd={() => setIsDragging(false)}
+                >
+                    {displayItems.map((item, index) => {
+                        const src = item?.image?.src;
+                        const alt = item?.alt ?? item?.image?.alt ?? "";
+                        const failed = failedImages.current.has(index);
+                        return (
+                            <div
+                                key={index}
+                                onPointerDown={handlePointerDown}
+                                onPointerUp={(e) => handlePointerUp(e, item, index)}
+                                style={{
+                                    position: "relative",
+                                    width: safeImageWidth,
+                                    height: safeImageHeight,
+                                    overflow: "hidden",
+                                    borderRadius: radius,
+                                    backgroundColor: getItemColor(index),
+                                    color: "rgba(255,255,255,0.85)",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    fontFamily:
+                                        "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+                                    fontSize: Math.max(
+                                        14,
+                                        Math.round(
+                                            Math.min(safeImageWidth, safeImageHeight) * 0.16
+                                        )
+                                    ),
+                                    fontWeight: 600,
+                                    cursor: isDragging ? "grabbing" : "pointer",
+                                }}
+                            >
+                                <span style={{ position: "relative", zIndex: 0 }}>
+                                    {index + 1}
+                                </span>
+                                {src && !failed ? (
+                                    <img
+                                        src={src}
+                                        alt={alt}
+                                        draggable={false}
+                                        onError={() => handleImageError(index)}
+                                        style={{
+                                            position: "absolute",
+                                            inset: 0,
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "cover",
+                                            pointerEvents: "none",
+                                            userSelect: "none",
+                                            display: "block",
+                                            zIndex: 1,
+                                        }}
+                                    />
+                                ) : null}
+                            </div>
+                        );
+                    })}
+                </motion.div>
+            </div>
+
+            <button className="float-end  bg-primary text-white rounded-md my-5 px-3 p-1.5">
+
+                <Link herf="/gallery">MORE GALLRY</Link>
+            </button>
+
         </div>
     );
 }
@@ -471,9 +482,9 @@ const COMPONENT_DEFAULTS = {
     imageHeight: 200,
     rounded: 3,
     gap: 5,
-    enableWheel: false,
+    enableWheel: true,
     placeholderColor: "#1a1a1f",
-    apiUrl: "http://localhost:5173/api/client/gallery/random", // Default API URL
+    apiUrl: "/api/client/gallery/random", // Default API URL
 };
 
 const __originkitPresetProps = {
