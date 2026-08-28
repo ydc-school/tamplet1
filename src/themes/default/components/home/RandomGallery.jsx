@@ -350,6 +350,8 @@ function __OriginkitBase_DraggableGrid(props) {
         willChange: "transform",
     };
 
+
+
     // Show loading state
     if (loading) {
         return (
@@ -367,6 +369,12 @@ function __OriginkitBase_DraggableGrid(props) {
             </div>
         );
     }
+
+
+if (apiItems.length < 0) return 
+           
+    
+    
 
     // Show error state
     if (error) {
