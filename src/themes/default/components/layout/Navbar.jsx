@@ -218,13 +218,30 @@ export default function Navbar() {
                       </div>
                       <div className="absolute top-full left-0 mt-0 w-52 bg-white text-gray-800 rounded-b-md shadow-xl border-t-2 border-amber-400 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-1 z-[60]">
                         {cat.pages.map((page) => (
-                          <Link
-                            key={page.Id}
-                            href={`/${slugify(cat.Slug)}/${page.Slug}`}
-                            className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
-                          >
-                            {page.Name}
-                          </Link>
+                          <div key={page.Id} className="relative group/sub">
+                            <Link
+                              href={`/${slugify(cat.Slug)}/${page.Slug}`}
+                              className="px-4 py-2 text-xs relative font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider flex justify-between items-center"
+                            >
+                              {page.Name}
+                              {page.sub_pages && <span className="ml-2">▶</span>}
+                            </Link>
+
+                            {/* Sub-menu - appears on hover */}
+                            {page.sub_pages && (
+                              <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-md shadow-xl border border-gray-100 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 flex flex-col py-1">
+                                {page.sub_pages.map((subPage) => (
+                                  <Link
+                                    key={subPage.Id}
+                                    href={`/${slugify(cat.Slug)}/${page.Slug}/${subPage.Slug}`}
+                                    className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
+                                  >
+                                    {subPage.Name}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         ))}
                       </div>
                     </>
