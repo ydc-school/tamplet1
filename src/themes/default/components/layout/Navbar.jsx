@@ -40,6 +40,7 @@ export default function Navbar() {
             };
           });
 
+
           setCategories(sorted);
         }
       } catch (error) {
@@ -210,17 +211,21 @@ export default function Navbar() {
                 <li key={cat.Id} className="relative group py-3.5 px-4 cursor-pointer">
                   {cat.pages?.length > 0 ? (
                     <>
-                      <div className="flex items-center gap-1 hover:text-amber-400 transition-colors">
+                      <Link href={cat.Url || "#"} className="flex items-center gap-1 hover:text-amber-400 transition-colors">
                         {cat.Name}
                         <svg className="w-3 h-3 transform group-hover:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
-                      </div>
+                      </Link>
+
+
+
+
                       <div className="absolute top-full left-0 mt-0 w-52 bg-white text-gray-800 rounded-b-md shadow-xl border-t-2 border-amber-400 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-1 z-[60]">
                         {cat.pages.map((page) => (
                           <div key={page.Id} className="relative group/sub">
                             <Link
-                              href={`/${slugify(cat.Slug)}/${page.Slug}`}
+                              href={page.Url ? page.Url : `/${slugify(cat.Slug)}/${page.Slug}`}
                               className="px-4 py-2 text-xs relative font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider flex justify-between items-center"
                             >
                               {page.Name}
@@ -233,7 +238,7 @@ export default function Navbar() {
                                 {page.sub_pages.map((subPage) => (
                                   <Link
                                     key={subPage.Id}
-                                    href={`/${slugify(cat.Slug)}/${page.Slug}/${subPage.Slug}`}
+                                    href={subPage.Url ? subPage.Url : `/${slugify(subPage.Slug)}/${subPage.Slug}`}
                                     className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
                                   >
                                     {subPage.Name}
@@ -282,20 +287,32 @@ export default function Navbar() {
               <div key={cat.Id} className="flex flex-col">
                 {cat.pages?.length > 0 ? (
                   <>
-                    <button
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 transition-colors text-left border-l-4 border-transparent ${openCategory === cat.Id ? "bg-gray-50 text-[#6d001d]" : ""}`}
-                      onClick={() => setOpenCategory(openCategory === cat.Id ? null : cat.Id)}
-                    >
-                      {cat.Name}
-                      <svg className={`w-4 h-4 transform transition-transform duration-200 ${openCategory === cat.Id ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+
+                    {cat.Url ? (
+                      <Link
+                        href={cat.Url}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 transition-colors text-left border-l-4 border-transparent block"
+                      >
+                        {cat.Name}
+                      </Link>
+                    ) : (
+                      <button
+                        className={`w-full flex items-center justify-between px-4 py-3 rounded-md font-bold text-xs uppercase tracking-wider text-gray-800 hover:bg-gray-50 transition-colors text-left border-l-4 border-transparent ${openCategory === cat.Id ? "bg-gray-50 text-[#6d001d]" : ""}`}
+                        onClick={() => setOpenCategory(openCategory === cat.Id ? null : cat.Id)}
+                      >
+                        {cat.Name}
+                        <svg className={`w-4 h-4 transform transition-transform duration-200 ${openCategory === cat.Id ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    )}
+
+
                     <div className={`flex flex-col pl-6 bg-gray-50/50 rounded-b-md overflow-hidden transition-all duration-300 ${openCategory === cat.Id ? "max-h-[500px] py-1 border-l-2 border-amber-400 ml-4" : "max-h-0"}`}>
                       {cat.pages.map((page) => (
                         <Link
                           key={page.Slug}
-                          href={`/${slugify(cat.Slug)}/${page.Slug}`}
+                          href={page.Url ? page.Url : `/${slugify(page.Slug)}/${page.Slug}`}
                           onClick={handleMobileLink}
                           className="block font-label-caps text-2xs text-black hover:text-[#6d001d] px-3 py-2 transition-colors duration-150"
                         >
