@@ -1,4 +1,8 @@
+import { ReactNode } from 'react';
 
+
+// This component can be used in Server Components without "use client"
+// It's a pure presentation component that only renders HTML content
 export default function IsolatedContent({ htmlContent }) {
   return (
     <article
