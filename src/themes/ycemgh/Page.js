@@ -19,7 +19,7 @@ export default function Home() {
         {/* <StudentToppers />
         <CollegetoperScoll /> */}
         <AdmissionSection />
-        <RandomGallery />
+        {/* <RandomGallery /> */}
       </div>
     </>
   );
