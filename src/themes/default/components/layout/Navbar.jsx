@@ -312,7 +312,7 @@ export default function Navbar() {
                       {cat.pages.map((page) => (
                         <Link
                           key={page.Slug}
-                          href={page.Url ? page.Url : `/${slugify(page.Slug)}/${page.Slug}`}
+                           href={page.Url ? page.Url : `/${slugify(cat.Slug)}/${page.Slug}`}
                           onClick={handleMobileLink}
                           className="block font-label-caps text-2xs text-black hover:text-[#6d001d] px-3 py-2 transition-colors duration-150"
                         >
