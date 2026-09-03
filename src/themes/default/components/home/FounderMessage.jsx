@@ -24,7 +24,7 @@ export default function FounderMessage() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("https://yaduvanshigroup.edu.in/api/client/messages");
+        const response = await axios.get("/api/client/messages");
         if (response.data.status === "success") {
           const valid = response?.data?.data?.data;
           const sortedMessages = valid.sort((a, b) => {
