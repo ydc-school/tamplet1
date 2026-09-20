@@ -226,17 +226,16 @@ export default function Navbar() {
                               {page.Name}
                               {page.sub_pages && <span className="ml-2">▶</span>}
                             </Link>
-
-                            {/* Sub-menu - appears on hover */}
-                            {page.sub_pages && (
-                              <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-md shadow-xl border border-gray-100 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 flex flex-col py-1">
+                            {page.sub_pages.length > 0 && (
+                              <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-md border border-gray-100 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 flex flex-col py-1">
                                 {page.sub_pages.map((subPage) => (
                                   <Link
                                     key={subPage.Id}
                                     href={`/${slugify(cat.Slug)}/${page.Slug}/${subPage.Slug}`}
-                                    className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
+                                    className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider flex items-center justify-between"
                                   >
-                                    {subPage.Name}
+                                    <span>{subPage.Name}</span>
+                                  
                                   </Link>
                                 ))}
                               </div>
