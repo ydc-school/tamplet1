@@ -187,6 +187,10 @@ function __OriginkitBase_DraggableGrid(props) {
         fetchImages();
     }, [apiUrl]);
 
+
+    if (!apiItems) return;
+
+
     const safeItems =
         loading ? defaultItems : // Show default items while loading
             apiItems.length > 0 ? apiItems :
@@ -350,6 +354,8 @@ function __OriginkitBase_DraggableGrid(props) {
         willChange: "transform",
     };
 
+
+
     // Show loading state
     if (loading) {
         return (
@@ -367,6 +373,12 @@ function __OriginkitBase_DraggableGrid(props) {
             </div>
         );
     }
+
+
+    if (apiItems.length < 0) return
+
+
+
 
     // Show error state
     if (error) {

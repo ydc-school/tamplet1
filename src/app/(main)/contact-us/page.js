@@ -170,8 +170,7 @@ export default () => {
                             hasValue(schoolInfo?.Youtube_Url)) && (
                                 <div className="bg-surface-container-low rounded-3xl p-8 border border-outline-variant/30 flex flex-col gap-6">
 
-                                    {(hasValue(schoolInfo?.Contact_Person_Name) ||
-                                        hasValue(schoolInfo?.Contact_Person_Position) ||
+                                    {(
                                         hasValue(schoolInfo?.Contact_Person_Phone)) && (
                                             <>
                                                 <div>
@@ -180,16 +179,16 @@ export default () => {
                                                         Key Authority
                                                     </h3>
                                                     <div className="p-4 rounded-2xl bg-surface-container/40 border border-outline-variant/20">
-                                                        {hasValue(schoolInfo?.Contact_Person_Name) && (
+                                                        {/* {hasValue(schoolInfo?.Contact_Person_Name) && (
                                                             <p className="font-body-lg text-body-lg text-primary font-semibold">
                                                                 {schoolInfo.Contact_Person_Name}
                                                             </p>
-                                                        )}
-                                                        {hasValue(schoolInfo?.Contact_Person_Position) && (
+                                                        )} */}
+                                                        {/* {hasValue(schoolInfo?.Contact_Person_Position) && (
                                                             <p className="font-body-md text-body-md text-secondary mb-3">
                                                                 {schoolInfo.Contact_Person_Position}
                                                             </p>
-                                                        )}
+                                                        )} */}
                                                         {hasValue(schoolInfo?.Contact_Person_Phone) && (
                                                             <a
                                                                 className="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors font-body-md text-body-md"
