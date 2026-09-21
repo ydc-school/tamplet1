@@ -24,7 +24,7 @@ export default function GalleryDetailPage({
     if (initialLoaded) return;
     if (!galleryId) return;
     axios
-      .get(`/api/client/gallery/${galleryId}1`)
+      .get(`/api/client/gallery/${galleryId}`)
       .then((res) => {
         if (res.data.status === "success") {
           const data = res.data.data;
