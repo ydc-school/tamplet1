@@ -36,12 +36,16 @@ export default function GalleryDetailPage({
       .finally(() => setLoading(false));
   }, [galleryId, initialLoaded]);
 
-  const handleKey = useCallback((e) => {
-    if (lightbox === null) return;
-    if (e.key === "ArrowRight") setLightbox(i => (i + 1) % images.length);
-    if (e.key === "ArrowLeft")  setLightbox(i => (i - 1 + images.length) % images.length);
-    if (e.key === "Escape")     setLightbox(null);
-  }, [lightbox, images.length]);
+  const handleKey = useCallback(
+    (e) => {
+      if (lightbox === null) return;
+      if (e.key === "ArrowRight") setLightbox((i) => (i + 1) % images.length);
+      if (e.key === "ArrowLeft")
+        setLightbox((i) => (i - 1 + images.length) % images.length);
+      if (e.key === "Escape") setLightbox(null);
+    },
+    [lightbox, images.length]
+  );
 
   useEffect(() => {
     window.addEventListener("keydown", handleKey);
@@ -50,22 +54,43 @@ export default function GalleryDetailPage({
 
   useEffect(() => {
     document.body.style.overflow = lightbox !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [lightbox]);
 
   const stripHtml = (html) => html?.replace(/<[^>]+>/g, " ").trim() ?? "";
 
   const isVideoFile = (item) => {
     if (!item) return false;
-    if (item.Type === "video" || item.type === "video" || item.isVideo) return true;
-    const filePath = item.Image || item.File || item.url || (typeof item === "string" ? item : "");
+    if (item.Type === "video" || item.type === "video" || item.isVideo)
+      return true;
+    const filePath =
+      item.Image || item.File || item.url || (typeof item === "string" ? item : "");
     return /\.(mp4|webm|ogg|mov|m4v|mkv)$/i.test(filePath);
   };
 
   const getItemSrc = (item) => {
     if (!item) return "";
-    const name = item.Image || item.File || item.url || (typeof item === "string" ? item : "");
-    return name.startsWith("http") || name.startsWith("/") ? name : `/uploads/${name}`;
+    const name =
+      item.Image || item.File || item.url || (typeof item === "string" ? item : "");
+    return name.startsWith("http") || name.startsWith("/")
+      ? name
+      : `/uploads/${name}`;
+  };
+
+  // Video ke thumbnail ke liye URL nikalne ke liye function
+  const getItemThumbnail = (item) => {
+    if (!item) return "";
+    // Agar backend thumbnail Bheja ho: item.Thumbnail, item.poster, item.thumb
+    const thumb = item.Thumbnail || item.thumbnail || item.poster || item.thumb;
+    if (thumb) {
+      return thumb.startsWith("http") || thumb.startsWith("/")
+        ? thumb
+        : `/uploads/${thumb}`;
+    }
+    // Agar specific thumbnail image file nahi di ho, to fallback image ya source use karein
+    return getItemSrc(item);
   };
 
   return (
@@ -177,8 +202,8 @@ export default function GalleryDetailPage({
           to   { opacity: 1; transform: scale(1); }
         }
 
-        .gd-tile img, .gd-tile video { transition: transform 0.4s ease !important; object-fit: cover; }
-        .gd-tile:hover img, .gd-tile:hover video { transform: scale(1.08) !important; }
+        .gd-tile img { transition: transform 0.4s ease !important; object-fit: cover; }
+        .gd-tile:hover img { transform: scale(1.08) !important; }
 
         .gd-overlay {
           position: absolute; inset: 0;
@@ -278,9 +303,24 @@ export default function GalleryDetailPage({
       <div className="gd-root">
         <div className="gd-hero">
           <div className="gd-hero-inner">
-            <button className="gd-back" onClick={() => router.push(`/gallery/${categoryId}`)}>
-              <svg className="gd-back-arr" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            <button
+              className="gd-back"
+              onClick={() => router.push(`/gallery/${categoryId}`)}
+            >
+              <svg
+                className="gd-back-arr"
+                width="13"
+                height="13"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               Back to Albums
             </button>
@@ -306,45 +346,63 @@ export default function GalleryDetailPage({
         <div className="gd-body">
           {loading ? (
             <div className="gd-grid">
-              {[1,2,3,4,5,6,7,8,9,10].map(i => <div key={i} className="gd-skel" />)}
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                <div key={i} className="gd-skel" />
+              ))}
             </div>
           ) : images.length === 0 ? (
             <div className="gd-empty">
-              <svg style={{ margin:"0 auto", display:"block", color:"rgba(196,160,72,0.12)" }} width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <svg
+                style={{
+                  margin: "0 auto",
+                  display: "block",
+                  color: "rgba(196,160,72,0.12)",
+                }}
+                width="48"
+                height="48"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
               <div className="gd-empty-title">No items in this album yet</div>
-              <p style={{ fontSize:14 }}>Check back soon.</p>
+              <p style={{ fontSize: 14 }}>Check back soon.</p>
             </div>
           ) : (
             <div className="gd-grid">
               {images.map((item, idx) => {
                 const isVideo = isVideoFile(item);
-                const itemSrc = getItemSrc(item);
-                
+                const imgSrc = isVideo ? getItemThumbnail(item) : getItemSrc(item);
+
                 return (
-                  <div key={item.Id || idx} className="gd-tile" onClick={() => setLightbox(idx)}>
-                    {isVideo ? (
-                      <video
-                        src={itemSrc}
-                        className="w-full h-full object-cover"
-                        muted
-                        playsInline
-                        preload="metadata"
-                      />
-                    ) : (
-                      <Image
-                        src={itemSrc}
-                        alt={`${gallery?.Name || "Gallery"} item ${idx + 1}`}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
-                        className="object-cover"
-                      />
-                    )}
-                    
+                  <div
+                    key={item.Id || idx}
+                    className="gd-tile"
+                    onClick={() => setLightbox(idx)}
+                  >
+                    {/* Grid me hamesha next/image se thumbnail load hoga, <video> load nahi hoga */}
+                    <Image
+                      src={imgSrc}
+                      alt={`${gallery?.Name || "Gallery"} item ${idx + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
+                      className="object-cover"
+                    />
+
                     {isVideo && (
                       <div className="gd-media-badge">
-                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          width="14"
+                          height="14"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
@@ -353,12 +411,28 @@ export default function GalleryDetailPage({
                     <div className="gd-overlay" />
                     <div className="gd-zoom">
                       {isVideo ? (
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          width="28"
+                          height="28"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       ) : (
-                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6" />
+                        <svg
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={1.5}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0zm-3-3v6m-3-3h6"
+                          />
                         </svg>
                       )}
                     </div>
@@ -372,7 +446,8 @@ export default function GalleryDetailPage({
 
       {lightbox !== null && images[lightbox] && (
         <div className="lb-wrap" onClick={() => setLightbox(null)}>
-          <div className="lb-img" onClick={e => e.stopPropagation()}>
+          <div className="lb-img" onClick={(e) => e.stopPropagation()}>
+            {/* Video tabhi render and load hoga jab Lightbox open hoga */}
             {isVideoFile(images[lightbox]) ? (
               <video
                 src={getItemSrc(images[lightbox])}
@@ -393,26 +468,76 @@ export default function GalleryDetailPage({
           </div>
 
           <button className="lb-close" onClick={() => setLightbox(null)}>
-            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              width="15"
+              height="15"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
 
           {images.length > 1 && (
             <>
-              <button className="lb-prev" onClick={e => { e.stopPropagation(); setLightbox(i => (i - 1 + images.length) % images.length); }}>
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              <button
+                className="lb-prev"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightbox(
+                    (i) => (i - 1 + images.length) % images.length
+                  );
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
-              <button className="lb-next" onClick={e => { e.stopPropagation(); setLightbox(i => (i + 1) % images.length); }}>
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              <button
+                className="lb-next"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightbox((i) => (i + 1) % images.length);
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
               <div className="lb-counter">
-                <span className="lb-counter-cur">{String(lightbox + 1).padStart(2, "0")}</span>
-                {" / "}{String(images.length).padStart(2, "0")}
+                <span className="lb-counter-cur">
+                  {String(lightbox + 1).padStart(2, "0")}
+                </span>
+                {" / "}
+                {String(images.length).padStart(2, "0")}
               </div>
             </>
           )}
