@@ -4,20 +4,6 @@ import Image from "next/image";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
-// Video Thumbnail Helper Component
-// #t=0.5 browser ko bolta hai ki poori video download kiye bina sirf pehle 0.5s ka single frame fetch kare
-function VideoThumbnail({ src }) {
-  return (
-    <video
-      src={`${src}#t=0.5`}
-      preload="metadata"
-      muted
-      playsInline
-      className="w-full h-full object-cover pointer-events-none"
-    />
-  );
-}
-
 export default function GalleryDetailPage({
   categoryId: categoryIdProp,
   galleryId: galleryIdProp,
@@ -91,6 +77,20 @@ export default function GalleryDetailPage({
     return name.startsWith("http") || name.startsWith("/")
       ? name
       : `/uploads/${name}`;
+  };
+
+  // Video ke thumbnail ke liye URL nikalne ke liye function
+  const getItemThumbnail = (item) => {
+    if (!item) return "";
+    // Agar backend thumbnail Bheja ho: item.Thumbnail, item.poster, item.thumb
+    const thumb = item.Thumbnail || item.thumbnail || item.poster || item.thumb;
+    if (thumb) {
+      return thumb.startsWith("http") || thumb.startsWith("/")
+        ? thumb
+        : `/uploads/${thumb}`;
+    }
+    // Agar specific thumbnail image file nahi di ho, to fallback image ya source use karein
+    return getItemSrc(item);
   };
 
   return (
@@ -378,7 +378,7 @@ export default function GalleryDetailPage({
             <div className="gd-grid">
               {images.map((item, idx) => {
                 const isVideo = isVideoFile(item);
-                const itemSrc = getItemSrc(item);
+                const imgSrc = isVideo ? getItemThumbnail(item) : getItemSrc(item);
 
                 return (
                   <div
@@ -386,19 +386,14 @@ export default function GalleryDetailPage({
                     className="gd-tile"
                     onClick={() => setLightbox(idx)}
                   >
-                    {isVideo ? (
-                      /* Grid me lightweight VideoThumbnail render hoga */
-                      <VideoThumbnail src={itemSrc} />
-                    ) : (
-                      /* Standard Image */
-                      <Image
-                        src={itemSrc}
-                        alt={`${gallery?.Name || "Gallery"} item ${idx + 1}`}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
-                        className="object-cover"
-                      />
-                    )}
+                    {/* Grid me hamesha next/image se thumbnail load hoga, <video> load nahi hoga */}
+                    <Image
+                      src={imgSrc}
+                      alt={`${gallery?.Name || "Gallery"} item ${idx + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, (max-width: 1200px) 25vw, 20vw"
+                      className="object-cover"
+                    />
 
                     {isVideo && (
                       <div className="gd-media-badge">
@@ -449,10 +444,10 @@ export default function GalleryDetailPage({
         </div>
       </div>
 
-      {/* Lightbox Modal: Full video tabhi load / play hoga jab lightbox khulega */}
       {lightbox !== null && images[lightbox] && (
         <div className="lb-wrap" onClick={() => setLightbox(null)}>
           <div className="lb-img" onClick={(e) => e.stopPropagation()}>
+            {/* Video tabhi render and load hoga jab Lightbox open hoga */}
             {isVideoFile(images[lightbox]) ? (
               <video
                 src={getItemSrc(images[lightbox])}
@@ -551,4 +546,3 @@ export default function GalleryDetailPage({
     </>
   );
 }
- 
