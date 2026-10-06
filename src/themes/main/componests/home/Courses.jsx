@@ -51,7 +51,7 @@ export const Courses = () => {
                 <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.Sc Maths</div>
                 <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Sc Zoology</div>
                 <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.Sc Botany</div>
-                <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Sc Computer Sci.</div>
+                <div className="bg-cyan-400 rounded-lg p-2 text-center font-semibold">M.Sc. Computer Science</div>
                 <div className="bg-cyan-100 rounded-lg p-2 text-center font-semibold">M.Sc Geography</div>
 
               </div>
@@ -103,7 +103,7 @@ export const Courses = () => {
                 <div className="bg-yellow-400 rounded-lg p-2 text-center font-semibold">B.Sc Hons Maths</div>
                 <div className="bg-yellow-100 rounded-lg p-2 text-center font-semibold">B.Sc Hons Zoology</div>
                 <div className="bg-yellow-400 rounded-lg p-2 text-center font-semibold">B.Sc Hons Botany</div>
-                <div className="bg-yellow-100 rounded-lg p-2 text-center font-semibold">B.Sc Computer Sci.</div>
+                <div className="bg-yellow-100 rounded-lg p-2 text-center font-semibold">B.Sc. Computer Science</div>
                 <div className="bg-yellow-400 rounded-lg p-2 text-center font-semibold">BBA</div>
                 <div className="bg-yellow-100 rounded-lg p-2 text-center font-semibold">BCA</div>
 

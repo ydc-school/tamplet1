@@ -18,7 +18,7 @@ const ALL_COURSES = [
   { name: "M.Sc Maths", code: "Post Graduate", bg: "#4F46E5", border: "#818CF8", text: "#FFFFFF", Icon: Award },
   { name: "M.Sc Zoology", code: "Post Graduate", bg: "#16A34A", border: "#4ADE80", text: "#FFFFFF", Icon: BookOpen },
   { name: "M.Sc Botany", code: "Post Graduate", bg: "#15803D", border: "#86EFAC", text: "#FFFFFF", Icon: BookOpen },
-  { name: "M.Sc Computer Sci.", code: "Post Graduate", bg: "#0284C7", border: "#38BDF8", text: "#FFFFFF", Icon: Cpu },
+  { name: "M.Sc. Computer Science", code: "Post Graduate", bg: "#0284C7", border: "#38BDF8", text: "#FFFFFF", Icon: Cpu },
   { name: "M.Sc Geography", code: "Post Graduate", bg: "#B45309", border: "#FCD34D", text: "#FFFFFF", Icon: Book },
 
   { name: "B.Tech (CSE)", code: "Under Graduate", bg: "#1D4ED8", border: "#93C5FD", text: "#FFFFFF", Icon: Code },
@@ -42,7 +42,7 @@ const ALL_COURSES = [
   { name: "B.Sc Hons Maths", code: "Under Graduate", bg: "#312E81", border: "#E0E7FF", text: "#FFFFFF", Icon: Award },
   { name: "B.Sc Hons Zoology", code: "Under Graduate", bg: "#14532D", border: "#DCFCE7", text: "#FFFFFF", Icon: BookOpen },
   { name: "B.Sc Hons Botany", code: "Under Graduate", bg: "#064E3B", border: "#A7F3D0", text: "#FFFFFF", Icon: BookOpen },
-  { name: "B.Sc Computer Sci.", code: "Under Graduate", bg: "#134E4A", border: "#99F6E4", text: "#FFFFFF", Icon: Code },
+  { name: "B.Sc. Computer Science", code: "Under Graduate", bg: "#134E4A", border: "#99F6E4", text: "#FFFFFF", Icon: Code },
   { name: "BBA", code: "Under Graduate", bg: "#9A3412", border: "#FFEDD5", text: "#FFFFFF", Icon: Briefcase },
   { name: "BCA", code: "Under Graduate", bg: "#581C87", border: "#E9D5FF", text: "#FFFFFF", Icon: Code },
 
