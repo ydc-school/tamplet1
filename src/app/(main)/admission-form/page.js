@@ -152,7 +152,7 @@ export default function AdmissionForm() {
                   <span className="af-step-num">1</span> Basic Info
                 </div>
                 <div className={`af-step ${step === 2 ? "active" : ""}`}>
-                  <span className="af-step-num">2</span> Academic & Path
+                  <span className="af-step-num">2</span> Academic Details
                 </div>
                 <div className={`af-step ${step === 3 ? "active" : ""}`}>
                   <span className="af-step-num">3</span> Address & Meta
