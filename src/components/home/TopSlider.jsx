@@ -12,7 +12,7 @@ import Gallery1 from "@/components/ui/Gallery1";
 import Banner from "../ui/Banner";
 import IsPhone from "@/utils/IsPhone";
 
-
+import thoughts from "@/api/thought";
 
 
 
@@ -112,10 +112,10 @@ export default function TopSlider() {
       <div className="z-30 bg-white/95 backdrop-blur-md py-3 border-t border-amber-500">
         <div className="max-w-7xl mx-auto px-6 flex items-center">
           <span className="bg-[#6d001d] text-white px-4 py-1 text-xs font-bold mr-4 shrink-0 rounded-sm">
-            UPCOMING EVENTS
+            Thought of the Day
           </span>
           <marquee className="text-xs font-bold text-gray-800 tracking-wide" scrollamount="6">
-            Registration Open for Academic Session 2026-27 | Inter-School Sports Meet starting Dec 15th | Parent-Teacher Interaction Schedule Updated...
+            {thoughts}
           </marquee>
         </div>
       </div>
