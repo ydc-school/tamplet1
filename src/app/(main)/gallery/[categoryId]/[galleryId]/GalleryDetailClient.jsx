@@ -379,7 +379,7 @@ export default function GalleryDetailPage({
               {images.map((item, idx) => {
                 const isVideo = isVideoFile(item);
                 // const imgSrc = isVideo ? getItemThumbnail(item) : getItemSrc(item);
-                const imgSrc = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239ca3af'><path d='M8 5v14l11-7z'/></svg>";
+                const imgSrc = isVideo ? "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239ca3af'><path d='M8 5v14l11-7z'/></svg>" : getItemSrc(item);
 
                 return (
                   <div
