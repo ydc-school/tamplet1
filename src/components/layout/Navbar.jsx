@@ -17,7 +17,7 @@ export default function Navbar() {
   const { schoolInfo, loading } = useSchool();
   const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
     schoolInfo?.Logo_Url,
-    "/logo/logo.png"
+    "/logo/loading-logo.png"
   );
 
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
