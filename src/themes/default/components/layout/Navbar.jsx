@@ -18,7 +18,7 @@ export default function Navbar() {
   const { schoolInfo, loading } = useSchool();
   const { src: logoSrc, handleError: handleLogoError } = useFallbackImage(
     schoolInfo?.Logo_Url,
-    "/logo/logo.png"
+    "/logo/loading-logo.png"
   );
 
   const schoolName = schoolInfo?.School_Name ?? "Yaduvanshi";
@@ -240,7 +240,7 @@ export default function Navbar() {
                                     className="px-4 py-2 text-xs font-semibold hover:bg-gray-50 hover:text-[#6d001d] transition-colors uppercase tracking-wider"
                                   >
                                     <span>{subPage.Name}</span>
-                                  
+
                                   </Link>
                                 ))}
                               </div>
@@ -311,7 +311,7 @@ export default function Navbar() {
                       {cat.pages.map((page) => (
                         <Link
                           key={page.Slug}
-                           href={page.Url ? page.Url : `/${slugify(cat.Slug)}/${page.Slug}`}
+                          href={page.Url ? page.Url : `/${slugify(cat.Slug)}/${page.Slug}`}
                           onClick={handleMobileLink}
                           className="block font-label-caps text-2xs text-black hover:text-[#6d001d] px-3 py-2 transition-colors duration-150"
                         >
