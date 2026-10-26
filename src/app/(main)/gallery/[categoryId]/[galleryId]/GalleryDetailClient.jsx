@@ -378,10 +378,8 @@ export default function GalleryDetailPage({
             <div className="gd-grid">
               {images.map((item, idx) => {
                 const isVideo = isVideoFile(item);
-                let imgSrc = isVideo ? getItemThumbnail(item) : getItemSrc(item);
-                if (isVideo && !imgSrc) {
-                  imgSrc = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239ca3af'><path d='M8 5v14l11-7z'/></svg>";
-                }
+                // const imgSrc = isVideo ? getItemThumbnail(item) : getItemSrc(item);
+                const imgSrc = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239ca3af'><path d='M8 5v14l11-7z'/></svg>";
 
                 return (
                   <div
@@ -389,6 +387,7 @@ export default function GalleryDetailPage({
                     className="gd-tile"
                     onClick={() => setLightbox(idx)}
                   >
+                    {/* Grid me hamesha next/image se thumbnail load hoga, <video> load nahi hoga */}
                     <Image
                       src={imgSrc}
                       alt={`${gallery?.Name || "Gallery"} item ${idx + 1}`}
@@ -398,7 +397,7 @@ export default function GalleryDetailPage({
                     />
 
                     {isVideo && (
-                      <div className="gd-media-badge bg-green-900">
+                      <div className="gd-media-badge">
                         <svg
                           width="14"
                           height="14"
