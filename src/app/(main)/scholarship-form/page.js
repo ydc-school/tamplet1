@@ -32,12 +32,18 @@ export default function ScholarshipForm() {
     alt_mob_no: "",
     add: "",
     family_income: "",
-    has_previous_scholarship: "", // 'yes' or 'no'
-    prev_sch_details: "",
-    txtUploadDoc: null,
     txtCaptcha: "",
     branches: "",
   });
+
+  useEffect(() => {
+    if (schoolInfo?.branchId) {
+      setFormData((prev) => ({
+        ...prev,
+        branches: prev.branches || String(schoolInfo.branchId),
+      }));
+    }
+  }, [schoolInfo]);
 
   useEffect(() => {
     const fetchBranches = async () => {
@@ -54,25 +60,6 @@ export default function ScholarshipForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handlePrevScholarshipChange = (value) => {
-    setFormData((prev) => ({
-      ...prev,
-      has_previous_scholarship: value,
-      ...(value === "no" && { prev_sch_details: "" }),
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type !== "application/pdf") {
-      setError("Please upload PDF files only.");
-      e.target.value = null;
-      return;
-    }
-    setError(null);
-    setFormData((prev) => ({ ...prev, txtUploadDoc: file }));
   };
 
   const handleSubmit = async (e) => {
@@ -93,11 +80,9 @@ export default function ScholarshipForm() {
       return;
     }
 
-    // 2. Previous Scholarship Selection Validation
-    if (!formData.has_previous_scholarship) {
-      setError(
-        "Please select whether the student has received any scholarship before.",
-      );
+    // 2. Branch Validation
+    if (!formData.branches) {
+      setError("Please select a preferred branch.");
       setLoading(false);
       return;
     }
@@ -130,16 +115,7 @@ export default function ScholarshipForm() {
     data.append("Address", formData.add);
     data.append("Family_Income", formData.family_income);
     data.append("Branch_Id", formData.branches);
-    data.append("Has_Previous_Scholarship", formData.has_previous_scholarship);
     data.append("Captcha", formData.txtCaptcha);
-
-    if (formData.has_previous_scholarship === "yes") {
-      data.append("Previous_Scholarship_Details", formData.prev_sch_details);
-    }
-
-    if (formData.txtUploadDoc) {
-      data.append("Document", formData.txtUploadDoc);
-    }
 
     try {
       const response = await axios.post("/api/client/scholarship", data, {
@@ -209,7 +185,6 @@ export default function ScholarshipForm() {
                 </div>
 
                 <div className="flex flex-col gap-[6px] mb-[18px]">
-                  {" "}
                   <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
                     Preferred Branch *
                   </label>
@@ -224,17 +199,23 @@ export default function ScholarshipForm() {
                     <option value="" disabled>
                       Select a branch
                     </option>
-                    {/* {branches
-                                            ?.filter(i => i.Name !== "main" && i.Branch_Type != "main")
-                                            ?.map((i) => (
-                                                <option key={i.Id} value={i.Id}>
-                                                    {i.Name}
-                                                </option>
-                                            ))
-                                        } */}
-                    <option value={schoolInfo.branchId}>
-                      {schoolInfo.School_Name}
-                    </option>
+                    {schoolInfo?.branchId && (
+                      <option value={schoolInfo.branchId}>
+                        {schoolInfo?.School_Name || "Current Branch"}
+                      </option>
+                    )}
+                    {branches
+                      ?.filter(
+                        (i) =>
+                          i.Name !== "main" &&
+                          i.Branch_Type !== "main" &&
+                          String(i.Id) !== String(schoolInfo?.branchId),
+                      )
+                      ?.map((i) => (
+                        <option key={i.Id} value={i.Id}>
+                          {i.Name}
+                        </option>
+                      ))}
                   </select>
                 </div>
               </div>
@@ -531,7 +512,7 @@ export default function ScholarshipForm() {
                 />
               </div>
 
-              {/* ── SECTION 6: Captcha & Submission ── */}
+              {/* ── SECTION 4: Captcha & Submission ── */}
               <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px]">
                 4. Captcha & Application Submission
               </div>
