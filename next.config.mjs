@@ -32,6 +32,14 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/uploads/:path*",
+        destination: `${backendUrl.origin}/uploads/:path*`,
+      },
+    ];
+  },
   async headers() {
     return [
       {
