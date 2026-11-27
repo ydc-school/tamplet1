@@ -1,6 +1,11 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
 const backendUrl = new URL(
   process.env.NEXT_PUBLIC_BACKEND_URL || process.env.BACKEND_URL || "http://localhost:3000"
 );
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -11,6 +16,7 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingRoot: projectRoot,
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
