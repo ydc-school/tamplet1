@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
-import Matter from "matter-js"
 import { BookOpen, GraduationCap, Award, Book, Cpu, Code, Briefcase, Sparkles, Shield, Database, Brain, Landmark, BarChart, Magnet } from "lucide-react"
 
 const ALL_COURSES = [
@@ -71,9 +70,7 @@ const ALL_COURSES = [
   { name: "Financial Market", code: "Distance Diploma", bg: "#C2410C", border: "#FFEDD5", text: "#FFFFFF", Icon: Briefcase },
 ]
 
-const M = Matter
-
-function makeWalls(bounding, world, opts) {
+function makeWalls(bounding, world, M, opts) {
   const { width: w, height: h } = bounding
   const t = 200
   const walls = []
@@ -135,6 +132,7 @@ export default function AnimationedCourses(props) {
   const rafRef = useRef(0)
   const madeRef = useRef([])
   const magnetBodyRef = useRef(null)
+  const matterRef = useRef(null)
   const [activeMagnet, setActiveMagnet] = useState(null)
   const [activeGlowIndex, setActiveGlowIndex] = useState(null)
   const [activeBounceIndex, setActiveBounceIndex] = useState(null)
@@ -149,6 +147,8 @@ export default function AnimationedCourses(props) {
   const handleCardClick = (index) => {
     const targetBody = madeRef.current[index]
     if (!targetBody) return
+    const M = matterRef.current
+    if (!M) return
 
     setActiveBounceIndex(index)
     setActiveGlowIndex(index)
@@ -199,17 +199,14 @@ export default function AnimationedCourses(props) {
     mouseAngularStiffness,
   })
 
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
+  const setupEngine = async (M, container) => {
     const engine = M.Engine.create({
       enableSleeping: false,
       gravity: { x: gravX, y: gravY },
     })
 
     const bounding = container.getBoundingClientRect()
-    makeWalls(bounding, engine.world, wallOptions)
+    makeWalls(bounding, engine.world, M, wallOptions)
 
     let mouseConstraint = null
     const onLeave = () =>
@@ -301,6 +298,32 @@ export default function AnimationedCourses(props) {
         container.removeEventListener("mouseleave", onLeave)
       M.World.clear(engine.world, false)
       M.Engine.clear(engine)
+    }
+  }
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    let cancelled = false
+    let cleanupFn = null
+
+    import("matter-js").then((Matter) => {
+      if (cancelled) return
+      const M = Matter.default || Matter
+      matterRef.current = M
+      setupEngine(M, container).then((cleanup) => {
+        if (cancelled) {
+          if (cleanup) cleanup()
+          return
+        }
+        cleanupFn = cleanup
+      })
+    })
+
+    return () => {
+      cancelled = true
+      if (cleanupFn) cleanupFn()
     }
   }, [depKey])
 
