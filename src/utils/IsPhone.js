@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from "react";
 
+const PHONE_QUERY = "(max-width: 768px)";
+
 function useIsPhone() {
-    // Shuruat me false rakhenge taaki server-side error na aaye
-    const [isPhone, setIsPhone] = useState(false);
+    // Pehle render par hi sahi value mil jaye, isse component mount hote hi
+    // API call do baar (false -> true flip) nahi hoti
+    const [isPhone, setIsPhone] = useState(
+        () =>
+            typeof window !== "undefined" &&
+            window.matchMedia(PHONE_QUERY).matches
+    );
 
     useEffect(() => {
-        // Yeh block sirf browser par chalega
-        const mediaQuery = window.matchMedia("(max-width: 768px)");
+        const mediaQuery = window.matchMedia(PHONE_QUERY);
 
-        // Pehli baar check karne ke liye
-        setIsPhone(mediaQuery.matches);
-
-        // Agar user screen choti-badi kare toh update karne ke liye
         const handler = (e) => setIsPhone(e.matches);
 
         // Listener add karein
