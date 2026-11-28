@@ -163,7 +163,7 @@ export default function ScholarshipForm() {
             <div className="p-8">
               {/* ── SECTION 1: Student & Family Details ── */}
               <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px] first-of-type:mt-0">
-                1. Student & Family Details
+                Student Details
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -343,9 +343,9 @@ export default function ScholarshipForm() {
               </div>
 
               {/* ── SECTION 2: Current School & Academic Details ── */}
-              <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px]">
+              {/* <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px]">
                 2. Current School & Academic Details
-              </div>
+              </div> */}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-[6px] mb-[18px]">
@@ -429,9 +429,9 @@ export default function ScholarshipForm() {
               </div>
 
               {/* ── SECTION 3: Contact & Address Details ── */}
-              <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px]">
+              {/* <div className="text-[14px] font-bold text-[#c4a048] uppercase tracking-[0.08em] mt-6 mb-4 border-b border-dashed border-[#c4a048]/30 pb-[6px]">
                 3. Contact & Address Details
-              </div>
+              </div> */}
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div className="flex flex-col gap-[6px] mb-[18px]">
@@ -451,7 +451,7 @@ export default function ScholarshipForm() {
                 </div>
                 <div className="flex flex-col gap-[6px] mb-[18px]">
                   <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
-                    Phone / Mobile No. *
+                    Contact Number
                   </label>
                   <input
                     type="tel"
@@ -474,7 +474,7 @@ export default function ScholarshipForm() {
                 </div>
                 <div className="flex flex-col gap-[6px] mb-[18px]">
                   <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
-                    Parent / Alternate No.
+                    Alternate Contact Number
                   </label>
                   <input
                     type="tel"
