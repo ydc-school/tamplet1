@@ -25,13 +25,10 @@ export default function ScholarshipForm() {
     category: "",
     curr_school: "",
     curr_class: "",
-    board_stream: "",
-    prev_percentage: "",
     eml_id: "",
     mob_no: "",
     alt_mob_no: "",
     add: "",
-    family_income: "",
     txtCaptcha: "",
     branches: "",
   });
@@ -107,13 +104,10 @@ export default function ScholarshipForm() {
     data.append("Category", formData.category);
     data.append("Current_School", formData.curr_school);
     data.append("Current_Class", formData.curr_class);
-    data.append("Board_Stream", formData.board_stream);
-    data.append("Previous_Percentage", formData.prev_percentage);
     data.append("Email_Id", formData.eml_id);
     data.append("Mobile_No", formData.mob_no);
     data.append("Alternate_Mobile_No", formData.alt_mob_no);
     data.append("Address", formData.add);
-    data.append("Family_Income", formData.family_income);
     data.append("Branch_Id", formData.branches);
     data.append("Captcha", formData.txtCaptcha);
 
@@ -375,54 +369,6 @@ export default function ScholarshipForm() {
                     className={inputClass}
                     placeholder="e.g. Class 9, Class 11"
                     value={formData.curr_class}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                <div className="flex flex-col gap-[6px] mb-[18px]">
-                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
-                    Board / Stream *
-                  </label>
-                  <input
-                    type="text"
-                    id="board_stream"
-                    name="board_stream"
-                    required
-                    className={inputClass}
-                    placeholder="e.g. CBSE, RBSE, Science"
-                    value={formData.board_stream}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="flex flex-col gap-[6px] mb-[18px]">
-                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
-                    Last Exam % / CGPA *
-                  </label>
-                  <input
-                    type="text"
-                    id="prev_percentage"
-                    name="prev_percentage"
-                    required
-                    className={inputClass}
-                    placeholder="e.g. 88.5% or 9.2 CGPA"
-                    value={formData.prev_percentage}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="flex flex-col gap-[6px] mb-[18px]">
-                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
-                    Annual Family Income *
-                  </label>
-                  <input
-                    type="text"
-                    id="family_income"
-                    name="family_income"
-                    required
-                    className={inputClass}
-                    placeholder="e.g. ₹2,50,000"
-                    value={formData.family_income}
                     onChange={handleChange}
                   />
                 </div>
