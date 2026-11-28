@@ -205,15 +205,19 @@ export default function ScholarshipForm() {
                       </option>
                     )}
                     {branches
-                      ?.filter(
-                        (i) =>
-                          i.Name !== "main" &&
-                          i.Branch_Type !== "main" &&
-                          String(i.Id) !== String(schoolInfo?.branchId),
-                      )
-                      ?.map((i) => (
-                        <option key={i.Id} value={i.Id}>
-                          {i.Name}
+                      ?.filter((branch) => {
+                        const isMainBranch =
+                          branch.Name?.toLowerCase() === "main" ||
+                          branch.Branch_Type?.toLowerCase() === "main";
+                        const isCollegeException =
+                          branch.Branch_Type?.toLowerCase() === "college" &&
+                          String(branch.Id) !== String(schoolInfo?.branchId);
+
+                        return !isMainBranch || isCollegeException;
+                      })
+                      ?.map((branch) => (
+                        <option key={branch.Id} value={branch.Id}>
+                          {branch.Name}
                         </option>
                       ))}
                   </select>
