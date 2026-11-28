@@ -22,7 +22,6 @@ export default function ScholarshipForm() {
     mth_name: "",
     dob: "",
     sel_gen: "",
-    category: "",
     curr_school: "",
     curr_class: "",
     eml_id: "",
@@ -101,7 +100,6 @@ export default function ScholarshipForm() {
     data.append("Mother_Name", formData.mth_name);
     data.append("DOB", formData.dob);
     data.append("Gender", formData.sel_gen);
-    data.append("Category", formData.category);
     data.append("Current_School", formData.curr_school);
     data.append("Current_Class", formData.curr_class);
     data.append("Email_Id", formData.eml_id);
@@ -312,26 +310,6 @@ export default function ScholarshipForm() {
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-[6px] mb-[18px]">
-                  <label className="text-[12px] font-bold text-[#10213a] uppercase tracking-[0.05em]">
-                    Category *
-                  </label>
-                  <select
-                    id="category"
-                    name="category"
-                    required
-                    className={inputClass}
-                    value={formData.category}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Category</option>
-                    <option value="General">General</option>
-                    <option value="OBC">OBC</option>
-                    <option value="SC">SC</option>
-                    <option value="ST">ST</option>
-                    <option value="EWS">EWS</option>
                   </select>
                 </div>
               </div>
